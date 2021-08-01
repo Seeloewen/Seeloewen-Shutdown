@@ -1,3 +1,3 @@
-Version 1.3.6 vom 31.07.2021
+Version 1.3.6 vom 01.08.2021
 
 Der Updater wurde neu programmiert und wieder hinzugefügt.
