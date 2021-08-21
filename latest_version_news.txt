@@ -1,4 +1,5 @@
-Version 1.3.7 vom 14.08.2021
-
-+ Timer im "Mitteilung" Fenster hinzugefügt
-* Einige Netzwerk-Fehler behoben
++ Button im "Einstellungen" Fenster hinzugefügt, mit dem laufende Aktionen abgebrochen werden können
++ Genauer Zeitpunkt des Herunterfahrens im "Mitteilung" Fenster hinzugefügt
++ "Changelog" Fenster hinzugefügt
+* Es werden nun alle Fenster geschlossen, wenn man im Updater eine neue Version herunterlädt
+* Einige Designänderungen vorgenommen
