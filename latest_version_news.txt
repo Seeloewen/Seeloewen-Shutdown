@@ -5,3 +5,5 @@ Version 1.4.0 vom 21.08.2021
 + "Changelog" Fenster hinzugefügt
 * Es werden nun alle Fenster geschlossen, wenn man im Updater eine neue Version herunterlädt
 * Einige Designänderungen vorgenommen
+
+Test
