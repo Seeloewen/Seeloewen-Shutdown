@@ -15,3 +15,5 @@ Bei Hilfe kann ein Blick ins "Hilfe" Fenster nicht schaden, bei weiteren Fragen 
 Das Programm unterliegt der GPL v3 Lizenz. Weitere Informationen zu Rechten sind dort zu finden. Die Lizenz ist auch im Programm vermerkt.
 
 Seeloewen Shutdown - 2021 by Seeloewen (Louis)
+
+![Beispiel_Seeloewen_Shutdown](https://user-images.githubusercontent.com/74246933/130973494-a54a69e8-ce24-44fd-8e8a-a655f1d356ca.PNG)
