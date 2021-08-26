@@ -125,18 +125,6 @@ Namespace My
                 Me("UpdatesOnStartup") = value
             End Set
         End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("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")>  _
-        Public Property GithubToken() As String
-            Get
-                Return CType(Me("GithubToken"),String)
-            End Get
-            Set
-                Me("GithubToken") = value
-            End Set
-        End Property
     End Class
 End Namespace
 

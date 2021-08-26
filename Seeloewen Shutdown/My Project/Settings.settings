@@ -20,8 +20,5 @@
     <Setting Name="UpdatesOnStartup" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="GithubToken" Type="System.String" Scope="User">
-      <Value Profile="(Default)">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</Value>
-    </Setting>
   </Settings>
 </SettingsFile>
