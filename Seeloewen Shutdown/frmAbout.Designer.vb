@@ -53,7 +53,7 @@ Partial Class frmAbout
         Me.lblInfo.Name = "lblInfo"
         Me.lblInfo.Size = New System.Drawing.Size(226, 48)
         Me.lblInfo.TabIndex = 1
-        Me.lblInfo.Text = "Version 1.4.1 - 26.08.2021" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Seeloewen (Louis)" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        Me.lblInfo.Text = "Version 1.4.1 - 27.08.2021" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Seeloewen (Louis)" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         Me.lblInfo.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'gbInfo
