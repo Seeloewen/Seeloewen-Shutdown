@@ -4,5 +4,3 @@ Private Repository für Seeloewen Shutdown
 Enthält Update Dateien für Seeloewen Shutdown
 
 Für Private Zwecke werden hier außerdem neue Versionen als Releases veröffentlicht
-
-Test commit von VS 2019
