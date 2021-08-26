@@ -53,7 +53,7 @@ Partial Class frmAbout
         Me.lblInfo.Name = "lblInfo"
         Me.lblInfo.Size = New System.Drawing.Size(226, 48)
         Me.lblInfo.TabIndex = 1
-        Me.lblInfo.Text = "Version 1.4.0 - 21.08.2021" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Seeloewen" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        Me.lblInfo.Text = "Version 1.4.1 - 21.08.2021" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Seeloewen (Louis)" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         Me.lblInfo.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'gbInfo
@@ -66,13 +66,14 @@ Partial Class frmAbout
         Me.gbInfo.Size = New System.Drawing.Size(322, 195)
         Me.gbInfo.TabIndex = 2
         Me.gbInfo.TabStop = False
-        Me.gbInfo.Text = "Info"
+        Me.gbInfo.Text = "GNU General Public License"
         '
         'rbtInfo
         '
         Me.rbtInfo.BackColor = System.Drawing.Color.White
         Me.rbtInfo.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.rbtInfo.Cursor = System.Windows.Forms.Cursors.Arrow
+        Me.rbtInfo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rbtInfo.Location = New System.Drawing.Point(6, 25)
         Me.rbtInfo.Name = "rbtInfo"
         Me.rbtInfo.ReadOnly = True
@@ -115,7 +116,7 @@ Partial Class frmAbout
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(86, 305)
+        Me.Label1.Location = New System.Drawing.Point(87, 305)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(195, 20)
         Me.Label1.TabIndex = 7
