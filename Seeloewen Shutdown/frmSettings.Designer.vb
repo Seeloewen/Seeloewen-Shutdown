@@ -228,7 +228,7 @@ Partial Class frmSettings
         Me.rtbCurrentVersion.Name = "rtbCurrentVersion"
         Me.rtbCurrentVersion.Size = New System.Drawing.Size(92, 19)
         Me.rtbCurrentVersion.TabIndex = 6
-        Me.rtbCurrentVersion.Text = "1.4.0" & Global.Microsoft.VisualBasic.ChrW(10)
+        Me.rtbCurrentVersion.Text = "1.4.1" & Global.Microsoft.VisualBasic.ChrW(10)
         '
         'rtbNewestVersion
         '
@@ -288,7 +288,7 @@ Partial Class frmSettings
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(440, 488)
+        Me.ClientSize = New System.Drawing.Size(887, 488)
         Me.Controls.Add(Me.gbRunningAction)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.rtbNewestVersion)

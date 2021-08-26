@@ -91,11 +91,8 @@ Public Class frmSettings
     End Sub
 
     Private Sub btnSearchForUpdates_Click(sender As Object, e As EventArgs) Handles btnSearchForUpdates.Click
-        Dim githubToken = My.Settings.GithubToken
-        On Error Resume Next
         Dim request = CType(WebRequest.Create("https://api.github.com/repos/Seeloewen/Seeloewen-Shutdown/contents/newest_version.txt"), HttpWebRequest)
         On Error Resume Next
-        request.Headers.Add(HttpRequestHeader.Authorization, String.Concat("token ", githubToken))
         request.Accept = "application/vnd.github.v3.raw"
         request.UserAgent = "Seeloewen Shutdown"
 
