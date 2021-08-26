@@ -200,12 +200,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Resources\frmAbout.PNG" />
     <None Include="Resources\frmUpdate.png" />
     <None Include="Resources\frmSettings.PNG" />
     <None Include="Resources\frmMain.PNG" />
     <None Include="Resources\frmFinish.png" />
     <None Include="Resources\frmChangelog.png" />
-    <None Include="Resources\frmAbout.PNG" />
     <None Include="Resources\btnSettings2.png" />
     <None Include="Resources\btnSettings1.png" />
     <None Include="Resources\btnSettings.png" />
