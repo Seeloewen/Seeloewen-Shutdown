@@ -1,0 +1,27 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="My" GeneratedClassName="MySettings" UseMySettingsClassName="true">
+  <Profiles />
+  <Settings>
+    <Setting Name="DefaultAction" Type="System.String" Scope="User">
+      <Value Profile="(Default)">shutdown</Value>
+    </Setting>
+    <Setting Name="DefaultTime" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="DefaultTimeChoice" Type="System.String" Scope="User">
+      <Value Profile="(Default)">minutes</Value>
+    </Setting>
+    <Setting Name="DefaultMessage" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="EnableDefaultMessage" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="UpdatesOnStartup" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="GithubToken" Type="System.String" Scope="User">
+      <Value Profile="(Default)">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</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
