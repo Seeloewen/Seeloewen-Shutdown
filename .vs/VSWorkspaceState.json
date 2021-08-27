@@ -2,8 +2,11 @@
   "ExpandedNodes": [
     "",
     "\\Seeloewen Shutdown",
+    "\\Seeloewen Shutdown\\bin",
+    "\\Seeloewen Shutdown\\bin\\Debug",
+    "\\Seeloewen Shutdown\\bin\\Release",
     "\\Seeloewen Shutdown\\My Project"
   ],
-  "SelectedNode": "\\Seeloewen Shutdown\\Seeloewen Shutdown.sln",
+  "SelectedNode": "\\Seeloewen Shutdown\\frmMain.vb",
   "PreviewInSolutionExplorer": false
 }
