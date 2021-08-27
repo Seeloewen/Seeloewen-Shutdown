@@ -1,4 +1,5 @@
 ﻿Imports System.Net
+Imports System.IO
 Public Class frmUpdate
     Private Sub frmUpdate_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim request = CType(WebRequest.Create("https://api.github.com/repos/Seeloewen/Seeloewen-Shutdown/contents/latest_version_news.txt"), HttpWebRequest)
@@ -28,8 +29,10 @@ Public Class frmUpdate
             End Using
         End Using
 
-        Process.Start(latest_download_link)
+        Dim wc As New WebClient()
+        wc.DownloadFile(latest_download_link, "SeeloewenShutdownUpdate.exe")
 
+        Process.Start("SeeloewenShutdownUpdate.exe")
         frmMain.Close()
     End Sub
 
