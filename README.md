@@ -17,3 +17,6 @@ Das Programm unterliegt der GPL v3 Lizenz. Weitere Informationen zu Rechten sind
 Seeloewen Shutdown - 2021 by Seeloewen (Louis)
 
 ![Beispiel_Seeloewen_Shutdown](https://user-images.githubusercontent.com/74246933/130973494-a54a69e8-ce24-44fd-8e8a-a655f1d356ca.PNG)
+
+Alle Releases ab Version 1.4.1 wurden mit Inno Setup zu einem Setup verpackt.
+https://github.com/jrsoftware/issrc
