@@ -9,6 +9,17 @@
     End Sub
 
     Private Sub frmFinish_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        If My.Settings.Language = "English" Then
+            Text = "Notification"
+            lblHeader.Text = "Your PC will shutdown soon"
+            lblTimeRemaining.Text = "Time remaining:"
+            lblZeitpunkt.Text = "Exact time:"
+
+            gbMessage.Text = "Message"
+
+            btnCancelAction.Text = "Cancel action"
+        End If
+
         'Countdown definieren
         Dim CountDownFrom As TimeSpan
         If frmMain.rbtnIn.Checked = True Then

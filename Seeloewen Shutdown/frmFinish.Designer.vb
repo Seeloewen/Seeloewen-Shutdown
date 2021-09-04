@@ -85,7 +85,7 @@ Partial Class frmFinish
         '
         Me.timeRemaining.AutoSize = True
         Me.timeRemaining.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.timeRemaining.Location = New System.Drawing.Point(155, 43)
+        Me.timeRemaining.Location = New System.Drawing.Point(166, 43)
         Me.timeRemaining.Name = "timeRemaining"
         Me.timeRemaining.Size = New System.Drawing.Size(143, 20)
         Me.timeRemaining.TabIndex = 5
