@@ -28,7 +28,7 @@ Partial Class frmAbout
         Me.gbInfo = New System.Windows.Forms.GroupBox()
         Me.rbtInfo = New System.Windows.Forms.RichTextBox()
         Me.btnClose = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.btnHelp = New System.Windows.Forms.Button()
         Me.btnChangelog = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.gbInfo.SuspendLayout()
@@ -49,11 +49,11 @@ Partial Class frmAbout
         Me.lblInfo.AutoSize = True
         Me.lblInfo.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblInfo.ForeColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.lblInfo.Location = New System.Drawing.Point(65, 42)
+        Me.lblInfo.Location = New System.Drawing.Point(38, 42)
         Me.lblInfo.Name = "lblInfo"
-        Me.lblInfo.Size = New System.Drawing.Size(226, 48)
+        Me.lblInfo.Size = New System.Drawing.Size(279, 48)
         Me.lblInfo.TabIndex = 1
-        Me.lblInfo.Text = "Version 1.4.1 - 27.08.2021" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Seeloewen (Louis)" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        Me.lblInfo.Text = "Version 1.5.0-Beta1 - 04.09.2021" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Seeloewen (Louis)" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         Me.lblInfo.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'gbInfo
@@ -92,15 +92,15 @@ Partial Class frmAbout
         Me.btnClose.Text = "Schließen"
         Me.btnClose.UseVisualStyleBackColor = True
         '
-        'Button1
+        'btnHelp
         '
-        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.Location = New System.Drawing.Point(17, 337)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(106, 29)
-        Me.Button1.TabIndex = 5
-        Me.Button1.Text = "Hilfe"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.btnHelp.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnHelp.Location = New System.Drawing.Point(17, 337)
+        Me.btnHelp.Name = "btnHelp"
+        Me.btnHelp.Size = New System.Drawing.Size(106, 29)
+        Me.btnHelp.TabIndex = 5
+        Me.btnHelp.Text = "Hilfe"
+        Me.btnHelp.UseVisualStyleBackColor = True
         '
         'btnChangelog
         '
@@ -131,7 +131,7 @@ Partial Class frmAbout
         Me.ClientSize = New System.Drawing.Size(356, 378)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.btnChangelog)
-        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.btnHelp)
         Me.Controls.Add(Me.btnClose)
         Me.Controls.Add(Me.gbInfo)
         Me.Controls.Add(Me.lblInfo)
@@ -154,7 +154,7 @@ Partial Class frmAbout
     Friend WithEvents gbInfo As GroupBox
     Friend WithEvents btnClose As Button
     Friend WithEvents rbtInfo As RichTextBox
-    Friend WithEvents Button1 As Button
+    Friend WithEvents btnHelp As Button
     Friend WithEvents btnChangelog As Button
     Friend WithEvents Label1 As Label
 End Class
