@@ -1,6 +1,6 @@
-WARNUNG: Vor der Installation dieser Version muss die alte Version deinstalliert werden.
+WARNING: This update is a BETA! There may be bugs and incomplete features.
 
-Version 1.4.1 vom 27.08.2021
-+ GNU General Public License v3 im "Über..." Fenster hinzugefügt
-- Informationen im "Über..." Fenster entfernt
-* Änderungen am Updater vorgenommen
+Version 1.5.0-Beta1 (04.09.2021)
+* Added english translation (incomplete)
+* Added language setting in settings menu
+* Fixed typo in "About..." window
