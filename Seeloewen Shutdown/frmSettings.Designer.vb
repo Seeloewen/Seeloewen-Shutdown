@@ -45,9 +45,16 @@ Partial Class frmSettings
         Me.gbRunningAction = New System.Windows.Forms.GroupBox()
         Me.btnStopRunningActions = New System.Windows.Forms.Button()
         Me.lblRunningAction = New System.Windows.Forms.Label()
+        Me.gbBeta = New System.Windows.Forms.GroupBox()
+        Me.lblDesignWIP = New System.Windows.Forms.Label()
+        Me.cbxLanguage = New System.Windows.Forms.ComboBox()
+        Me.lblDesign = New System.Windows.Forms.Label()
+        Me.lblLanguage = New System.Windows.Forms.Label()
+        Me.BackgroundWorker2 = New System.ComponentModel.BackgroundWorker()
         Me.gbDefaultSettings.SuspendLayout()
         Me.gbUpdate.SuspendLayout()
         Me.gbRunningAction.SuspendLayout()
+        Me.gbBeta.SuspendLayout()
         Me.SuspendLayout()
         '
         'lblSettings
@@ -169,7 +176,7 @@ Partial Class frmSettings
         'btnSave
         '
         Me.btnSave.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSave.Location = New System.Drawing.Point(18, 454)
+        Me.btnSave.Location = New System.Drawing.Point(19, 548)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(199, 27)
         Me.btnSave.TabIndex = 3
@@ -179,7 +186,7 @@ Partial Class frmSettings
         'btnClose
         '
         Me.btnClose.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnClose.Location = New System.Drawing.Point(225, 454)
+        Me.btnClose.Location = New System.Drawing.Point(225, 548)
         Me.btnClose.Name = "btnClose"
         Me.btnClose.Size = New System.Drawing.Size(199, 27)
         Me.btnClose.TabIndex = 4
@@ -228,7 +235,7 @@ Partial Class frmSettings
         Me.rtbCurrentVersion.Name = "rtbCurrentVersion"
         Me.rtbCurrentVersion.Size = New System.Drawing.Size(92, 19)
         Me.rtbCurrentVersion.TabIndex = 6
-        Me.rtbCurrentVersion.Text = "1.4.1" & Global.Microsoft.VisualBasic.ChrW(10)
+        Me.rtbCurrentVersion.Text = "1.5.0-Beta1" & Global.Microsoft.VisualBasic.ChrW(10)
         '
         'rtbNewestVersion
         '
@@ -283,12 +290,69 @@ Partial Class frmSettings
         Me.lblRunningAction.Text = "Falls aktuell eine Aktion läuft, die du abbrechen " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "möchtest, kannst du dies hier" &
     " tun."
         '
+        'gbBeta
+        '
+        Me.gbBeta.Controls.Add(Me.lblDesignWIP)
+        Me.gbBeta.Controls.Add(Me.cbxLanguage)
+        Me.gbBeta.Controls.Add(Me.lblDesign)
+        Me.gbBeta.Controls.Add(Me.lblLanguage)
+        Me.gbBeta.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gbBeta.ForeColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.gbBeta.Location = New System.Drawing.Point(18, 455)
+        Me.gbBeta.Name = "gbBeta"
+        Me.gbBeta.Size = New System.Drawing.Size(406, 87)
+        Me.gbBeta.TabIndex = 10
+        Me.gbBeta.TabStop = False
+        Me.gbBeta.Text = "Beta"
+        '
+        'lblDesignWIP
+        '
+        Me.lblDesignWIP.AutoSize = True
+        Me.lblDesignWIP.ForeColor = System.Drawing.Color.Black
+        Me.lblDesignWIP.Location = New System.Drawing.Point(92, 51)
+        Me.lblDesignWIP.Name = "lblDesignWIP"
+        Me.lblDesignWIP.Size = New System.Drawing.Size(126, 20)
+        Me.lblDesignWIP.TabIndex = 3
+        Me.lblDesignWIP.Text = "work-in-progress"
+        '
+        'cbxLanguage
+        '
+        Me.cbxLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbxLanguage.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbxLanguage.FormattingEnabled = True
+        Me.cbxLanguage.Items.AddRange(New Object() {"Deutsch (German)", "English (English)"})
+        Me.cbxLanguage.Location = New System.Drawing.Point(96, 26)
+        Me.cbxLanguage.Name = "cbxLanguage"
+        Me.cbxLanguage.Size = New System.Drawing.Size(298, 21)
+        Me.cbxLanguage.TabIndex = 2
+        '
+        'lblDesign
+        '
+        Me.lblDesign.AutoSize = True
+        Me.lblDesign.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.lblDesign.Location = New System.Drawing.Point(17, 51)
+        Me.lblDesign.Name = "lblDesign"
+        Me.lblDesign.Size = New System.Drawing.Size(63, 20)
+        Me.lblDesign.TabIndex = 1
+        Me.lblDesign.Text = "Design:"
+        '
+        'lblLanguage
+        '
+        Me.lblLanguage.AutoSize = True
+        Me.lblLanguage.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.lblLanguage.Location = New System.Drawing.Point(17, 27)
+        Me.lblLanguage.Name = "lblLanguage"
+        Me.lblLanguage.Size = New System.Drawing.Size(73, 20)
+        Me.lblLanguage.TabIndex = 0
+        Me.lblLanguage.Text = "Sprache:"
+        '
         'frmSettings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(441, 488)
+        Me.ClientSize = New System.Drawing.Size(442, 587)
+        Me.Controls.Add(Me.gbBeta)
         Me.Controls.Add(Me.gbRunningAction)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.rtbNewestVersion)
@@ -311,6 +375,8 @@ Partial Class frmSettings
         Me.gbUpdate.PerformLayout()
         Me.gbRunningAction.ResumeLayout(False)
         Me.gbRunningAction.PerformLayout()
+        Me.gbBeta.ResumeLayout(False)
+        Me.gbBeta.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -338,4 +404,10 @@ Partial Class frmSettings
     Friend WithEvents gbRunningAction As GroupBox
     Friend WithEvents btnStopRunningActions As Button
     Friend WithEvents lblRunningAction As Label
+    Friend WithEvents gbBeta As GroupBox
+    Friend WithEvents BackgroundWorker2 As System.ComponentModel.BackgroundWorker
+    Friend WithEvents lblDesign As Label
+    Friend WithEvents lblLanguage As Label
+    Friend WithEvents lblDesignWIP As Label
+    Friend WithEvents cbxLanguage As ComboBox
 End Class

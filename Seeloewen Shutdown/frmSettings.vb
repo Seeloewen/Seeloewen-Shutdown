@@ -23,6 +23,36 @@ Public Class frmSettings
         ElseIf My.Settings.UpdatesOnStartup = False Then
             cbUpdatesOnStartup.Checked = False
         End If
+
+        If My.Settings.Language = "English" Then
+            cbxLanguage.SelectedItem = "English (English)"
+
+            Text = "Settings"
+
+            lblSettings.Text = "Settings"
+
+            gbDefaultSettings.Text = "Default settings"
+            gbRunningAction.Text = "Running action"
+
+            rbtnShutdown.Text = "Shutdown"
+            rbtnRestart.Text = "Restart"
+
+            cbUpdatesOnStartup.Text = "Search for updates when the app starts"
+
+            lblDefaultAktion.Text = "Action"
+            lblDefaultTime.Text = "Execute in..."
+            lblDefaultMessage.Text = "Message"
+            lblRunningAction.Text = "If an action is already running, you can cancel it" + vbNewLine + "here, if you want to."
+            lblLanguage.Text = "Language"
+
+            btnSearchForUpdates.Text = "Search for updates"
+            btnStopRunningActions.Text = "Stop running actions"
+            btnSave.Text = "Save"
+            btnClose.Text = "Close"
+        ElseIf My.Settings.Language = "German" Then
+            cbxLanguage.SelectedItem = "Deutsch (German)"
+        End If
+
     End Sub
 
     Private Sub tbDefaultTime_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tbDefaultTime.KeyPress
@@ -69,8 +99,17 @@ Public Class frmSettings
         'DefaultTime speichern.
         My.Settings.DefaultTime = tbDefaultTime.Text
 
+        'Sprache speichern
+        If cbxLanguage.SelectedItem = "English (English)" Then
+            My.Settings.Language = "English"
+            Close()
+        ElseIf cbxLanguage.SelectedItem = "Deutsch (German)" Then
+            My.Settings.Language = "German"
+            Close()
+        End If
+
         'Mitteilen, dass alle Optionen gespeichert wurden.
-        MsgBox("Alle ausgewählten Optionen wurden gespeichert!", MsgBoxStyle.Information, "Erfolgreich gespeichert!")
+        MsgBox("Alle ausgewählten Optionen wurden gespeichert!" + vbNewLine + "Du musst möglicherweise die App neustarten," + vbNewLine + "um manche Einstellungen anzuwenden.", MsgBoxStyle.Information, "Erfolgreich gespeichert!")
         Me.Close()
     End Sub
 
