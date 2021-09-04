@@ -4,6 +4,7 @@ Public Class frmMain
     Dim maxtime As String
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
         tbMessage.Text = My.Settings.DefaultMessage
         tbTime.Text = My.Settings.DefaultTime
 
@@ -37,6 +38,23 @@ Public Class frmMain
         currentDateTime.Enabled = False
 
         dtpDate.CustomFormat = "dd.MM.yyyy HH:mm:ss"
+
+        'Elemente auf die ausgewählte Sprache übersetzen
+        If My.Settings.Language = "English" Then
+            gbAction.Text = "Action"
+            gbMessage.Text = "Message"
+            gbTime.Text = "Time"
+
+            rbtnShutdown.Text = "Shutdown"
+            rbtnRestart.Text = "Restart"
+            rbtnZeitpunkt.Text = "Exact time"
+
+            cbMessage.Text = "Attach message"
+
+            btnStartAction.Text = "Start action"
+        ElseIf My.Settings.Language = "German" Then
+        Else frmFirstStart.ShowDialog()
+        End If
     End Sub
 
     Private Sub btnOpenHelp_Click(sender As Object, e As EventArgs) Handles btnOpenHelp.Click

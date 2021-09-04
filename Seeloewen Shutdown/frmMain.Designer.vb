@@ -67,9 +67,9 @@ Partial Class frmMain
         Me.lblVersion.ForeColor = System.Drawing.SystemColors.ControlDarkDark
         Me.lblVersion.Location = New System.Drawing.Point(14, 46)
         Me.lblVersion.Name = "lblVersion"
-        Me.lblVersion.Size = New System.Drawing.Size(139, 25)
+        Me.lblVersion.Size = New System.Drawing.Size(202, 25)
         Me.lblVersion.TabIndex = 1
-        Me.lblVersion.Text = "Version 1.4.1"
+        Me.lblVersion.Text = "Version 1.5.0-Beta1"
         '
         'gbAction
         '
@@ -168,9 +168,9 @@ Partial Class frmMain
         '
         Me.dtpDate.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.dtpDate.Location = New System.Drawing.Point(100, 49)
+        Me.dtpDate.Location = New System.Drawing.Point(111, 49)
         Me.dtpDate.Name = "dtpDate"
-        Me.dtpDate.Size = New System.Drawing.Size(204, 22)
+        Me.dtpDate.Size = New System.Drawing.Size(193, 22)
         Me.dtpDate.TabIndex = 6
         '
         'tbTime

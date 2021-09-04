@@ -28,4 +28,18 @@
         pbHelp.Image = My.Resources.frmChangelog
         gbHelp.Text = "Changelog"
     End Sub
+
+    Private Sub frmHilfe_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        If My.Settings.Language = "English" Then
+            lblHeader.Text = "Help for Seeloewen Shutdown"
+            lblShowHelpFor.Text = "Show help for:"
+
+            btnFrmMain.Text = "Main window"
+            btnFrmSettings.Text = "Settings"
+            btnFrmInformation.Text = "Information"
+            btnFrmFinish.Text = "Notification"
+
+            Text = "Help"
+        End If
+    End Sub
 End Class
