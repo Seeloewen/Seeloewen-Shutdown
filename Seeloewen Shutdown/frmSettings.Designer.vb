@@ -28,7 +28,7 @@ Partial Class frmSettings
         Me.rbtnRestart = New System.Windows.Forms.RadioButton()
         Me.rbtnShutdown = New System.Windows.Forms.RadioButton()
         Me.cbxDefaultIn = New System.Windows.Forms.ComboBox()
-        Me.lblDefaultAktion = New System.Windows.Forms.Label()
+        Me.lblDefaultAction = New System.Windows.Forms.Label()
         Me.tbDefaultTime = New System.Windows.Forms.TextBox()
         Me.lblDefaultTime = New System.Windows.Forms.Label()
         Me.tbDefaultMessage = New System.Windows.Forms.TextBox()
@@ -38,7 +38,6 @@ Partial Class frmSettings
         Me.gbUpdate = New System.Windows.Forms.GroupBox()
         Me.cbUpdatesOnStartup = New System.Windows.Forms.CheckBox()
         Me.btnSearchForUpdates = New System.Windows.Forms.Button()
-        Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.rtbCurrentVersion = New System.Windows.Forms.RichTextBox()
         Me.rtbNewestVersion = New System.Windows.Forms.RichTextBox()
         Me.Button1 = New System.Windows.Forms.Button()
@@ -46,11 +45,10 @@ Partial Class frmSettings
         Me.btnStopRunningActions = New System.Windows.Forms.Button()
         Me.lblRunningAction = New System.Windows.Forms.Label()
         Me.gbBeta = New System.Windows.Forms.GroupBox()
-        Me.lblDesignWIP = New System.Windows.Forms.Label()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.cbxLanguage = New System.Windows.Forms.ComboBox()
         Me.lblDesign = New System.Windows.Forms.Label()
         Me.lblLanguage = New System.Windows.Forms.Label()
-        Me.BackgroundWorker2 = New System.ComponentModel.BackgroundWorker()
         Me.gbDefaultSettings.SuspendLayout()
         Me.gbUpdate.SuspendLayout()
         Me.gbRunningAction.SuspendLayout()
@@ -72,7 +70,7 @@ Partial Class frmSettings
         Me.gbDefaultSettings.Controls.Add(Me.rbtnRestart)
         Me.gbDefaultSettings.Controls.Add(Me.rbtnShutdown)
         Me.gbDefaultSettings.Controls.Add(Me.cbxDefaultIn)
-        Me.gbDefaultSettings.Controls.Add(Me.lblDefaultAktion)
+        Me.gbDefaultSettings.Controls.Add(Me.lblDefaultAction)
         Me.gbDefaultSettings.Controls.Add(Me.tbDefaultTime)
         Me.gbDefaultSettings.Controls.Add(Me.lblDefaultTime)
         Me.gbDefaultSettings.Controls.Add(Me.tbDefaultMessage)
@@ -123,15 +121,15 @@ Partial Class frmSettings
         Me.cbxDefaultIn.Size = New System.Drawing.Size(137, 21)
         Me.cbxDefaultIn.TabIndex = 10
         '
-        'lblDefaultAktion
+        'lblDefaultAction
         '
-        Me.lblDefaultAktion.AutoSize = True
-        Me.lblDefaultAktion.ForeColor = System.Drawing.Color.Black
-        Me.lblDefaultAktion.Location = New System.Drawing.Point(11, 26)
-        Me.lblDefaultAktion.Name = "lblDefaultAktion"
-        Me.lblDefaultAktion.Size = New System.Drawing.Size(54, 20)
-        Me.lblDefaultAktion.TabIndex = 7
-        Me.lblDefaultAktion.Text = "Aktion"
+        Me.lblDefaultAction.AutoSize = True
+        Me.lblDefaultAction.ForeColor = System.Drawing.Color.Black
+        Me.lblDefaultAction.Location = New System.Drawing.Point(11, 26)
+        Me.lblDefaultAction.Name = "lblDefaultAction"
+        Me.lblDefaultAction.Size = New System.Drawing.Size(54, 20)
+        Me.lblDefaultAction.TabIndex = 7
+        Me.lblDefaultAction.Text = "Aktion"
         '
         'tbDefaultTime
         '
@@ -235,7 +233,7 @@ Partial Class frmSettings
         Me.rtbCurrentVersion.Name = "rtbCurrentVersion"
         Me.rtbCurrentVersion.Size = New System.Drawing.Size(92, 19)
         Me.rtbCurrentVersion.TabIndex = 6
-        Me.rtbCurrentVersion.Text = "1.5.0-Beta1" & Global.Microsoft.VisualBasic.ChrW(10)
+        Me.rtbCurrentVersion.Text = "1.5.0-Beta2" & Global.Microsoft.VisualBasic.ChrW(10)
         '
         'rtbNewestVersion
         '
@@ -292,7 +290,7 @@ Partial Class frmSettings
         '
         'gbBeta
         '
-        Me.gbBeta.Controls.Add(Me.lblDesignWIP)
+        Me.gbBeta.Controls.Add(Me.ComboBox1)
         Me.gbBeta.Controls.Add(Me.cbxLanguage)
         Me.gbBeta.Controls.Add(Me.lblDesign)
         Me.gbBeta.Controls.Add(Me.lblLanguage)
@@ -305,15 +303,16 @@ Partial Class frmSettings
         Me.gbBeta.TabStop = False
         Me.gbBeta.Text = "Beta"
         '
-        'lblDesignWIP
+        'ComboBox1
         '
-        Me.lblDesignWIP.AutoSize = True
-        Me.lblDesignWIP.ForeColor = System.Drawing.Color.Black
-        Me.lblDesignWIP.Location = New System.Drawing.Point(92, 51)
-        Me.lblDesignWIP.Name = "lblDesignWIP"
-        Me.lblDesignWIP.Size = New System.Drawing.Size(126, 20)
-        Me.lblDesignWIP.TabIndex = 3
-        Me.lblDesignWIP.Text = "work-in-progress"
+        Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Items.AddRange(New Object() {"Hell", "Dunkel"})
+        Me.ComboBox1.Location = New System.Drawing.Point(96, 51)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(298, 21)
+        Me.ComboBox1.TabIndex = 3
         '
         'cbxLanguage
         '
@@ -351,7 +350,7 @@ Partial Class frmSettings
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(442, 587)
+        Me.ClientSize = New System.Drawing.Size(441, 587)
         Me.Controls.Add(Me.gbBeta)
         Me.Controls.Add(Me.gbRunningAction)
         Me.Controls.Add(Me.Button1)
@@ -390,12 +389,11 @@ Partial Class frmSettings
     Friend WithEvents lblDefaultTime As Label
     Friend WithEvents btnSave As Button
     Friend WithEvents btnClose As Button
-    Friend WithEvents lblDefaultAktion As Label
+    Friend WithEvents lblDefaultAction As Label
     Friend WithEvents cbxDefaultIn As ComboBox
     Friend WithEvents rbtnRestart As RadioButton
     Friend WithEvents rbtnShutdown As RadioButton
     Friend WithEvents gbUpdate As GroupBox
-    Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
     Friend WithEvents cbUpdatesOnStartup As CheckBox
     Friend WithEvents btnSearchForUpdates As Button
     Friend WithEvents rtbCurrentVersion As RichTextBox
@@ -405,9 +403,8 @@ Partial Class frmSettings
     Friend WithEvents btnStopRunningActions As Button
     Friend WithEvents lblRunningAction As Label
     Friend WithEvents gbBeta As GroupBox
-    Friend WithEvents BackgroundWorker2 As System.ComponentModel.BackgroundWorker
     Friend WithEvents lblDesign As Label
     Friend WithEvents lblLanguage As Label
-    Friend WithEvents lblDesignWIP As Label
     Friend WithEvents cbxLanguage As ComboBox
+    Friend WithEvents ComboBox1 As ComboBox
 End Class

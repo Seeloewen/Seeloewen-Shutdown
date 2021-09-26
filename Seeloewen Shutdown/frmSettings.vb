@@ -1,6 +1,27 @@
 ﻿Imports System.Net
 Public Class frmSettings
     Private Sub frmSettings_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        If My.Settings.Design = "light" Then
+            ComboBox1.Text = "Hell"
+        ElseIf My.Settings.Design = "dark" Then
+            ComboBox1.Text = "Dunkel"
+            BackColor = Color.FromArgb(41, 41, 41)
+            lblSettings.ForeColor = Color.White
+            lblDefaultAction.ForeColor = Color.White
+            lblDefaultTime.ForeColor = Color.White
+            lblDefaultMessage.ForeColor = Color.White
+            lblRunningAction.ForeColor = Color.White
+            lblLanguage.ForeColor = Color.White
+            lblDesign.ForeColor = Color.White
+            gbDefaultSettings.ForeColor = Color.White
+            gbUpdate.ForeColor = Color.White
+            gbRunningAction.ForeColor = Color.White
+            gbBeta.ForeColor = Color.White
+            rbtnShutdown.ForeColor = Color.White
+            rbtnRestart.ForeColor = Color.White
+            cbUpdatesOnStartup.ForeColor = Color.White
+        End If
+
         If My.Settings.DefaultAction = "shutdown" Then
             rbtnShutdown.Checked = True
         ElseIf My.Settings.DefaultAction = "restart" Then
@@ -39,7 +60,7 @@ Public Class frmSettings
 
             cbUpdatesOnStartup.Text = "Search for updates when the app starts"
 
-            lblDefaultAktion.Text = "Action"
+            lblDefaultAction.Text = "Action"
             lblDefaultTime.Text = "Execute in..."
             lblDefaultMessage.Text = "Message"
             lblRunningAction.Text = "If an action is already running, you can cancel it" + vbNewLine + "here, if you want to."
@@ -52,7 +73,6 @@ Public Class frmSettings
         ElseIf My.Settings.Language = "German" Then
             cbxLanguage.SelectedItem = "Deutsch (German)"
         End If
-
     End Sub
 
     Private Sub tbDefaultTime_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tbDefaultTime.KeyPress
@@ -64,14 +84,14 @@ Public Class frmSettings
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
-        'Überprüfen, welche Option für "Aktion" ausgewählt wurde.
+        'Check which action was selected for DefaultAction.
         If rbtnRestart.Checked = True Then
             My.Settings.DefaultAction = "restart"
         ElseIf rbtnShutdown.Checked = True Then
             My.Settings.DefaultAction = "shutdown"
         End If
 
-        'Überprüfen, was die Standart-Nachricht und ob sie aktiviert ist.
+        'Check if the DefaultMessage is activated and save text.
         If String.IsNullOrEmpty(tbDefaultMessage.Text) Then
             My.Settings.DefaultMessage = ""
             My.Settings.EnableDefaultMessage = False
@@ -80,7 +100,7 @@ Public Class frmSettings
             My.Settings.EnableDefaultMessage = True
         End If
 
-        'Überprüfen, welche Option für "Time" ausgewählt wurde und Zeitangabe speichern.
+        'Check which option is selected for DefaultTimeChoice.
         If cbxDefaultIn.SelectedItem = "Stunde(n)" Then
             My.Settings.DefaultTimeChoice = "hours"
         ElseIf cbxDefaultIn.SelectedItem = "Minute(n)" Then
@@ -89,17 +109,17 @@ Public Class frmSettings
             My.Settings.DefaultTimeChoice = "seconds"
         End If
 
-        'Überprüfen, welche Option für "UpdatesOnStartup" ausgewählt wurde und Auswahl speichern.
+        'Check which option is selected for UpdatesOnStartup.
         If cbUpdatesOnStartup.Checked = True Then
             My.Settings.UpdatesOnStartup = True
         ElseIf cbUpdatesOnStartup.Checked = False Then
             My.Settings.UpdatesOnStartup = False
         End If
 
-        'DefaultTime speichern.
+        'Save DefaultTime
         My.Settings.DefaultTime = tbDefaultTime.Text
 
-        'Sprache speichern
+        'Save Language
         If cbxLanguage.SelectedItem = "English (English)" Then
             My.Settings.Language = "English"
             Close()
@@ -108,7 +128,14 @@ Public Class frmSettings
             Close()
         End If
 
-        'Mitteilen, dass alle Optionen gespeichert wurden.
+        'Save Design
+        If ComboBox1.SelectedItem = "Hell" Then
+            My.Settings.Design = "light"
+        ElseIf ComboBox1.SelectedItem = "Dunkel" Then
+            My.Settings.Design = "dark"
+        End If
+
+        'Show a message that confirms that all settings have been saved
         MsgBox("Alle ausgewählten Optionen wurden gespeichert!" + vbNewLine + "Du musst möglicherweise die App neustarten," + vbNewLine + "um manche Einstellungen anzuwenden.", MsgBoxStyle.Information, "Erfolgreich gespeichert!")
         Me.Close()
     End Sub
@@ -130,7 +157,7 @@ Public Class frmSettings
     End Sub
 
     Private Sub btnSearchForUpdates_Click(sender As Object, e As EventArgs) Handles btnSearchForUpdates.Click
-        Dim request = CType(WebRequest.Create("https://api.github.com/repos/Seeloewen/Seeloewen-Shutdown/contents/newest_version.txt"), HttpWebRequest)
+        Dim request = CType(WebRequest.Create("https://raw.githubusercontent.com/Seeloewen/Seeloewen-Shutdown/main/newest_version.txt"), HttpWebRequest)
         On Error Resume Next
         request.Accept = "application/vnd.github.v3.raw"
         request.UserAgent = "Seeloewen Shutdown"
