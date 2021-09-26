@@ -10,7 +10,7 @@ The program is licensed under the GNU General Public License v3 which you can fi
 
 Seeloewen Shutdown - 2021 by Seeloewen (Louis)
 
-![Beispiel_Seeloewen_Shutdown](https://user-images.githubusercontent.com/74246933/130973494-a54a69e8-ce24-44fd-8e8a-a655f1d356ca.PNG)
+![Seeloewen-Shutdown-Example](https://user-images.githubusercontent.com/74246933/133131011-ff4a7b37-2531-4e87-b341-aed4b23bee9d.png)
 
 All releases since version 1.4.1 are shipped with a setup, which was made using Inno Setup: https://github.com/jrsoftware/issrc
 
