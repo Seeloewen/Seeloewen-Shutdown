@@ -16,6 +16,16 @@
     End Sub
 
     Private Sub frmAbout_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        If My.Settings.Design = "dark" Then
+            BackColor = Color.FromArgb(41, 41, 41)
+            rtbInfo.BackColor = Color.FromArgb(41, 41, 41)
+            lblHeader.ForeColor = Color.White
+            lblInfo.ForeColor = Color.White
+            lblDiscord.ForeColor = Color.White
+            gbInfo.ForeColor = Color.White
+            rtbInfo.ForeColor = Color.White
+        End If
+
         If My.Settings.Language = "English" Then
             Text = "About..."
 

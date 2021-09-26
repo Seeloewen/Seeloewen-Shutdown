@@ -26,11 +26,11 @@ Partial Class frmAbout
         Me.lblHeader = New System.Windows.Forms.Label()
         Me.lblInfo = New System.Windows.Forms.Label()
         Me.gbInfo = New System.Windows.Forms.GroupBox()
-        Me.rbtInfo = New System.Windows.Forms.RichTextBox()
+        Me.rtbInfo = New System.Windows.Forms.RichTextBox()
         Me.btnClose = New System.Windows.Forms.Button()
         Me.btnHelp = New System.Windows.Forms.Button()
         Me.btnChangelog = New System.Windows.Forms.Button()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.lblDiscord = New System.Windows.Forms.Label()
         Me.gbInfo.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -53,12 +53,12 @@ Partial Class frmAbout
         Me.lblInfo.Name = "lblInfo"
         Me.lblInfo.Size = New System.Drawing.Size(279, 48)
         Me.lblInfo.TabIndex = 1
-        Me.lblInfo.Text = "Version 1.5.0-Beta1 - 04.09.2021" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Seeloewen (Louis)" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        Me.lblInfo.Text = "Version 1.5.0-Beta2 - 27.09.2021" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Seeloewen (Louis)" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         Me.lblInfo.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'gbInfo
         '
-        Me.gbInfo.Controls.Add(Me.rbtInfo)
+        Me.gbInfo.Controls.Add(Me.rtbInfo)
         Me.gbInfo.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gbInfo.ForeColor = System.Drawing.SystemColors.ControlDarkDark
         Me.gbInfo.Location = New System.Drawing.Point(17, 107)
@@ -68,19 +68,19 @@ Partial Class frmAbout
         Me.gbInfo.TabStop = False
         Me.gbInfo.Text = "GNU General Public License"
         '
-        'rbtInfo
+        'rtbInfo
         '
-        Me.rbtInfo.BackColor = System.Drawing.Color.White
-        Me.rbtInfo.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.rbtInfo.Cursor = System.Windows.Forms.Cursors.Arrow
-        Me.rbtInfo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.rbtInfo.Location = New System.Drawing.Point(6, 25)
-        Me.rbtInfo.Name = "rbtInfo"
-        Me.rbtInfo.ReadOnly = True
-        Me.rbtInfo.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical
-        Me.rbtInfo.Size = New System.Drawing.Size(310, 162)
-        Me.rbtInfo.TabIndex = 5
-        Me.rbtInfo.Text = resources.GetString("rbtInfo.Text")
+        Me.rtbInfo.BackColor = System.Drawing.Color.White
+        Me.rtbInfo.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.rtbInfo.Cursor = System.Windows.Forms.Cursors.Arrow
+        Me.rtbInfo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.rtbInfo.Location = New System.Drawing.Point(6, 25)
+        Me.rtbInfo.Name = "rtbInfo"
+        Me.rtbInfo.ReadOnly = True
+        Me.rtbInfo.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical
+        Me.rtbInfo.Size = New System.Drawing.Size(310, 162)
+        Me.rtbInfo.TabIndex = 5
+        Me.rtbInfo.Text = resources.GetString("rtbInfo.Text")
         '
         'btnClose
         '
@@ -112,15 +112,15 @@ Partial Class frmAbout
         Me.btnChangelog.Text = "Changelog"
         Me.btnChangelog.UseVisualStyleBackColor = True
         '
-        'Label1
+        'lblDiscord
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(87, 305)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(195, 20)
-        Me.Label1.TabIndex = 7
-        Me.Label1.Text = "Discord: Seeloewen#5699"
+        Me.lblDiscord.AutoSize = True
+        Me.lblDiscord.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblDiscord.Location = New System.Drawing.Point(87, 305)
+        Me.lblDiscord.Name = "lblDiscord"
+        Me.lblDiscord.Size = New System.Drawing.Size(195, 20)
+        Me.lblDiscord.TabIndex = 7
+        Me.lblDiscord.Text = "Discord: Seeloewen#5699"
         '
         'frmAbout
         '
@@ -129,7 +129,7 @@ Partial Class frmAbout
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(356, 378)
-        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.lblDiscord)
         Me.Controls.Add(Me.btnChangelog)
         Me.Controls.Add(Me.btnHelp)
         Me.Controls.Add(Me.btnClose)
@@ -153,8 +153,8 @@ Partial Class frmAbout
     Friend WithEvents lblInfo As Label
     Friend WithEvents gbInfo As GroupBox
     Friend WithEvents btnClose As Button
-    Friend WithEvents rbtInfo As RichTextBox
+    Friend WithEvents rtbInfo As RichTextBox
     Friend WithEvents btnHelp As Button
     Friend WithEvents btnChangelog As Button
-    Friend WithEvents Label1 As Label
+    Friend WithEvents lblDiscord As Label
 End Class
