@@ -1,4 +1,6 @@
 ﻿Imports System.Net
+Imports System.Environment
+
 Public Class frmUpdate
     Private Sub frmUpdate_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If My.Settings.Design = "dark" Then
@@ -31,8 +33,10 @@ Public Class frmUpdate
     End Sub
 
     Private Sub btnDownload_Click(sender As Object, e As EventArgs) Handles btnDownload.Click
+        Dim AppData As String = GetFolderPath(SpecialFolder.ApplicationData)
         Dim latest_download_link As String
         Dim request = CType(WebRequest.Create("https://raw.githubusercontent.com/Seeloewen/Seeloewen-Shutdown/main/latest_download_link.txt"), HttpWebRequest)
+        
         request.Accept = "application/vnd.github.v3.raw"
         request.UserAgent = "Seeloewen Shutdown"
 
@@ -45,13 +49,17 @@ Public Class frmUpdate
         End Using
 
         Dim wc As New WebClient()
-        If My.Computer.FileSystem.FileExists("SeeloewenShutdownUpdate.exe") Then
-            My.Computer.FileSystem.DeleteFile("SeeloewenShutdownUpdate.exe")
+        If My.Computer.FileSystem.DirectoryExists(AppData + "/Seeloewen Shutdown") = False Then
+            My.Computer.FileSystem.CreateDirectory(AppData + "/Seeloewen Shutdown")
         End If
 
-        wc.DownloadFile(latest_download_link, "SeeloewenShutdownUpdate.exe")
+        If My.Computer.FileSystem.FileExists(AppData + "/Seeloewen Shutdown/SeeloewenShutdownUpdate.exe") Then
+            My.Computer.FileSystem.DeleteFile(AppData + "/Seeloewen Shutdown/SeeloewenShutdownUpdate.exe")
+        End If
 
-        Process.Start("SeeloewenShutdownUpdate.exe")
+        wc.DownloadFile(latest_download_link, AppData + "/Seeloewen Shutdown/SeeloewenShutdownUpdate.exe")
+
+        Process.Start(AppData + "/Seeloewen Shutdown/SeeloewenShutdownUpdate.exe")
         frmMain.Close()
     End Sub
 
