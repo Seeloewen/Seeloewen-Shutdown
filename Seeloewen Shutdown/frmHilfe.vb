@@ -41,5 +41,12 @@
 
             Text = "Help"
         End If
+
+        If My.Settings.Design = "dark" Then
+            BackColor = Color.FromArgb(41, 41, 41)
+            lblHeader.ForeColor = Color.White
+            lblShowHelpFor.ForeColor = Color.White
+            gbHelp.ForeColor = Color.White
+        End If
     End Sub
 End Class
