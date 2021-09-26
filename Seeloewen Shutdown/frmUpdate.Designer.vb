@@ -27,8 +27,8 @@ Partial Class frmUpdate
         Me.btnDownload = New System.Windows.Forms.Button()
         Me.btnIgnore = New System.Windows.Forms.Button()
         Me.rtbLatestVersionNews = New System.Windows.Forms.RichTextBox()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pbBackground = New System.Windows.Forms.PictureBox()
+        CType(Me.pbBackground, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'lblHeader
@@ -43,7 +43,7 @@ Partial Class frmUpdate
         '
         'btnDownload
         '
-        Me.btnDownload.Location = New System.Drawing.Point(185, 160)
+        Me.btnDownload.Location = New System.Drawing.Point(184, 183)
         Me.btnDownload.Name = "btnDownload"
         Me.btnDownload.Size = New System.Drawing.Size(167, 23)
         Me.btnDownload.TabIndex = 2
@@ -52,7 +52,7 @@ Partial Class frmUpdate
         '
         'btnIgnore
         '
-        Me.btnIgnore.Location = New System.Drawing.Point(12, 160)
+        Me.btnIgnore.Location = New System.Drawing.Point(11, 183)
         Me.btnIgnore.Name = "btnIgnore"
         Me.btnIgnore.Size = New System.Drawing.Size(167, 23)
         Me.btnIgnore.TabIndex = 3
@@ -65,30 +65,30 @@ Partial Class frmUpdate
         Me.rtbLatestVersionNews.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rtbLatestVersionNews.Location = New System.Drawing.Point(12, 33)
         Me.rtbLatestVersionNews.Name = "rtbLatestVersionNews"
-        Me.rtbLatestVersionNews.Size = New System.Drawing.Size(340, 110)
+        Me.rtbLatestVersionNews.Size = New System.Drawing.Size(340, 135)
         Me.rtbLatestVersionNews.TabIndex = 4
         Me.rtbLatestVersionNews.Text = ""
         '
-        'PictureBox1
+        'pbBackground
         '
-        Me.PictureBox1.BackColor = System.Drawing.SystemColors.Control
-        Me.PictureBox1.Location = New System.Drawing.Point(-31, 151)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(634, 46)
-        Me.PictureBox1.TabIndex = 0
-        Me.PictureBox1.TabStop = False
+        Me.pbBackground.BackColor = System.Drawing.SystemColors.Control
+        Me.pbBackground.Location = New System.Drawing.Point(-32, 174)
+        Me.pbBackground.Name = "pbBackground"
+        Me.pbBackground.Size = New System.Drawing.Size(634, 46)
+        Me.pbBackground.TabIndex = 0
+        Me.pbBackground.TabStop = False
         '
         'frmUpdate
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(363, 189)
+        Me.ClientSize = New System.Drawing.Size(363, 214)
         Me.Controls.Add(Me.rtbLatestVersionNews)
         Me.Controls.Add(Me.btnIgnore)
         Me.Controls.Add(Me.btnDownload)
         Me.Controls.Add(Me.lblHeader)
-        Me.Controls.Add(Me.PictureBox1)
+        Me.Controls.Add(Me.pbBackground)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
@@ -96,13 +96,13 @@ Partial Class frmUpdate
         Me.Name = "frmUpdate"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Aktualisierung"
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pbBackground, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
 
-    Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents pbBackground As PictureBox
     Friend WithEvents lblHeader As Label
     Friend WithEvents btnDownload As Button
     Friend WithEvents btnIgnore As Button
