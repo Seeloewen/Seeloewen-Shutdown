@@ -26,7 +26,7 @@ Partial Class frmChangelog
         Me.lblChangelogHeader = New System.Windows.Forms.Label()
         Me.lblChangelogDescription = New System.Windows.Forms.Label()
         Me.btnClose = New System.Windows.Forms.Button()
-        Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
+        Me.rtbChangelog = New System.Windows.Forms.RichTextBox()
         Me.gbChangelog = New System.Windows.Forms.GroupBox()
         Me.gbChangelog.SuspendLayout()
         Me.SuspendLayout()
@@ -61,19 +61,19 @@ Partial Class frmChangelog
         Me.btnClose.Text = "Schließen"
         Me.btnClose.UseVisualStyleBackColor = True
         '
-        'RichTextBox1
+        'rtbChangelog
         '
-        Me.RichTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.RichTextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RichTextBox1.Location = New System.Drawing.Point(6, 11)
-        Me.RichTextBox1.Name = "RichTextBox1"
-        Me.RichTextBox1.Size = New System.Drawing.Size(473, 258)
-        Me.RichTextBox1.TabIndex = 5
-        Me.RichTextBox1.Text = resources.GetString("RichTextBox1.Text")
+        Me.rtbChangelog.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.rtbChangelog.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.rtbChangelog.Location = New System.Drawing.Point(6, 11)
+        Me.rtbChangelog.Name = "rtbChangelog"
+        Me.rtbChangelog.Size = New System.Drawing.Size(473, 258)
+        Me.rtbChangelog.TabIndex = 5
+        Me.rtbChangelog.Text = resources.GetString("rtbChangelog.Text")
         '
         'gbChangelog
         '
-        Me.gbChangelog.Controls.Add(Me.RichTextBox1)
+        Me.gbChangelog.Controls.Add(Me.rtbChangelog)
         Me.gbChangelog.Location = New System.Drawing.Point(18, 53)
         Me.gbChangelog.Name = "gbChangelog"
         Me.gbChangelog.Size = New System.Drawing.Size(485, 276)
@@ -107,6 +107,6 @@ Partial Class frmChangelog
     Friend WithEvents lblChangelogHeader As Label
     Friend WithEvents lblChangelogDescription As Label
     Friend WithEvents btnClose As Button
-    Friend WithEvents RichTextBox1 As RichTextBox
+    Friend WithEvents rtbChangelog As RichTextBox
     Friend WithEvents gbChangelog As GroupBox
 End Class
