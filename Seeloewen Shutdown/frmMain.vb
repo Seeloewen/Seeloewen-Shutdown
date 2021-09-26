@@ -8,6 +8,20 @@ Public Class frmMain
         tbMessage.Text = My.Settings.DefaultMessage
         tbTime.Text = My.Settings.DefaultTime
 
+        If My.Settings.Design = "dark" Then
+            BackColor = Color.FromArgb(41, 41, 41)
+            lblHeader.ForeColor = Color.White
+            lblVersion.ForeColor = Color.White
+            rbtnIn.ForeColor = Color.White
+            rbtnShutdown.ForeColor = Color.White
+            rbtnRestart.ForeColor = Color.White
+            rbtnPointInTime.ForeColor = Color.White
+            cbMessage.ForeColor = Color.White
+            gbAction.ForeColor = Color.White
+            gbTime.ForeColor = Color.White
+            gbMessage.ForeColor = Color.White
+        End If
+
         If My.Settings.EnableDefaultMessage = True Then
             tbMessage.Enabled = True
             cbMessage.Checked = True
@@ -47,7 +61,7 @@ Public Class frmMain
 
             rbtnShutdown.Text = "Shutdown"
             rbtnRestart.Text = "Restart"
-            rbtnZeitpunkt.Text = "Exact time"
+            rbtnPointInTime.Text = "Exact time"
 
             cbMessage.Text = "Attach message"
 
@@ -113,7 +127,7 @@ Public Class frmMain
         End If
 
         'Aktion mit Nachricht festlegen
-        If rbtnZeitpunkt.Checked = True Then
+        If rbtnPointInTime.Checked = True Then
             If rbtnShutdown.Checked Then
                 Action.Text = "-s"
                 frmFinish.rtbInfo.Text = "Ihr PC wird demnächst heruntergefahren."
@@ -160,7 +174,7 @@ Public Class frmMain
         End Select
     End Sub
 
-    Private Sub rbtnZeitpunkt_CheckedChanged(sender As Object, e As EventArgs) Handles rbtnZeitpunkt.CheckedChanged
+    Private Sub rbtnZeitpunkt_CheckedChanged(sender As Object, e As EventArgs) Handles rbtnPointInTime.CheckedChanged
         tbTime.Enabled = False
         cbxIn.Enabled = False
         dtpDate.Enabled = True
@@ -188,14 +202,10 @@ Public Class frmMain
     End Sub
 
     Private Sub cbMessage_Click(sender As Object, e As EventArgs) Handles cbMessage.Click
-        Dim flag As Boolean = cbMessage.CheckState = CheckState.Unchecked
-        If flag Then
+        If cbMessage.Checked = False Then
             tbMessage.Enabled = False
-        Else
-            Dim flag2 As Boolean = cbMessage.CheckState = CheckState.Checked
-            If flag2 Then
-                tbMessage.Enabled = True
-            End If
+        ElseIf cbMessage.Checked = True Then
+            tbMessage.Enabled = True
         End If
     End Sub
 
@@ -204,8 +214,7 @@ Public Class frmMain
     End Sub
 
     Private Sub SearchForUpdates()
-        On Error Resume Next
-        Dim request = CType(WebRequest.Create("https://api.github.com/repos/Seeloewen/Seeloewen-Shutdown/contents/newest_version.txt"), HttpWebRequest)
+        Dim request = CType(WebRequest.Create("https://raw.githubusercontent.com/Seeloewen/Seeloewen-Shutdown/main/newest_version.txt"), HttpWebRequest)
         On Error Resume Next
         request.Accept = "application/vnd.github.v3.raw"
         request.UserAgent = "Seeloewen Shutdown"

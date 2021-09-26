@@ -29,7 +29,7 @@ Partial Class frmMain
         Me.rbtnRestart = New System.Windows.Forms.RadioButton()
         Me.rbtnShutdown = New System.Windows.Forms.RadioButton()
         Me.gbTime = New System.Windows.Forms.GroupBox()
-        Me.rbtnZeitpunkt = New System.Windows.Forms.RadioButton()
+        Me.rbtnPointInTime = New System.Windows.Forms.RadioButton()
         Me.rbtnIn = New System.Windows.Forms.RadioButton()
         Me.cbxIn = New System.Windows.Forms.ComboBox()
         Me.dtpDate = New System.Windows.Forms.DateTimePicker()
@@ -69,7 +69,7 @@ Partial Class frmMain
         Me.lblVersion.Name = "lblVersion"
         Me.lblVersion.Size = New System.Drawing.Size(202, 25)
         Me.lblVersion.TabIndex = 1
-        Me.lblVersion.Text = "Version 1.5.0-Beta1"
+        Me.lblVersion.Text = "Version 1.5.0-Beta2"
         '
         'gbAction
         '
@@ -113,7 +113,7 @@ Partial Class frmMain
         '
         'gbTime
         '
-        Me.gbTime.Controls.Add(Me.rbtnZeitpunkt)
+        Me.gbTime.Controls.Add(Me.rbtnPointInTime)
         Me.gbTime.Controls.Add(Me.rbtnIn)
         Me.gbTime.Controls.Add(Me.cbxIn)
         Me.gbTime.Controls.Add(Me.dtpDate)
@@ -127,18 +127,18 @@ Partial Class frmMain
         Me.gbTime.TabStop = False
         Me.gbTime.Text = "Zeit"
         '
-        'rbtnZeitpunkt
+        'rbtnPointInTime
         '
-        Me.rbtnZeitpunkt.AutoSize = True
-        Me.rbtnZeitpunkt.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.rbtnZeitpunkt.ForeColor = System.Drawing.Color.Black
-        Me.rbtnZeitpunkt.Location = New System.Drawing.Point(14, 49)
-        Me.rbtnZeitpunkt.Name = "rbtnZeitpunkt"
-        Me.rbtnZeitpunkt.Size = New System.Drawing.Size(80, 20)
-        Me.rbtnZeitpunkt.TabIndex = 10
-        Me.rbtnZeitpunkt.TabStop = True
-        Me.rbtnZeitpunkt.Text = "Zeitpunkt"
-        Me.rbtnZeitpunkt.UseVisualStyleBackColor = True
+        Me.rbtnPointInTime.AutoSize = True
+        Me.rbtnPointInTime.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.rbtnPointInTime.ForeColor = System.Drawing.Color.Black
+        Me.rbtnPointInTime.Location = New System.Drawing.Point(14, 49)
+        Me.rbtnPointInTime.Name = "rbtnPointInTime"
+        Me.rbtnPointInTime.Size = New System.Drawing.Size(80, 20)
+        Me.rbtnPointInTime.TabIndex = 10
+        Me.rbtnPointInTime.TabStop = True
+        Me.rbtnPointInTime.Text = "Zeitpunkt"
+        Me.rbtnPointInTime.UseVisualStyleBackColor = True
         '
         'rbtnIn
         '
@@ -347,6 +347,6 @@ Partial Class frmMain
     Friend WithEvents Finaloutput As Label
     Friend WithEvents Anführungszeichen As Label
     Friend WithEvents cbxIn As ComboBox
-    Friend WithEvents rbtnZeitpunkt As RadioButton
+    Friend WithEvents rbtnPointInTime As RadioButton
     Friend WithEvents rbtnIn As RadioButton
 End Class
