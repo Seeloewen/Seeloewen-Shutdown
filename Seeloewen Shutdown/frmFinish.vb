@@ -13,14 +13,26 @@
             Text = "Notification"
             lblHeader.Text = "Your PC will shutdown soon"
             lblTimeRemaining.Text = "Time remaining:"
-            lblZeitpunkt.Text = "Exact time:"
+            lblPointInTime.Text = "Exact time:"
 
             gbMessage.Text = "Message"
 
             btnCancelAction.Text = "Cancel action"
         End If
 
-        'Countdown definieren
+        If My.Settings.Design = "dark" Then
+            BackColor = Color.FromArgb(41, 41, 41)
+            rtbInfo.BackColor = Color.FromArgb(41, 41, 41)
+            rtbInfo.ForeColor = Color.White
+            lblHeader.ForeColor = Color.White
+            lblTimeRemaining.ForeColor = Color.White
+            lblPointInTime.ForeColor = Color.White
+            timeRemaining.ForeColor = Color.White
+            pointintime.ForeColor = Color.White
+            gbMessage.ForeColor = Color.White
+        End If
+
+        'Define countdown
         Dim CountDownFrom As TimeSpan
         If frmMain.rbtnIn.Checked = True Then
             If frmMain.cbxIn.SelectedItem = "Sekunde(n)" Then
@@ -34,21 +46,21 @@
             CountDownFrom = TimeSpan.FromSeconds(Convert.ToInt32(frmMain.Shutdowntime.Text))
         End If
 
-        'Genauen Zeitpunkt sehen
-        zeitpunkt.Text = frmMain.dtpDate.Text
+        'See exact point in time
+        pointintime.Text = frmMain.dtpDate.Text
 
-        'Nachricht laden
+        'Load message
         If frmMain.cbMessage.Checked Then
             rtbInfo.Text = frmMain.tbMessage.Text
         Else
             rtbInfo.Text = "Wenn sie die Aktion versehentlich gestartet haben, können sie diese abbrechen!"
         End If
 
-        'Timer initialisieren
+        'Initialize timer
         tmrShutdown.Interval = 100
         TargetDT = DateTime.Now.Add(CountDownFrom)
 
-        'Timer starten
+        'Start timer
         tmrShutdown.Start()
     End Sub
 

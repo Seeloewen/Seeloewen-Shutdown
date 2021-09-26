@@ -30,8 +30,8 @@ Partial Class frmFinish
         Me.lblTimeRemaining = New System.Windows.Forms.Label()
         Me.timeRemaining = New System.Windows.Forms.Label()
         Me.tmrShutdown = New System.Windows.Forms.Timer(Me.components)
-        Me.lblZeitpunkt = New System.Windows.Forms.Label()
-        Me.zeitpunkt = New System.Windows.Forms.Label()
+        Me.lblPointInTime = New System.Windows.Forms.Label()
+        Me.pointintime = New System.Windows.Forms.Label()
         Me.gbMessage = New System.Windows.Forms.GroupBox()
         Me.gbMessage.SuspendLayout()
         Me.SuspendLayout()
@@ -94,25 +94,25 @@ Partial Class frmFinish
         'tmrShutdown
         '
         '
-        'lblZeitpunkt
+        'lblPointInTime
         '
-        Me.lblZeitpunkt.AutoSize = True
-        Me.lblZeitpunkt.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblZeitpunkt.Location = New System.Drawing.Point(22, 63)
-        Me.lblZeitpunkt.Name = "lblZeitpunkt"
-        Me.lblZeitpunkt.Size = New System.Drawing.Size(147, 20)
-        Me.lblZeitpunkt.TabIndex = 6
-        Me.lblZeitpunkt.Text = "Genauer Zeitpunkt:"
+        Me.lblPointInTime.AutoSize = True
+        Me.lblPointInTime.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPointInTime.Location = New System.Drawing.Point(22, 63)
+        Me.lblPointInTime.Name = "lblPointInTime"
+        Me.lblPointInTime.Size = New System.Drawing.Size(147, 20)
+        Me.lblPointInTime.TabIndex = 6
+        Me.lblPointInTime.Text = "Genauer Zeitpunkt:"
         '
-        'zeitpunkt
+        'pointintime
         '
-        Me.zeitpunkt.AutoSize = True
-        Me.zeitpunkt.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.zeitpunkt.Location = New System.Drawing.Point(166, 63)
-        Me.zeitpunkt.Name = "zeitpunkt"
-        Me.zeitpunkt.Size = New System.Drawing.Size(102, 20)
-        Me.zeitpunkt.TabIndex = 7
-        Me.zeitpunkt.Text = "%zeitpunkt%"
+        Me.pointintime.AutoSize = True
+        Me.pointintime.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.pointintime.Location = New System.Drawing.Point(166, 63)
+        Me.pointintime.Name = "pointintime"
+        Me.pointintime.Size = New System.Drawing.Size(102, 20)
+        Me.pointintime.TabIndex = 7
+        Me.pointintime.Text = "%zeitpunkt%"
         '
         'gbMessage
         '
@@ -133,8 +133,8 @@ Partial Class frmFinish
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(443, 222)
         Me.Controls.Add(Me.gbMessage)
-        Me.Controls.Add(Me.zeitpunkt)
-        Me.Controls.Add(Me.lblZeitpunkt)
+        Me.Controls.Add(Me.pointintime)
+        Me.Controls.Add(Me.lblPointInTime)
         Me.Controls.Add(Me.timeRemaining)
         Me.Controls.Add(Me.lblTimeRemaining)
         Me.Controls.Add(Me.btnCancelAction)
@@ -159,7 +159,7 @@ Partial Class frmFinish
     Friend WithEvents lblTimeRemaining As Label
     Friend WithEvents timeRemaining As Label
     Friend WithEvents tmrShutdown As Timer
-    Friend WithEvents lblZeitpunkt As Label
-    Friend WithEvents zeitpunkt As Label
+    Friend WithEvents lblPointInTime As Label
+    Friend WithEvents pointintime As Label
     Friend WithEvents gbMessage As GroupBox
 End Class
