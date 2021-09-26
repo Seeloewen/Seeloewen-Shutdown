@@ -2,7 +2,7 @@
 
 With Seeloewen Shutdown you can choose when your PC will automatically shutdown or restart. The time when it shuts down is fully customizable. You can either choose "in ... seconds/minutes/hours" or a direct point in time. You can also attach a message to action, if you want to.
 
-The settings allow you to save an action, a point in time and a message that will automatically be loaded and selected if you start the programm. You can also update the software in the settings, which makes it easy to stay up-to-date. And If you already have an action running that you want to cancel, you can do that here!
+The settings allow you to save an action, a point in time and a message that will automatically be loaded and selected if you start the programm. You can also update the software in the settings, which makes it easy to stay up-to-date. And If you already have an action running that you want to cancel, you can do that here! You can also change the the design and the language.
 
 If you need help you can open the "help" window, which shows a more detailed explanation on the features. If you need further help or have any questions you can also contact Seeloewen#5699 on Discord.
 
@@ -14,7 +14,7 @@ Seeloewen Shutdown - 2021 by Seeloewen (Louis)
 
 All releases since version 1.4.1 are shipped with a setup, which was made using Inno Setup: https://github.com/jrsoftware/issrc
 
-Important: The Software is currently only available in german, but an english translation will be added soon. All source-code related things (like names of objects or comments) will stay in german.
+If you want to use the latest development builds, you can find them in https://github.com/Seeloewen/Seeloewen-Shutdown/tree/main/Seeloewen%20Shutdown/bin/Debug. Please note that these builds are live development builds and mostly are unstable. Only use them for testing purposes.
 
 # Why did I make this software?
 
