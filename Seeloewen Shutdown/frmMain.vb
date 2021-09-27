@@ -53,7 +53,7 @@ Public Class frmMain
 
         dtpDate.CustomFormat = "dd.MM.yyyy HH:mm:ss"
 
-        'Elemente auf die ausgewählte Sprache übersetzen
+        'Translate all elements
         If My.Settings.Language = "English" Then
             gbAction.Text = "Action"
             gbMessage.Text = "Message"
@@ -76,10 +76,10 @@ Public Class frmMain
     End Sub
 
     Private Sub btnStartAction_Click(sender As Object, e As EventArgs) Handles btnStartAction.Click
-        'Anführungszeichen aus Message herausfiltern, da diese zu Problemen führen.
+        'Filter Quotationmarks out of the message
         tbMessage.Text = tbMessage.Text.Replace("""", "/")
 
-        'Action festlegen ohne Nachricht
+        'Set action using "in..."
         If rbtnIn.Checked = True Then
             If String.IsNullOrEmpty(tbTime.Text) Then
                 MsgBox("Bitte gib eine Zeitangabe an!", MsgBoxStyle.Critical, "Fehler")
@@ -92,7 +92,7 @@ Public Class frmMain
                     frmFinish.rtbInfo.Text = "Ihr PC wird demnächst neugestartet."
                 End If
 
-                'Shutdowntime berechnen und festlegen
+                'calculate and set shutdown time
                 If cbxIn.SelectedItem = "Sekunde(n)" Then
                     Shutdowntime.Text = tbTime.Text
                     shutdownart = "Sekunde(n)"
@@ -107,7 +107,7 @@ Public Class frmMain
                     maxtime = "8759"
                 End If
 
-                'Aktion ausführen
+                'Run action
                 If Shutdowntime.Text > 31535999 Then
                     MsgBox("Die maximale Zeitangabe für " + Anführungszeichen.Text + shutdownart + Anführungszeichen.Text + " beträgt " + maxtime, MsgBoxStyle.Critical, "Fehler")
                 ElseIf Shutdowntime.Text = 0 Then
@@ -126,7 +126,7 @@ Public Class frmMain
             End If
         End If
 
-        'Aktion mit Nachricht festlegen
+        'Set action using "Point in Time"
         If rbtnPointInTime.Checked = True Then
             If rbtnShutdown.Checked Then
                 Action.Text = "-s"
@@ -136,7 +136,7 @@ Public Class frmMain
                 frmFinish.rtbInfo.Text = "Ihr PC wird demnächst neugestartet."
             End If
 
-            'Shutdowntime berechnen und festlegen
+            'Calculate and set shutdown time
             currentDateTime.Value = DateTime.Now
             Dim value As DateTime = currentDateTime.Value
             dtpDate.Format = DateTimePickerFormat.Long
@@ -147,7 +147,7 @@ Public Class frmMain
             Math.Ceiling(timeSpan.TotalSeconds)
             Shutdowntime.Text = Math.Ceiling(timeSpan.TotalSeconds)
 
-            'Aktion ausführen
+            'Run action
             If Shutdowntime.Text > 31535999 Then
                 MsgBox("Der ausgewählte Zeitpunkt darf nicht mehr als 1 Jahr in der Zukunft liegen!", MsgBoxStyle.Critical, "Fehler")
             ElseIf Shutdowntime.Text < 0 Then

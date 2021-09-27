@@ -46,8 +46,14 @@
             CountDownFrom = TimeSpan.FromSeconds(Convert.ToInt32(frmMain.Shutdowntime.Text))
         End If
 
-        'See exact point in time
-        pointintime.Text = frmMain.dtpDate.Text
+        'Set exact point in time
+        If frmMain.rbtnIn.Checked = True Then
+            frmMain.dtpDate.Value = DateTime.Now
+            frmMain.dtpDate.Value = frmMain.dtpDate.Value.AddSeconds(frmMain.Shutdowntime.Text)
+            pointintime.Text = frmMain.dtpDate.Text
+        ElseIf frmMain.rbtnPointInTime.Checked = True Then
+            pointintime.Text = frmMain.dtpDate.Text
+        End If
 
         'Load message
         If frmMain.cbMessage.Checked Then
