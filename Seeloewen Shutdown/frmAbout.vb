@@ -19,6 +19,8 @@
         If My.Settings.Design = "dark" Then
             BackColor = Color.FromArgb(41, 41, 41)
             rtbInfo.BackColor = Color.FromArgb(41, 41, 41)
+            llblSeeloewenShutdownGithub.ForeColor = Color.Cyan
+            llblSeeloewenShutdownGithub.LinkColor = Color.Cyan
             lblHeader.ForeColor = Color.White
             lblInfo.ForeColor = Color.White
             gbInfo.ForeColor = Color.White
@@ -27,7 +29,6 @@
 
         If My.Settings.Language = "English" Then
             Text = "About..."
-
             btnHelp.Text = "Help"
             btnClose.Text = "Close"
         End If
