@@ -1,7 +1,6 @@
 ﻿Public Class frmFinish
     Private TargetDT As DateTime
 
-
     Private Sub btnCancelAction_Click(sender As Object, e As EventArgs) Handles btnCancelAction.Click
         Hide()
         frmMain.Show()
@@ -75,9 +74,5 @@
         If ts.TotalMilliseconds > 0 Then
             timeRemaining.Text = ts.ToString("hh\:mm\:ss")
         End If
-    End Sub
-
-    Private Sub rtbInfo_TextChanged(sender As Object, e As EventArgs) Handles rtbInfo.TextChanged
-
     End Sub
 End Class
