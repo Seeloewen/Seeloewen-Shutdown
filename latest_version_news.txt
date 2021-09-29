@@ -1,6 +1,6 @@
 WARNING: This update is a BETA! There may be bugs and incomplete features.
 
-Version 1.5.0-Beta1 (04.09.2021)
-* Added english translation (incomplete)
-* Added language setting in settings menu
-* Fixed typo in "About..." window
+Version 1.5.0-Beta2 (27.09.2021)
+* Added dark design (incomplete)
+* Fixed updater file access bug
+* Fixed point in time displaying wrong time
