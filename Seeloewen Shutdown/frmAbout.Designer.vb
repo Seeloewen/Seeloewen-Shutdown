@@ -30,7 +30,7 @@ Partial Class frmAbout
         Me.btnClose = New System.Windows.Forms.Button()
         Me.btnHelp = New System.Windows.Forms.Button()
         Me.btnChangelog = New System.Windows.Forms.Button()
-        Me.lblDiscord = New System.Windows.Forms.Label()
+        Me.llblSeeloewenShutdownGithub = New System.Windows.Forms.LinkLabel()
         Me.gbInfo.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -38,7 +38,7 @@ Partial Class frmAbout
         '
         Me.lblHeader.AutoSize = True
         Me.lblHeader.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblHeader.Location = New System.Drawing.Point(21, 9)
+        Me.lblHeader.Location = New System.Drawing.Point(26, 9)
         Me.lblHeader.Name = "lblHeader"
         Me.lblHeader.Size = New System.Drawing.Size(312, 33)
         Me.lblHeader.TabIndex = 0
@@ -49,11 +49,11 @@ Partial Class frmAbout
         Me.lblInfo.AutoSize = True
         Me.lblInfo.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblInfo.ForeColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.lblInfo.Location = New System.Drawing.Point(38, 42)
+        Me.lblInfo.Location = New System.Drawing.Point(48, 42)
         Me.lblInfo.Name = "lblInfo"
-        Me.lblInfo.Size = New System.Drawing.Size(279, 48)
+        Me.lblInfo.Size = New System.Drawing.Size(265, 72)
         Me.lblInfo.TabIndex = 1
-        Me.lblInfo.Text = "Version 1.5.0-Beta2 - 27.09.2021" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Seeloewen (Louis)" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        Me.lblInfo.Text = "Version 1.5.0-Dev - 27.09.2021" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Seeloewen (Louis)" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Discord: Seeloewen#5699" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         Me.lblInfo.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'gbInfo
@@ -61,9 +61,9 @@ Partial Class frmAbout
         Me.gbInfo.Controls.Add(Me.rtbInfo)
         Me.gbInfo.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gbInfo.ForeColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.gbInfo.Location = New System.Drawing.Point(17, 107)
+        Me.gbInfo.Location = New System.Drawing.Point(22, 131)
         Me.gbInfo.Name = "gbInfo"
-        Me.gbInfo.Size = New System.Drawing.Size(322, 195)
+        Me.gbInfo.Size = New System.Drawing.Size(322, 208)
         Me.gbInfo.TabIndex = 2
         Me.gbInfo.TabStop = False
         Me.gbInfo.Text = "GNU General Public License"
@@ -74,18 +74,18 @@ Partial Class frmAbout
         Me.rtbInfo.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.rtbInfo.Cursor = System.Windows.Forms.Cursors.Arrow
         Me.rtbInfo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.rtbInfo.Location = New System.Drawing.Point(6, 25)
+        Me.rtbInfo.Location = New System.Drawing.Point(6, 27)
         Me.rtbInfo.Name = "rtbInfo"
         Me.rtbInfo.ReadOnly = True
         Me.rtbInfo.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical
-        Me.rtbInfo.Size = New System.Drawing.Size(310, 162)
+        Me.rtbInfo.Size = New System.Drawing.Size(310, 175)
         Me.rtbInfo.TabIndex = 5
         Me.rtbInfo.Text = resources.GetString("rtbInfo.Text")
         '
         'btnClose
         '
         Me.btnClose.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnClose.Location = New System.Drawing.Point(237, 337)
+        Me.btnClose.Location = New System.Drawing.Point(243, 378)
         Me.btnClose.Name = "btnClose"
         Me.btnClose.Size = New System.Drawing.Size(102, 29)
         Me.btnClose.TabIndex = 4
@@ -95,7 +95,7 @@ Partial Class frmAbout
         'btnHelp
         '
         Me.btnHelp.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnHelp.Location = New System.Drawing.Point(17, 337)
+        Me.btnHelp.Location = New System.Drawing.Point(23, 378)
         Me.btnHelp.Name = "btnHelp"
         Me.btnHelp.Size = New System.Drawing.Size(106, 29)
         Me.btnHelp.TabIndex = 5
@@ -105,22 +105,23 @@ Partial Class frmAbout
         'btnChangelog
         '
         Me.btnChangelog.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnChangelog.Location = New System.Drawing.Point(129, 337)
+        Me.btnChangelog.Location = New System.Drawing.Point(135, 378)
         Me.btnChangelog.Name = "btnChangelog"
         Me.btnChangelog.Size = New System.Drawing.Size(102, 29)
         Me.btnChangelog.TabIndex = 6
         Me.btnChangelog.Text = "Changelog"
         Me.btnChangelog.UseVisualStyleBackColor = True
         '
-        'lblDiscord
+        'llblSeeloewenShutdownGithub
         '
-        Me.lblDiscord.AutoSize = True
-        Me.lblDiscord.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblDiscord.Location = New System.Drawing.Point(87, 305)
-        Me.lblDiscord.Name = "lblDiscord"
-        Me.lblDiscord.Size = New System.Drawing.Size(195, 20)
-        Me.lblDiscord.TabIndex = 7
-        Me.lblDiscord.Text = "Discord: Seeloewen#5699"
+        Me.llblSeeloewenShutdownGithub.AutoSize = True
+        Me.llblSeeloewenShutdownGithub.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.llblSeeloewenShutdownGithub.Location = New System.Drawing.Point(77, 351)
+        Me.llblSeeloewenShutdownGithub.Name = "llblSeeloewenShutdownGithub"
+        Me.llblSeeloewenShutdownGithub.Size = New System.Drawing.Size(216, 20)
+        Me.llblSeeloewenShutdownGithub.TabIndex = 8
+        Me.llblSeeloewenShutdownGithub.TabStop = True
+        Me.llblSeeloewenShutdownGithub.Text = "Seeloewen Shutdown Github"
         '
         'frmAbout
         '
@@ -128,8 +129,8 @@ Partial Class frmAbout
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(356, 378)
-        Me.Controls.Add(Me.lblDiscord)
+        Me.ClientSize = New System.Drawing.Size(364, 415)
+        Me.Controls.Add(Me.llblSeeloewenShutdownGithub)
         Me.Controls.Add(Me.btnChangelog)
         Me.Controls.Add(Me.btnHelp)
         Me.Controls.Add(Me.btnClose)
@@ -156,5 +157,5 @@ Partial Class frmAbout
     Friend WithEvents rtbInfo As RichTextBox
     Friend WithEvents btnHelp As Button
     Friend WithEvents btnChangelog As Button
-    Friend WithEvents lblDiscord As Label
+    Friend WithEvents llblSeeloewenShutdownGithub As LinkLabel
 End Class
