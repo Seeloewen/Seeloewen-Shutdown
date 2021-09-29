@@ -21,7 +21,6 @@
             rtbInfo.BackColor = Color.FromArgb(41, 41, 41)
             lblHeader.ForeColor = Color.White
             lblInfo.ForeColor = Color.White
-            lblDiscord.ForeColor = Color.White
             gbInfo.ForeColor = Color.White
             rtbInfo.ForeColor = Color.White
         End If
@@ -32,5 +31,9 @@
             btnHelp.Text = "Help"
             btnClose.Text = "Close"
         End If
+    End Sub
+
+    Private Sub llblSeeloewenShutdownGithub_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles llblSeeloewenShutdownGithub.LinkClicked
+        Process.Start("https://github.com/Seeloewen/Seeloewen-Shutdown")
     End Sub
 End Class
