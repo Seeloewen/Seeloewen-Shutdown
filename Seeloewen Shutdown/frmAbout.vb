@@ -7,7 +7,7 @@
         Process.Start("https://discord.gg/sBUaRxT")
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnHelp.Click
+    Private Sub btnHelp_Click(sender As Object, e As EventArgs) Handles btnHelp.Click
         frmHilfe.Show()
     End Sub
 
@@ -34,7 +34,57 @@
         End If
     End Sub
 
+    'Button events
+
     Private Sub llblSeeloewenShutdownGithub_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles llblSeeloewenShutdownGithub.LinkClicked
         Process.Start("https://github.com/Seeloewen/Seeloewen-Shutdown")
+    End Sub
+
+    Private Sub btnClose_MouseDown(sender As Object, e As MouseEventArgs) Handles btnClose.MouseDown
+        btnClose.BackgroundImage = My.Resources.button_click
+    End Sub
+
+    Private Sub btnClose_MouseUp(sender As Object, e As MouseEventArgs) Handles btnClose.MouseUp
+        btnClose.BackgroundImage = My.Resources.button
+    End Sub
+
+    Private Sub btnClose_MouseHover(sender As Object, e As EventArgs) Handles btnClose.MouseHover
+        btnClose.BackgroundImage = My.Resources.button_hover
+    End Sub
+
+    Private Sub btnClose_MouseLeave(sender As Object, e As EventArgs) Handles btnClose.MouseLeave
+        btnClose.BackgroundImage = My.Resources.button
+    End Sub
+
+    Private Sub btnChangelog_MouseDown(sender As Object, e As MouseEventArgs) Handles btnChangelog.MouseDown
+        btnChangelog.BackgroundImage = My.Resources.button_click
+    End Sub
+
+    Private Sub btnChangelog_MouseHover(sender As Object, e As EventArgs) Handles btnChangelog.MouseHover
+        btnChangelog.BackgroundImage = My.Resources.button_hover
+    End Sub
+
+    Private Sub btnChangelog_MouseUp(sender As Object, e As MouseEventArgs) Handles btnChangelog.MouseUp
+        btnChangelog.BackgroundImage = My.Resources.button
+    End Sub
+
+    Private Sub btnChangelog_MouseLeave(sender As Object, e As EventArgs) Handles btnChangelog.MouseLeave
+        btnChangelog.BackgroundImage = My.Resources.button
+    End Sub
+
+    Private Sub btnHelp_MouseDown(sender As Object, e As MouseEventArgs) Handles btnHelp.MouseDown
+        btnHelp.BackgroundImage = My.Resources.button_click
+    End Sub
+
+    Private Sub btnHelp_MouseHover(sender As Object, e As EventArgs) Handles btnHelp.MouseHover
+        btnHelp.BackgroundImage = My.Resources.button_hover
+    End Sub
+
+    Private Sub btnHelp_MouseLeave(sender As Object, e As EventArgs) Handles btnHelp.MouseLeave
+        btnHelp.BackgroundImage = My.Resources.button
+    End Sub
+
+    Private Sub btnHelp_MouseUp(sender As Object, e As MouseEventArgs) Handles btnHelp.MouseUp
+        btnHelp.BackgroundImage = My.Resources.button
     End Sub
 End Class

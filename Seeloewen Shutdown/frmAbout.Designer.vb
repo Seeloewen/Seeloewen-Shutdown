@@ -27,10 +27,10 @@ Partial Class frmAbout
         Me.lblInfo = New System.Windows.Forms.Label()
         Me.gbInfo = New System.Windows.Forms.GroupBox()
         Me.rtbInfo = New System.Windows.Forms.RichTextBox()
-        Me.btnClose = New System.Windows.Forms.Button()
         Me.btnHelp = New System.Windows.Forms.Button()
         Me.btnChangelog = New System.Windows.Forms.Button()
         Me.llblSeeloewenShutdownGithub = New System.Windows.Forms.LinkLabel()
+        Me.btnClose = New System.Windows.Forms.Button()
         Me.gbInfo.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -53,7 +53,7 @@ Partial Class frmAbout
         Me.lblInfo.Name = "lblInfo"
         Me.lblInfo.Size = New System.Drawing.Size(265, 72)
         Me.lblInfo.TabIndex = 1
-        Me.lblInfo.Text = "Version 1.5.0-Dev - 27.09.2021" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Seeloewen (Louis)" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Discord: Seeloewen#5699" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        Me.lblInfo.Text = "Version 1.5.0-Dev - 06.10.2021" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Seeloewen (Louis)" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Discord: Seeloewen#5699" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         Me.lblInfo.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'gbInfo
@@ -82,54 +82,77 @@ Partial Class frmAbout
         Me.rtbInfo.TabIndex = 5
         Me.rtbInfo.Text = resources.GetString("rtbInfo.Text")
         '
-        'btnClose
-        '
-        Me.btnClose.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnClose.Location = New System.Drawing.Point(243, 378)
-        Me.btnClose.Name = "btnClose"
-        Me.btnClose.Size = New System.Drawing.Size(102, 29)
-        Me.btnClose.TabIndex = 4
-        Me.btnClose.Text = "Schließen"
-        Me.btnClose.UseVisualStyleBackColor = True
-        '
         'btnHelp
         '
+        Me.btnHelp.BackColor = System.Drawing.Color.Transparent
+        Me.btnHelp.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
+        Me.btnHelp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnHelp.FlatAppearance.BorderSize = 0
+        Me.btnHelp.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.btnHelp.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.btnHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnHelp.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnHelp.Location = New System.Drawing.Point(23, 378)
+        Me.btnHelp.ForeColor = System.Drawing.Color.White
+        Me.btnHelp.Location = New System.Drawing.Point(23, 383)
         Me.btnHelp.Name = "btnHelp"
         Me.btnHelp.Size = New System.Drawing.Size(106, 29)
         Me.btnHelp.TabIndex = 5
         Me.btnHelp.Text = "Hilfe"
-        Me.btnHelp.UseVisualStyleBackColor = True
+        Me.btnHelp.UseVisualStyleBackColor = False
         '
         'btnChangelog
         '
+        Me.btnChangelog.BackColor = System.Drawing.Color.Transparent
+        Me.btnChangelog.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
+        Me.btnChangelog.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnChangelog.FlatAppearance.BorderSize = 0
+        Me.btnChangelog.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.btnChangelog.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.btnChangelog.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnChangelog.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnChangelog.Location = New System.Drawing.Point(135, 378)
+        Me.btnChangelog.ForeColor = System.Drawing.Color.White
+        Me.btnChangelog.Location = New System.Drawing.Point(135, 383)
         Me.btnChangelog.Name = "btnChangelog"
         Me.btnChangelog.Size = New System.Drawing.Size(102, 29)
         Me.btnChangelog.TabIndex = 6
         Me.btnChangelog.Text = "Changelog"
-        Me.btnChangelog.UseVisualStyleBackColor = True
+        Me.btnChangelog.UseVisualStyleBackColor = False
         '
         'llblSeeloewenShutdownGithub
         '
         Me.llblSeeloewenShutdownGithub.AutoSize = True
         Me.llblSeeloewenShutdownGithub.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.llblSeeloewenShutdownGithub.Location = New System.Drawing.Point(77, 351)
+        Me.llblSeeloewenShutdownGithub.Location = New System.Drawing.Point(80, 351)
         Me.llblSeeloewenShutdownGithub.Name = "llblSeeloewenShutdownGithub"
         Me.llblSeeloewenShutdownGithub.Size = New System.Drawing.Size(216, 20)
         Me.llblSeeloewenShutdownGithub.TabIndex = 8
         Me.llblSeeloewenShutdownGithub.TabStop = True
         Me.llblSeeloewenShutdownGithub.Text = "Seeloewen Shutdown Github"
         '
+        'btnClose
+        '
+        Me.btnClose.BackColor = System.Drawing.Color.Transparent
+        Me.btnClose.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
+        Me.btnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnClose.FlatAppearance.BorderSize = 0
+        Me.btnClose.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnClose.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnClose.ForeColor = System.Drawing.Color.Transparent
+        Me.btnClose.Location = New System.Drawing.Point(243, 383)
+        Me.btnClose.Name = "btnClose"
+        Me.btnClose.Size = New System.Drawing.Size(101, 29)
+        Me.btnClose.TabIndex = 4
+        Me.btnClose.Text = "Schließen"
+        Me.btnClose.UseVisualStyleBackColor = False
+        '
         'frmAbout
         '
-        Me.AcceptButton = Me.btnClose
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(364, 415)
+        Me.ClientSize = New System.Drawing.Size(364, 421)
         Me.Controls.Add(Me.llblSeeloewenShutdownGithub)
         Me.Controls.Add(Me.btnChangelog)
         Me.Controls.Add(Me.btnHelp)
