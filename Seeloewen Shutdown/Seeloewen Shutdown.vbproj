@@ -186,9 +186,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSettings.resx">
       <DependentUpon>frmSettings.vb</DependentUpon>
@@ -209,14 +209,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Resources\button_hover.png" />
+    <None Include="Resources\button_click.png" />
+    <None Include="Resources\button.png" />
     <None Include="Resources\frmAbout.PNG" />
     <None Include="Resources\frmUpdate.png" />
     <None Include="Resources\frmSettings.PNG" />
     <None Include="Resources\frmMain.PNG" />
     <None Include="Resources\frmFinish.png" />
     <None Include="Resources\frmChangelog.png" />
-    <None Include="Resources\btnSettings2.png" />
-    <None Include="Resources\btnSettings1.png" />
     <None Include="Resources\btnSettings.png" />
   </ItemGroup>
   <ItemGroup>
