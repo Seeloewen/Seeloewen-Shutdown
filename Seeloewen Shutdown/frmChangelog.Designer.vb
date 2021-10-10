@@ -28,6 +28,7 @@ Partial Class frmChangelog
         Me.btnClose = New System.Windows.Forms.Button()
         Me.rtbChangelog = New System.Windows.Forms.RichTextBox()
         Me.gbChangelog = New System.Windows.Forms.GroupBox()
+        Me.rtbchangelogEnglish = New System.Windows.Forms.RichTextBox()
         Me.gbChangelog.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -58,7 +59,7 @@ Partial Class frmChangelog
         Me.btnClose.Name = "btnClose"
         Me.btnClose.Size = New System.Drawing.Size(103, 23)
         Me.btnClose.TabIndex = 4
-        Me.btnClose.Text = "Schließen"
+        Me.btnClose.Text = "close"
         Me.btnClose.UseVisualStyleBackColor = True
         '
         'rtbChangelog
@@ -80,6 +81,14 @@ Partial Class frmChangelog
         Me.gbChangelog.TabIndex = 6
         Me.gbChangelog.TabStop = False
         '
+        'rtbchangelogEnglish
+        '
+        Me.rtbchangelogEnglish.Location = New System.Drawing.Point(396, 411)
+        Me.rtbchangelogEnglish.Name = "rtbchangelogEnglish"
+        Me.rtbchangelogEnglish.Size = New System.Drawing.Size(107, 33)
+        Me.rtbchangelogEnglish.TabIndex = 7
+        Me.rtbchangelogEnglish.Text = resources.GetString("rtbchangelogEnglish.Text")
+        '
         'frmChangelog
         '
         Me.AcceptButton = Me.btnClose
@@ -87,7 +96,8 @@ Partial Class frmChangelog
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.CancelButton = Me.btnClose
-        Me.ClientSize = New System.Drawing.Size(518, 339)
+        Me.ClientSize = New System.Drawing.Size(518, 343)
+        Me.Controls.Add(Me.rtbchangelogEnglish)
         Me.Controls.Add(Me.gbChangelog)
         Me.Controls.Add(Me.btnClose)
         Me.Controls.Add(Me.lblChangelogDescription)
@@ -109,4 +119,5 @@ Partial Class frmChangelog
     Friend WithEvents btnClose As Button
     Friend WithEvents rtbChangelog As RichTextBox
     Friend WithEvents gbChangelog As GroupBox
+    Friend WithEvents rtbchangelogEnglish As RichTextBox
 End Class
