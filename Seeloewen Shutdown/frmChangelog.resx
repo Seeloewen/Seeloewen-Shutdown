@@ -188,6 +188,77 @@ Version 0.2 (27.12.2020)
 Version 0.1 (27.10.2020)
 * Inoffizieller Release</value>
   </data>
+  <data name="rtbchangelogEnglish.Text" xml:space="preserve">
+    <value>Version 1.4.1 (27.08.2021)
++ Added GNU General Public License v3 in "about"-window
+- Removed information in "about"-window
+* Small design changes in the updater
+
+Version 1.4.0 (21.08.2021)
++ Added a button in the settings window which can stop all running actions
++ Added exact point in time in "Notification" window
++ Added Changelog window
+* The updater now closes all windows when installing an update
+* Small design changes
+
+Version 1.3.7 (14.08.2021)
++ Added time in "Notification"-window
+* Fixed several network errors
+
+Version 1.3.6 (01.08.2021)
+* Rewrote and readded updater
+
+Version 1.3.5 (12.06.2021)
+* Removed updater due to technical reasons
+
+Version 1.3.4 (11.06.2021)
+* Fixed an error which caused the updater to not work
+
+Version 1.3.3 (08.06.2021)
+* Fixed several errors regarding the point in time at shutdown
+
+Version 1.3.2 (06.06.2021)
+* Fully fixed critical error from version 1.3.1
+* Fixed the error which caused the updater to not be able to access update files
+
+Version 1.3.1 (04.06.2021)
+* Partially fixed critical error
+
+Version 1.3 (03.06.2021)
++ Added "Search for updates when the app starts" feature
+* Several small design changes and improvements
+
+Version 1.2 (23.05.2021)
+* Fixed critical error
+* Small design changes
++ Added help window
+
+Version 1.1 (20.05.2021)
+* Fixed several errors
+
+Version 1.0 (19.05.2021)
++ Added settings
+* Rewrote the code for improvements
+* Moved the updater to the settings
+
+Version 0.4 (06.01.2021)
++ Added message feature
+
+Version 0.3 (31.12.2020)
++ Added point-in-time feature
+* Small design changes
+
+Version 0.2.1 (28.12.2020)
+* Fixed display error
+* Fixed a bug which caused the updater to not work
+
+Version 0.2 (27.12.2020)
++ Added (auto)-updater
+* The options "minutes" and "shutdown" are now selected by default
+
+Version 0.1 (27.10.2020)
+* Inofficial release</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
