@@ -14,6 +14,7 @@
 
         If My.Settings.Language = "English" Then
             lblChangelogDescription.Text = "In the changelog you can easily find news for different versions."
+            rtbChangelog.Text = rtbchangelogEnglish.Text
         End If
     End Sub
 End Class
