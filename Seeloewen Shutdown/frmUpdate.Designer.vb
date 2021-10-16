@@ -61,10 +61,12 @@ Partial Class frmUpdate
         '
         'rtbLatestVersionNews
         '
+        Me.rtbLatestVersionNews.BackColor = System.Drawing.Color.White
         Me.rtbLatestVersionNews.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.rtbLatestVersionNews.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rtbLatestVersionNews.Location = New System.Drawing.Point(12, 33)
         Me.rtbLatestVersionNews.Name = "rtbLatestVersionNews"
+        Me.rtbLatestVersionNews.ReadOnly = True
         Me.rtbLatestVersionNews.Size = New System.Drawing.Size(340, 135)
         Me.rtbLatestVersionNews.TabIndex = 4
         Me.rtbLatestVersionNews.Text = ""
