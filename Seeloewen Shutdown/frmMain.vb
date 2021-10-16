@@ -4,7 +4,6 @@ Public Class frmMain
     Dim maxtime As String
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
         tbMessage.Text = My.Settings.DefaultMessage
         tbTime.Text = My.Settings.DefaultTime
 
@@ -20,6 +19,10 @@ Public Class frmMain
             gbAction.ForeColor = Color.White
             gbTime.ForeColor = Color.White
             gbMessage.ForeColor = Color.White
+            tbMessage.BackColor = Color.Gray
+            tbMessage.ForeColor = Color.White
+            tbTime.BackColor = Color.Gray
+            tbTime.ForeColor = Color.White
         End If
 
         If My.Settings.EnableDefaultMessage = True Then

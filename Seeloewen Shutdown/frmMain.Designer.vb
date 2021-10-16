@@ -218,7 +218,12 @@ Partial Class frmMain
         '
         'btnStartAction
         '
+        Me.btnStartAction.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
+        Me.btnStartAction.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnStartAction.FlatAppearance.BorderSize = 0
+        Me.btnStartAction.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnStartAction.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnStartAction.ForeColor = System.Drawing.Color.White
         Me.btnStartAction.Location = New System.Drawing.Point(19, 382)
         Me.btnStartAction.Name = "btnStartAction"
         Me.btnStartAction.Size = New System.Drawing.Size(214, 38)
@@ -228,7 +233,12 @@ Partial Class frmMain
         '
         'btnOpenHelp
         '
+        Me.btnOpenHelp.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
+        Me.btnOpenHelp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnOpenHelp.FlatAppearance.BorderSize = 0
+        Me.btnOpenHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnOpenHelp.Font = New System.Drawing.Font("Microsoft YaHei", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnOpenHelp.ForeColor = System.Drawing.Color.White
         Me.btnOpenHelp.Location = New System.Drawing.Point(239, 382)
         Me.btnOpenHelp.Name = "btnOpenHelp"
         Me.btnOpenHelp.Size = New System.Drawing.Size(48, 38)
@@ -282,7 +292,12 @@ Partial Class frmMain
         '
         'btnOpenSettings
         '
+        Me.btnOpenSettings.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
+        Me.btnOpenSettings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnOpenSettings.FlatAppearance.BorderSize = 0
+        Me.btnOpenSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnOpenSettings.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnOpenSettings.ForeColor = System.Drawing.Color.White
         Me.btnOpenSettings.Image = CType(resources.GetObject("btnOpenSettings.Image"), System.Drawing.Image)
         Me.btnOpenSettings.Location = New System.Drawing.Point(293, 382)
         Me.btnOpenSettings.Name = "btnOpenSettings"
