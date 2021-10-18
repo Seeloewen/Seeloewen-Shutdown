@@ -236,4 +236,52 @@ Public Class frmMain
         Else frmUpdate.ShowDialog()
         End If
     End Sub
+
+    Private Sub btnOpenHelp_MouseDown(sender As Object, e As MouseEventArgs) Handles btnOpenHelp.MouseDown
+        btnOpenHelp.BackgroundImage = My.Resources.button_click
+    End Sub
+
+    Private Sub btnOpenHelp_MouseUp(sender As Object, e As MouseEventArgs) Handles btnOpenHelp.MouseUp
+        btnOpenHelp.BackgroundImage = My.Resources.button
+    End Sub
+
+    Private Sub btnOpenHelp_MouseHover(sender As Object, e As EventArgs) Handles btnOpenHelp.MouseHover
+        btnOpenHelp.BackgroundImage = My.Resources.button_hover
+    End Sub
+
+    Private Sub btnOpenHelp_MouseLeave(sender As Object, e As EventArgs) Handles btnOpenHelp.MouseLeave
+        btnOpenHelp.BackgroundImage = My.Resources.button
+    End Sub
+
+    Private Sub btnOpenSettings_MouseDown(sender As Object, e As MouseEventArgs) Handles btnOpenSettings.MouseDown
+        btnOpenSettings.BackgroundImage = My.Resources.button_click
+    End Sub
+
+    Private Sub btnOpenSettings_MouseHover(sender As Object, e As EventArgs) Handles btnOpenSettings.MouseHover
+        btnOpenSettings.BackgroundImage = My.Resources.button_hover
+    End Sub
+
+    Private Sub btnOpenSettings_MouseLeave(sender As Object, e As EventArgs) Handles btnOpenSettings.MouseLeave
+        btnOpenSettings.BackgroundImage = My.Resources.button
+    End Sub
+
+    Private Sub btnOpenSettings_MouseUp(sender As Object, e As MouseEventArgs) Handles btnOpenSettings.MouseUp
+        btnOpenSettings.BackgroundImage = My.Resources.button
+    End Sub
+
+    Private Sub btnStartAction_MouseDown(sender As Object, e As MouseEventArgs) Handles btnStartAction.MouseDown
+        btnStartAction.BackgroundImage = My.Resources.button_click
+    End Sub
+
+    Private Sub btnStartAction_MouseHover(sender As Object, e As EventArgs) Handles btnStartAction.MouseHover
+        btnStartAction.BackgroundImage = My.Resources.button_hover
+    End Sub
+
+    Private Sub btnStartAction_MouseLeave(sender As Object, e As EventArgs) Handles btnStartAction.MouseLeave
+        btnStartAction.BackgroundImage = My.Resources.button
+    End Sub
+
+    Private Sub btnStartAction_MouseUp(sender As Object, e As MouseEventArgs) Handles btnStartAction.MouseUp
+        btnStartAction.BackgroundImage = My.Resources.button
+    End Sub
 End Class

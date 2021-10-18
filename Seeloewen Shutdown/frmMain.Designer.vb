@@ -87,6 +87,8 @@ Partial Class frmMain
         'rbtnRestart
         '
         Me.rbtnRestart.AutoSize = True
+        Me.rbtnRestart.BackColor = System.Drawing.Color.Transparent
+        Me.rbtnRestart.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent
         Me.rbtnRestart.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rbtnRestart.ForeColor = System.Drawing.SystemColors.ControlText
         Me.rbtnRestart.Location = New System.Drawing.Point(15, 51)
@@ -95,7 +97,7 @@ Partial Class frmMain
         Me.rbtnRestart.TabIndex = 3
         Me.rbtnRestart.TabStop = True
         Me.rbtnRestart.Text = "Neustarten"
-        Me.rbtnRestart.UseVisualStyleBackColor = True
+        Me.rbtnRestart.UseVisualStyleBackColor = False
         '
         'rbtnShutdown
         '
@@ -218,13 +220,15 @@ Partial Class frmMain
         '
         'btnStartAction
         '
-        Me.btnStartAction.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
+        Me.btnStartAction.BackgroundImage = CType(resources.GetObject("btnStartAction.BackgroundImage"), System.Drawing.Image)
         Me.btnStartAction.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnStartAction.FlatAppearance.BorderSize = 0
+        Me.btnStartAction.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.btnStartAction.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
         Me.btnStartAction.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnStartAction.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnStartAction.ForeColor = System.Drawing.Color.White
-        Me.btnStartAction.Location = New System.Drawing.Point(19, 382)
+        Me.btnStartAction.Location = New System.Drawing.Point(19, 387)
         Me.btnStartAction.Name = "btnStartAction"
         Me.btnStartAction.Size = New System.Drawing.Size(214, 38)
         Me.btnStartAction.TabIndex = 5
@@ -233,18 +237,21 @@ Partial Class frmMain
         '
         'btnOpenHelp
         '
+        Me.btnOpenHelp.BackColor = System.Drawing.Color.Transparent
         Me.btnOpenHelp.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
         Me.btnOpenHelp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnOpenHelp.FlatAppearance.BorderSize = 0
+        Me.btnOpenHelp.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.btnOpenHelp.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
         Me.btnOpenHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnOpenHelp.Font = New System.Drawing.Font("Microsoft YaHei", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnOpenHelp.ForeColor = System.Drawing.Color.White
-        Me.btnOpenHelp.Location = New System.Drawing.Point(239, 382)
+        Me.btnOpenHelp.ForeColor = System.Drawing.Color.Transparent
+        Me.btnOpenHelp.Location = New System.Drawing.Point(239, 387)
         Me.btnOpenHelp.Name = "btnOpenHelp"
         Me.btnOpenHelp.Size = New System.Drawing.Size(48, 38)
         Me.btnOpenHelp.TabIndex = 6
         Me.btnOpenHelp.Text = "?"
-        Me.btnOpenHelp.UseVisualStyleBackColor = True
+        Me.btnOpenHelp.UseVisualStyleBackColor = False
         '
         'currentDateTime
         '
@@ -292,14 +299,16 @@ Partial Class frmMain
         '
         'btnOpenSettings
         '
-        Me.btnOpenSettings.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
+        Me.btnOpenSettings.BackgroundImage = CType(resources.GetObject("btnOpenSettings.BackgroundImage"), System.Drawing.Image)
         Me.btnOpenSettings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnOpenSettings.FlatAppearance.BorderSize = 0
+        Me.btnOpenSettings.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.btnOpenSettings.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
         Me.btnOpenSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnOpenSettings.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnOpenSettings.ForeColor = System.Drawing.Color.White
-        Me.btnOpenSettings.Image = CType(resources.GetObject("btnOpenSettings.Image"), System.Drawing.Image)
-        Me.btnOpenSettings.Location = New System.Drawing.Point(293, 382)
+        Me.btnOpenSettings.Image = Global.Seeloewen_Shutdown.My.Resources.Resources.btnSettings
+        Me.btnOpenSettings.Location = New System.Drawing.Point(293, 387)
         Me.btnOpenSettings.Name = "btnOpenSettings"
         Me.btnOpenSettings.Size = New System.Drawing.Size(48, 38)
         Me.btnOpenSettings.TabIndex = 7
@@ -310,7 +319,7 @@ Partial Class frmMain
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(360, 431)
+        Me.ClientSize = New System.Drawing.Size(360, 437)
         Me.Controls.Add(Me.Anführungszeichen)
         Me.Controls.Add(Me.Finaloutput)
         Me.Controls.Add(Me.Shutdowntime)
