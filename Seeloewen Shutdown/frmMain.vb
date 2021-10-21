@@ -33,13 +33,6 @@ Public Class frmMain
             cbMessage.Checked = False
         End If
 
-        If My.Settings.DefaultTimeChoice = "minutes" Then
-            cbxIn.SelectedItem = "Minute(n)"
-        ElseIf My.Settings.DefaultTimeChoice = "seconds" Then
-            cbxIn.SelectedItem = "Sekunde(n)"
-        ElseIf My.Settings.DefaultTimeChoice = "hours" Then
-            cbxIn.SelectedItem = "Stunde(n)"
-        End If
         If My.Settings.DefaultAction = "shutdown" Then
             rbtnShutdown.Checked = True
         ElseIf My.Settings.DefaultAction = "restart" Then
@@ -53,7 +46,6 @@ Public Class frmMain
         rbtnIn.Checked = True
         dtpDate.Enabled = False
         currentDateTime.Enabled = False
-
         dtpDate.CustomFormat = "dd.MM.yyyy HH:mm:ss"
 
         'Translate all elements
@@ -61,16 +53,39 @@ Public Class frmMain
             gbAction.Text = "Action"
             gbMessage.Text = "Message"
             gbTime.Text = "Time"
-
             rbtnShutdown.Text = "Shutdown"
             rbtnRestart.Text = "Restart"
             rbtnPointInTime.Text = "Exact time"
-
             cbMessage.Text = "Attach message"
-
             btnStartAction.Text = "Start action"
+            cbxIn.Items.Remove("Sekunde(n)")
+            cbxIn.Items.Remove("Minute(n)")
+            cbxIn.Items.Remove("Stunde(n)")
+            cbxIn.Items.Add("Second(s)")
+            cbxIn.Items.Add("Minute(s)")
+            cbxIn.Items.Add("Hour(s)")
         ElseIf My.Settings.Language = "German" Then
         Else frmFirstStart.ShowDialog()
+        End If
+
+        If My.Settings.DefaultTimeChoice = "minutes" Then
+            If My.Settings.Language = "English" Then
+                cbxIn.SelectedItem = "Minute(s)"
+            ElseIf My.Settings.Language = "German" Then
+                cbxIn.SelectedItem = "Minute(n)"
+            End If
+        ElseIf My.Settings.DefaultTimeChoice = "seconds" Then
+            If My.Settings.Language = "English" Then
+                cbxIn.SelectedItem = "Second(s)"
+            ElseIf My.Settings.Language = "German" Then
+                cbxIn.SelectedItem = "Sekunde(n)"
+            End If
+        ElseIf My.Settings.DefaultTimeChoice = "hours" Then
+            If My.Settings.Language = "English" Then
+                cbxIn.SelectedItem = "Hour(s)"
+            ElseIf My.Settings.Language = "German" Then
+                cbxIn.SelectedItem = "Stunde(n)"
+            End If
         End If
     End Sub
 
@@ -79,7 +94,7 @@ Public Class frmMain
     End Sub
 
     Private Sub btnStartAction_Click(sender As Object, e As EventArgs) Handles btnStartAction.Click
-        'Filter Quotationmarks out of the message
+        'Filter quotationmarks out of the message
         tbMessage.Text = tbMessage.Text.Replace("""", "/")
 
         'Set action using "in..."
@@ -98,15 +113,21 @@ Public Class frmMain
                 'calculate and set shutdown time
                 If cbxIn.SelectedItem = "Sekunde(n)" Then
                     Shutdowntime.Text = tbTime.Text
-                    shutdownart = "Sekunde(n)"
+                    maxtime = "31535999"
+                ElseIf cbxIn.SelectedItem = "Second(s)" Then
+                    Shutdowntime.Text = tbTime.Text
                     maxtime = "31535999"
                 ElseIf cbxIn.SelectedItem = "Minute(n)" Then
                     Shutdowntime.Text = tbTime.Text * 60
-                    shutdownart = "Minute(n)"
+                    maxtime = "525599"
+                ElseIf cbxIn.SelectedItem = "Minute(s)" Then
+                    Shutdowntime.Text = tbTime.Text * 60
                     maxtime = "525599"
                 ElseIf cbxIn.SelectedItem = "Stunde(n)" Then
                     Shutdowntime.Text = tbTime.Text * 3600
-                    shutdownart = "Stunde(n)"
+                    maxtime = "8759"
+                ElseIf cbxIn.SelectedItem = "Hour(s)" Then
+                    Shutdowntime.Text = tbTime.Text * 3600
                     maxtime = "8759"
                 End If
 
