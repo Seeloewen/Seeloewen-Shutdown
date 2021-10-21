@@ -33,26 +33,23 @@ Partial Class frmSettings
         Me.lblDefaultTime = New System.Windows.Forms.Label()
         Me.tbDefaultMessage = New System.Windows.Forms.TextBox()
         Me.lblDefaultMessage = New System.Windows.Forms.Label()
-        Me.btnSave = New System.Windows.Forms.Button()
         Me.btnClose = New System.Windows.Forms.Button()
-        Me.gbUpdate = New System.Windows.Forms.GroupBox()
-        Me.cbUpdatesOnStartup = New System.Windows.Forms.CheckBox()
-        Me.btnSearchForUpdates = New System.Windows.Forms.Button()
-        Me.rtbCurrentVersion = New System.Windows.Forms.RichTextBox()
-        Me.rtbNewestVersion = New System.Windows.Forms.RichTextBox()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.gbRunningAction = New System.Windows.Forms.GroupBox()
-        Me.btnStopRunningActions = New System.Windows.Forms.Button()
-        Me.lblRunningAction = New System.Windows.Forms.Label()
-        Me.gbBeta = New System.Windows.Forms.GroupBox()
+        Me.gbAppSettings = New System.Windows.Forms.GroupBox()
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.cbxLanguage = New System.Windows.Forms.ComboBox()
         Me.lblDesign = New System.Windows.Forms.Label()
         Me.lblLanguage = New System.Windows.Forms.Label()
+        Me.cbUpdatesOnStartup = New System.Windows.Forms.CheckBox()
+        Me.btnSearchForUpdates = New System.Windows.Forms.Button()
+        Me.rtbCurrentVersion = New System.Windows.Forms.RichTextBox()
+        Me.rtbNewestVersion = New System.Windows.Forms.RichTextBox()
+        Me.gbRunningAction = New System.Windows.Forms.GroupBox()
+        Me.btnStopRunningActions = New System.Windows.Forms.Button()
+        Me.lblRunningAction = New System.Windows.Forms.Label()
+        Me.btnSave = New System.Windows.Forms.Button()
         Me.gbDefaultSettings.SuspendLayout()
-        Me.gbUpdate.SuspendLayout()
+        Me.gbAppSettings.SuspendLayout()
         Me.gbRunningAction.SuspendLayout()
-        Me.gbBeta.SuspendLayout()
         Me.SuspendLayout()
         '
         'lblSettings
@@ -171,45 +168,88 @@ Partial Class frmSettings
         Me.lblDefaultMessage.TabIndex = 0
         Me.lblDefaultMessage.Text = "Nachricht"
         '
-        'btnSave
-        '
-        Me.btnSave.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSave.Location = New System.Drawing.Point(19, 548)
-        Me.btnSave.Name = "btnSave"
-        Me.btnSave.Size = New System.Drawing.Size(199, 27)
-        Me.btnSave.TabIndex = 3
-        Me.btnSave.Text = "Speichern"
-        Me.btnSave.UseVisualStyleBackColor = True
-        '
         'btnClose
         '
+        Me.btnClose.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
+        Me.btnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnClose.FlatAppearance.BorderSize = 0
+        Me.btnClose.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnClose.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnClose.Location = New System.Drawing.Point(225, 548)
+        Me.btnClose.ForeColor = System.Drawing.Color.White
+        Me.btnClose.Location = New System.Drawing.Point(225, 523)
         Me.btnClose.Name = "btnClose"
         Me.btnClose.Size = New System.Drawing.Size(199, 27)
         Me.btnClose.TabIndex = 4
         Me.btnClose.Text = "Schließen"
         Me.btnClose.UseVisualStyleBackColor = True
         '
-        'gbUpdate
+        'gbAppSettings
         '
-        Me.gbUpdate.Controls.Add(Me.cbUpdatesOnStartup)
-        Me.gbUpdate.Controls.Add(Me.btnSearchForUpdates)
-        Me.gbUpdate.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gbUpdate.ForeColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.gbUpdate.Location = New System.Drawing.Point(18, 260)
-        Me.gbUpdate.Name = "gbUpdate"
-        Me.gbUpdate.Size = New System.Drawing.Size(406, 82)
-        Me.gbUpdate.TabIndex = 5
-        Me.gbUpdate.TabStop = False
-        Me.gbUpdate.Text = "Update"
+        Me.gbAppSettings.Controls.Add(Me.ComboBox1)
+        Me.gbAppSettings.Controls.Add(Me.cbxLanguage)
+        Me.gbAppSettings.Controls.Add(Me.lblDesign)
+        Me.gbAppSettings.Controls.Add(Me.lblLanguage)
+        Me.gbAppSettings.Controls.Add(Me.cbUpdatesOnStartup)
+        Me.gbAppSettings.Controls.Add(Me.btnSearchForUpdates)
+        Me.gbAppSettings.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gbAppSettings.ForeColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.gbAppSettings.Location = New System.Drawing.Point(18, 260)
+        Me.gbAppSettings.Name = "gbAppSettings"
+        Me.gbAppSettings.Size = New System.Drawing.Size(406, 151)
+        Me.gbAppSettings.TabIndex = 5
+        Me.gbAppSettings.TabStop = False
+        Me.gbAppSettings.Text = "App-Einstellungen"
+        '
+        'ComboBox1
+        '
+        Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Items.AddRange(New Object() {"Hell", "Dunkel"})
+        Me.ComboBox1.Location = New System.Drawing.Point(90, 50)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(304, 21)
+        Me.ComboBox1.TabIndex = 7
+        '
+        'cbxLanguage
+        '
+        Me.cbxLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbxLanguage.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbxLanguage.FormattingEnabled = True
+        Me.cbxLanguage.Items.AddRange(New Object() {"Deutsch (German)", "English (English)"})
+        Me.cbxLanguage.Location = New System.Drawing.Point(90, 25)
+        Me.cbxLanguage.Name = "cbxLanguage"
+        Me.cbxLanguage.Size = New System.Drawing.Size(304, 21)
+        Me.cbxLanguage.TabIndex = 6
+        '
+        'lblDesign
+        '
+        Me.lblDesign.AutoSize = True
+        Me.lblDesign.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.lblDesign.Location = New System.Drawing.Point(11, 50)
+        Me.lblDesign.Name = "lblDesign"
+        Me.lblDesign.Size = New System.Drawing.Size(63, 20)
+        Me.lblDesign.TabIndex = 5
+        Me.lblDesign.Text = "Design:"
+        '
+        'lblLanguage
+        '
+        Me.lblLanguage.AutoSize = True
+        Me.lblLanguage.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.lblLanguage.Location = New System.Drawing.Point(11, 26)
+        Me.lblLanguage.Name = "lblLanguage"
+        Me.lblLanguage.Size = New System.Drawing.Size(73, 20)
+        Me.lblLanguage.TabIndex = 4
+        Me.lblLanguage.Text = "Sprache:"
         '
         'cbUpdatesOnStartup
         '
         Me.cbUpdatesOnStartup.AutoSize = True
         Me.cbUpdatesOnStartup.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbUpdatesOnStartup.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.cbUpdatesOnStartup.Location = New System.Drawing.Point(16, 55)
+        Me.cbUpdatesOnStartup.Location = New System.Drawing.Point(16, 117)
         Me.cbUpdatesOnStartup.Name = "cbUpdatesOnStartup"
         Me.cbUpdatesOnStartup.Size = New System.Drawing.Size(320, 20)
         Me.cbUpdatesOnStartup.TabIndex = 1
@@ -218,9 +258,15 @@ Partial Class frmSettings
         '
         'btnSearchForUpdates
         '
+        Me.btnSearchForUpdates.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
+        Me.btnSearchForUpdates.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnSearchForUpdates.FlatAppearance.BorderSize = 0
+        Me.btnSearchForUpdates.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.btnSearchForUpdates.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.btnSearchForUpdates.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSearchForUpdates.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSearchForUpdates.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.btnSearchForUpdates.Location = New System.Drawing.Point(15, 25)
+        Me.btnSearchForUpdates.ForeColor = System.Drawing.Color.White
+        Me.btnSearchForUpdates.Location = New System.Drawing.Point(15, 87)
         Me.btnSearchForUpdates.Name = "btnSearchForUpdates"
         Me.btnSearchForUpdates.Size = New System.Drawing.Size(379, 24)
         Me.btnSearchForUpdates.TabIndex = 0
@@ -243,22 +289,13 @@ Partial Class frmSettings
         Me.rtbNewestVersion.TabIndex = 7
         Me.rtbNewestVersion.Text = "Error.NoServerConnection"
         '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(18, 370)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 8
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
         'gbRunningAction
         '
         Me.gbRunningAction.Controls.Add(Me.btnStopRunningActions)
         Me.gbRunningAction.Controls.Add(Me.lblRunningAction)
         Me.gbRunningAction.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gbRunningAction.ForeColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.gbRunningAction.Location = New System.Drawing.Point(18, 348)
+        Me.gbRunningAction.Location = New System.Drawing.Point(18, 417)
         Me.gbRunningAction.Name = "gbRunningAction"
         Me.gbRunningAction.Size = New System.Drawing.Size(406, 100)
         Me.gbRunningAction.TabIndex = 9
@@ -267,8 +304,14 @@ Partial Class frmSettings
         '
         'btnStopRunningActions
         '
+        Me.btnStopRunningActions.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
+        Me.btnStopRunningActions.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnStopRunningActions.FlatAppearance.BorderSize = 0
+        Me.btnStopRunningActions.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.btnStopRunningActions.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.btnStopRunningActions.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnStopRunningActions.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnStopRunningActions.ForeColor = System.Drawing.Color.Black
+        Me.btnStopRunningActions.ForeColor = System.Drawing.Color.White
         Me.btnStopRunningActions.Location = New System.Drawing.Point(16, 65)
         Me.btnStopRunningActions.Name = "btnStopRunningActions"
         Me.btnStopRunningActions.Size = New System.Drawing.Size(378, 23)
@@ -288,75 +331,33 @@ Partial Class frmSettings
         Me.lblRunningAction.Text = "Falls aktuell eine Aktion läuft, die du abbrechen " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "möchtest, kannst du dies hier" &
     " tun."
         '
-        'gbBeta
+        'btnSave
         '
-        Me.gbBeta.Controls.Add(Me.ComboBox1)
-        Me.gbBeta.Controls.Add(Me.cbxLanguage)
-        Me.gbBeta.Controls.Add(Me.lblDesign)
-        Me.gbBeta.Controls.Add(Me.lblLanguage)
-        Me.gbBeta.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gbBeta.ForeColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.gbBeta.Location = New System.Drawing.Point(18, 455)
-        Me.gbBeta.Name = "gbBeta"
-        Me.gbBeta.Size = New System.Drawing.Size(406, 87)
-        Me.gbBeta.TabIndex = 10
-        Me.gbBeta.TabStop = False
-        Me.gbBeta.Text = "Beta"
-        '
-        'ComboBox1
-        '
-        Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Items.AddRange(New Object() {"Hell", "Dunkel"})
-        Me.ComboBox1.Location = New System.Drawing.Point(96, 51)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(298, 21)
-        Me.ComboBox1.TabIndex = 3
-        '
-        'cbxLanguage
-        '
-        Me.cbxLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbxLanguage.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbxLanguage.FormattingEnabled = True
-        Me.cbxLanguage.Items.AddRange(New Object() {"Deutsch (German)", "English (English)"})
-        Me.cbxLanguage.Location = New System.Drawing.Point(96, 26)
-        Me.cbxLanguage.Name = "cbxLanguage"
-        Me.cbxLanguage.Size = New System.Drawing.Size(298, 21)
-        Me.cbxLanguage.TabIndex = 2
-        '
-        'lblDesign
-        '
-        Me.lblDesign.AutoSize = True
-        Me.lblDesign.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.lblDesign.Location = New System.Drawing.Point(17, 51)
-        Me.lblDesign.Name = "lblDesign"
-        Me.lblDesign.Size = New System.Drawing.Size(63, 20)
-        Me.lblDesign.TabIndex = 1
-        Me.lblDesign.Text = "Design:"
-        '
-        'lblLanguage
-        '
-        Me.lblLanguage.AutoSize = True
-        Me.lblLanguage.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.lblLanguage.Location = New System.Drawing.Point(17, 27)
-        Me.lblLanguage.Name = "lblLanguage"
-        Me.lblLanguage.Size = New System.Drawing.Size(73, 20)
-        Me.lblLanguage.TabIndex = 0
-        Me.lblLanguage.Text = "Sprache:"
+        Me.btnSave.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
+        Me.btnSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnSave.FlatAppearance.BorderSize = 0
+        Me.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.btnSave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnSave.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSave.ForeColor = System.Drawing.Color.White
+        Me.btnSave.Location = New System.Drawing.Point(19, 523)
+        Me.btnSave.Name = "btnSave"
+        Me.btnSave.Size = New System.Drawing.Size(199, 27)
+        Me.btnSave.TabIndex = 3
+        Me.btnSave.Text = "Speichern"
+        Me.btnSave.UseVisualStyleBackColor = True
         '
         'frmSettings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(441, 587)
-        Me.Controls.Add(Me.gbBeta)
+        Me.ClientSize = New System.Drawing.Size(441, 565)
         Me.Controls.Add(Me.gbRunningAction)
-        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.rtbNewestVersion)
         Me.Controls.Add(Me.rtbCurrentVersion)
-        Me.Controls.Add(Me.gbUpdate)
+        Me.Controls.Add(Me.gbAppSettings)
         Me.Controls.Add(Me.btnClose)
         Me.Controls.Add(Me.btnSave)
         Me.Controls.Add(Me.gbDefaultSettings)
@@ -370,12 +371,10 @@ Partial Class frmSettings
         Me.Text = "Einstellungen"
         Me.gbDefaultSettings.ResumeLayout(False)
         Me.gbDefaultSettings.PerformLayout()
-        Me.gbUpdate.ResumeLayout(False)
-        Me.gbUpdate.PerformLayout()
+        Me.gbAppSettings.ResumeLayout(False)
+        Me.gbAppSettings.PerformLayout()
         Me.gbRunningAction.ResumeLayout(False)
         Me.gbRunningAction.PerformLayout()
-        Me.gbBeta.ResumeLayout(False)
-        Me.gbBeta.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -393,18 +392,16 @@ Partial Class frmSettings
     Friend WithEvents cbxDefaultIn As ComboBox
     Friend WithEvents rbtnRestart As RadioButton
     Friend WithEvents rbtnShutdown As RadioButton
-    Friend WithEvents gbUpdate As GroupBox
+    Friend WithEvents gbAppSettings As GroupBox
     Friend WithEvents cbUpdatesOnStartup As CheckBox
     Friend WithEvents btnSearchForUpdates As Button
     Friend WithEvents rtbCurrentVersion As RichTextBox
     Friend WithEvents rtbNewestVersion As RichTextBox
-    Friend WithEvents Button1 As Button
     Friend WithEvents gbRunningAction As GroupBox
     Friend WithEvents btnStopRunningActions As Button
     Friend WithEvents lblRunningAction As Label
-    Friend WithEvents gbBeta As GroupBox
+    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents cbxLanguage As ComboBox
     Friend WithEvents lblDesign As Label
     Friend WithEvents lblLanguage As Label
-    Friend WithEvents cbxLanguage As ComboBox
-    Friend WithEvents ComboBox1 As ComboBox
 End Class
