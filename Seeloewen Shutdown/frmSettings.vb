@@ -14,12 +14,13 @@ Public Class frmSettings
             lblLanguage.ForeColor = Color.White
             lblDesign.ForeColor = Color.White
             gbDefaultSettings.ForeColor = Color.White
-            gbUpdate.ForeColor = Color.White
+            gbAppSettings.ForeColor = Color.White
             gbRunningAction.ForeColor = Color.White
-            gbBeta.ForeColor = Color.White
             rbtnShutdown.ForeColor = Color.White
             rbtnRestart.ForeColor = Color.White
             cbUpdatesOnStartup.ForeColor = Color.White
+            tbDefaultMessage.BackColor = Color.Gray
+            tbDefaultTime.BackColor = Color.Gray
         End If
 
         If My.Settings.DefaultAction = "shutdown" Then
@@ -47,25 +48,19 @@ Public Class frmSettings
 
         If My.Settings.Language = "English" Then
             cbxLanguage.SelectedItem = "English (English)"
-
             Text = "Settings"
-
             lblSettings.Text = "Settings"
-
             gbDefaultSettings.Text = "Default settings"
             gbRunningAction.Text = "Running action"
-
+            gbAppSettings.Text = "App settings"
             rbtnShutdown.Text = "Shutdown"
             rbtnRestart.Text = "Restart"
-
             cbUpdatesOnStartup.Text = "Search for updates when the app starts"
-
             lblDefaultAction.Text = "Action"
             lblDefaultTime.Text = "Execute in..."
             lblDefaultMessage.Text = "Message"
             lblRunningAction.Text = "If an action is already running, you can cancel it" + vbNewLine + "here, if you want to."
             lblLanguage.Text = "Language"
-
             btnSearchForUpdates.Text = "Search for updates"
             btnStopRunningActions.Text = "Stop running actions"
             btnSave.Text = "Save"
@@ -181,5 +176,69 @@ Public Class frmSettings
     Private Sub btnStopRunningActions_Click(sender As Object, e As EventArgs) Handles btnStopRunningActions.Click
         Process.Start("shutdown", "-a")
         MsgBox("Die laufende Aktion wurde erfolgreich abgebrochen.", MsgBoxStyle.Information, "Laufende Aktion abbrechen")
+    End Sub
+
+    Private Sub btnClose_MouseDown(sender As Object, e As MouseEventArgs) Handles btnClose.MouseDown
+        btnClose.BackgroundImage = My.Resources.button_click
+    End Sub
+
+    Private Sub btnClose_MouseHover(sender As Object, e As EventArgs) Handles btnClose.MouseHover
+        btnClose.BackgroundImage = My.Resources.button_hover
+    End Sub
+
+    Private Sub btnClose_MouseLeave(sender As Object, e As EventArgs) Handles btnClose.MouseLeave
+        btnClose.BackgroundImage = My.Resources.button
+    End Sub
+
+    Private Sub btnClose_MouseUp(sender As Object, e As MouseEventArgs) Handles btnClose.MouseUp
+        btnClose.BackgroundImage = My.Resources.button
+    End Sub
+
+    Private Sub btnSave_MouseDown(sender As Object, e As MouseEventArgs) Handles btnSave.MouseDown
+        btnSave.BackgroundImage = My.Resources.button_click
+    End Sub
+
+    Private Sub btnSave_MouseHover(sender As Object, e As EventArgs) Handles btnSave.MouseHover
+        btnSave.BackgroundImage = My.Resources.button_hover
+    End Sub
+
+    Private Sub btnSave_MouseLeave(sender As Object, e As EventArgs) Handles btnSave.MouseLeave
+        btnSave.BackgroundImage = My.Resources.button
+    End Sub
+
+    Private Sub btnSave_MouseUp(sender As Object, e As MouseEventArgs) Handles btnSave.MouseUp
+        btnSave.BackgroundImage = My.Resources.button
+    End Sub
+
+    Private Sub btnStopRunningActions_MouseDown(sender As Object, e As MouseEventArgs) Handles btnStopRunningActions.MouseDown
+        btnStopRunningActions.BackgroundImage = My.Resources.button_click
+    End Sub
+
+    Private Sub btnStopRunningActions_MouseHover(sender As Object, e As EventArgs) Handles btnStopRunningActions.MouseHover
+        btnStopRunningActions.BackgroundImage = My.Resources.button_hover
+    End Sub
+
+    Private Sub btnStopRunningActions_MouseLeave(sender As Object, e As EventArgs) Handles btnStopRunningActions.MouseLeave
+        btnStopRunningActions.BackgroundImage = My.Resources.button
+    End Sub
+
+    Private Sub btnStopRunningActions_MouseUp(sender As Object, e As MouseEventArgs) Handles btnStopRunningActions.MouseUp
+        btnStopRunningActions.BackgroundImage = My.Resources.button
+    End Sub
+
+    Private Sub btnSearchForUpdates_MouseDown(sender As Object, e As MouseEventArgs) Handles btnSearchForUpdates.MouseDown
+        btnSearchForUpdates.BackgroundImage = My.Resources.button_click
+    End Sub
+
+    Private Sub btnSearchForUpdates_MouseHover(sender As Object, e As EventArgs) Handles btnSearchForUpdates.MouseHover
+        btnSearchForUpdates.BackgroundImage = My.Resources.button_hover
+    End Sub
+
+    Private Sub btnSearchForUpdates_MouseLeave(sender As Object, e As EventArgs) Handles btnSearchForUpdates.MouseLeave
+        btnSearchForUpdates.BackgroundImage = My.Resources.button
+    End Sub
+
+    Private Sub btnSearchForUpdates_MouseUp(sender As Object, e As MouseEventArgs) Handles btnSearchForUpdates.MouseUp
+        btnSearchForUpdates.BackgroundImage = My.Resources.button
     End Sub
 End Class
