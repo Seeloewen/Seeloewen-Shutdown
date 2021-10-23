@@ -9,7 +9,7 @@ Imports System.Runtime.InteropServices
 ' Werte der Assemblyattribute überprüfen
 
 <Assembly: AssemblyTitle("Seeloewen Shutdown")>
-<Assembly: AssemblyDescription("Fahre deinen Computer automatisch herunter oder starte ihn neu!")>
+<Assembly: AssemblyDescription("Schedule automatic restarts and shutdowns easily")>
 <Assembly: AssemblyCompany("")>
 <Assembly: AssemblyProduct("Seeloewen Shutdown")>
 <Assembly: AssemblyCopyright("")>
