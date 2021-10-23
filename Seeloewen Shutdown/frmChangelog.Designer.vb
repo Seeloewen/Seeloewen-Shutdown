@@ -96,7 +96,7 @@ Partial Class frmChangelog
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.CancelButton = Me.btnClose
-        Me.ClientSize = New System.Drawing.Size(518, 343)
+        Me.ClientSize = New System.Drawing.Size(518, 341)
         Me.Controls.Add(Me.rtbchangelogEnglish)
         Me.Controls.Add(Me.gbChangelog)
         Me.Controls.Add(Me.btnClose)

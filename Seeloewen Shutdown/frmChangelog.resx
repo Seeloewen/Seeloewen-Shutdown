@@ -118,7 +118,20 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="rtbChangelog.Text" xml:space="preserve">
-    <value>Version 1.4.1 (27.08.2021)
+    <value>Version 1.5.0 (23.10.2021
++ Dunkles Design hinzugefügt
++ Englische Übersetzung hinzugefügt
++ Link zur Github Seite im "Über" Fenster hinzugefügt
+* Einstellungen wurden leicht überarbeitet
+* Alle Buttons wurden ersetzt
+* Symbol wurde überarbeitet
+* Performanceverbesserungen wurden vorgenommen
+* Fehler behoben, dass der Updater nicht auf die Datei zugreifen konnte
+* Fehler behoben, dass die Tage im "Mitteilung"-Fenster nicht angezeigt wurden
+* Fehler behoben, dass der Changelog im "Update"-Fenster bearbeitet werden konnte
+* Fehler behoben, dass der Zeitpunkt im "Mitteilung"-Fenster einen falschen Wert anzeigt
+
+Version 1.4.1 (27.08.2021)
 + GNU General Public License v3 im "Über..." Fenster hinzugefügt
 - Informationen im "Über..." Fenster entfernt
 * Änderungen am Updater vorgenommen
@@ -189,7 +202,20 @@ Version 0.1 (27.10.2020)
 * Inoffizieller Release</value>
   </data>
   <data name="rtbchangelogEnglish.Text" xml:space="preserve">
-    <value>Version 1.4.1 (27.08.2021)
+    <value>Version 1.5.0 (23.10.2021)
++ Added dark design
++ Added english translation
++ Added link to Github page in "About" window
+* Small design changes in "Settings" window
+* Replaced all buttons
+* Improved design of the icon
+* Improved performance
+* Fixed the bug, that the updater couldn't access the update file
+* Fixed the bug, that the "Notification" window didn't show days
+* Fixed the bug, that the Changelog in the "Update" wasn't read-only
+* Fixed the bug, that the Point In Time in the "Notification" window wasn't correct
+
+Version 1.4.1 (27.08.2021)
 + Added GNU General Public License v3 in "about"-window
 - Removed information in "about"-window
 * Small design changes in the updater
