@@ -178,7 +178,7 @@ Partial Class frmSettings
         Me.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnClose.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnClose.ForeColor = System.Drawing.Color.White
-        Me.btnClose.Location = New System.Drawing.Point(225, 523)
+        Me.btnClose.Location = New System.Drawing.Point(225, 526)
         Me.btnClose.Name = "btnClose"
         Me.btnClose.Size = New System.Drawing.Size(199, 27)
         Me.btnClose.TabIndex = 4
@@ -279,7 +279,7 @@ Partial Class frmSettings
         Me.rtbCurrentVersion.Name = "rtbCurrentVersion"
         Me.rtbCurrentVersion.Size = New System.Drawing.Size(92, 19)
         Me.rtbCurrentVersion.TabIndex = 6
-        Me.rtbCurrentVersion.Text = "1.5.0-Beta2" & Global.Microsoft.VisualBasic.ChrW(10)
+        Me.rtbCurrentVersion.Text = "1.5.0-Dev"
         '
         'rtbNewestVersion
         '
@@ -341,7 +341,7 @@ Partial Class frmSettings
         Me.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSave.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSave.ForeColor = System.Drawing.Color.White
-        Me.btnSave.Location = New System.Drawing.Point(19, 523)
+        Me.btnSave.Location = New System.Drawing.Point(18, 526)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(199, 27)
         Me.btnSave.TabIndex = 3
@@ -353,7 +353,7 @@ Partial Class frmSettings
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(441, 565)
+        Me.ClientSize = New System.Drawing.Size(439, 565)
         Me.Controls.Add(Me.gbRunningAction)
         Me.Controls.Add(Me.rtbNewestVersion)
         Me.Controls.Add(Me.rtbCurrentVersion)
