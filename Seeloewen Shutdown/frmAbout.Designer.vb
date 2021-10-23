@@ -27,7 +27,6 @@ Partial Class frmAbout
         Me.lblInfo = New System.Windows.Forms.Label()
         Me.gbInfo = New System.Windows.Forms.GroupBox()
         Me.rtbInfo = New System.Windows.Forms.RichTextBox()
-        Me.btnHelp = New System.Windows.Forms.Button()
         Me.btnChangelog = New System.Windows.Forms.Button()
         Me.llblSeeloewenShutdownGithub = New System.Windows.Forms.LinkLabel()
         Me.btnClose = New System.Windows.Forms.Button()
@@ -82,24 +81,6 @@ Partial Class frmAbout
         Me.rtbInfo.TabIndex = 5
         Me.rtbInfo.Text = resources.GetString("rtbInfo.Text")
         '
-        'btnHelp
-        '
-        Me.btnHelp.BackColor = System.Drawing.Color.Transparent
-        Me.btnHelp.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
-        Me.btnHelp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnHelp.FlatAppearance.BorderSize = 0
-        Me.btnHelp.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
-        Me.btnHelp.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
-        Me.btnHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnHelp.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnHelp.ForeColor = System.Drawing.Color.White
-        Me.btnHelp.Location = New System.Drawing.Point(23, 383)
-        Me.btnHelp.Name = "btnHelp"
-        Me.btnHelp.Size = New System.Drawing.Size(106, 29)
-        Me.btnHelp.TabIndex = 5
-        Me.btnHelp.Text = "Hilfe"
-        Me.btnHelp.UseVisualStyleBackColor = False
-        '
         'btnChangelog
         '
         Me.btnChangelog.BackColor = System.Drawing.Color.Transparent
@@ -111,9 +92,9 @@ Partial Class frmAbout
         Me.btnChangelog.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnChangelog.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnChangelog.ForeColor = System.Drawing.Color.White
-        Me.btnChangelog.Location = New System.Drawing.Point(135, 383)
+        Me.btnChangelog.Location = New System.Drawing.Point(22, 383)
         Me.btnChangelog.Name = "btnChangelog"
-        Me.btnChangelog.Size = New System.Drawing.Size(102, 29)
+        Me.btnChangelog.Size = New System.Drawing.Size(156, 29)
         Me.btnChangelog.TabIndex = 6
         Me.btnChangelog.Text = "Changelog"
         Me.btnChangelog.UseVisualStyleBackColor = False
@@ -122,7 +103,7 @@ Partial Class frmAbout
         '
         Me.llblSeeloewenShutdownGithub.AutoSize = True
         Me.llblSeeloewenShutdownGithub.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.llblSeeloewenShutdownGithub.Location = New System.Drawing.Point(80, 351)
+        Me.llblSeeloewenShutdownGithub.Location = New System.Drawing.Point(71, 351)
         Me.llblSeeloewenShutdownGithub.Name = "llblSeeloewenShutdownGithub"
         Me.llblSeeloewenShutdownGithub.Size = New System.Drawing.Size(216, 20)
         Me.llblSeeloewenShutdownGithub.TabIndex = 8
@@ -140,9 +121,9 @@ Partial Class frmAbout
         Me.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnClose.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnClose.ForeColor = System.Drawing.Color.Transparent
-        Me.btnClose.Location = New System.Drawing.Point(243, 383)
+        Me.btnClose.Location = New System.Drawing.Point(184, 383)
         Me.btnClose.Name = "btnClose"
-        Me.btnClose.Size = New System.Drawing.Size(101, 29)
+        Me.btnClose.Size = New System.Drawing.Size(160, 29)
         Me.btnClose.TabIndex = 4
         Me.btnClose.Text = "Schließen"
         Me.btnClose.UseVisualStyleBackColor = False
@@ -155,7 +136,6 @@ Partial Class frmAbout
         Me.ClientSize = New System.Drawing.Size(364, 421)
         Me.Controls.Add(Me.llblSeeloewenShutdownGithub)
         Me.Controls.Add(Me.btnChangelog)
-        Me.Controls.Add(Me.btnHelp)
         Me.Controls.Add(Me.btnClose)
         Me.Controls.Add(Me.gbInfo)
         Me.Controls.Add(Me.lblInfo)
@@ -178,7 +158,6 @@ Partial Class frmAbout
     Friend WithEvents gbInfo As GroupBox
     Friend WithEvents btnClose As Button
     Friend WithEvents rtbInfo As RichTextBox
-    Friend WithEvents btnHelp As Button
     Friend WithEvents btnChangelog As Button
     Friend WithEvents llblSeeloewenShutdownGithub As LinkLabel
 End Class

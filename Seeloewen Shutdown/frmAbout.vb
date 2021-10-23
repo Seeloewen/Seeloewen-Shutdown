@@ -7,10 +7,6 @@
         Process.Start("https://discord.gg/sBUaRxT")
     End Sub
 
-    Private Sub btnHelp_Click(sender As Object, e As EventArgs) Handles btnHelp.Click
-        frmHilfe.Show()
-    End Sub
-
     Private Sub btnChangelog_Click(sender As Object, e As EventArgs) Handles btnChangelog.Click
         frmChangelog.Show()
     End Sub
@@ -29,12 +25,9 @@
 
         If My.Settings.Language = "English" Then
             Text = "About..."
-            btnHelp.Text = "Help"
             btnClose.Text = "Close"
         End If
     End Sub
-
-    'Button events
 
     Private Sub llblSeeloewenShutdownGithub_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles llblSeeloewenShutdownGithub.LinkClicked
         Process.Start("https://github.com/Seeloewen/Seeloewen-Shutdown")
@@ -72,19 +65,7 @@
         btnChangelog.BackgroundImage = My.Resources.button
     End Sub
 
-    Private Sub btnHelp_MouseDown(sender As Object, e As MouseEventArgs) Handles btnHelp.MouseDown
-        btnHelp.BackgroundImage = My.Resources.button_click
-    End Sub
+    Private Sub btnHelp_Click(sender As Object, e As EventArgs)
 
-    Private Sub btnHelp_MouseHover(sender As Object, e As EventArgs) Handles btnHelp.MouseHover
-        btnHelp.BackgroundImage = My.Resources.button_hover
-    End Sub
-
-    Private Sub btnHelp_MouseLeave(sender As Object, e As EventArgs) Handles btnHelp.MouseLeave
-        btnHelp.BackgroundImage = My.Resources.button
-    End Sub
-
-    Private Sub btnHelp_MouseUp(sender As Object, e As MouseEventArgs) Handles btnHelp.MouseUp
-        btnHelp.BackgroundImage = My.Resources.button
     End Sub
 End Class
