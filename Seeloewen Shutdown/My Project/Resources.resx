@@ -130,22 +130,4 @@
   <data name="button_hover" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\button_hover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="frmAbout" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\frmAbout.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="frmChangelog" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\frmChangelog.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="frmFinish" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\frmFinish.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="frmMain" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\frmMain.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="frmSettings" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\frmSettings.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="frmUpdate" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\frmUpdate.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
 </root>
