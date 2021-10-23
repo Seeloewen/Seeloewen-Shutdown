@@ -1,10 +1,65 @@
 ﻿Imports System.Net
 Public Class frmSettings
     Private Sub frmSettings_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        'Translations
+        If My.Settings.Language = "English" Then
+
+            'Initialize comboboxes if language English is selected
+            cbxDefaultIn.Items.Remove("Sekunde(n)")
+            cbxDefaultIn.Items.Remove("Minute(n)")
+            cbxDefaultIn.Items.Remove("Stunde(n)")
+            cbxDefaultIn.Items.Add("Second(s)")
+            cbxDefaultIn.Items.Add("Minute(s)")
+            cbxDefaultIn.Items.Add("Hour(s)")
+            cbxDesign.Items.Remove("Hell")
+            cbxDesign.Items.Remove("Dunkel")
+            cbxDesign.Items.Add("Light")
+            cbxDesign.Items.Add("Dark")
+            cbxLanguage.SelectedItem = "English (English)"
+
+            'Change text to english translation
+            Text = "Settings"
+            lblSettings.Text = "Settings"
+            gbDefaultSettings.Text = "Default settings"
+            gbRunningAction.Text = "Running action"
+            gbAppSettings.Text = "App settings"
+            rbtnShutdown.Text = "Shutdown"
+            rbtnRestart.Text = "Restart"
+            cbUpdatesOnStartup.Text = "Search for updates when the app starts"
+            lblDefaultAction.Text = "Action"
+            lblDefaultTime.Text = "Execute in..."
+            lblDefaultMessage.Text = "Message"
+            lblRunningAction.Text = "If an action is already running, you can cancel it" + vbNewLine + "here, if you want to."
+            lblLanguage.Text = "Language"
+            btnSearchForUpdates.Text = "Search for updates"
+            btnStopRunningActions.Text = "Cancel running actions"
+            btnSave.Text = "Save"
+            btnClose.Text = "Close"
+
+        ElseIf My.Settings.Language = "German" Then
+            cbxLanguage.SelectedItem = "Deutsch (German)"
+        End If
+
         If My.Settings.Design = "light" Then
-            ComboBox1.Text = "Hell"
+
+            'Initialize Design combobox if darkmode is selected
+            If My.Settings.Language = "German" Then
+                cbxDesign.SelectedItem = "Hell"
+            ElseIf My.Settings.Language = "English" Then
+                cbxDesign.SelectedItem = "Light"
+            End If
+
         ElseIf My.Settings.Design = "dark" Then
-            ComboBox1.Text = "Dunkel"
+
+            'Initialize Design combobox if darkmode is selected
+            If My.Settings.Language = "German" Then
+                cbxDesign.SelectedItem = "Dunkel"
+            ElseIf My.Settings.Language = "English" Then
+                cbxDesign.SelectedItem = "Dark"
+            End If
+
+            'Change window to darkmode
             BackColor = Color.FromArgb(41, 41, 41)
             lblSettings.ForeColor = Color.White
             lblDefaultAction.ForeColor = Color.White
@@ -23,6 +78,7 @@ Public Class frmSettings
             tbDefaultTime.BackColor = Color.Gray
         End If
 
+        'Load default settings from settings
         If My.Settings.DefaultAction = "shutdown" Then
             rbtnShutdown.Checked = True
         ElseIf My.Settings.DefaultAction = "restart" Then
@@ -30,11 +86,29 @@ Public Class frmSettings
         End If
 
         If My.Settings.DefaultTimeChoice = "minutes" Then
-            cbxDefaultIn.SelectedItem = "Minute(n)"
-        ElseIf My.Settings.DefaultTimeChoice = "hours" Then
-            cbxDefaultIn.SelectedItem = "Stunde(n)"
+
+            If My.Settings.Language = "English" Then
+                cbxDefaultIn.SelectedItem = "Minute(s)"
+            ElseIf My.Settings.Language = "German" Then
+                cbxDefaultIn.SelectedItem = "Minute(n)"
+            End If
+
         ElseIf My.Settings.DefaultTimeChoice = "seconds" Then
-            cbxDefaultIn.SelectedItem = "Sekunde(n)"
+
+            If My.Settings.Language = "English" Then
+                cbxDefaultIn.SelectedItem = "Second(s)"
+            ElseIf My.Settings.Language = "German" Then
+                cbxDefaultIn.SelectedItem = "Sekunde(n)"
+            End If
+
+        ElseIf My.Settings.DefaultTimeChoice = "hours" Then
+
+            If My.Settings.Language = "English" Then
+                cbxDefaultIn.SelectedItem = "Hour(s)"
+            ElseIf My.Settings.Language = "German" Then
+                cbxDefaultIn.SelectedItem = "Stunde(n)"
+            End If
+
         End If
 
         tbDefaultMessage.Text = My.Settings.DefaultMessage
@@ -44,29 +118,6 @@ Public Class frmSettings
             cbUpdatesOnStartup.Checked = True
         ElseIf My.Settings.UpdatesOnStartup = False Then
             cbUpdatesOnStartup.Checked = False
-        End If
-
-        If My.Settings.Language = "English" Then
-            cbxLanguage.SelectedItem = "English (English)"
-            Text = "Settings"
-            lblSettings.Text = "Settings"
-            gbDefaultSettings.Text = "Default settings"
-            gbRunningAction.Text = "Running action"
-            gbAppSettings.Text = "App settings"
-            rbtnShutdown.Text = "Shutdown"
-            rbtnRestart.Text = "Restart"
-            cbUpdatesOnStartup.Text = "Search for updates when the app starts"
-            lblDefaultAction.Text = "Action"
-            lblDefaultTime.Text = "Execute in..."
-            lblDefaultMessage.Text = "Message"
-            lblRunningAction.Text = "If an action is already running, you can cancel it" + vbNewLine + "here, if you want to."
-            lblLanguage.Text = "Language"
-            btnSearchForUpdates.Text = "Search for updates"
-            btnStopRunningActions.Text = "Stop running actions"
-            btnSave.Text = "Save"
-            btnClose.Text = "Close"
-        ElseIf My.Settings.Language = "German" Then
-            cbxLanguage.SelectedItem = "Deutsch (German)"
         End If
     End Sub
 
@@ -98,9 +149,15 @@ Public Class frmSettings
         'Check which option is selected for DefaultTimeChoice.
         If cbxDefaultIn.SelectedItem = "Stunde(n)" Then
             My.Settings.DefaultTimeChoice = "hours"
+        ElseIf cbxDefaultIn.SelectedItem = "Hour(s)" Then
+            My.Settings.DefaultTimeChoice = "hours"
         ElseIf cbxDefaultIn.SelectedItem = "Minute(n)" Then
             My.Settings.DefaultTimeChoice = "minutes"
+        ElseIf cbxDefaultIn.SelectedItem = "Minute(s)" Then
+            My.Settings.DefaultTimeChoice = "minutes"
         ElseIf cbxDefaultIn.SelectedItem = "Sekunde(n)" Then
+            My.Settings.DefaultTimeChoice = "seconds"
+        ElseIf cbxDefaultIn.SelectedItem = "Second(s)" Then
             My.Settings.DefaultTimeChoice = "seconds"
         End If
 
@@ -124,14 +181,22 @@ Public Class frmSettings
         End If
 
         'Save Design
-        If ComboBox1.SelectedItem = "Hell" Then
+        If cbxDesign.SelectedItem = "Light" Then
             My.Settings.Design = "light"
-        ElseIf ComboBox1.SelectedItem = "Dunkel" Then
+        ElseIf cbxDesign.SelectedItem = "Hell" Then
+            My.Settings.Design = "light"
+        ElseIf cbxDesign.SelectedItem = "Dunkel" Then
+            My.Settings.Design = "dark"
+        ElseIf cbxDesign.SelectedItem = "Dark" Then
             My.Settings.Design = "dark"
         End If
 
         'Show a message that confirms that all settings have been saved
-        MsgBox("Alle ausgewählten Optionen wurden gespeichert!" + vbNewLine + "Du musst möglicherweise die App neustarten," + vbNewLine + "um manche Einstellungen anzuwenden.", MsgBoxStyle.Information, "Erfolgreich gespeichert!")
+        If My.Settings.Language = "German" Then
+            MsgBox("Alle ausgewählten Optionen wurden gespeichert!" + vbNewLine + "Du musst möglicherweise die App neustarten," + vbNewLine + "um manche Einstellungen anzuwenden.", MsgBoxStyle.Information, "Erfolgreich gespeichert!")
+        ElseIf My.Settings.Language = "English" Then
+            MsgBox("All settings have been saved." + vbNewLine + "You may need to restart the application" + vbNewLine + "to apply some settings.", MsgBoxStyle.Information, "Saved successfully!")
+        End If
         Me.Close()
     End Sub
 
@@ -166,16 +231,29 @@ Public Class frmSettings
         End Using
 
         If rtbCurrentVersion.Text = rtbNewestVersion.Text Then
-            MsgBox("Es ist keine neue Version verfügbar.", MsgBoxStyle.Information, "Aktualisierung")
+            If My.Settings.Language = "German" Then
+                MsgBox("Es ist keine neue Version verfügbar.", MsgBoxStyle.Information, "Aktualisierung")
+            ElseIf My.Settings.Language = "English" Then
+                MsgBox("No new version is available.", MsgBoxStyle.Information, "Update")
+            End If
         ElseIf rtbNewestVersion.Text = "Error.NoServerConnection" Then
-            MsgBox("Bei der Verbindung zum Server ist ein Fehler aufgetreten.", MsgBoxStyle.Critical, "Aktualisierung")
+            If My.Settings.Language = "German" Then
+                MsgBox("Bei der Verbindung zum Server ist ein Fehler aufgetreten.", MsgBoxStyle.Critical, "Aktualisierung")
+            ElseIf My.Settings.Language = "English" Then
+                MsgBox("An error occured while connecting to the server.", MsgBoxStyle.Critical, "Update")
+            End If
         Else frmUpdate.ShowDialog()
         End If
     End Sub
 
     Private Sub btnStopRunningActions_Click(sender As Object, e As EventArgs) Handles btnStopRunningActions.Click
         Process.Start("shutdown", "-a")
-        MsgBox("Die laufende Aktion wurde erfolgreich abgebrochen.", MsgBoxStyle.Information, "Laufende Aktion abbrechen")
+
+        If My.Settings.Language = "German" Then
+            MsgBox("Die laufende Aktion wurde erfolgreich abgebrochen.", MsgBoxStyle.Information, "Laufende Aktion abbrechen")
+        ElseIf My.Settings.Language = "English" Then
+            MsgBox("The running actions was successfully cancelled.", MsgBoxStyle.Information, "Cancel running actions")
+        End If
     End Sub
 
     Private Sub btnClose_MouseDown(sender As Object, e As MouseEventArgs) Handles btnClose.MouseDown
