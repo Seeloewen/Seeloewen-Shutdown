@@ -2,7 +2,10 @@
 Imports System.Environment
 
 Public Class frmUpdate
-    Private Sub frmUpdate_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    Dim Changelog As String
+    Dim AppData As String = GetFolderPath(SpecialFolder.ApplicationData)
+    Private Async Sub frmUpdate_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If My.Settings.Design = "dark" Then
             BackColor = Color.FromArgb(41, 41, 41)
             rtbLatestVersionNews.BackColor = Color.FromArgb(41, 41, 41)
@@ -18,38 +21,37 @@ Public Class frmUpdate
             Text = "Update"
         End If
 
-        If My.Settings.Language = "English" Then
-            Dim request = CType(WebRequest.Create("https://raw.githubusercontent.com/Seeloewen/Seeloewen-Shutdown/main/latest_version_news.txt"), HttpWebRequest)
-            request.Accept = "application/vnd.github.v3.raw"
-            request.UserAgent = "Seeloewen Shutdown"
+        Await Task.Run(Sub() GetUpdateNews())
 
-            Using response = request.GetResponse()
-                Dim encoding = System.Text.ASCIIEncoding.UTF8
+        rtbLatestVersionNews.Text = Changelog
+    End Sub
 
-                Using reader = New System.IO.StreamReader(response.GetResponseStream(), encoding)
-                    rtbLatestVersionNews.Text = reader.ReadToEnd()
-                End Using
-            End Using
-        ElseIf My.Settings.Language = "German" Then
-            Dim request = CType(WebRequest.Create("https://raw.githubusercontent.com/Seeloewen/Seeloewen-Shutdown/main/latest_version_news_german.txt"), HttpWebRequest)
-            request.Accept = "application/vnd.github.v3.raw"
-            request.UserAgent = "Seeloewen Shutdown"
+    Private Async Sub btnDownload_Click(sender As Object, e As EventArgs) Handles btnDownload.Click
+        If My.Settings.Language = "German" Then
+            btnDownload.Text = "Herunterladen..."
+        ElseIf My.Settings.Language = "English" Then
+            btnDownload.Text = "Downloading..."
+        End If
 
-            Using response = request.GetResponse()
-                Dim encoding = System.Text.ASCIIEncoding.UTF8
+        btnDownload.Enabled = False
 
-                Using reader = New System.IO.StreamReader(response.GetResponseStream(), encoding)
-                    rtbLatestVersionNews.Text = reader.ReadToEnd()
-                End Using
-            End Using
+        Await Task.Run(Sub() DownloadUpdate())
+
+        Process.Start(AppData + "/Seeloewen Shutdown/SeeloewenShutdownUpdate.exe")
+        frmMain.Close()
+        btnDownload.Enabled = True
+
+        If My.Settings.Language = "German" Then
+            btnDownload.Text = "Herunterladen"
+        ElseIf My.Settings.Language = "English" Then
+            btnDownload.Text = "Download"
         End If
     End Sub
 
-    Private Sub btnDownload_Click(sender As Object, e As EventArgs) Handles btnDownload.Click
-        Dim AppData As String = GetFolderPath(SpecialFolder.ApplicationData)
+    Private Sub DownloadUpdate()
         Dim latest_download_link As String
         Dim request = CType(WebRequest.Create("https://raw.githubusercontent.com/Seeloewen/Seeloewen-Shutdown/main/latest_download_link.txt"), HttpWebRequest)
-        
+
         request.Accept = "application/vnd.github.v3.raw"
         request.UserAgent = "Seeloewen Shutdown"
 
@@ -71,9 +73,34 @@ Public Class frmUpdate
         End If
 
         wc.DownloadFile(latest_download_link, AppData + "/Seeloewen Shutdown/SeeloewenShutdownUpdate.exe")
-
-        Process.Start(AppData + "/Seeloewen Shutdown/SeeloewenShutdownUpdate.exe")
         frmMain.Close()
+    End Sub
+    Private Sub GetUpdateNews()
+        If My.Settings.Language = "English" Then
+            Dim request = CType(WebRequest.Create("https://raw.githubusercontent.com/Seeloewen/Seeloewen-Shutdown/main/latest_version_news.txt"), HttpWebRequest)
+            request.Accept = "application/vnd.github.v3.raw"
+            request.UserAgent = "Seeloewen Shutdown"
+
+            Using response = request.GetResponse()
+                Dim encoding = System.Text.ASCIIEncoding.UTF8
+
+                Using reader = New System.IO.StreamReader(response.GetResponseStream(), encoding)
+                    Changelog = reader.ReadToEnd()
+                End Using
+            End Using
+        ElseIf My.Settings.Language = "German" Then
+            Dim request = CType(WebRequest.Create("https://raw.githubusercontent.com/Seeloewen/Seeloewen-Shutdown/main/latest_version_news_german.txt"), HttpWebRequest)
+            request.Accept = "application/vnd.github.v3.raw"
+            request.UserAgent = "Seeloewen Shutdown"
+
+            Using response = request.GetResponse()
+                Dim encoding = System.Text.ASCIIEncoding.UTF8
+
+                Using reader = New System.IO.StreamReader(response.GetResponseStream(), encoding)
+                    Changelog = reader.ReadToEnd()
+                End Using
+            End Using
+        End If
     End Sub
 
     Private Sub btnIgnore_Click(sender As Object, e As EventArgs) Handles btnIgnore.Click
