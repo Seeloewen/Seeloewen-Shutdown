@@ -1,6 +1,12 @@
-WARNUNG: Dieses Update ist eine Beta! Es können Probleme oder unvollständige Funktionen vorkommen.
-
-Version 1.5.0-Beta2 (27.09.2021)
-* Darkmode hinzugefügt (unvollständig)
-* Updater Dateizugriffsfehler behoben
-* Fehler behoben, dass der Zeitpunkt die falsche Zeit zeigte
+Version 1.5.0 (23.10.2021
++ Dunkles Design hinzugefügt
++ Englische Übersetzung hinzugefügt
++ Link zur Github Seite im "Über" Fenster hinzugefügt
+* Einstellungen wurden leicht überarbeitet
+* Alle Buttons wurden ersetzt
+* Symbol wurde überarbeitet
+* Performanceverbesserungen wurden vorgenommen
+* Fehler behoben, dass der Updater nicht auf die Datei zugreifen konnte
+* Fehler behoben, dass die Tage im "Mitteilung"-Fenster nicht angezeigt wurden
+* Fehler behoben, dass der Changelog im "Update"-Fenster bearbeitet werden konnte
+* Fehler behoben, dass der Zeitpunkt im "Mitteilung"-Fenster einen falschen Wert anzeigt
