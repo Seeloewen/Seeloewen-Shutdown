@@ -1,0 +1,6 @@
+WARNUNG: Dieses Update ist eine Beta! Es können Probleme oder unvollständige Funktionen vorkommen.
+
+Version 1.5.0-Beta2 (27.09.2021)
+* Darkmode hinzugefügt (unvollständig)
+* Updater Dateizugriffsfehler behoben
+* Fehler behoben, dass der Zeitpunkt die falsche Zeit zeigte
