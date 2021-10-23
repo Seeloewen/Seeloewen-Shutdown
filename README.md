@@ -1,6 +1,6 @@
 # Seeloewen-Shutdown
 
-![GitHub all releases](https://img.shields.io/github/downloads/Seeloewen/Seeloewen-Shutdown/total?style=for-the-badge) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/Seeloewen/Seeloewen-Shutdown?style=for-the-badge) ![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/Seeloewen/Seeloewen-Shutdown?include_prereleases&label=pre-release&style=for-the-badge) ![GitHub](https://img.shields.io/github/license/Seeloewen/Seeloewen-Shutdown?style=for-the-badge)
+![GitHub all releases](https://img.shields.io/github/downloads/Seeloewen/Seeloewen-Shutdown/total?style=for-the-badge) https://img.shields.io/github/v/release/Seeloewen/Seeloewen-Shutdown?style=for-the-badge ![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/Seeloewen/Seeloewen-Shutdown?include_prereleases&label=pre-release&style=for-the-badge) ![GitHub](https://img.shields.io/github/license/Seeloewen/Seeloewen-Shutdown?style=for-the-badge)
 
 With Seeloewen Shutdown you can choose when your PC will automatically shutdown or restart. The time when it shuts down is fully customizable. You can either choose "in ... seconds/minutes/hours" or a direct point in time. You can also attach a message to action, if you want to.
 
