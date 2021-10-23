@@ -1,5 +1,8 @@
 ﻿Imports System.Net
 Public Class frmSettings
+
+    Dim newestversion As String
+
     Private Sub frmSettings_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         'Translations
@@ -216,19 +219,17 @@ Public Class frmSettings
         Stopw.Reset()
     End Sub
 
-    Private Sub btnSearchForUpdates_Click(sender As Object, e As EventArgs) Handles btnSearchForUpdates.Click
-        Dim request = CType(WebRequest.Create("https://raw.githubusercontent.com/Seeloewen/Seeloewen-Shutdown/main/newest_version.txt"), HttpWebRequest)
-        On Error Resume Next
-        request.Accept = "application/vnd.github.v3.raw"
-        request.UserAgent = "Seeloewen Shutdown"
+    Private Async Sub btnSearchForUpdates_Click(sender As Object, e As EventArgs) Handles btnSearchForUpdates.Click
+        If My.Settings.Language = "German" Then
+            btnSearchForUpdates.Text = "Suche nach Updates..."
+        ElseIf My.Settings.Language = "English" Then
+            btnSearchForUpdates.Text = "Searching for Updates..."
+        End If
 
-        Using response = request.GetResponse()
-            Dim encoding = System.Text.ASCIIEncoding.UTF8
+        btnSearchForUpdates.Enabled = False
 
-            Using reader = New System.IO.StreamReader(response.GetResponseStream(), encoding)
-                rtbNewestVersion.Text = reader.ReadToEnd()
-            End Using
-        End Using
+        Await Task.Run(Sub() SearchForUpdates())
+        rtbNewestVersion.Text = newestversion
 
         If rtbCurrentVersion.Text = rtbNewestVersion.Text Then
             If My.Settings.Language = "German" Then
@@ -244,6 +245,14 @@ Public Class frmSettings
             End If
         Else frmUpdate.ShowDialog()
         End If
+
+        If My.Settings.Language = "German" Then
+            btnSearchForUpdates.Text = "Nach Aktualisierungen suchen"
+        ElseIf My.Settings.Language = "English" Then
+            btnSearchForUpdates.Text = "Search for Updates"
+        End If
+
+        btnSearchForUpdates.Enabled = True
     End Sub
 
     Private Sub btnStopRunningActions_Click(sender As Object, e As EventArgs) Handles btnStopRunningActions.Click
@@ -254,6 +263,21 @@ Public Class frmSettings
         ElseIf My.Settings.Language = "English" Then
             MsgBox("The running actions was successfully cancelled.", MsgBoxStyle.Information, "Cancel running actions")
         End If
+    End Sub
+
+    Private Sub SearchForUpdates()
+        Dim request = CType(WebRequest.Create("https://raw.githubusercontent.com/Seeloewen/Seeloewen-Shutdown/main/newest_version.txt"), HttpWebRequest)
+        On Error Resume Next
+        request.Accept = "application/vnd.github.v3.raw"
+        request.UserAgent = "Seeloewen Shutdown"
+
+        Using response = request.GetResponse()
+            Dim encoding = System.Text.ASCIIEncoding.UTF8
+
+            Using reader = New System.IO.StreamReader(response.GetResponseStream(), encoding)
+                newestversion = reader.ReadToEnd()
+            End Using
+        End Using
     End Sub
 
     Private Sub btnClose_MouseDown(sender As Object, e As MouseEventArgs) Handles btnClose.MouseDown
