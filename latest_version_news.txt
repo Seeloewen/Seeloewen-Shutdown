@@ -1,3 +1,5 @@
+Version 1.5.0 (23.10.2021)
+
 + Added dark design
 + Added english translation
 + Added link to Github page in "About" window
