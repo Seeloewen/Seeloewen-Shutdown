@@ -24,9 +24,9 @@ Partial Class frmUpdate
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmUpdate))
         Me.lblHeader = New System.Windows.Forms.Label()
-        Me.btnDownload = New System.Windows.Forms.Button()
-        Me.btnIgnore = New System.Windows.Forms.Button()
         Me.rtbLatestVersionNews = New System.Windows.Forms.RichTextBox()
+        Me.btnIgnore = New System.Windows.Forms.Button()
+        Me.btnDownload = New System.Windows.Forms.Button()
         Me.pbBackground = New System.Windows.Forms.PictureBox()
         CType(Me.pbBackground, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -41,22 +41,17 @@ Partial Class frmUpdate
         Me.lblHeader.TabIndex = 1
         Me.lblHeader.Text = "Es ist ein Update verfügbar!"
         '
-        'btnDownload
+        'rtbLatestVersionNews
         '
-        Me.btnDownload.BackColor = System.Drawing.Color.Transparent
-        Me.btnDownload.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
-        Me.btnDownload.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnDownload.FlatAppearance.BorderSize = 0
-        Me.btnDownload.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
-        Me.btnDownload.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
-        Me.btnDownload.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnDownload.ForeColor = System.Drawing.Color.White
-        Me.btnDownload.Location = New System.Drawing.Point(184, 183)
-        Me.btnDownload.Name = "btnDownload"
-        Me.btnDownload.Size = New System.Drawing.Size(167, 23)
-        Me.btnDownload.TabIndex = 2
-        Me.btnDownload.Text = "Herunterladen"
-        Me.btnDownload.UseVisualStyleBackColor = False
+        Me.rtbLatestVersionNews.BackColor = System.Drawing.Color.White
+        Me.rtbLatestVersionNews.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.rtbLatestVersionNews.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.rtbLatestVersionNews.Location = New System.Drawing.Point(12, 33)
+        Me.rtbLatestVersionNews.Name = "rtbLatestVersionNews"
+        Me.rtbLatestVersionNews.ReadOnly = True
+        Me.rtbLatestVersionNews.Size = New System.Drawing.Size(340, 135)
+        Me.rtbLatestVersionNews.TabIndex = 4
+        Me.rtbLatestVersionNews.Text = ""
         '
         'btnIgnore
         '
@@ -75,17 +70,22 @@ Partial Class frmUpdate
         Me.btnIgnore.Text = "Ignorieren"
         Me.btnIgnore.UseVisualStyleBackColor = False
         '
-        'rtbLatestVersionNews
+        'btnDownload
         '
-        Me.rtbLatestVersionNews.BackColor = System.Drawing.Color.White
-        Me.rtbLatestVersionNews.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.rtbLatestVersionNews.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.rtbLatestVersionNews.Location = New System.Drawing.Point(12, 33)
-        Me.rtbLatestVersionNews.Name = "rtbLatestVersionNews"
-        Me.rtbLatestVersionNews.ReadOnly = True
-        Me.rtbLatestVersionNews.Size = New System.Drawing.Size(340, 135)
-        Me.rtbLatestVersionNews.TabIndex = 4
-        Me.rtbLatestVersionNews.Text = ""
+        Me.btnDownload.BackColor = System.Drawing.Color.Transparent
+        Me.btnDownload.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
+        Me.btnDownload.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnDownload.FlatAppearance.BorderSize = 0
+        Me.btnDownload.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.btnDownload.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.btnDownload.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnDownload.ForeColor = System.Drawing.Color.White
+        Me.btnDownload.Location = New System.Drawing.Point(184, 183)
+        Me.btnDownload.Name = "btnDownload"
+        Me.btnDownload.Size = New System.Drawing.Size(167, 23)
+        Me.btnDownload.TabIndex = 2
+        Me.btnDownload.Text = "Herunterladen"
+        Me.btnDownload.UseVisualStyleBackColor = False
         '
         'pbBackground
         '

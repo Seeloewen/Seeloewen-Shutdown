@@ -66,4 +66,36 @@ Public Class frmUpdate
     Private Sub btnIgnore_Click(sender As Object, e As EventArgs) Handles btnIgnore.Click
         Me.Close()
     End Sub
+
+    Private Sub btnIgnore_MouseDown(sender As Object, e As MouseEventArgs) Handles btnIgnore.MouseDown
+        btnIgnore.BackgroundImage = My.Resources.button_click
+    End Sub
+
+    Private Sub btnIgnore_MouseHover(sender As Object, e As EventArgs) Handles btnIgnore.MouseHover
+        btnIgnore.BackgroundImage = My.Resources.button_hover
+    End Sub
+
+    Private Sub btnIgnore_MouseLeave(sender As Object, e As EventArgs) Handles btnIgnore.MouseLeave
+        btnIgnore.BackgroundImage = My.Resources.button
+    End Sub
+
+    Private Sub btnIgnore_MouseUp(sender As Object, e As MouseEventArgs) Handles btnIgnore.MouseUp
+        btnIgnore.BackgroundImage = My.Resources.button
+    End Sub
+
+    Private Sub btnDownload_MouseDown(sender As Object, e As MouseEventArgs) Handles btnDownload.MouseDown
+        btnDownload.BackgroundImage = My.Resources.button_click
+    End Sub
+
+    Private Sub btnDownload_MouseHover(sender As Object, e As EventArgs) Handles btnDownload.MouseHover
+        btnDownload.BackgroundImage = My.Resources.button_hover
+    End Sub
+
+    Private Sub btnDownload_MouseLeave(sender As Object, e As EventArgs) Handles btnDownload.MouseLeave
+        btnDownload.BackgroundImage = My.Resources.button
+    End Sub
+
+    Private Sub btnDownload_MouseUp(sender As Object, e As MouseEventArgs) Handles btnDownload.MouseUp
+        btnDownload.BackgroundImage = My.Resources.button
+    End Sub
 End Class
