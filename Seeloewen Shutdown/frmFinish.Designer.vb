@@ -25,7 +25,6 @@ Partial Class frmFinish
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmFinish))
         Me.lblHeader = New System.Windows.Forms.Label()
-        Me.btnCancelAction = New System.Windows.Forms.Button()
         Me.rtbInfo = New System.Windows.Forms.RichTextBox()
         Me.lblTimeRemaining = New System.Windows.Forms.Label()
         Me.timeRemaining = New System.Windows.Forms.Label()
@@ -33,6 +32,7 @@ Partial Class frmFinish
         Me.lblPointInTime = New System.Windows.Forms.Label()
         Me.pointintime = New System.Windows.Forms.Label()
         Me.gbMessage = New System.Windows.Forms.GroupBox()
+        Me.btnCancelAction = New System.Windows.Forms.Button()
         Me.gbMessage.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -45,16 +45,6 @@ Partial Class frmFinish
         Me.lblHeader.Size = New System.Drawing.Size(398, 25)
         Me.lblHeader.TabIndex = 0
         Me.lblHeader.Text = "Ihr PC wird demnächst heruntergefahren"
-        '
-        'btnCancelAction
-        '
-        Me.btnCancelAction.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnCancelAction.Location = New System.Drawing.Point(26, 182)
-        Me.btnCancelAction.Name = "btnCancelAction"
-        Me.btnCancelAction.Size = New System.Drawing.Size(393, 28)
-        Me.btnCancelAction.TabIndex = 2
-        Me.btnCancelAction.Text = "Aktion abbrechen"
-        Me.btnCancelAction.UseVisualStyleBackColor = True
         '
         'rtbInfo
         '
@@ -110,9 +100,9 @@ Partial Class frmFinish
         Me.pointintime.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.pointintime.Location = New System.Drawing.Point(166, 63)
         Me.pointintime.Name = "pointintime"
-        Me.pointintime.Size = New System.Drawing.Size(102, 20)
+        Me.pointintime.Size = New System.Drawing.Size(122, 20)
         Me.pointintime.TabIndex = 7
-        Me.pointintime.Text = "%zeitpunkt%"
+        Me.pointintime.Text = "%pointInTIme%"
         '
         'gbMessage
         '
@@ -125,6 +115,24 @@ Partial Class frmFinish
         Me.gbMessage.TabIndex = 8
         Me.gbMessage.TabStop = False
         Me.gbMessage.Text = "Nachricht"
+        '
+        'btnCancelAction
+        '
+        Me.btnCancelAction.BackColor = System.Drawing.Color.Transparent
+        Me.btnCancelAction.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
+        Me.btnCancelAction.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnCancelAction.FlatAppearance.BorderSize = 0
+        Me.btnCancelAction.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.btnCancelAction.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.btnCancelAction.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnCancelAction.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnCancelAction.ForeColor = System.Drawing.Color.White
+        Me.btnCancelAction.Location = New System.Drawing.Point(26, 182)
+        Me.btnCancelAction.Name = "btnCancelAction"
+        Me.btnCancelAction.Size = New System.Drawing.Size(393, 28)
+        Me.btnCancelAction.TabIndex = 2
+        Me.btnCancelAction.Text = "Aktion abbrechen"
+        Me.btnCancelAction.UseVisualStyleBackColor = False
         '
         'frmFinish
         '
