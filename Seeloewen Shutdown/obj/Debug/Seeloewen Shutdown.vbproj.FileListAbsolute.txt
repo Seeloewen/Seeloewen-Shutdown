@@ -61,7 +61,6 @@ C:\Users\Louis\OneDrive\Dokumente\Programmieren\Visual Studio Projekte\Seeloewen
 C:\Users\Louis\OneDrive\Dokumente\Programmieren\Visual Studio Projekte\Seeloewen Shutdown\Github Repository\Seeloewen-Shutdown\Seeloewen Shutdown\obj\Debug\Seeloewen_Shutdown.frmChangelog.resources
 C:\Users\Louis\OneDrive\Dokumente\Programmieren\Visual Studio Projekte\Seeloewen Shutdown\Github Repository\Seeloewen-Shutdown\Seeloewen Shutdown\obj\Debug\Seeloewen_Shutdown.frmFinish.resources
 C:\Users\Louis\OneDrive\Dokumente\Programmieren\Visual Studio Projekte\Seeloewen Shutdown\Github Repository\Seeloewen-Shutdown\Seeloewen Shutdown\obj\Debug\Seeloewen_Shutdown.frmFirstStart.resources
-C:\Users\Louis\OneDrive\Dokumente\Programmieren\Visual Studio Projekte\Seeloewen Shutdown\Github Repository\Seeloewen-Shutdown\Seeloewen Shutdown\obj\Debug\Seeloewen_Shutdown.frmHilfe.resources
 C:\Users\Louis\OneDrive\Dokumente\Programmieren\Visual Studio Projekte\Seeloewen Shutdown\Github Repository\Seeloewen-Shutdown\Seeloewen Shutdown\obj\Debug\Seeloewen_Shutdown.frmMain.resources
 C:\Users\Louis\OneDrive\Dokumente\Programmieren\Visual Studio Projekte\Seeloewen Shutdown\Github Repository\Seeloewen-Shutdown\Seeloewen Shutdown\obj\Debug\Seeloewen_Shutdown.frmUpdate.resources
 C:\Users\Louis\OneDrive\Dokumente\Programmieren\Visual Studio Projekte\Seeloewen Shutdown\Github Repository\Seeloewen-Shutdown\Seeloewen Shutdown\obj\Debug\Seeloewen_Shutdown.Resources.resources

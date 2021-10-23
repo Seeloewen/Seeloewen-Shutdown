@@ -63,7 +63,7 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>icon.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
@@ -119,12 +119,6 @@
     <Compile Include="frmFirstStart.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmHilfe.Designer.vb">
-      <DependentUpon>frmHilfe.vb</DependentUpon>
-    </Compile>
-    <Compile Include="frmHilfe.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="frmMain.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -175,9 +169,6 @@
     <EmbeddedResource Include="frmFirstStart.resx">
       <DependentUpon>frmFirstStart.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmHilfe.resx">
-      <DependentUpon>frmHilfe.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.vb</DependentUpon>
     </EmbeddedResource>
@@ -209,15 +200,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Resources\Icon.ico" />
     <None Include="Resources\button_hover.png" />
     <None Include="Resources\button_click.png" />
     <None Include="Resources\button.png" />
-    <None Include="Resources\frmAbout.PNG" />
-    <None Include="Resources\frmUpdate.png" />
-    <None Include="Resources\frmSettings.PNG" />
-    <None Include="Resources\frmMain.PNG" />
-    <None Include="Resources\frmFinish.png" />
-    <None Include="Resources\frmChangelog.png" />
     <None Include="Resources\btnSettings.png" />
   </ItemGroup>
   <ItemGroup>
