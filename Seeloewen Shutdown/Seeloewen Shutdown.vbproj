@@ -199,7 +199,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="icon.ico" />
     <None Include="Resources\Icon.ico" />
     <None Include="Resources\button_hover.png" />
     <None Include="Resources\button_click.png" />
