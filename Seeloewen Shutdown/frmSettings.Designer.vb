@@ -35,7 +35,7 @@ Partial Class frmSettings
         Me.lblDefaultMessage = New System.Windows.Forms.Label()
         Me.btnClose = New System.Windows.Forms.Button()
         Me.gbAppSettings = New System.Windows.Forms.GroupBox()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.cbxDesign = New System.Windows.Forms.ComboBox()
         Me.cbxLanguage = New System.Windows.Forms.ComboBox()
         Me.lblDesign = New System.Windows.Forms.Label()
         Me.lblLanguage = New System.Windows.Forms.Label()
@@ -187,7 +187,7 @@ Partial Class frmSettings
         '
         'gbAppSettings
         '
-        Me.gbAppSettings.Controls.Add(Me.ComboBox1)
+        Me.gbAppSettings.Controls.Add(Me.cbxDesign)
         Me.gbAppSettings.Controls.Add(Me.cbxLanguage)
         Me.gbAppSettings.Controls.Add(Me.lblDesign)
         Me.gbAppSettings.Controls.Add(Me.lblLanguage)
@@ -202,16 +202,16 @@ Partial Class frmSettings
         Me.gbAppSettings.TabStop = False
         Me.gbAppSettings.Text = "App-Einstellungen"
         '
-        'ComboBox1
+        'cbxDesign
         '
-        Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Items.AddRange(New Object() {"Hell", "Dunkel"})
-        Me.ComboBox1.Location = New System.Drawing.Point(90, 50)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(304, 21)
-        Me.ComboBox1.TabIndex = 7
+        Me.cbxDesign.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbxDesign.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbxDesign.FormattingEnabled = True
+        Me.cbxDesign.Items.AddRange(New Object() {"Hell", "Dunkel"})
+        Me.cbxDesign.Location = New System.Drawing.Point(90, 50)
+        Me.cbxDesign.Name = "cbxDesign"
+        Me.cbxDesign.Size = New System.Drawing.Size(304, 21)
+        Me.cbxDesign.TabIndex = 7
         '
         'cbxLanguage
         '
@@ -400,7 +400,7 @@ Partial Class frmSettings
     Friend WithEvents gbRunningAction As GroupBox
     Friend WithEvents btnStopRunningActions As Button
     Friend WithEvents lblRunningAction As Label
-    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents cbxDesign As ComboBox
     Friend WithEvents cbxLanguage As ComboBox
     Friend WithEvents lblDesign As Label
     Friend WithEvents lblLanguage As Label
