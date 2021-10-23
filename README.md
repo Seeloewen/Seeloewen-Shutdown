@@ -6,7 +6,7 @@ With Seeloewen Shutdown you can choose when your PC will automatically shutdown 
 
 The settings allow you to save an action, a point in time and a message that will automatically be loaded and selected if you start the programm. You can also update the software in the settings, which makes it easy to stay up-to-date. And If you already have an action running that you want to cancel, you can do that here! You can also change the the design and the language.
 
-If you need help you can open the "help" window, which shows a more detailed explanation on the features. If you need further help or have any questions you can also contact Seeloewen#5699 on Discord.
+If you need help or have any questions you can contact Seeloewen#5699 on Discord.
 
 The program is licensed under the GNU General Public License v3 which you can find here: https://www.gnu.org/licenses/gpl-3.0.en.html
 
