@@ -100,48 +100,68 @@ Public Class frmMain
         'Set action using "in..."
         If rbtnIn.Checked = True Then
             If String.IsNullOrEmpty(tbTime.Text) Then
-                MsgBox("Bitte gib eine Zeitangabe an!", MsgBoxStyle.Critical, "Fehler")
+                If My.Settings.Language = "German" Then
+                    MsgBox("Bitte gib eine Zeitangabe an!", MsgBoxStyle.Critical, "Fehler")
+                ElseIf My.Settings.Language = "English" Then
+                    MsgBox("Please enter a time!", MsgBoxStyle.Critical, "Error")
+                End If
             Else
                 If rbtnShutdown.Checked = True Then
                     Action.Text = "-s"
-                    frmFinish.rtbInfo.Text = "Ihr PC wird demnächst heruntergefahren."
                 ElseIf rbtnRestart.Checked = True Then
                     Action.Text = "-r"
-                    frmFinish.rtbInfo.Text = "Ihr PC wird demnächst neugestartet."
                 End If
 
                 'calculate and set shutdown time
                 If cbxIn.SelectedItem = "Sekunde(n)" Then
                     Shutdowntime.Text = tbTime.Text
                     maxtime = "31535999"
+                    shutdownart = "Sekunde(n)"
                 ElseIf cbxIn.SelectedItem = "Second(s)" Then
                     Shutdowntime.Text = tbTime.Text
                     maxtime = "31535999"
+                    shutdownart = "Second(s)"
                 ElseIf cbxIn.SelectedItem = "Minute(n)" Then
                     Shutdowntime.Text = tbTime.Text * 60
                     maxtime = "525599"
+                    shutdownart = "Minute(n)"
                 ElseIf cbxIn.SelectedItem = "Minute(s)" Then
                     Shutdowntime.Text = tbTime.Text * 60
                     maxtime = "525599"
+                    shutdownart = "Minute(s)"
                 ElseIf cbxIn.SelectedItem = "Stunde(n)" Then
                     Shutdowntime.Text = tbTime.Text * 3600
                     maxtime = "8759"
+                    shutdownart = "Stunde(n)"
                 ElseIf cbxIn.SelectedItem = "Hour(s)" Then
                     Shutdowntime.Text = tbTime.Text * 3600
                     maxtime = "8759"
+                    shutdownart = "Hour(s)"
                 End If
 
                 'Run action
                 If Shutdowntime.Text > 31535999 Then
-                    MsgBox("Die maximale Zeitangabe für " + Anführungszeichen.Text + shutdownart + Anführungszeichen.Text + " beträgt " + maxtime, MsgBoxStyle.Critical, "Fehler")
+                    If My.Settings.Language = "German" Then
+                        MsgBox("Die maximale Zeitangabe für " + Quotationmark.Text + shutdownart + Quotationmark.Text + " beträgt " + maxtime, MsgBoxStyle.Critical, "Fehler")
+                    ElseIf My.Settings.Language = "English" Then
+                        MsgBox("The maximum time for " + Quotationmark.Text + shutdownart + Quotationmark.Text + " is " + maxtime, MsgBoxStyle.Critical, "Fehler")
+                    End If
                 ElseIf Shutdowntime.Text = 0 Then
-                    MsgBox("Die Zeitangabe darf nicht Null sein!", MsgBoxStyle.Critical, "Fehler")
+                    If My.Settings.Language = "German" Then
+                        MsgBox("Die Zeitangabe darf nicht Null sein!", MsgBoxStyle.Critical, "Fehler")
+                    ElseIf My.Settings.Language = "English" Then
+                        MsgBox("The time cannot be zero!", MsgBoxStyle.Critical, "Error")
+                    End If
                 Else
                     If cbMessage.Checked = True Then
                         If String.IsNullOrEmpty(tbMessage.Text) Then
-                            MsgBox("Die Nachricht darf nicht leer sein!", MsgBoxStyle.Critical, "Fehler")
+                            If My.Settings.Language = "German" Then
+                                MsgBox("Die Nachricht darf nicht leer sein!", MsgBoxStyle.Critical, "Fehler")
+                            ElseIf My.Settings.Language = "English" Then
+                                MsgBox("The message cannot be empty!", MsgBoxStyle.Critical, "Error")
+                            End If
                         Else
-                            shutdownWithMessage()
+                                shutdownWithMessage()
                         End If
                     ElseIf cbMessage.Checked = False Then
                         shutdown()
@@ -154,10 +174,8 @@ Public Class frmMain
         If rbtnPointInTime.Checked = True Then
             If rbtnShutdown.Checked Then
                 Action.Text = "-s"
-                frmFinish.rtbInfo.Text = "Ihr PC wird demnächst heruntergefahren."
             ElseIf rbtnRestart.Checked Then
                 Action.Text = "-r"
-                frmFinish.rtbInfo.Text = "Ihr PC wird demnächst neugestartet."
             End If
 
             'Calculate and set shutdown time
@@ -173,13 +191,25 @@ Public Class frmMain
 
             'Run action
             If Shutdowntime.Text > 31535999 Then
-                MsgBox("Der ausgewählte Zeitpunkt darf nicht mehr als 1 Jahr in der Zukunft liegen!", MsgBoxStyle.Critical, "Fehler")
+                If My.Settings.Language = "German" Then
+                    MsgBox("Der ausgewählte Zeitpunkt darf nicht mehr als 1 Jahr in der Zukunft liegen!", MsgBoxStyle.Critical, "Fehler")
+                ElseIf My.Settings.Language = "English" Then
+                    MsgBox("The selected point in time cannot be more than 1 year in the future!", MsgBoxStyle.Critical, "Error")
+                End If
             ElseIf Shutdowntime.Text < 0 Then
-                MsgBox("Der ausgewählte Zeitpunkt darf nicht in der Vergangenheit liegen!", MsgBoxStyle.Critical, "Fehler")
+                If My.Settings.Language = "German" Then
+                    MsgBox("Der ausgewählte Zeitpunkt darf nicht in der Vergangenheit liegen!", MsgBoxStyle.Critical, "Fehler")
+                ElseIf My.Settings.Language = "English" Then
+                    MsgBox("The selected point in time cannot be in the past!", MsgBoxStyle.Critical, "Error")
+                End If
             Else
                 If cbMessage.Checked Then
                     If String.IsNullOrEmpty(tbMessage.Text) Then
-                        MsgBox("Die Nachricht darf nicht leer sein!", MsgBoxStyle.Critical, "Fehler")
+                        If My.Settings.Language = "German" Then
+                            MsgBox("Die Nachricht darf nicht leer sein!", MsgBoxStyle.Critical, "Fehler")
+                        ElseIf My.Settings.Language = "English" Then
+                            MsgBox("The message cannot be empty!", MsgBoxStyle.Critical, "Error")
+                        End If
                     Else
                         shutdownWithMessage()
                     End If
@@ -220,7 +250,7 @@ Public Class frmMain
 
     Private Sub shutdownWithMessage()
         Finaloutput.Text = Action.Text + " -t " + Shutdowntime.Text + " -c " + tbMessage.Text
-        Process.Start("shutdown", Action.Text + " -t " + Shutdowntime.Text + " -c " + Anführungszeichen.Text + tbMessage.Text + Anführungszeichen.Text)
+        Process.Start("shutdown", Action.Text + " -t " + Shutdowntime.Text + " -c " + Quotationmark.Text + tbMessage.Text + Quotationmark.Text)
         Hide()
         frmFinish.ShowDialog()
     End Sub
@@ -253,7 +283,11 @@ Public Class frmMain
 
         If frmSettings.rtbCurrentVersion.Text = frmSettings.rtbNewestVersion.Text Then
         ElseIf frmSettings.rtbNewestVersion.Text = "Error.NoServerConnection" Then
-            MsgBox("Bei der Verbindung zum Server ist ein Fehler aufgetreten." + vbNewLine + vbNewLine + "Es konnte nicht automatisch nach Updates gesucht werden.", MsgBoxStyle.Critical, "Aktualisierung")
+            If My.Settings.Language = "German" Then
+                MsgBox("Bei der Verbindung zum Server ist ein Fehler aufgetreten." + vbNewLine + vbNewLine + "Es konnte nicht automatisch nach Updates gesucht werden.", MsgBoxStyle.Critical, "Aktualisierung")
+            ElseIf My.Settings.Language = "English" Then
+                MsgBox("An error occured while connecting to the server." + vbNewLine + vbNewLine + "Unable to search for updates automatically.", MsgBoxStyle.Critical, "Update")
+            End If
         Else frmUpdate.ShowDialog()
         End If
     End Sub

@@ -37,14 +37,14 @@ Partial Class frmMain
         Me.gbMessage = New System.Windows.Forms.GroupBox()
         Me.tbMessage = New System.Windows.Forms.TextBox()
         Me.cbMessage = New System.Windows.Forms.CheckBox()
-        Me.btnStartAction = New System.Windows.Forms.Button()
-        Me.btnOpenHelp = New System.Windows.Forms.Button()
         Me.currentDateTime = New System.Windows.Forms.DateTimePicker()
         Me.Action = New System.Windows.Forms.Label()
         Me.Shutdowntime = New System.Windows.Forms.Label()
         Me.Finaloutput = New System.Windows.Forms.Label()
-        Me.Anführungszeichen = New System.Windows.Forms.Label()
+        Me.Quotationmark = New System.Windows.Forms.Label()
         Me.btnOpenSettings = New System.Windows.Forms.Button()
+        Me.btnOpenHelp = New System.Windows.Forms.Button()
+        Me.btnStartAction = New System.Windows.Forms.Button()
         Me.gbAction.SuspendLayout()
         Me.gbTime.SuspendLayout()
         Me.gbMessage.SuspendLayout()
@@ -218,41 +218,6 @@ Partial Class frmMain
         Me.cbMessage.Text = "Nachricht anfügen"
         Me.cbMessage.UseVisualStyleBackColor = True
         '
-        'btnStartAction
-        '
-        Me.btnStartAction.BackgroundImage = CType(resources.GetObject("btnStartAction.BackgroundImage"), System.Drawing.Image)
-        Me.btnStartAction.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnStartAction.FlatAppearance.BorderSize = 0
-        Me.btnStartAction.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
-        Me.btnStartAction.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
-        Me.btnStartAction.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnStartAction.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnStartAction.ForeColor = System.Drawing.Color.White
-        Me.btnStartAction.Location = New System.Drawing.Point(19, 387)
-        Me.btnStartAction.Name = "btnStartAction"
-        Me.btnStartAction.Size = New System.Drawing.Size(214, 38)
-        Me.btnStartAction.TabIndex = 5
-        Me.btnStartAction.Text = "Aktion starten"
-        Me.btnStartAction.UseVisualStyleBackColor = True
-        '
-        'btnOpenHelp
-        '
-        Me.btnOpenHelp.BackColor = System.Drawing.Color.Transparent
-        Me.btnOpenHelp.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
-        Me.btnOpenHelp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnOpenHelp.FlatAppearance.BorderSize = 0
-        Me.btnOpenHelp.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
-        Me.btnOpenHelp.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
-        Me.btnOpenHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnOpenHelp.Font = New System.Drawing.Font("Microsoft YaHei", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnOpenHelp.ForeColor = System.Drawing.Color.Transparent
-        Me.btnOpenHelp.Location = New System.Drawing.Point(239, 387)
-        Me.btnOpenHelp.Name = "btnOpenHelp"
-        Me.btnOpenHelp.Size = New System.Drawing.Size(48, 38)
-        Me.btnOpenHelp.TabIndex = 6
-        Me.btnOpenHelp.Text = "?"
-        Me.btnOpenHelp.UseVisualStyleBackColor = False
-        '
         'currentDateTime
         '
         Me.currentDateTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom
@@ -288,14 +253,14 @@ Partial Class frmMain
         Me.Finaloutput.TabIndex = 11
         Me.Finaloutput.Text = "Finaloutput"
         '
-        'Anführungszeichen
+        'Quotationmark
         '
-        Me.Anführungszeichen.AutoSize = True
-        Me.Anführungszeichen.Location = New System.Drawing.Point(493, 85)
-        Me.Anführungszeichen.Name = "Anführungszeichen"
-        Me.Anführungszeichen.Size = New System.Drawing.Size(12, 13)
-        Me.Anführungszeichen.TabIndex = 12
-        Me.Anführungszeichen.Text = """"
+        Me.Quotationmark.AutoSize = True
+        Me.Quotationmark.Location = New System.Drawing.Point(493, 85)
+        Me.Quotationmark.Name = "Quotationmark"
+        Me.Quotationmark.Size = New System.Drawing.Size(12, 13)
+        Me.Quotationmark.TabIndex = 12
+        Me.Quotationmark.Text = """"
         '
         'btnOpenSettings
         '
@@ -314,13 +279,48 @@ Partial Class frmMain
         Me.btnOpenSettings.TabIndex = 7
         Me.btnOpenSettings.UseVisualStyleBackColor = True
         '
+        'btnOpenHelp
+        '
+        Me.btnOpenHelp.BackColor = System.Drawing.Color.Transparent
+        Me.btnOpenHelp.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
+        Me.btnOpenHelp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnOpenHelp.FlatAppearance.BorderSize = 0
+        Me.btnOpenHelp.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.btnOpenHelp.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.btnOpenHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnOpenHelp.Font = New System.Drawing.Font("Microsoft YaHei", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnOpenHelp.ForeColor = System.Drawing.Color.Transparent
+        Me.btnOpenHelp.Location = New System.Drawing.Point(239, 387)
+        Me.btnOpenHelp.Name = "btnOpenHelp"
+        Me.btnOpenHelp.Size = New System.Drawing.Size(48, 38)
+        Me.btnOpenHelp.TabIndex = 6
+        Me.btnOpenHelp.Text = "?"
+        Me.btnOpenHelp.UseVisualStyleBackColor = False
+        '
+        'btnStartAction
+        '
+        Me.btnStartAction.BackgroundImage = CType(resources.GetObject("btnStartAction.BackgroundImage"), System.Drawing.Image)
+        Me.btnStartAction.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnStartAction.FlatAppearance.BorderSize = 0
+        Me.btnStartAction.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.btnStartAction.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.btnStartAction.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnStartAction.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnStartAction.ForeColor = System.Drawing.Color.White
+        Me.btnStartAction.Location = New System.Drawing.Point(19, 387)
+        Me.btnStartAction.Name = "btnStartAction"
+        Me.btnStartAction.Size = New System.Drawing.Size(214, 38)
+        Me.btnStartAction.TabIndex = 5
+        Me.btnStartAction.Text = "Aktion starten"
+        Me.btnStartAction.UseVisualStyleBackColor = True
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(360, 437)
-        Me.Controls.Add(Me.Anführungszeichen)
+        Me.ClientSize = New System.Drawing.Size(358, 437)
+        Me.Controls.Add(Me.Quotationmark)
         Me.Controls.Add(Me.Finaloutput)
         Me.Controls.Add(Me.Shutdowntime)
         Me.Controls.Add(Me.Action)
@@ -369,7 +369,7 @@ Partial Class frmMain
     Friend WithEvents Action As Label
     Friend WithEvents Shutdowntime As Label
     Friend WithEvents Finaloutput As Label
-    Friend WithEvents Anführungszeichen As Label
+    Friend WithEvents Quotationmark As Label
     Friend WithEvents cbxIn As ComboBox
     Friend WithEvents rbtnPointInTime As RadioButton
     Friend WithEvents rbtnIn As RadioButton
