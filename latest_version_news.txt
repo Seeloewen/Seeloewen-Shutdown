@@ -1,6 +1,11 @@
-WARNING: This update is a BETA! There may be bugs and incomplete features.
-
-Version 1.5.0-Beta2 (27.09.2021)
-* Added dark design (incomplete)
-* Fixed updater file access bug
-* Fixed point in time displaying wrong time
++ Added dark design
++ Added english translation
++ Added link to Github page in "About" window
+* Small design changes in "Settings" window
+* Replaced all buttons
+* Improved design of the icon
+* Improved performance
+* Fixed the bug, that the updater couldn't access the update file
+* Fixed the bug, that the "Notification" window didn't show days
+* Fixed the bug, that the Changelog in the "Update" wasn't read-only
+* Fixed the bug, that the Point In Time in the "Notification" window wasn't correct
