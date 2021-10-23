@@ -67,9 +67,9 @@ Partial Class frmMain
         Me.lblVersion.ForeColor = System.Drawing.SystemColors.ControlDarkDark
         Me.lblVersion.Location = New System.Drawing.Point(14, 46)
         Me.lblVersion.Name = "lblVersion"
-        Me.lblVersion.Size = New System.Drawing.Size(202, 25)
+        Me.lblVersion.Size = New System.Drawing.Size(139, 25)
         Me.lblVersion.TabIndex = 1
-        Me.lblVersion.Text = "Version 1.5.0-Beta2"
+        Me.lblVersion.Text = "Version 1.5.0"
         '
         'gbAction
         '
