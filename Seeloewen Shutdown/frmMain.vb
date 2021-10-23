@@ -39,9 +39,6 @@ Public Class frmMain
             rbtnRestart.Checked = True
         End If
 
-        If My.Settings.UpdatesOnStartup = True Then
-            SearchForUpdates()
-        End If
 
         rbtnIn.Checked = True
         dtpDate.Enabled = False
@@ -87,6 +84,8 @@ Public Class frmMain
                 cbxIn.SelectedItem = "Stunde(n)"
             End If
         End If
+
+        SearchForUpdates()
     End Sub
 
     Private Sub btnOpenHelp_Click(sender As Object, e As EventArgs) Handles btnOpenHelp.Click
