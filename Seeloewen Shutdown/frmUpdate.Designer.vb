@@ -43,21 +43,37 @@ Partial Class frmUpdate
         '
         'btnDownload
         '
+        Me.btnDownload.BackColor = System.Drawing.Color.Transparent
+        Me.btnDownload.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
+        Me.btnDownload.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnDownload.FlatAppearance.BorderSize = 0
+        Me.btnDownload.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.btnDownload.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.btnDownload.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnDownload.ForeColor = System.Drawing.Color.White
         Me.btnDownload.Location = New System.Drawing.Point(184, 183)
         Me.btnDownload.Name = "btnDownload"
         Me.btnDownload.Size = New System.Drawing.Size(167, 23)
         Me.btnDownload.TabIndex = 2
         Me.btnDownload.Text = "Herunterladen"
-        Me.btnDownload.UseVisualStyleBackColor = True
+        Me.btnDownload.UseVisualStyleBackColor = False
         '
         'btnIgnore
         '
+        Me.btnIgnore.BackColor = System.Drawing.Color.Transparent
+        Me.btnIgnore.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
+        Me.btnIgnore.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnIgnore.FlatAppearance.BorderSize = 0
+        Me.btnIgnore.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.btnIgnore.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.btnIgnore.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnIgnore.ForeColor = System.Drawing.Color.White
         Me.btnIgnore.Location = New System.Drawing.Point(11, 183)
         Me.btnIgnore.Name = "btnIgnore"
         Me.btnIgnore.Size = New System.Drawing.Size(167, 23)
         Me.btnIgnore.TabIndex = 3
         Me.btnIgnore.Text = "Ignorieren"
-        Me.btnIgnore.UseVisualStyleBackColor = True
+        Me.btnIgnore.UseVisualStyleBackColor = False
         '
         'rtbLatestVersionNews
         '
