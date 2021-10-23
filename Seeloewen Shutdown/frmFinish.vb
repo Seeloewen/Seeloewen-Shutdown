@@ -13,9 +13,7 @@
             lblHeader.Text = "Your PC will shutdown soon"
             lblTimeRemaining.Text = "Time remaining:"
             lblPointInTime.Text = "Exact time:"
-
             gbMessage.Text = "Message"
-
             btnCancelAction.Text = "Cancel action"
         End If
 
@@ -82,7 +80,10 @@
     Private Sub tmrShutdown_Tick(sender As Object, e As EventArgs) Handles tmrShutdown.Tick
         Dim ts As TimeSpan = TargetDT.Subtract(DateTime.Now)
         If ts.TotalMilliseconds > 0 Then
-            timeRemaining.Text = ts.ToString("hh\:mm\:ss")
+            If ts.TotalHours > 24 Then
+                timeRemaining.Text = ts.ToString("dd\:hh\:mm\:ss")
+            Else timeRemaining.Text = ts.ToString("hh\:mm\:ss")
+            End If
         End If
     End Sub
 
