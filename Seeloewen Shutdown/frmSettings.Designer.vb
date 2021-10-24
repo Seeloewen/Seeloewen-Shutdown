@@ -316,7 +316,7 @@ Partial Class frmSettings
         Me.btnStopRunningActions.Name = "btnStopRunningActions"
         Me.btnStopRunningActions.Size = New System.Drawing.Size(378, 23)
         Me.btnStopRunningActions.TabIndex = 1
-        Me.btnStopRunningActions.Text = "Laufende Aktionen abbrechen"
+        Me.btnStopRunningActions.Text = "Laufende Aktion abbrechen"
         Me.btnStopRunningActions.UseVisualStyleBackColor = True
         '
         'lblRunningAction
