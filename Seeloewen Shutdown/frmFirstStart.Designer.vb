@@ -51,9 +51,16 @@ Partial Class frmFirstStart
         '
         'btnOK
         '
-        Me.btnOK.Location = New System.Drawing.Point(96, 69)
+        Me.btnOK.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
+        Me.btnOK.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnOK.FlatAppearance.BorderSize = 0
+        Me.btnOK.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.btnOK.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnOK.ForeColor = System.Drawing.Color.White
+        Me.btnOK.Location = New System.Drawing.Point(73, 71)
         Me.btnOK.Name = "btnOK"
-        Me.btnOK.Size = New System.Drawing.Size(115, 23)
+        Me.btnOK.Size = New System.Drawing.Size(167, 21)
         Me.btnOK.TabIndex = 2
         Me.btnOK.Text = "OK"
         Me.btnOK.UseVisualStyleBackColor = True
