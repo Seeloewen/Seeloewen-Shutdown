@@ -36,7 +36,7 @@ Public Class frmSettings
             lblRunningAction.Text = "If an action is already running, you can cancel it" + vbNewLine + "here, if you want to."
             lblLanguage.Text = "Language"
             btnSearchForUpdates.Text = "Search for updates"
-            btnStopRunningActions.Text = "Cancel running actions"
+            btnStopRunningActions.Text = "Cancel running action"
             btnSave.Text = "Save"
             btnClose.Text = "Close"
 
@@ -79,6 +79,8 @@ Public Class frmSettings
             cbUpdatesOnStartup.ForeColor = Color.White
             tbDefaultMessage.BackColor = Color.Gray
             tbDefaultTime.BackColor = Color.Gray
+            tbDefaultMessage.ForeColor = Color.White
+            tbDefaultTime.ForeColor = Color.White
         End If
 
         'Load default settings from settings
@@ -223,7 +225,7 @@ Public Class frmSettings
         If My.Settings.Language = "German" Then
             btnSearchForUpdates.Text = "Suche nach Updates..."
         ElseIf My.Settings.Language = "English" Then
-            btnSearchForUpdates.Text = "Searching for Updates..."
+            btnSearchForUpdates.Text = "Searching for updates..."
         End If
 
         btnSearchForUpdates.Enabled = False
@@ -249,7 +251,7 @@ Public Class frmSettings
         If My.Settings.Language = "German" Then
             btnSearchForUpdates.Text = "Nach Aktualisierungen suchen"
         ElseIf My.Settings.Language = "English" Then
-            btnSearchForUpdates.Text = "Search for Updates"
+            btnSearchForUpdates.Text = "Search for updates"
         End If
 
         btnSearchForUpdates.Enabled = True
@@ -261,7 +263,7 @@ Public Class frmSettings
         If My.Settings.Language = "German" Then
             MsgBox("Die laufende Aktion wurde erfolgreich abgebrochen.", MsgBoxStyle.Information, "Laufende Aktion abbrechen")
         ElseIf My.Settings.Language = "English" Then
-            MsgBox("The running actions was successfully cancelled.", MsgBoxStyle.Information, "Cancel running actions")
+            MsgBox("The running action was successfully cancelled.", MsgBoxStyle.Information, "Cancel running action")
         End If
     End Sub
 
