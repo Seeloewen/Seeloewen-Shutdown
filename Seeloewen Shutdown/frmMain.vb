@@ -143,7 +143,7 @@ Public Class frmMain
                     If My.Settings.Language = "German" Then
                         MsgBox("Die maximale Zeitangabe für " + Quotationmark.Text + shutdownart + Quotationmark.Text + " beträgt " + maxtime, MsgBoxStyle.Critical, "Fehler")
                     ElseIf My.Settings.Language = "English" Then
-                        MsgBox("The maximum time for " + Quotationmark.Text + shutdownart + Quotationmark.Text + " is " + maxtime, MsgBoxStyle.Critical, "Fehler")
+                        MsgBox("The maximum time for " + Quotationmark.Text + shutdownart + Quotationmark.Text + " is " + maxtime, MsgBoxStyle.Critical, "Error")
                     End If
                 ElseIf Shutdowntime.Text = 0 Then
                     If My.Settings.Language = "German" Then
@@ -160,7 +160,7 @@ Public Class frmMain
                                 MsgBox("The message cannot be empty!", MsgBoxStyle.Critical, "Error")
                             End If
                         Else
-                                shutdownWithMessage()
+                            shutdownWithMessage()
                         End If
                     ElseIf cbMessage.Checked = False Then
                         shutdown()
