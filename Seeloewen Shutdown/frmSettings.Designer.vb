@@ -279,7 +279,7 @@ Partial Class frmSettings
         Me.rtbCurrentVersion.Name = "rtbCurrentVersion"
         Me.rtbCurrentVersion.Size = New System.Drawing.Size(92, 19)
         Me.rtbCurrentVersion.TabIndex = 6
-        Me.rtbCurrentVersion.Text = "1.5.0" & Global.Microsoft.VisualBasic.ChrW(10)
+        Me.rtbCurrentVersion.Text = "1.5.1" & Global.Microsoft.VisualBasic.ChrW(10)
         '
         'rtbNewestVersion
         '
