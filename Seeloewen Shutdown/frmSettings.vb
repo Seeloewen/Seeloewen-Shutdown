@@ -298,7 +298,7 @@ Public Class frmSettings
     Public Sub DownloadUpdater()
         'Get download link for the newest updater
         Dim latest_updater_link As String
-        Dim request = CType(WebRequest.Create("https://raw.githubusercontent.com/Seeloewen/Seeloewen-Shutdown-Update/main/Latest_Updater_Link"), HttpWebRequest)
+        Dim request = CType(WebRequest.Create("https://raw.githubusercontent.com/Seeloewen/Seeloewen-Shutdown-Update/main/Latest_Updater_Link.txt"), HttpWebRequest)
 
         request.Accept = "application/vnd.github.v3.raw"
         request.UserAgent = "Seeloewen Shutdown"
