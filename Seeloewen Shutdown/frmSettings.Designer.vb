@@ -47,6 +47,7 @@ Partial Class frmSettings
         Me.btnStopRunningActions = New System.Windows.Forms.Button()
         Me.lblRunningAction = New System.Windows.Forms.Label()
         Me.btnSave = New System.Windows.Forms.Button()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.gbDefaultSettings.SuspendLayout()
         Me.gbAppSettings.SuspendLayout()
         Me.gbRunningAction.SuspendLayout()
@@ -187,6 +188,7 @@ Partial Class frmSettings
         '
         'gbAppSettings
         '
+        Me.gbAppSettings.Controls.Add(Me.Button1)
         Me.gbAppSettings.Controls.Add(Me.cbxDesign)
         Me.gbAppSettings.Controls.Add(Me.cbxLanguage)
         Me.gbAppSettings.Controls.Add(Me.lblDesign)
@@ -268,7 +270,7 @@ Partial Class frmSettings
         Me.btnSearchForUpdates.ForeColor = System.Drawing.Color.White
         Me.btnSearchForUpdates.Location = New System.Drawing.Point(15, 87)
         Me.btnSearchForUpdates.Name = "btnSearchForUpdates"
-        Me.btnSearchForUpdates.Size = New System.Drawing.Size(379, 24)
+        Me.btnSearchForUpdates.Size = New System.Drawing.Size(218, 24)
         Me.btnSearchForUpdates.TabIndex = 0
         Me.btnSearchForUpdates.Text = "Nach Aktualisierungen suchen"
         Me.btnSearchForUpdates.UseVisualStyleBackColor = True
@@ -348,6 +350,17 @@ Partial Class frmSettings
         Me.btnSave.Text = "Speichern"
         Me.btnSave.UseVisualStyleBackColor = True
         '
+        'Button1
+        '
+        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.ForeColor = System.Drawing.Color.Black
+        Me.Button1.Location = New System.Drawing.Point(239, 87)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(155, 24)
+        Me.Button1.TabIndex = 8
+        Me.Button1.Text = "Open new updater"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'frmSettings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -404,4 +417,5 @@ Partial Class frmSettings
     Friend WithEvents cbxLanguage As ComboBox
     Friend WithEvents lblDesign As Label
     Friend WithEvents lblLanguage As Label
+    Friend WithEvents Button1 As Button
 End Class

@@ -1,7 +1,9 @@
 ﻿Imports System.Net
+Imports System.Environment
 Public Class frmSettings
 
     Dim newestversion As String
+    Dim AppData As String = GetFolderPath(SpecialFolder.ApplicationData)
 
     Private Sub frmSettings_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -280,6 +282,38 @@ Public Class frmSettings
                 newestversion = reader.ReadToEnd()
             End Using
         End Using
+    End Sub
+
+    Private Sub btnNewUpdater_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        'Delete updater if it already exists
+        If My.Computer.FileSystem.FileExists(AppData + "/Seeloewen Shutdown/Seeloewen_Shutdown_Update.exe") Then
+            My.Computer.FileSystem.DeleteFile(AppData + "/Seeloewen Shutdown/Seeloewen_Shutdown_Update.exe")
+        End If
+        'Download new updater
+        DownloadUpdater()
+        'Start updater
+        Process.Start(AppData + "/Seeloewen Shutdown/Seeloewen_Shutdown_Update.exe")
+    End Sub
+
+    Public Sub DownloadUpdater()
+        'Get download link for the newest updater
+        Dim latest_updater_link As String
+        Dim request = CType(WebRequest.Create("https://raw.githubusercontent.com/Seeloewen/Seeloewen-Shutdown-Update/main/Latest_Updater_Link"), HttpWebRequest)
+
+        request.Accept = "application/vnd.github.v3.raw"
+        request.UserAgent = "Seeloewen Shutdown"
+
+        Using response = request.GetResponse()
+            Dim encoding = System.Text.ASCIIEncoding.UTF8
+
+            Using reader = New System.IO.StreamReader(response.GetResponseStream(), encoding)
+                latest_updater_link = reader.ReadToEnd()
+            End Using
+        End Using
+
+        'Download newest updater
+        Dim wc As New WebClient()
+        wc.DownloadFile(latest_updater_link, AppData + "/Seeloewen Shutdown/Seeloewen_Shutdown_Update.exe")
     End Sub
 
     Private Sub btnClose_MouseDown(sender As Object, e As MouseEventArgs) Handles btnClose.MouseDown
