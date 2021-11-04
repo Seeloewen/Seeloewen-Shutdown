@@ -1,7 +1,8 @@
 ﻿Imports System.Net
+Imports System.IO
 Imports System.Environment
 Public Class frmSettings
-
+    Dim currentversion As String = "1.6.0-Beta1"
     Dim newestversion As String
     Dim AppData As String = GetFolderPath(SpecialFolder.ApplicationData)
 
@@ -46,7 +47,7 @@ Public Class frmSettings
             cbxLanguage.SelectedItem = "Deutsch (German)"
         End If
 
-        If My.Settings.Design = "light" Then
+        If My.Settings.Design = "Light" Then
 
             'Initialize Design combobox if darkmode is selected
             If My.Settings.Language = "German" Then
@@ -55,7 +56,7 @@ Public Class frmSettings
                 cbxDesign.SelectedItem = "Light"
             End If
 
-        ElseIf My.Settings.Design = "dark" Then
+        ElseIf My.Settings.Design = "Dark" Then
 
             'Initialize Design combobox if darkmode is selected
             If My.Settings.Language = "German" Then
@@ -189,13 +190,13 @@ Public Class frmSettings
 
         'Save Design
         If cbxDesign.SelectedItem = "Light" Then
-            My.Settings.Design = "light"
+            My.Settings.Design = "Light"
         ElseIf cbxDesign.SelectedItem = "Hell" Then
-            My.Settings.Design = "light"
+            My.Settings.Design = "Light"
         ElseIf cbxDesign.SelectedItem = "Dunkel" Then
-            My.Settings.Design = "dark"
+            My.Settings.Design = "Dark"
         ElseIf cbxDesign.SelectedItem = "Dark" Then
-            My.Settings.Design = "dark"
+            My.Settings.Design = "Dark"
         End If
 
         'Show a message that confirms that all settings have been saved
@@ -285,35 +286,33 @@ Public Class frmSettings
     End Sub
 
     Private Sub btnNewUpdater_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        'Get updateinfo.txt ready for the updater
+        My.Computer.FileSystem.DeleteFile(AppData + "/Seeloewen Shutdown/updateinfo.txt")
+        File.Create(AppData + "/Seeloewen Shutdown/updateinfo.txt").Dispose()
+
+        settingsforupdater.Clear()
+        settingsforupdater.AppendText(currentversion + vbNewLine)
+        settingsforupdater.AppendText(My.Settings.Language + vbNewLine)
+        settingsforupdater.AppendText(My.Settings.Design)
+
+        My.Computer.FileSystem.WriteAllText(AppData + "/Seeloewen Shutdown/updateinfo.txt", settingsforupdater.Text, False)
+
         'Delete updater if it already exists
-        If My.Computer.FileSystem.FileExists(AppData + "/Seeloewen Shutdown/Seeloewen_Shutdown_Update.exe") Then
-            My.Computer.FileSystem.DeleteFile(AppData + "/Seeloewen Shutdown/Seeloewen_Shutdown_Update.exe")
+        If My.Computer.FileSystem.FileExists(AppData + "/Seeloewen Shutdown/Seeloewen-Shutdown-Update.exe") Then
+            My.Computer.FileSystem.DeleteFile(AppData + "/Seeloewen Shutdown/Seeloewen-Shutdown-Update.exe")
         End If
+
         'Download new updater
         DownloadUpdater()
+
         'Start updater
-        Process.Start(AppData + "/Seeloewen Shutdown/Seeloewen_Shutdown_Update.exe")
+        Process.Start(AppData + "/Seeloewen Shutdown/Seeloewen-Shutdown-Update.exe")
     End Sub
 
     Public Sub DownloadUpdater()
-        'Get download link for the newest updater
-        Dim latest_updater_link As String
-        Dim request = CType(WebRequest.Create("https://raw.githubusercontent.com/Seeloewen/Seeloewen-Shutdown-Update/main/Latest_Updater_Link.txt"), HttpWebRequest)
-
-        request.Accept = "application/vnd.github.v3.raw"
-        request.UserAgent = "Seeloewen Shutdown"
-
-        Using response = request.GetResponse()
-            Dim encoding = System.Text.ASCIIEncoding.UTF8
-
-            Using reader = New System.IO.StreamReader(response.GetResponseStream(), encoding)
-                latest_updater_link = reader.ReadToEnd()
-            End Using
-        End Using
-
         'Download newest updater
         Dim wc As New WebClient()
-        wc.DownloadFile(latest_updater_link, AppData + "/Seeloewen Shutdown/Seeloewen_Shutdown_Update.exe")
+        wc.DownloadFile("https://github.com/Seeloewen/Seeloewen-Shutdown-Update/blob/main/Latest%20Build/Seeloewen-Shutdown-Update.exe?raw=true", AppData + "/Seeloewen Shutdown/Seeloewen-Shutdown-Update.exe")
     End Sub
 
     Private Sub btnClose_MouseDown(sender As Object, e As MouseEventArgs) Handles btnClose.MouseDown
