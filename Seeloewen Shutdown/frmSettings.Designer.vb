@@ -35,6 +35,7 @@ Partial Class frmSettings
         Me.lblDefaultMessage = New System.Windows.Forms.Label()
         Me.btnClose = New System.Windows.Forms.Button()
         Me.gbAppSettings = New System.Windows.Forms.GroupBox()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.cbxDesign = New System.Windows.Forms.ComboBox()
         Me.cbxLanguage = New System.Windows.Forms.ComboBox()
         Me.lblDesign = New System.Windows.Forms.Label()
@@ -47,7 +48,7 @@ Partial Class frmSettings
         Me.btnStopRunningActions = New System.Windows.Forms.Button()
         Me.lblRunningAction = New System.Windows.Forms.Label()
         Me.btnSave = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.settingsforupdater = New System.Windows.Forms.RichTextBox()
         Me.gbDefaultSettings.SuspendLayout()
         Me.gbAppSettings.SuspendLayout()
         Me.gbRunningAction.SuspendLayout()
@@ -204,6 +205,17 @@ Partial Class frmSettings
         Me.gbAppSettings.TabStop = False
         Me.gbAppSettings.Text = "App-Einstellungen"
         '
+        'Button1
+        '
+        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.ForeColor = System.Drawing.Color.Black
+        Me.Button1.Location = New System.Drawing.Point(239, 87)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(155, 24)
+        Me.Button1.TabIndex = 8
+        Me.Button1.Text = "Open new updater"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'cbxDesign
         '
         Me.cbxDesign.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
@@ -350,23 +362,21 @@ Partial Class frmSettings
         Me.btnSave.Text = "Speichern"
         Me.btnSave.UseVisualStyleBackColor = True
         '
-        'Button1
+        'settingsforupdater
         '
-        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.ForeColor = System.Drawing.Color.Black
-        Me.Button1.Location = New System.Drawing.Point(239, 87)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(155, 24)
-        Me.Button1.TabIndex = 8
-        Me.Button1.Text = "Open new updater"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.settingsforupdater.Location = New System.Drawing.Point(18, 579)
+        Me.settingsforupdater.Name = "settingsforupdater"
+        Me.settingsforupdater.Size = New System.Drawing.Size(182, 52)
+        Me.settingsforupdater.TabIndex = 10
+        Me.settingsforupdater.Text = ""
         '
         'frmSettings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(442, 565)
+        Me.ClientSize = New System.Drawing.Size(442, 566)
+        Me.Controls.Add(Me.settingsforupdater)
         Me.Controls.Add(Me.gbRunningAction)
         Me.Controls.Add(Me.rtbNewestVersion)
         Me.Controls.Add(Me.rtbCurrentVersion)
@@ -418,4 +428,5 @@ Partial Class frmSettings
     Friend WithEvents lblDesign As Label
     Friend WithEvents lblLanguage As Label
     Friend WithEvents Button1 As Button
+    Friend WithEvents settingsforupdater As RichTextBox
 End Class
