@@ -132,6 +132,12 @@
     <Compile Include="frmUpdate.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmUpdaterSettings.Designer.vb">
+      <DependentUpon>frmUpdaterSettings.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmUpdaterSettings.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -174,6 +180,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmUpdate.resx">
       <DependentUpon>frmUpdate.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUpdaterSettings.resx">
+      <DependentUpon>frmUpdaterSettings.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
