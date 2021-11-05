@@ -285,7 +285,7 @@ Public Class frmSettings
         End Using
     End Sub
 
-    Private Sub btnNewUpdater_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub btnNewUpdater_Click(sender As Object, e As EventArgs) Handles btnOpenNewUpdater.Click
         'Get updateinfo.txt ready for the updater
         My.Computer.FileSystem.DeleteFile(AppData + "/Seeloewen Shutdown/updateinfo.txt")
         File.Create(AppData + "/Seeloewen Shutdown/updateinfo.txt").Dispose()
@@ -377,5 +377,9 @@ Public Class frmSettings
 
     Private Sub btnSearchForUpdates_MouseUp(sender As Object, e As MouseEventArgs) Handles btnSearchForUpdates.MouseUp
         btnSearchForUpdates.BackgroundImage = My.Resources.button
+    End Sub
+
+    Private Sub btnNewUpdaterSettings_Click(sender As Object, e As EventArgs) Handles btnNewUpdaterSettings.Click
+        frmUpdaterSettings.ShowDialog()
     End Sub
 End Class
