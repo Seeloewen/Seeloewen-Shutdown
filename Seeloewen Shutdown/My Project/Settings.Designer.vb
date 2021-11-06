@@ -140,13 +140,86 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("light")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Light")>  _
         Public Property Design() As String
             Get
                 Return CType(Me("Design"),String)
             End Get
             Set
                 Me("Design") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Newest")>  _
+        Public Property Updater() As String
+            Get
+                Return CType(Me("Updater"),String)
+            End Get
+            Set
+                Me("Updater") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("https://github.com/Seeloewen/Seeloewen-Shutdown-Update/blob/main/Latest%20Build/S"& _ 
+            "eeloewen-Shutdown-Update.exe?raw=true")>  _
+        Public Property NewestUpdaterLink() As String
+            Get
+                Return CType(Me("NewestUpdaterLink"),String)
+            End Get
+            Set
+                Me("NewestUpdaterLink") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property CustomUpdaterPath() As String
+            Get
+                Return CType(Me("CustomUpdaterPath"),String)
+            End Get
+            Set
+                Me("CustomUpdaterPath") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Current")>  _
+        Public Property UpdaterSettings() As String
+            Get
+                Return CType(Me("UpdaterSettings"),String)
+            End Get
+            Set
+                Me("UpdaterSettings") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property CustomUpdaterLanguage() As String
+            Get
+                Return CType(Me("CustomUpdaterLanguage"),String)
+            End Get
+            Set
+                Me("CustomUpdaterLanguage") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property CustomUpdaterDesign() As String
+            Get
+                Return CType(Me("CustomUpdaterDesign"),String)
+            End Get
+            Set
+                Me("CustomUpdaterDesign") = value
             End Set
         End Property
     End Class

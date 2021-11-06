@@ -24,7 +24,25 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="Design" Type="System.String" Scope="User">
-      <Value Profile="(Default)">light</Value>
+      <Value Profile="(Default)">Light</Value>
+    </Setting>
+    <Setting Name="Updater" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Newest</Value>
+    </Setting>
+    <Setting Name="NewestUpdaterLink" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://github.com/Seeloewen/Seeloewen-Shutdown-Update/blob/main/Latest%20Build/Seeloewen-Shutdown-Update.exe?raw=true</Value>
+    </Setting>
+    <Setting Name="CustomUpdaterPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="UpdaterSettings" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Current</Value>
+    </Setting>
+    <Setting Name="CustomUpdaterLanguage" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="CustomUpdaterDesign" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>
