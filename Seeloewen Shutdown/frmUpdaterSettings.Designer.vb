@@ -35,7 +35,7 @@ Partial Class frmUpdaterSettings
         Me.lblLanguage = New System.Windows.Forms.Label()
         Me.cbxLanguage = New System.Windows.Forms.ComboBox()
         Me.cbxDesign = New System.Windows.Forms.ComboBox()
-        Me.btnClose = New System.Windows.Forms.Button()
+        Me.btnSave = New System.Windows.Forms.Button()
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.btnBrowseCustomUpdater = New System.Windows.Forms.Button()
         Me.gbUpdaterSettings = New System.Windows.Forms.GroupBox()
@@ -164,6 +164,7 @@ Partial Class frmUpdaterSettings
         '
         Me.cbxLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbxLanguage.FormattingEnabled = True
+        Me.cbxLanguage.Items.AddRange(New Object() {"Deutsch (German)", "English (English)"})
         Me.cbxLanguage.Location = New System.Drawing.Point(99, 71)
         Me.cbxLanguage.Name = "cbxLanguage"
         Me.cbxLanguage.Size = New System.Drawing.Size(145, 21)
@@ -173,23 +174,24 @@ Partial Class frmUpdaterSettings
         '
         Me.cbxDesign.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbxDesign.FormattingEnabled = True
+        Me.cbxDesign.Items.AddRange(New Object() {"Hell", "Dunkel"})
         Me.cbxDesign.Location = New System.Drawing.Point(99, 98)
         Me.cbxDesign.Name = "cbxDesign"
         Me.cbxDesign.Size = New System.Drawing.Size(145, 21)
         Me.cbxDesign.TabIndex = 13
         '
-        'btnClose
+        'btnSave
         '
-        Me.btnClose.Location = New System.Drawing.Point(267, 339)
-        Me.btnClose.Name = "btnClose"
-        Me.btnClose.Size = New System.Drawing.Size(237, 23)
-        Me.btnClose.TabIndex = 14
-        Me.btnClose.Text = "Speichern"
-        Me.btnClose.UseVisualStyleBackColor = True
+        Me.btnSave.Location = New System.Drawing.Point(17, 337)
+        Me.btnSave.Name = "btnSave"
+        Me.btnSave.Size = New System.Drawing.Size(237, 23)
+        Me.btnSave.TabIndex = 14
+        Me.btnSave.Text = "Speichern"
+        Me.btnSave.UseVisualStyleBackColor = True
         '
         'btnCancel
         '
-        Me.btnCancel.Location = New System.Drawing.Point(17, 339)
+        Me.btnCancel.Location = New System.Drawing.Point(260, 337)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(244, 23)
         Me.btnCancel.TabIndex = 15
@@ -242,7 +244,7 @@ Partial Class frmUpdaterSettings
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(519, 370)
         Me.Controls.Add(Me.gbUpdater)
-        Me.Controls.Add(Me.btnClose)
+        Me.Controls.Add(Me.btnSave)
         Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.lblUpdaterSettings)
         Me.Controls.Add(Me.gbUpdaterSettings)
@@ -274,7 +276,7 @@ Partial Class frmUpdaterSettings
     Friend WithEvents lblLanguage As Label
     Friend WithEvents cbxLanguage As ComboBox
     Friend WithEvents cbxDesign As ComboBox
-    Friend WithEvents btnClose As Button
+    Friend WithEvents btnSave As Button
     Friend WithEvents btnCancel As Button
     Friend WithEvents btnBrowseCustomUpdater As Button
     Friend WithEvents gbUpdaterSettings As GroupBox
