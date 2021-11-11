@@ -10,9 +10,9 @@
         End If
 
         If rbtnCustomSettings.Checked = True Then
-            My.Settings.UpdaterSettings = "Current"
-        ElseIf rbtnUseCurrentSettingsForUpdater.Checked = True Then
             My.Settings.UpdaterSettings = "Custom"
+        ElseIf rbtnUseCurrentSettingsForUpdater.Checked = True Then
+            My.Settings.UpdaterSettings = "Current"
         End If
 
         My.Settings.CustomUpdaterPath = tbCustomUpdater.Text
@@ -82,6 +82,32 @@
             lblLanguage.Enabled = False
             cbxDesign.Enabled = False
             cbxLanguage.Enabled = False
+        End If
+    End Sub
+
+    Private Sub frmUpdaterSettings_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        If My.Settings.Updater = "Newest" Then
+            rbtnDownloadNewestUpdater.Checked = True
+            tbNewestUpdaterLink.Text = My.Settings.NewestUpdaterLink
+            tbNewestUpdaterLink.Enabled = True
+            btnUseDefaultUpdater.Enabled = True
+        ElseIf My.Settings.Updater = "Legacy" Then
+            rbtnUseLegacyUpdater.Checked = True
+        ElseIf My.Settings.Updater = "Custom" Then
+            rbtnUseCustomUpdater.Checked = True
+            tbNewestUpdaterLink.Text = My.Settings.CustomUpdaterPath
+            tbCustomUpdater.Enabled = True
+            btnBrowseCustomUpdater.Enabled = True
+        End If
+
+        If My.Settings.UpdaterSettings = "Current" Then
+            rbtnUseCurrentSettingsForUpdater.Checked = True
+        ElseIf My.Settings.UpdaterSettings = "Custom" Then
+            rbtnCustomSettings.Checked = True
+            lblLanguage.Enabled = True
+            lblDesign.Enabled = True
+            cbxDesign.Enabled = True
+            cbxLanguage.Enabled = True
         End If
     End Sub
 End Class
