@@ -60,7 +60,7 @@ Partial Class frmUpdaterSettings
         Me.rbtnDownloadNewestUpdater.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rbtnDownloadNewestUpdater.Location = New System.Drawing.Point(15, 19)
         Me.rbtnDownloadNewestUpdater.Name = "rbtnDownloadNewestUpdater"
-        Me.rbtnDownloadNewestUpdater.Size = New System.Drawing.Size(374, 20)
+        Me.rbtnDownloadNewestUpdater.Size = New System.Drawing.Size(373, 20)
         Me.rbtnDownloadNewestUpdater.TabIndex = 1
         Me.rbtnDownloadNewestUpdater.TabStop = True
         Me.rbtnDownloadNewestUpdater.Text = "Neueste Version des Updaters automatisch herunterladen:"
@@ -72,7 +72,7 @@ Partial Class frmUpdaterSettings
         Me.rbtnUseLegacyUpdater.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rbtnUseLegacyUpdater.Location = New System.Drawing.Point(15, 71)
         Me.rbtnUseLegacyUpdater.Name = "rbtnUseLegacyUpdater"
-        Me.rbtnUseLegacyUpdater.Size = New System.Drawing.Size(193, 20)
+        Me.rbtnUseLegacyUpdater.Size = New System.Drawing.Size(192, 20)
         Me.rbtnUseLegacyUpdater.TabIndex = 2
         Me.rbtnUseLegacyUpdater.TabStop = True
         Me.rbtnUseLegacyUpdater.Text = "Legacy-Updater verwenden"
@@ -84,7 +84,7 @@ Partial Class frmUpdaterSettings
         Me.rbtnUseCustomUpdater.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rbtnUseCustomUpdater.Location = New System.Drawing.Point(15, 97)
         Me.rbtnUseCustomUpdater.Name = "rbtnUseCustomUpdater"
-        Me.rbtnUseCustomUpdater.Size = New System.Drawing.Size(264, 20)
+        Me.rbtnUseCustomUpdater.Size = New System.Drawing.Size(263, 20)
         Me.rbtnUseCustomUpdater.TabIndex = 3
         Me.rbtnUseCustomUpdater.TabStop = True
         Me.rbtnUseCustomUpdater.Text = "Benutzerdefinierten Updater verwenden:"
@@ -92,6 +92,7 @@ Partial Class frmUpdaterSettings
         '
         'tbCustomUpdater
         '
+        Me.tbCustomUpdater.Enabled = False
         Me.tbCustomUpdater.Location = New System.Drawing.Point(15, 123)
         Me.tbCustomUpdater.Name = "tbCustomUpdater"
         Me.tbCustomUpdater.Size = New System.Drawing.Size(354, 20)
@@ -99,6 +100,7 @@ Partial Class frmUpdaterSettings
         '
         'tbNewestUpdaterLink
         '
+        Me.tbNewestUpdaterLink.Enabled = False
         Me.tbNewestUpdaterLink.Location = New System.Drawing.Point(15, 45)
         Me.tbNewestUpdaterLink.Name = "tbNewestUpdaterLink"
         Me.tbNewestUpdaterLink.Size = New System.Drawing.Size(354, 20)
@@ -108,6 +110,7 @@ Partial Class frmUpdaterSettings
         '
         'btnUseDefaultUpdater
         '
+        Me.btnUseDefaultUpdater.Enabled = False
         Me.btnUseDefaultUpdater.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnUseDefaultUpdater.Location = New System.Drawing.Point(375, 43)
         Me.btnUseDefaultUpdater.Name = "btnUseDefaultUpdater"
@@ -122,7 +125,7 @@ Partial Class frmUpdaterSettings
         Me.rbtnUseCurrentSettingsForUpdater.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rbtnUseCurrentSettingsForUpdater.Location = New System.Drawing.Point(15, 19)
         Me.rbtnUseCurrentSettingsForUpdater.Name = "rbtnUseCurrentSettingsForUpdater"
-        Me.rbtnUseCurrentSettingsForUpdater.Size = New System.Drawing.Size(381, 20)
+        Me.rbtnUseCurrentSettingsForUpdater.Size = New System.Drawing.Size(380, 20)
         Me.rbtnUseCurrentSettingsForUpdater.TabIndex = 7
         Me.rbtnUseCurrentSettingsForUpdater.TabStop = True
         Me.rbtnUseCurrentSettingsForUpdater.Text = "Aktuelle Einstellungen der App für den Updater übernehmen"
@@ -134,7 +137,7 @@ Partial Class frmUpdaterSettings
         Me.rbtnCustomSettings.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rbtnCustomSettings.Location = New System.Drawing.Point(15, 45)
         Me.rbtnCustomSettings.Name = "rbtnCustomSettings"
-        Me.rbtnCustomSettings.Size = New System.Drawing.Size(219, 20)
+        Me.rbtnCustomSettings.Size = New System.Drawing.Size(218, 20)
         Me.rbtnCustomSettings.TabIndex = 8
         Me.rbtnCustomSettings.TabStop = True
         Me.rbtnCustomSettings.Text = "Benutzerdefinierte Einstellungen:"
@@ -143,26 +146,29 @@ Partial Class frmUpdaterSettings
         'lblDesign
         '
         Me.lblDesign.AutoSize = True
+        Me.lblDesign.Enabled = False
         Me.lblDesign.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblDesign.Location = New System.Drawing.Point(34, 99)
         Me.lblDesign.Name = "lblDesign"
-        Me.lblDesign.Size = New System.Drawing.Size(51, 16)
+        Me.lblDesign.Size = New System.Drawing.Size(50, 16)
         Me.lblDesign.TabIndex = 9
         Me.lblDesign.Text = "Design"
         '
         'lblLanguage
         '
         Me.lblLanguage.AutoSize = True
+        Me.lblLanguage.Enabled = False
         Me.lblLanguage.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblLanguage.Location = New System.Drawing.Point(34, 72)
         Me.lblLanguage.Name = "lblLanguage"
-        Me.lblLanguage.Size = New System.Drawing.Size(59, 16)
+        Me.lblLanguage.Size = New System.Drawing.Size(58, 16)
         Me.lblLanguage.TabIndex = 10
         Me.lblLanguage.Text = "Sprache"
         '
         'cbxLanguage
         '
         Me.cbxLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbxLanguage.Enabled = False
         Me.cbxLanguage.FormattingEnabled = True
         Me.cbxLanguage.Items.AddRange(New Object() {"Deutsch (German)", "English (English)"})
         Me.cbxLanguage.Location = New System.Drawing.Point(99, 71)
@@ -173,6 +179,7 @@ Partial Class frmUpdaterSettings
         'cbxDesign
         '
         Me.cbxDesign.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbxDesign.Enabled = False
         Me.cbxDesign.FormattingEnabled = True
         Me.cbxDesign.Items.AddRange(New Object() {"Hell", "Dunkel"})
         Me.cbxDesign.Location = New System.Drawing.Point(99, 98)
@@ -200,6 +207,7 @@ Partial Class frmUpdaterSettings
         '
         'btnBrowseCustomUpdater
         '
+        Me.btnBrowseCustomUpdater.Enabled = False
         Me.btnBrowseCustomUpdater.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnBrowseCustomUpdater.Location = New System.Drawing.Point(375, 121)
         Me.btnBrowseCustomUpdater.Name = "btnBrowseCustomUpdater"
