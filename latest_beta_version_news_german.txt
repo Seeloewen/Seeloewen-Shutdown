@@ -1,0 +1,8 @@
+Version 1.5.1 (25.10.2021)
+
+* Symbol besser sichtbar gemacht
+* Fehler behoben, dass das "Fehler"  Fenster manchmal den falschen Titel hatte
+* Rechtschreibfehler im "Suche nach Updates" Button behoben
+* Rechtschreibfehler im "Laufende Aktion abbrechen" Popup behoben
+* Fehler behoben, dass das "First Start" Fenster nicht den neuen Button hatte
+* Fehler behoben, dass die Textboxen im "Einstellungen" Fenster im Darkmode keinen weißen Text hatten
