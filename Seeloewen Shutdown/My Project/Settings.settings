@@ -44,5 +44,8 @@
     <Setting Name="CustomUpdaterDesign" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="UpdaterBranch" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Release</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
