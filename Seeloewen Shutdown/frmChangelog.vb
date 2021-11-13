@@ -4,7 +4,7 @@
     End Sub
 
     Private Sub frmChangelog_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        If My.Settings.Design = "dark" Then
+        If My.Settings.Design = "Dark" Then
             BackColor = Color.FromArgb(41, 41, 41)
             rtbChangelog.BackColor = Color.FromArgb(41, 41, 41)
             rtbChangelog.ForeColor = Color.White

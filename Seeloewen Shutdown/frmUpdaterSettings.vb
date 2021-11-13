@@ -34,6 +34,12 @@
             My.Settings.CustomUpdaterLanguage = "English"
         End If
 
+        If cbSearchForBetas.Checked = True Then
+            My.Settings.UpdaterBranch = "Beta"
+        ElseIf cbSearchForBetas.Checked = False Then
+            My.Settings.UpdaterBranch = "Release"
+        End If
+
         Close()
     End Sub
 
@@ -108,6 +114,12 @@
             lblDesign.Enabled = True
             cbxDesign.Enabled = True
             cbxLanguage.Enabled = True
+        End If
+
+        If My.Settings.UpdaterBranch = "Release" Then
+            cbSearchForBetas.Checked = False
+        ElseIf My.Settings.UpdaterBranch = "Beta" Then
+            cbSearchForBetas.Checked = True
         End If
     End Sub
 End Class

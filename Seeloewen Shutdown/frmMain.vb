@@ -7,7 +7,7 @@ Public Class frmMain
         tbMessage.Text = My.Settings.DefaultMessage
         tbTime.Text = My.Settings.DefaultTime
 
-        If My.Settings.Design = "dark" Then
+        If My.Settings.Design = "Dark" Then
             BackColor = Color.FromArgb(41, 41, 41)
             lblHeader.ForeColor = Color.White
             lblVersion.ForeColor = Color.White

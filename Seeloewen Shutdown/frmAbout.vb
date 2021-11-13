@@ -12,7 +12,7 @@
     End Sub
 
     Private Sub frmAbout_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        If My.Settings.Design = "dark" Then
+        If My.Settings.Design = "Dark" Then
             BackColor = Color.FromArgb(41, 41, 41)
             rtbInfo.BackColor = Color.FromArgb(41, 41, 41)
             llblSeeloewenShutdownGithub.ForeColor = Color.Cyan

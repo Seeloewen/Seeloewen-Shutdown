@@ -216,10 +216,10 @@ Version 0.1 (27.10.2020)
 * Fixed typo in "Search for updates" button
 * Fixed typo in "Cancel running  action" message
 * Fixed the bug, that the first start window didn't have the new buttons
-* Fixed the bug, that the textboxes in the settings didn't have white text in darkmode
+* Fixed the bug, that the textboxes in the settings didn't have white text in Darkmode
 
 Version 1.5.0 (23.10.2021)
-+ Added dark design
++ Added Dark design
 + Added english translation
 + Added link to Github page in "About" window
 * Small design changes in "Settings" window

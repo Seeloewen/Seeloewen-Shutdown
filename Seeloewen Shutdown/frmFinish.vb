@@ -17,7 +17,7 @@
             btnCancelAction.Text = "Cancel action"
         End If
 
-        If My.Settings.Design = "dark" Then
+        If My.Settings.Design = "Dark" Then
             BackColor = Color.FromArgb(41, 41, 41)
             rtbInfo.BackColor = Color.FromArgb(41, 41, 41)
             rtbInfo.ForeColor = Color.White

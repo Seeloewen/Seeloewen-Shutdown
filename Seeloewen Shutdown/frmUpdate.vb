@@ -6,7 +6,7 @@ Public Class frmUpdate
     Dim Changelog As String
     Dim AppData As String = GetFolderPath(SpecialFolder.ApplicationData)
     Private Async Sub frmUpdate_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        If My.Settings.Design = "dark" Then
+        If My.Settings.Design = "Dark" Then
             BackColor = Color.FromArgb(41, 41, 41)
             rtbLatestVersionNews.BackColor = Color.FromArgb(41, 41, 41)
             pbBackground.BackColor = Color.FromArgb(30, 30, 30)

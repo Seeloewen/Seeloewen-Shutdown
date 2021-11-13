@@ -40,6 +40,7 @@ Partial Class frmUpdaterSettings
         Me.btnBrowseCustomUpdater = New System.Windows.Forms.Button()
         Me.gbUpdaterSettings = New System.Windows.Forms.GroupBox()
         Me.gbUpdater = New System.Windows.Forms.GroupBox()
+        Me.cbSearchForBetas = New System.Windows.Forms.CheckBox()
         Me.gbUpdaterSettings.SuspendLayout()
         Me.gbUpdater.SuspendLayout()
         Me.SuspendLayout()
@@ -189,7 +190,7 @@ Partial Class frmUpdaterSettings
         '
         'btnSave
         '
-        Me.btnSave.Location = New System.Drawing.Point(17, 337)
+        Me.btnSave.Location = New System.Drawing.Point(17, 371)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(237, 23)
         Me.btnSave.TabIndex = 14
@@ -198,7 +199,7 @@ Partial Class frmUpdaterSettings
         '
         'btnCancel
         '
-        Me.btnCancel.Location = New System.Drawing.Point(260, 337)
+        Me.btnCancel.Location = New System.Drawing.Point(260, 371)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(244, 23)
         Me.btnCancel.TabIndex = 15
@@ -218,6 +219,7 @@ Partial Class frmUpdaterSettings
         '
         'gbUpdaterSettings
         '
+        Me.gbUpdaterSettings.Controls.Add(Me.cbSearchForBetas)
         Me.gbUpdaterSettings.Controls.Add(Me.rbtnUseCurrentSettingsForUpdater)
         Me.gbUpdaterSettings.Controls.Add(Me.rbtnCustomSettings)
         Me.gbUpdaterSettings.Controls.Add(Me.cbxLanguage)
@@ -226,7 +228,7 @@ Partial Class frmUpdaterSettings
         Me.gbUpdaterSettings.Controls.Add(Me.lblDesign)
         Me.gbUpdaterSettings.Location = New System.Drawing.Point(17, 199)
         Me.gbUpdaterSettings.Name = "gbUpdaterSettings"
-        Me.gbUpdaterSettings.Size = New System.Drawing.Size(487, 132)
+        Me.gbUpdaterSettings.Size = New System.Drawing.Size(487, 166)
         Me.gbUpdaterSettings.TabIndex = 17
         Me.gbUpdaterSettings.TabStop = False
         '
@@ -245,12 +247,23 @@ Partial Class frmUpdaterSettings
         Me.gbUpdater.TabIndex = 18
         Me.gbUpdater.TabStop = False
         '
+        'cbSearchForBetas
+        '
+        Me.cbSearchForBetas.AutoSize = True
+        Me.cbSearchForBetas.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbSearchForBetas.Location = New System.Drawing.Point(15, 134)
+        Me.cbSearchForBetas.Name = "cbSearchForBetas"
+        Me.cbSearchForBetas.Size = New System.Drawing.Size(220, 20)
+        Me.cbSearchForBetas.TabIndex = 14
+        Me.cbSearchForBetas.Text = "Auch nach Beta Updates suchen"
+        Me.cbSearchForBetas.UseVisualStyleBackColor = True
+        '
         'frmUpdaterSettings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(519, 370)
+        Me.ClientSize = New System.Drawing.Size(519, 405)
         Me.Controls.Add(Me.gbUpdater)
         Me.Controls.Add(Me.btnSave)
         Me.Controls.Add(Me.btnCancel)
@@ -289,4 +302,5 @@ Partial Class frmUpdaterSettings
     Friend WithEvents btnBrowseCustomUpdater As Button
     Friend WithEvents gbUpdaterSettings As GroupBox
     Friend WithEvents gbUpdater As GroupBox
+    Friend WithEvents cbSearchForBetas As CheckBox
 End Class
