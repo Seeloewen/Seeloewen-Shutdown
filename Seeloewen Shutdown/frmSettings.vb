@@ -2,7 +2,7 @@
 Imports System.IO
 Imports System.Environment
 Public Class frmSettings
-    Dim currentversion As String = "1.6.0-Beta1"
+    Dim currentversion As String = "1.5.1"
     Dim newestversion As String
     Dim AppData As String = GetFolderPath(SpecialFolder.ApplicationData)
 
@@ -37,7 +37,7 @@ Public Class frmSettings
             lblDefaultTime.Text = "Execute in..."
             lblDefaultMessage.Text = "Message"
             lblRunningAction.Text = "If an action is already running, you can cancel it" + vbNewLine + "here, if you want to."
-            lblLanguage.Text = "Language"
+            lblLanguage.Text = "Language:"
             btnSearchForUpdates.Text = "Search for updates"
             btnStopRunningActions.Text = "Cancel running action"
             btnSave.Text = "Save"
@@ -49,7 +49,7 @@ Public Class frmSettings
 
         If My.Settings.Design = "Light" Then
 
-            'Initialize Design combobox if darkmode is selected
+            'Initialize Design combobox if Darkmode is selected
             If My.Settings.Language = "German" Then
                 cbxDesign.SelectedItem = "Hell"
             ElseIf My.Settings.Language = "English" Then
@@ -58,14 +58,14 @@ Public Class frmSettings
 
         ElseIf My.Settings.Design = "Dark" Then
 
-            'Initialize Design combobox if darkmode is selected
+            'Initialize Design combobox if Darkmode is selected
             If My.Settings.Language = "German" Then
                 cbxDesign.SelectedItem = "Dunkel"
             ElseIf My.Settings.Language = "English" Then
                 cbxDesign.SelectedItem = "Dark"
             End If
 
-            'Change window to darkmode
+            'Change window to Darkmode
             BackColor = Color.FromArgb(41, 41, 41)
             lblSettings.ForeColor = Color.White
             lblDefaultAction.ForeColor = Color.White
@@ -287,13 +287,16 @@ Public Class frmSettings
 
     Private Sub btnNewUpdater_Click(sender As Object, e As EventArgs) Handles btnOpenNewUpdater.Click
         'Get updateinfo.txt ready for the updater
-        My.Computer.FileSystem.DeleteFile(AppData + "/Seeloewen Shutdown/updateinfo.txt")
+        If My.Computer.FileSystem.FileExists(AppData + "/Seeloewen Shutdown/updateinfo.txt") Then
+            My.Computer.FileSystem.DeleteFile(AppData + "/Seeloewen Shutdown/updateinfo.txt")
+        End If
         File.Create(AppData + "/Seeloewen Shutdown/updateinfo.txt").Dispose()
 
         settingsforupdater.Clear()
         settingsforupdater.AppendText(currentversion + vbNewLine)
         settingsforupdater.AppendText(My.Settings.Language + vbNewLine)
-        settingsforupdater.AppendText(My.Settings.Design)
+        settingsforupdater.AppendText(My.Settings.Design + vbNewLine)
+        settingsforupdater.AppendText(My.Settings.UpdaterBranch)
 
         My.Computer.FileSystem.WriteAllText(AppData + "/Seeloewen Shutdown/updateinfo.txt", settingsforupdater.Text, False)
 
