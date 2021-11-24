@@ -35,7 +35,7 @@ Partial Class frmSettings
         Me.lblDefaultMessage = New System.Windows.Forms.Label()
         Me.btnClose = New System.Windows.Forms.Button()
         Me.gbAppSettings = New System.Windows.Forms.GroupBox()
-        Me.btnOpenNewUpdater = New System.Windows.Forms.Button()
+        Me.btnNewUpdaterSettings = New System.Windows.Forms.Button()
         Me.cbxDesign = New System.Windows.Forms.ComboBox()
         Me.cbxLanguage = New System.Windows.Forms.ComboBox()
         Me.lblDesign = New System.Windows.Forms.Label()
@@ -49,7 +49,6 @@ Partial Class frmSettings
         Me.lblRunningAction = New System.Windows.Forms.Label()
         Me.btnSave = New System.Windows.Forms.Button()
         Me.settingsforupdater = New System.Windows.Forms.RichTextBox()
-        Me.btnNewUpdaterSettings = New System.Windows.Forms.Button()
         Me.gbDefaultSettings.SuspendLayout()
         Me.gbAppSettings.SuspendLayout()
         Me.gbRunningAction.SuspendLayout()
@@ -91,7 +90,7 @@ Partial Class frmSettings
         Me.rbtnRestart.ForeColor = System.Drawing.Color.Black
         Me.rbtnRestart.Location = New System.Drawing.Point(15, 76)
         Me.rbtnRestart.Name = "rbtnRestart"
-        Me.rbtnRestart.Size = New System.Drawing.Size(91, 20)
+        Me.rbtnRestart.Size = New System.Drawing.Size(90, 20)
         Me.rbtnRestart.TabIndex = 12
         Me.rbtnRestart.TabStop = True
         Me.rbtnRestart.Text = "Neustarten"
@@ -104,7 +103,7 @@ Partial Class frmSettings
         Me.rbtnShutdown.ForeColor = System.Drawing.Color.Black
         Me.rbtnShutdown.Location = New System.Drawing.Point(15, 50)
         Me.rbtnShutdown.Name = "rbtnShutdown"
-        Me.rbtnShutdown.Size = New System.Drawing.Size(114, 20)
+        Me.rbtnShutdown.Size = New System.Drawing.Size(113, 20)
         Me.rbtnShutdown.TabIndex = 11
         Me.rbtnShutdown.TabStop = True
         Me.rbtnShutdown.Text = "Herunterfahren"
@@ -181,7 +180,7 @@ Partial Class frmSettings
         Me.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnClose.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnClose.ForeColor = System.Drawing.Color.White
-        Me.btnClose.Location = New System.Drawing.Point(225, 569)
+        Me.btnClose.Location = New System.Drawing.Point(225, 519)
         Me.btnClose.Name = "btnClose"
         Me.btnClose.Size = New System.Drawing.Size(199, 27)
         Me.btnClose.TabIndex = 4
@@ -190,8 +189,6 @@ Partial Class frmSettings
         '
         'gbAppSettings
         '
-        Me.gbAppSettings.Controls.Add(Me.btnNewUpdaterSettings)
-        Me.gbAppSettings.Controls.Add(Me.btnOpenNewUpdater)
         Me.gbAppSettings.Controls.Add(Me.cbxDesign)
         Me.gbAppSettings.Controls.Add(Me.cbxLanguage)
         Me.gbAppSettings.Controls.Add(Me.lblDesign)
@@ -202,21 +199,21 @@ Partial Class frmSettings
         Me.gbAppSettings.ForeColor = System.Drawing.SystemColors.ControlDarkDark
         Me.gbAppSettings.Location = New System.Drawing.Point(18, 260)
         Me.gbAppSettings.Name = "gbAppSettings"
-        Me.gbAppSettings.Size = New System.Drawing.Size(406, 179)
+        Me.gbAppSettings.Size = New System.Drawing.Size(406, 144)
         Me.gbAppSettings.TabIndex = 5
         Me.gbAppSettings.TabStop = False
         Me.gbAppSettings.Text = "App-Einstellungen"
         '
-        'btnOpenNewUpdater
+        'btnNewUpdaterSettings
         '
-        Me.btnOpenNewUpdater.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnOpenNewUpdater.ForeColor = System.Drawing.Color.Black
-        Me.btnOpenNewUpdater.Location = New System.Drawing.Point(15, 141)
-        Me.btnOpenNewUpdater.Name = "btnOpenNewUpdater"
-        Me.btnOpenNewUpdater.Size = New System.Drawing.Size(183, 24)
-        Me.btnOpenNewUpdater.TabIndex = 8
-        Me.btnOpenNewUpdater.Text = "Open new updater"
-        Me.btnOpenNewUpdater.UseVisualStyleBackColor = True
+        Me.btnNewUpdaterSettings.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnNewUpdaterSettings.ForeColor = System.Drawing.Color.Black
+        Me.btnNewUpdaterSettings.Location = New System.Drawing.Point(240, 346)
+        Me.btnNewUpdaterSettings.Name = "btnNewUpdaterSettings"
+        Me.btnNewUpdaterSettings.Size = New System.Drawing.Size(172, 23)
+        Me.btnNewUpdaterSettings.TabIndex = 9
+        Me.btnNewUpdaterSettings.Text = "Updater settings"
+        Me.btnNewUpdaterSettings.UseVisualStyleBackColor = True
         '
         'cbxDesign
         '
@@ -267,7 +264,7 @@ Partial Class frmSettings
         Me.cbUpdatesOnStartup.ForeColor = System.Drawing.SystemColors.ControlText
         Me.cbUpdatesOnStartup.Location = New System.Drawing.Point(16, 115)
         Me.cbUpdatesOnStartup.Name = "cbUpdatesOnStartup"
-        Me.cbUpdatesOnStartup.Size = New System.Drawing.Size(320, 20)
+        Me.cbUpdatesOnStartup.Size = New System.Drawing.Size(319, 20)
         Me.cbUpdatesOnStartup.TabIndex = 1
         Me.cbUpdatesOnStartup.Text = "Beim Start des Programms nach Updates suchen"
         Me.cbUpdatesOnStartup.UseVisualStyleBackColor = True
@@ -284,7 +281,7 @@ Partial Class frmSettings
         Me.btnSearchForUpdates.ForeColor = System.Drawing.Color.White
         Me.btnSearchForUpdates.Location = New System.Drawing.Point(16, 85)
         Me.btnSearchForUpdates.Name = "btnSearchForUpdates"
-        Me.btnSearchForUpdates.Size = New System.Drawing.Size(379, 24)
+        Me.btnSearchForUpdates.Size = New System.Drawing.Size(200, 24)
         Me.btnSearchForUpdates.TabIndex = 0
         Me.btnSearchForUpdates.Text = "Nach Aktualisierungen suchen"
         Me.btnSearchForUpdates.UseVisualStyleBackColor = True
@@ -311,7 +308,7 @@ Partial Class frmSettings
         Me.gbRunningAction.Controls.Add(Me.lblRunningAction)
         Me.gbRunningAction.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gbRunningAction.ForeColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.gbRunningAction.Location = New System.Drawing.Point(18, 460)
+        Me.gbRunningAction.Location = New System.Drawing.Point(18, 410)
         Me.gbRunningAction.Name = "gbRunningAction"
         Me.gbRunningAction.Size = New System.Drawing.Size(406, 100)
         Me.gbRunningAction.TabIndex = 9
@@ -357,7 +354,7 @@ Partial Class frmSettings
         Me.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSave.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSave.ForeColor = System.Drawing.Color.White
-        Me.btnSave.Location = New System.Drawing.Point(18, 569)
+        Me.btnSave.Location = New System.Drawing.Point(18, 519)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(199, 27)
         Me.btnSave.TabIndex = 3
@@ -366,29 +363,19 @@ Partial Class frmSettings
         '
         'settingsforupdater
         '
-        Me.settingsforupdater.Location = New System.Drawing.Point(18, 619)
+        Me.settingsforupdater.Location = New System.Drawing.Point(18, 569)
         Me.settingsforupdater.Name = "settingsforupdater"
         Me.settingsforupdater.Size = New System.Drawing.Size(182, 52)
         Me.settingsforupdater.TabIndex = 10
         Me.settingsforupdater.Text = ""
-        '
-        'btnNewUpdaterSettings
-        '
-        Me.btnNewUpdaterSettings.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnNewUpdaterSettings.ForeColor = System.Drawing.Color.Black
-        Me.btnNewUpdaterSettings.Location = New System.Drawing.Point(205, 141)
-        Me.btnNewUpdaterSettings.Name = "btnNewUpdaterSettings"
-        Me.btnNewUpdaterSettings.Size = New System.Drawing.Size(189, 23)
-        Me.btnNewUpdaterSettings.TabIndex = 9
-        Me.btnNewUpdaterSettings.Text = "New updater settings"
-        Me.btnNewUpdaterSettings.UseVisualStyleBackColor = True
         '
         'frmSettings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(442, 608)
+        Me.ClientSize = New System.Drawing.Size(442, 557)
+        Me.Controls.Add(Me.btnNewUpdaterSettings)
         Me.Controls.Add(Me.settingsforupdater)
         Me.Controls.Add(Me.gbRunningAction)
         Me.Controls.Add(Me.rtbNewestVersion)
@@ -440,7 +427,6 @@ Partial Class frmSettings
     Friend WithEvents cbxLanguage As ComboBox
     Friend WithEvents lblDesign As Label
     Friend WithEvents lblLanguage As Label
-    Friend WithEvents btnOpenNewUpdater As Button
     Friend WithEvents settingsforupdater As RichTextBox
     Friend WithEvents btnNewUpdaterSettings As Button
 End Class
