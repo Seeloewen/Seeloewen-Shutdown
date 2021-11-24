@@ -225,67 +225,17 @@ Public Class frmSettings
     End Sub
 
     Private Async Sub btnSearchForUpdates_Click(sender As Object, e As EventArgs) Handles btnSearchForUpdates.Click
-        If My.Settings.Language = "German" Then
-            btnSearchForUpdates.Text = "Suche nach Updates..."
-        ElseIf My.Settings.Language = "English" Then
-            btnSearchForUpdates.Text = "Searching for updates..."
-        End If
+        'Kill updater process if it's already running
+        Try
+            For Each process As Process In Process.GetProcesses
+                If process.ProcessName = "Seeloewen-Shutdown-Update.exe" Then
+                    process.Kill()
+                End If
+            Next
+        Catch exception As Exception
+            MessageBox.Show(exception.Message)
+        End Try
 
-        btnSearchForUpdates.Enabled = False
-
-        Await Task.Run(Sub() SearchForUpdates())
-        rtbNewestVersion.Text = newestversion
-
-        If rtbCurrentVersion.Text = rtbNewestVersion.Text Then
-            If My.Settings.Language = "German" Then
-                MsgBox("Es ist keine neue Version verfügbar.", MsgBoxStyle.Information, "Aktualisierung")
-            ElseIf My.Settings.Language = "English" Then
-                MsgBox("No new version is available.", MsgBoxStyle.Information, "Update")
-            End If
-        ElseIf rtbNewestVersion.Text = "Error.NoServerConnection" Then
-            If My.Settings.Language = "German" Then
-                MsgBox("Bei der Verbindung zum Server ist ein Fehler aufgetreten.", MsgBoxStyle.Critical, "Aktualisierung")
-            ElseIf My.Settings.Language = "English" Then
-                MsgBox("An error occured while connecting to the server.", MsgBoxStyle.Critical, "Update")
-            End If
-        Else frmUpdate.ShowDialog()
-        End If
-
-        If My.Settings.Language = "German" Then
-            btnSearchForUpdates.Text = "Nach Aktualisierungen suchen"
-        ElseIf My.Settings.Language = "English" Then
-            btnSearchForUpdates.Text = "Search for updates"
-        End If
-
-        btnSearchForUpdates.Enabled = True
-    End Sub
-
-    Private Sub btnStopRunningActions_Click(sender As Object, e As EventArgs) Handles btnStopRunningActions.Click
-        Process.Start("shutdown", "-a")
-
-        If My.Settings.Language = "German" Then
-            MsgBox("Die laufende Aktion wurde erfolgreich abgebrochen.", MsgBoxStyle.Information, "Laufende Aktion abbrechen")
-        ElseIf My.Settings.Language = "English" Then
-            MsgBox("The running action was successfully cancelled.", MsgBoxStyle.Information, "Cancel running action")
-        End If
-    End Sub
-
-    Private Sub SearchForUpdates()
-        Dim request = CType(WebRequest.Create("https://raw.githubusercontent.com/Seeloewen/Seeloewen-Shutdown/main/newest_version.txt"), HttpWebRequest)
-        On Error Resume Next
-        request.Accept = "application/vnd.github.v3.raw"
-        request.UserAgent = "Seeloewen Shutdown"
-
-        Using response = request.GetResponse()
-            Dim encoding = System.Text.ASCIIEncoding.UTF8
-
-            Using reader = New System.IO.StreamReader(response.GetResponseStream(), encoding)
-                newestversion = reader.ReadToEnd()
-            End Using
-        End Using
-    End Sub
-
-    Private Sub btnNewUpdater_Click(sender As Object, e As EventArgs) Handles btnOpenNewUpdater.Click
         'Get updateinfo.txt ready for the updater
         If My.Computer.FileSystem.FileExists(AppData + "/Seeloewen Shutdown/updateinfo.txt") Then
             My.Computer.FileSystem.DeleteFile(AppData + "/Seeloewen Shutdown/updateinfo.txt")
@@ -306,10 +256,20 @@ Public Class frmSettings
         End If
 
         'Download new updater
-        DownloadUpdater()
+        Await Task.Run(Sub() DownloadUpdater())
 
         'Start updater
         Process.Start(AppData + "/Seeloewen Shutdown/Seeloewen-Shutdown-Update.exe")
+    End Sub
+
+    Private Sub btnStopRunningActions_Click(sender As Object, e As EventArgs) Handles btnStopRunningActions.Click
+        Process.Start("shutdown", "-a")
+
+        If My.Settings.Language = "German" Then
+            MsgBox("Die laufende Aktion wurde erfolgreich abgebrochen.", MsgBoxStyle.Information, "Laufende Aktion abbrechen")
+        ElseIf My.Settings.Language = "English" Then
+            MsgBox("The running action was successfully cancelled.", MsgBoxStyle.Information, "Cancel running action")
+        End If
     End Sub
 
     Public Sub DownloadUpdater()
