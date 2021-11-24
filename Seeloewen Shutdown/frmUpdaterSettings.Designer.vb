@@ -39,8 +39,9 @@ Partial Class frmUpdaterSettings
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.btnBrowseCustomUpdater = New System.Windows.Forms.Button()
         Me.gbUpdaterSettings = New System.Windows.Forms.GroupBox()
-        Me.gbUpdater = New System.Windows.Forms.GroupBox()
         Me.cbSearchForBetas = New System.Windows.Forms.CheckBox()
+        Me.gbUpdater = New System.Windows.Forms.GroupBox()
+        Me.ofdCustomUpdater = New System.Windows.Forms.OpenFileDialog()
         Me.gbUpdaterSettings.SuspendLayout()
         Me.gbUpdater.SuspendLayout()
         Me.SuspendLayout()
@@ -232,6 +233,17 @@ Partial Class frmUpdaterSettings
         Me.gbUpdaterSettings.TabIndex = 17
         Me.gbUpdaterSettings.TabStop = False
         '
+        'cbSearchForBetas
+        '
+        Me.cbSearchForBetas.AutoSize = True
+        Me.cbSearchForBetas.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbSearchForBetas.Location = New System.Drawing.Point(15, 134)
+        Me.cbSearchForBetas.Name = "cbSearchForBetas"
+        Me.cbSearchForBetas.Size = New System.Drawing.Size(220, 20)
+        Me.cbSearchForBetas.TabIndex = 14
+        Me.cbSearchForBetas.Text = "Auch nach Beta Updates suchen"
+        Me.cbSearchForBetas.UseVisualStyleBackColor = True
+        '
         'gbUpdater
         '
         Me.gbUpdater.Controls.Add(Me.rbtnDownloadNewestUpdater)
@@ -247,16 +259,10 @@ Partial Class frmUpdaterSettings
         Me.gbUpdater.TabIndex = 18
         Me.gbUpdater.TabStop = False
         '
-        'cbSearchForBetas
+        'ofdCustomUpdater
         '
-        Me.cbSearchForBetas.AutoSize = True
-        Me.cbSearchForBetas.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbSearchForBetas.Location = New System.Drawing.Point(15, 134)
-        Me.cbSearchForBetas.Name = "cbSearchForBetas"
-        Me.cbSearchForBetas.Size = New System.Drawing.Size(220, 20)
-        Me.cbSearchForBetas.TabIndex = 14
-        Me.cbSearchForBetas.Text = "Auch nach Beta Updates suchen"
-        Me.cbSearchForBetas.UseVisualStyleBackColor = True
+        Me.ofdCustomUpdater.Filter = "*.exe|"
+        Me.ofdCustomUpdater.Title = "Seeloewen Shutdown Update"
         '
         'frmUpdaterSettings
         '
@@ -303,4 +309,5 @@ Partial Class frmUpdaterSettings
     Friend WithEvents gbUpdaterSettings As GroupBox
     Friend WithEvents gbUpdater As GroupBox
     Friend WithEvents cbSearchForBetas As CheckBox
+    Friend WithEvents ofdCustomUpdater As OpenFileDialog
 End Class

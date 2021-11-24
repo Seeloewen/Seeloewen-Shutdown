@@ -122,4 +122,11 @@
             cbSearchForBetas.Checked = True
         End If
     End Sub
+
+    Private Sub btnBrowseCustomUpdater_Click(sender As Object, e As EventArgs) Handles btnBrowseCustomUpdater.Click
+        If ofdCustomUpdater.ShowDialog = Windows.Forms.DialogResult.OK Then
+            ofdCustomUpdater.InitialDirectory = "C:\"
+            tbCustomUpdater.Text = ofdCustomUpdater.FileName
+        End If
+    End Sub
 End Class
