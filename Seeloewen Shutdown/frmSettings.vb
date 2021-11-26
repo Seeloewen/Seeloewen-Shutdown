@@ -242,10 +242,18 @@ Public Class frmSettings
         End If
         File.Create(AppData + "/Seeloewen Shutdown/updateinfo.txt").Dispose()
 
+        'Write settings to updateinfo.txt
         settingsforupdater.Clear()
         settingsforupdater.AppendText(currentversion + vbNewLine)
-        settingsforupdater.AppendText(My.Settings.Language + vbNewLine)
-        settingsforupdater.AppendText(My.Settings.Design + vbNewLine)
+
+        If My.Settings.UpdaterSettings = "Current" Then
+            settingsforupdater.AppendText(My.Settings.Language + vbNewLine)
+            settingsforupdater.AppendText(My.Settings.Design + vbNewLine)
+        ElseIf My.Settings.UpdaterSettings = "Custom" Then
+            settingsforupdater.AppendText(My.Settings.CustomUpdaterLanguage + vbNewLine)
+            settingsforupdater.AppendText(My.Settings.CustomUpdaterDesign + vbNewLine)
+        End If
+
         settingsforupdater.AppendText(My.Settings.UpdaterBranch)
 
         My.Computer.FileSystem.WriteAllText(AppData + "/Seeloewen Shutdown/updateinfo.txt", settingsforupdater.Text, False)
@@ -255,11 +263,66 @@ Public Class frmSettings
             My.Computer.FileSystem.DeleteFile(AppData + "/Seeloewen Shutdown/Seeloewen-Shutdown-Update.exe")
         End If
 
-        'Download new updater
-        Await Task.Run(Sub() DownloadUpdater())
+        '(Download and) start new updater
+        If My.Settings.Updater = "Newest" Then
+            Await Task.Run(Sub() DownloadUpdater())
+            Process.Start(AppData + "/Seeloewen Shutdown/Seeloewen-Shutdown-Update.exe")
+        ElseIf My.Settings.Updater = "Legacy" Then
+            LegacyUpdater()
+        ElseIf My.Settings.Updater = "Custom" Then
+            Process.Start(My.Settings.CustomUpdaterPath)
+        End If
+    End Sub
 
-        'Start updater
-        Process.Start(AppData + "/Seeloewen Shutdown/Seeloewen-Shutdown-Update.exe")
+    Private Sub SearchForUpdates()
+        Dim request = CType(WebRequest.Create("https://raw.githubusercontent.com/Seeloewen/Seeloewen-Shutdown/main/newest_version.txt"), HttpWebRequest)
+        On Error Resume Next
+        request.Accept = "application/vnd.github.v3.raw"
+        request.UserAgent = "Seeloewen Shutdown"
+
+        Using response = request.GetResponse()
+            Dim encoding = System.Text.ASCIIEncoding.UTF8
+
+            Using reader = New System.IO.StreamReader(response.GetResponseStream(), encoding)
+                newestversion = reader.ReadToEnd()
+            End Using
+        End Using
+    End Sub
+
+    Private Async Sub LegacyUpdater()
+        If My.Settings.Language = "German" Then
+            btnSearchForUpdates.Text = "Suche nach Updates..."
+        ElseIf My.Settings.Language = "English" Then
+            btnSearchForUpdates.Text = "Searching for updates..."
+        End If
+
+        btnSearchForUpdates.Enabled = False
+
+        Await Task.Run(Sub() SearchForUpdates())
+        rtbNewestVersion.Text = newestversion
+
+        If rtbCurrentVersion.Text = rtbNewestVersion.Text Then
+            If My.Settings.Language = "German" Then
+                MsgBox("Es ist keine neue Version verfügbar.", MsgBoxStyle.Information, "Aktualisierung")
+            ElseIf My.Settings.Language = "English" Then
+                MsgBox("No new version is available.", MsgBoxStyle.Information, "Update")
+            End If
+        ElseIf rtbNewestVersion.Text = "Error.NoServerConnection" Then
+            If My.Settings.Language = "German" Then
+                MsgBox("Bei der Verbindung zum Server ist ein Fehler aufgetreten.", MsgBoxStyle.Critical, "Aktualisierung")
+            ElseIf My.Settings.Language = "English" Then
+                MsgBox("An error occured while connecting to the server.", MsgBoxStyle.Critical, "Update")
+            End If
+        Else frmUpdate.ShowDialog()
+        End If
+
+        If My.Settings.Language = "German" Then
+            btnSearchForUpdates.Text = "Nach Aktualisierungen suchen"
+        ElseIf My.Settings.Language = "English" Then
+            btnSearchForUpdates.Text = "Search for updates"
+        End If
+
+        btnSearchForUpdates.Enabled = True
     End Sub
 
     Private Sub btnStopRunningActions_Click(sender As Object, e As EventArgs) Handles btnStopRunningActions.Click
@@ -275,7 +338,7 @@ Public Class frmSettings
     Public Sub DownloadUpdater()
         'Download newest updater
         Dim wc As New WebClient()
-        wc.DownloadFile("https://github.com/Seeloewen/Seeloewen-Shutdown-Update/blob/main/Latest%20Build/Seeloewen-Shutdown-Update.exe?raw=true", AppData + "/Seeloewen Shutdown/Seeloewen-Shutdown-Update.exe")
+        wc.DownloadFile(My.Settings.NewestUpdaterLink, AppData + "/Seeloewen Shutdown/Seeloewen-Shutdown-Update.exe")
     End Sub
 
     Private Sub btnClose_MouseDown(sender As Object, e As MouseEventArgs) Handles btnClose.MouseDown
