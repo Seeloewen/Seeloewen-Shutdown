@@ -101,7 +101,7 @@
             rbtnUseLegacyUpdater.Checked = True
         ElseIf My.Settings.Updater = "Custom" Then
             rbtnUseCustomUpdater.Checked = True
-            tbNewestUpdaterLink.Text = My.Settings.CustomUpdaterPath
+            tbCustomUpdater.Text = My.Settings.CustomUpdaterPath
             tbCustomUpdater.Enabled = True
             btnBrowseCustomUpdater.Enabled = True
         End If
