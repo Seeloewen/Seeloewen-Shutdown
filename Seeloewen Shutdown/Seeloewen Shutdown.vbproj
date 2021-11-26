@@ -168,6 +168,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmChangelog.resx">
       <DependentUpon>frmChangelog.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmFinish.resx">
       <DependentUpon>frmFinish.vb</DependentUpon>
