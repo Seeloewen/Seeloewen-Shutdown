@@ -129,4 +129,8 @@
             tbCustomUpdater.Text = ofdCustomUpdater.FileName
         End If
     End Sub
+
+    Private Sub rbtnUseLegacyUpdater_Click(sender As Object, e As EventArgs) Handles rbtnUseLegacyUpdater.Click
+        MsgBox("Warning: The legacy updater does not support newer updater features like changelog translations and beta updates and may not even work.", MsgBoxStyle.Exclamation, "Warning")
+    End Sub
 End Class
