@@ -72,3 +72,4 @@ C:\Users\Louis\OneDrive\Dokumente\Programmieren\Visual Studio Projekte\Seeloewen
 C:\Users\Louis\OneDrive\Dokumente\Programmieren\Visual Studio Projekte\Seeloewen Shutdown\Github Repository\Seeloewen-Shutdown\Seeloewen Shutdown\obj\Debug\Seeloewen Shutdown.exe
 C:\Users\Louis\OneDrive\Dokumente\Programmieren\Visual Studio Projekte\Seeloewen Shutdown\Github Repository\Seeloewen-Shutdown\Seeloewen Shutdown\obj\Debug\Seeloewen Shutdown.xml
 C:\Users\Louis\OneDrive\Dokumente\Programmieren\Visual Studio Projekte\Seeloewen Shutdown\Github Repository\Seeloewen-Shutdown\Seeloewen Shutdown\obj\Debug\Seeloewen Shutdown.pdb
+C:\Users\Louis\OneDrive\Dokumente\Programmieren\Visual Studio Projekte\Seeloewen Shutdown\Github Repository\Seeloewen-Shutdown\Seeloewen Shutdown\obj\Debug\Seeloewen_Shutdown.frmUpdateNews.resources

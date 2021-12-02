@@ -1,5 +1,5 @@
-﻿Imports System.Net
-Imports System.Environment
+﻿Imports System.Environment
+Imports System.Net
 
 Public Class frmUpdate
 

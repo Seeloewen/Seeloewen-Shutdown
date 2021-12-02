@@ -1,6 +1,6 @@
-﻿Imports System.Net
+﻿Imports System.Environment
 Imports System.IO
-Imports System.Environment
+Imports System.Net
 Public Class frmSettings
     Dim currentversion As String = "1.5.1"
     Dim newestversion As String

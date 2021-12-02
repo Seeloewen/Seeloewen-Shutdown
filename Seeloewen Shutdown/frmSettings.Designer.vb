@@ -35,13 +35,13 @@ Partial Class frmSettings
         Me.lblDefaultMessage = New System.Windows.Forms.Label()
         Me.btnClose = New System.Windows.Forms.Button()
         Me.gbAppSettings = New System.Windows.Forms.GroupBox()
-        Me.btnNewUpdaterSettings = New System.Windows.Forms.Button()
         Me.cbxDesign = New System.Windows.Forms.ComboBox()
         Me.cbxLanguage = New System.Windows.Forms.ComboBox()
         Me.lblDesign = New System.Windows.Forms.Label()
         Me.lblLanguage = New System.Windows.Forms.Label()
         Me.cbUpdatesOnStartup = New System.Windows.Forms.CheckBox()
         Me.btnSearchForUpdates = New System.Windows.Forms.Button()
+        Me.btnNewUpdaterSettings = New System.Windows.Forms.Button()
         Me.rtbCurrentVersion = New System.Windows.Forms.RichTextBox()
         Me.rtbNewestVersion = New System.Windows.Forms.RichTextBox()
         Me.gbRunningAction = New System.Windows.Forms.GroupBox()
@@ -204,17 +204,6 @@ Partial Class frmSettings
         Me.gbAppSettings.TabStop = False
         Me.gbAppSettings.Text = "App-Einstellungen"
         '
-        'btnNewUpdaterSettings
-        '
-        Me.btnNewUpdaterSettings.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnNewUpdaterSettings.ForeColor = System.Drawing.Color.Black
-        Me.btnNewUpdaterSettings.Location = New System.Drawing.Point(240, 346)
-        Me.btnNewUpdaterSettings.Name = "btnNewUpdaterSettings"
-        Me.btnNewUpdaterSettings.Size = New System.Drawing.Size(172, 23)
-        Me.btnNewUpdaterSettings.TabIndex = 9
-        Me.btnNewUpdaterSettings.Text = "Updater settings"
-        Me.btnNewUpdaterSettings.UseVisualStyleBackColor = True
-        '
         'cbxDesign
         '
         Me.cbxDesign.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
@@ -281,10 +270,21 @@ Partial Class frmSettings
         Me.btnSearchForUpdates.ForeColor = System.Drawing.Color.White
         Me.btnSearchForUpdates.Location = New System.Drawing.Point(16, 85)
         Me.btnSearchForUpdates.Name = "btnSearchForUpdates"
-        Me.btnSearchForUpdates.Size = New System.Drawing.Size(200, 24)
+        Me.btnSearchForUpdates.Size = New System.Drawing.Size(183, 24)
         Me.btnSearchForUpdates.TabIndex = 0
-        Me.btnSearchForUpdates.Text = "Nach Aktualisierungen suchen"
+        Me.btnSearchForUpdates.Text = "Nach Updates suchen"
         Me.btnSearchForUpdates.UseVisualStyleBackColor = True
+        '
+        'btnNewUpdaterSettings
+        '
+        Me.btnNewUpdaterSettings.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnNewUpdaterSettings.ForeColor = System.Drawing.Color.Black
+        Me.btnNewUpdaterSettings.Location = New System.Drawing.Point(225, 346)
+        Me.btnNewUpdaterSettings.Name = "btnNewUpdaterSettings"
+        Me.btnNewUpdaterSettings.Size = New System.Drawing.Size(187, 23)
+        Me.btnNewUpdaterSettings.TabIndex = 9
+        Me.btnNewUpdaterSettings.Text = "Updater settings"
+        Me.btnNewUpdaterSettings.UseVisualStyleBackColor = True
         '
         'rtbCurrentVersion
         '

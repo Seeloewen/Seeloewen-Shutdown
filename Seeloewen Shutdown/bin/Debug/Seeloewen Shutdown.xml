@@ -47,5 +47,10 @@ Seeloewen Shutdown
   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Icon ähnlich wie (Symbol).
 </summary>
 </member>
+<member name="P:Seeloewen_Shutdown.My.Resources.Resources.Update">
+<summary>
+  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+</summary>
+</member>
 </members>
 </doc>

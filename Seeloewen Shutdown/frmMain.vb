@@ -1,11 +1,20 @@
 ﻿Imports System.Net
+Imports System.IO
+Imports System.Environment
+
 Public Class frmMain
     Dim shutdownart As String
     Dim maxtime As String
+    Dim AppData As String = GetFolderPath(SpecialFolder.ApplicationData)
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         tbMessage.Text = My.Settings.DefaultMessage
         tbTime.Text = My.Settings.DefaultTime
+
+        If My.Computer.FileSystem.FileExists(AppData + "/Seeloewen Shutdown/Show_Update_News_1.6.0") = False Then
+            frmUpdateNews.ShowDialog()
+            Dim fs As FileStream = File.Create(AppData + "/Seeloewen Shutdown/Show_Update_News_1.6.0")
+        End If
 
         If My.Settings.Design = "Dark" Then
             BackColor = Color.FromArgb(41, 41, 41)
