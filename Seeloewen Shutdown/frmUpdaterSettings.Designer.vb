@@ -74,10 +74,10 @@ Partial Class frmUpdaterSettings
         Me.rbtnUseLegacyUpdater.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rbtnUseLegacyUpdater.Location = New System.Drawing.Point(15, 71)
         Me.rbtnUseLegacyUpdater.Name = "rbtnUseLegacyUpdater"
-        Me.rbtnUseLegacyUpdater.Size = New System.Drawing.Size(192, 20)
+        Me.rbtnUseLegacyUpdater.Size = New System.Drawing.Size(296, 20)
         Me.rbtnUseLegacyUpdater.TabIndex = 2
         Me.rbtnUseLegacyUpdater.TabStop = True
-        Me.rbtnUseLegacyUpdater.Text = "Legacy-Updater verwenden"
+        Me.rbtnUseLegacyUpdater.Text = "Legacy-Updater verwenden (nicht empfohlen)"
         Me.rbtnUseLegacyUpdater.UseVisualStyleBackColor = True
         '
         'rbtnUseCustomUpdater
