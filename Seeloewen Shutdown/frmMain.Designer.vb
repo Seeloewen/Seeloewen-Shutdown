@@ -67,9 +67,9 @@ Partial Class frmMain
         Me.lblVersion.ForeColor = System.Drawing.SystemColors.ControlDarkDark
         Me.lblVersion.Location = New System.Drawing.Point(14, 46)
         Me.lblVersion.Name = "lblVersion"
-        Me.lblVersion.Size = New System.Drawing.Size(139, 25)
+        Me.lblVersion.Size = New System.Drawing.Size(181, 25)
         Me.lblVersion.TabIndex = 1
-        Me.lblVersion.Text = "Version 1.5.1"
+        Me.lblVersion.Text = "Version 1.6.0-dev"
         '
         'gbAction
         '
@@ -93,7 +93,7 @@ Partial Class frmMain
         Me.rbtnRestart.ForeColor = System.Drawing.SystemColors.ControlText
         Me.rbtnRestart.Location = New System.Drawing.Point(15, 51)
         Me.rbtnRestart.Name = "rbtnRestart"
-        Me.rbtnRestart.Size = New System.Drawing.Size(91, 20)
+        Me.rbtnRestart.Size = New System.Drawing.Size(90, 20)
         Me.rbtnRestart.TabIndex = 3
         Me.rbtnRestart.TabStop = True
         Me.rbtnRestart.Text = "Neustarten"
@@ -107,7 +107,7 @@ Partial Class frmMain
         Me.rbtnShutdown.ForeColor = System.Drawing.SystemColors.ControlText
         Me.rbtnShutdown.Location = New System.Drawing.Point(15, 25)
         Me.rbtnShutdown.Name = "rbtnShutdown"
-        Me.rbtnShutdown.Size = New System.Drawing.Size(114, 20)
+        Me.rbtnShutdown.Size = New System.Drawing.Size(113, 20)
         Me.rbtnShutdown.TabIndex = 0
         Me.rbtnShutdown.TabStop = True
         Me.rbtnShutdown.Text = "Herunterfahren"
@@ -136,7 +136,7 @@ Partial Class frmMain
         Me.rbtnPointInTime.ForeColor = System.Drawing.Color.Black
         Me.rbtnPointInTime.Location = New System.Drawing.Point(14, 49)
         Me.rbtnPointInTime.Name = "rbtnPointInTime"
-        Me.rbtnPointInTime.Size = New System.Drawing.Size(80, 20)
+        Me.rbtnPointInTime.Size = New System.Drawing.Size(79, 20)
         Me.rbtnPointInTime.TabIndex = 10
         Me.rbtnPointInTime.TabStop = True
         Me.rbtnPointInTime.Text = "Zeitpunkt"
@@ -149,7 +149,7 @@ Partial Class frmMain
         Me.rbtnIn.ForeColor = System.Drawing.Color.Black
         Me.rbtnIn.Location = New System.Drawing.Point(14, 23)
         Me.rbtnIn.Name = "rbtnIn"
-        Me.rbtnIn.Size = New System.Drawing.Size(45, 20)
+        Me.rbtnIn.Size = New System.Drawing.Size(44, 20)
         Me.rbtnIn.TabIndex = 9
         Me.rbtnIn.TabStop = True
         Me.rbtnIn.Text = "In..."
@@ -213,7 +213,7 @@ Partial Class frmMain
         Me.cbMessage.ForeColor = System.Drawing.SystemColors.ControlText
         Me.cbMessage.Location = New System.Drawing.Point(14, 26)
         Me.cbMessage.Name = "cbMessage"
-        Me.cbMessage.Size = New System.Drawing.Size(134, 20)
+        Me.cbMessage.Size = New System.Drawing.Size(133, 20)
         Me.cbMessage.TabIndex = 0
         Me.cbMessage.Text = "Nachricht anfügen"
         Me.cbMessage.UseVisualStyleBackColor = True
