@@ -112,8 +112,15 @@ Partial Class frmUpdaterSettings
         '
         'btnUseDefaultUpdater
         '
+        Me.btnUseDefaultUpdater.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
+        Me.btnUseDefaultUpdater.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnUseDefaultUpdater.Enabled = False
+        Me.btnUseDefaultUpdater.FlatAppearance.BorderSize = 0
+        Me.btnUseDefaultUpdater.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.btnUseDefaultUpdater.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.btnUseDefaultUpdater.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnUseDefaultUpdater.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnUseDefaultUpdater.ForeColor = System.Drawing.Color.White
         Me.btnUseDefaultUpdater.Location = New System.Drawing.Point(375, 43)
         Me.btnUseDefaultUpdater.Name = "btnUseDefaultUpdater"
         Me.btnUseDefaultUpdater.Size = New System.Drawing.Size(93, 23)
@@ -191,15 +198,30 @@ Partial Class frmUpdaterSettings
         '
         'btnSave
         '
+        Me.btnSave.BackColor = System.Drawing.Color.Transparent
+        Me.btnSave.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
+        Me.btnSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnSave.FlatAppearance.BorderSize = 0
+        Me.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.btnSave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnSave.ForeColor = System.Drawing.Color.White
         Me.btnSave.Location = New System.Drawing.Point(17, 371)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(237, 23)
         Me.btnSave.TabIndex = 14
         Me.btnSave.Text = "Speichern"
-        Me.btnSave.UseVisualStyleBackColor = True
+        Me.btnSave.UseVisualStyleBackColor = False
         '
         'btnCancel
         '
+        Me.btnCancel.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
+        Me.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnCancel.FlatAppearance.BorderSize = 0
+        Me.btnCancel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.btnCancel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnCancel.ForeColor = System.Drawing.Color.White
         Me.btnCancel.Location = New System.Drawing.Point(260, 371)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(244, 23)
@@ -209,8 +231,15 @@ Partial Class frmUpdaterSettings
         '
         'btnBrowseCustomUpdater
         '
+        Me.btnBrowseCustomUpdater.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
+        Me.btnBrowseCustomUpdater.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnBrowseCustomUpdater.Enabled = False
+        Me.btnBrowseCustomUpdater.FlatAppearance.BorderSize = 0
+        Me.btnBrowseCustomUpdater.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.btnBrowseCustomUpdater.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.btnBrowseCustomUpdater.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnBrowseCustomUpdater.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnBrowseCustomUpdater.ForeColor = System.Drawing.Color.White
         Me.btnBrowseCustomUpdater.Location = New System.Drawing.Point(375, 121)
         Me.btnBrowseCustomUpdater.Name = "btnBrowseCustomUpdater"
         Me.btnBrowseCustomUpdater.Size = New System.Drawing.Size(95, 23)

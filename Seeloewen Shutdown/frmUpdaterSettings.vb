@@ -54,7 +54,7 @@
 
     Private Sub btnUseDefaultUpdater_Click(sender As Object, e As EventArgs) Handles btnUseDefaultUpdater.Click
         tbNewestUpdaterLink.Text = "https://github.com/Seeloewen/Seeloewen-Shutdown-Update/blob/main/Latest%20Build/Seeloewen-Shutdown-Update.exe?raw=true"
-        MsgBox("Der Link des Updaters wurde erfolgreich auf Standart zurückgesetzt.", MsgBoxStyle.Information, "Erfolgreich auf Standart zurückgesetzt")
+        MsgBox("Der Link des Updaters wurde erfolgreich auf Standard zurückgesetzt.", MsgBoxStyle.Information, "Erfolgreich auf Standart zurückgesetzt")
     End Sub
 
     Private Sub rbtnUseCustomUpdater_CheckedChanged(sender As Object, e As EventArgs) Handles rbtnUseCustomUpdater.CheckedChanged
