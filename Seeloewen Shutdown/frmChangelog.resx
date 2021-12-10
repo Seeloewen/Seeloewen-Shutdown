@@ -118,7 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="rtbChangelog.Text" xml:space="preserve">
-    <value>Version 1.5.1 (25.10.2021)
+    <value>Version 1.6.0 (11.12.2021)
++ Updater Einstellungen hinzugefügt
++ Neuen Updater hinzugefügt
++ Möglichkeit, nach Beta-Updates zu suchen, hinzugefügt
++ Update Neuigkeiten hinzugefügt
+
+Version 1.5.1 (25.10.2021)
 * Symbol besser sichtbar gemacht
 * Fehler behoben, dass das "Fehler"  Fenster manchmal den falschen Titel hatte
 * Rechtschreibfehler im "Suche nach Updates" Button behoben
@@ -210,7 +216,13 @@ Version 0.1 (27.10.2020)
 * Inoffizieller Release</value>
   </data>
   <data name="rtbchangelogEnglish.Text" xml:space="preserve">
-    <value>Version 1.5.1 (25.10.2021)
+    <value>Version 1.6.0 (11.12.2021)
++ Added updater settings
++ Added new updater
++ Added ability to search for beta updates
++ Added update news
+
+Version 1.5.1 (25.10.2021)
 * Made icon more visible
 * Fixed the bug, that the error window sometimes had the wrong title
 * Fixed typo in "Search for updates" button

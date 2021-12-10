@@ -48,7 +48,7 @@ Partial Class frmChangelog
         Me.lblChangelogDescription.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblChangelogDescription.Location = New System.Drawing.Point(15, 34)
         Me.lblChangelogDescription.Name = "lblChangelogDescription"
-        Me.lblChangelogDescription.Size = New System.Drawing.Size(484, 16)
+        Me.lblChangelogDescription.Size = New System.Drawing.Size(483, 16)
         Me.lblChangelogDescription.TabIndex = 2
         Me.lblChangelogDescription.Text = "Im Changelog können die Neuigkeiten von Versionen einfach abgerufen werden."
         '
