@@ -52,9 +52,9 @@ Partial Class frmUpdaterSettings
         Me.lblUpdaterSettings.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblUpdaterSettings.Location = New System.Drawing.Point(13, 13)
         Me.lblUpdaterSettings.Name = "lblUpdaterSettings"
-        Me.lblUpdaterSettings.Size = New System.Drawing.Size(146, 20)
+        Me.lblUpdaterSettings.Size = New System.Drawing.Size(188, 20)
         Me.lblUpdaterSettings.TabIndex = 0
-        Me.lblUpdaterSettings.Text = "Updater Settings"
+        Me.lblUpdaterSettings.Text = "Updater Einstellungen"
         '
         'rbtnDownloadNewestUpdater
         '
@@ -309,7 +309,7 @@ Partial Class frmUpdaterSettings
         Me.MinimizeBox = False
         Me.Name = "frmUpdaterSettings"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Updater Settings"
+        Me.Text = "Updater Einstellungen"
         Me.gbUpdaterSettings.ResumeLayout(False)
         Me.gbUpdaterSettings.PerformLayout()
         Me.gbUpdater.ResumeLayout(False)

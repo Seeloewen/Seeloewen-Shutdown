@@ -92,6 +92,26 @@
     End Sub
 
     Private Sub frmUpdaterSettings_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        If My.Settings.Language = "English" Then
+            lblUpdaterSettings.Text = "Updater Settings"
+            Text = "Updater Settings"
+            rbtnDownloadNewestUpdater.Text = "Automatically download the newest version of the updater:"
+            rbtnUseLegacyUpdater.Text = "Use legacy updater (not recommended)"
+            rbtnUseCustomUpdater.Text = "Use custom updater:"
+            rbtnUseCurrentSettingsForUpdater.Text = "Use current app settings for the updater"
+            rbtnCustomSettings.Text = "Custom settings:"
+            lblLanguage.Text = "Language"
+            cbSearchForBetas.Text = "Also search for beta updates"
+            btnUseDefaultUpdater.Text = "Default"
+            btnBrowseCustomUpdater.Text = "Browse"
+            btnSave.Text = "Save"
+            btnCancel.Text = "Cancel"
+            cbxDesign.Items.Remove("Dunkel")
+            cbxDesign.Items.Remove("Hell")
+            cbxDesign.Items.Add("Dark")
+            cbxDesign.Items.Add("Light")
+        End If
+
         If My.Settings.Updater = "Newest" Then
             rbtnDownloadNewestUpdater.Checked = True
             tbNewestUpdaterLink.Text = My.Settings.NewestUpdaterLink
