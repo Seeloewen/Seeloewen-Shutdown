@@ -22,6 +22,7 @@ Partial Class frmUpdaterSettings
     'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmUpdaterSettings))
         Me.lblUpdaterSettings = New System.Windows.Forms.Label()
         Me.rbtnDownloadNewestUpdater = New System.Windows.Forms.RadioButton()
         Me.rbtnUseLegacyUpdater = New System.Windows.Forms.RadioButton()
@@ -305,6 +306,7 @@ Partial Class frmUpdaterSettings
         Me.Controls.Add(Me.lblUpdaterSettings)
         Me.Controls.Add(Me.gbUpdaterSettings)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "frmUpdaterSettings"

@@ -45,16 +45,28 @@
 
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
         'Show Dialog, that clicking "Cancel" doesn't save options
-        Select Case MsgBox("Möchtest du die Updater-Einstellungen wirklich schließen ohne Änderungen zu speichern?", MsgBoxStyle.YesNo, "Einstellungen verwerfen")
-            Case Windows.Forms.DialogResult.Yes
-                Me.Close()
-            Case Windows.Forms.DialogResult.No
-        End Select
+        If My.Settings.Language = "German" Then
+            Select Case MsgBox("Möchtest du die Updater-Einstellungen wirklich schließen ohne Änderungen zu speichern?", MsgBoxStyle.YesNo, "Einstellungen verwerfen")
+                Case Windows.Forms.DialogResult.Yes
+                    Me.Close()
+                Case Windows.Forms.DialogResult.No
+            End Select
+        ElseIf My.Settings.Language = "English" Then
+            Select Case MsgBox("Are you sure you want to close updater settings without saving?", MsgBoxStyle.YesNo, "Discard settings")
+                Case Windows.Forms.DialogResult.Yes
+                    Me.Close()
+                Case Windows.Forms.DialogResult.No
+            End Select
+        End If
     End Sub
 
     Private Sub btnUseDefaultUpdater_Click(sender As Object, e As EventArgs) Handles btnUseDefaultUpdater.Click
         tbNewestUpdaterLink.Text = "https://github.com/Seeloewen/Seeloewen-Shutdown-Update/blob/main/Latest%20Build/Seeloewen-Shutdown-Update.exe?raw=true"
-        MsgBox("Der Link des Updaters wurde erfolgreich auf Standard zurückgesetzt.", MsgBoxStyle.Information, "Erfolgreich auf Standart zurückgesetzt")
+        If My.Settings.Language = "German" Then
+            MsgBox("Der Link des Updaters wurde erfolgreich auf Standard zurückgesetzt.", MsgBoxStyle.Information, "Erfolgreich auf Standart zurückgesetzt")
+        ElseIf My.Settings.Language = "English" Then
+            MsgBox("The updater link was successfully reset to default.", MsgBoxStyle.Information, "Successfully reset to default")
+        End If
     End Sub
 
     Private Sub rbtnUseCustomUpdater_CheckedChanged(sender As Object, e As EventArgs) Handles rbtnUseCustomUpdater.CheckedChanged
@@ -110,21 +122,58 @@
             cbxDesign.Items.Remove("Hell")
             cbxDesign.Items.Add("Dark")
             cbxDesign.Items.Add("Light")
+            If My.Settings.CustomUpdaterDesign = "Dark" Then
+                cbxDesign.SelectedItem = "Dark"
+            ElseIf My.Settings.CustomUpdaterDesign = "Light" Then
+                cbxDesign.SelectedItem = "Light"
+            End If
+        ElseIf My.Settings.Language = "German" Then
+            If My.Settings.CustomUpdaterDesign = "Dark" Then
+                cbxDesign.SelectedItem = "Dunkel"
+            ElseIf My.Settings.CustomUpdaterDesign = "Light" Then
+                cbxDesign.SelectedItem = "Hell"
+            End If
+        End If
+
+        If My.Settings.Design = "Dark" Then
+            BackColor = Color.FromArgb(41, 41, 41)
+            gbUpdater.ForeColor = Color.White
+            gbUpdaterSettings.ForeColor = Color.White
+            lblUpdaterSettings.ForeColor = Color.White
+            lblLanguage.ForeColor = Color.White
+            lblDesign.ForeColor = Color.White
+            rbtnDownloadNewestUpdater.ForeColor = Color.White
+            rbtnUseLegacyUpdater.ForeColor = Color.White
+            rbtnUseCustomUpdater.ForeColor = Color.White
+            rbtnUseCurrentSettingsForUpdater.ForeColor = Color.White
+            rbtnCustomSettings.ForeColor = Color.White
+            cbSearchForBetas.ForeColor = Color.White
+            tbCustomUpdater.BackColor = Color.Gray
+            tbNewestUpdaterLink.BackColor = Color.Gray
+            tbCustomUpdater.ForeColor = Color.White
+            tbNewestUpdaterLink.ForeColor = Color.White
+        End If
+
+        If My.Settings.CustomUpdaterLanguage = "German" Then
+            cbxLanguage.SelectedItem = "Deutsch (German)"
+        ElseIf My.Settings.CustomUpdaterLanguage = "English" Then
+            cbxLanguage.SelectedItem = "English (English)"
         End If
 
         If My.Settings.Updater = "Newest" Then
             rbtnDownloadNewestUpdater.Checked = True
-            tbNewestUpdaterLink.Text = My.Settings.NewestUpdaterLink
             tbNewestUpdaterLink.Enabled = True
             btnUseDefaultUpdater.Enabled = True
         ElseIf My.Settings.Updater = "Legacy" Then
             rbtnUseLegacyUpdater.Checked = True
         ElseIf My.Settings.Updater = "Custom" Then
             rbtnUseCustomUpdater.Checked = True
-            tbCustomUpdater.Text = My.Settings.CustomUpdaterPath
             tbCustomUpdater.Enabled = True
             btnBrowseCustomUpdater.Enabled = True
         End If
+
+        tbNewestUpdaterLink.Text = My.Settings.NewestUpdaterLink
+        tbCustomUpdater.Text = My.Settings.CustomUpdaterPath
 
         If My.Settings.UpdaterSettings = "Current" Then
             rbtnUseCurrentSettingsForUpdater.Checked = True
@@ -141,6 +190,7 @@
         ElseIf My.Settings.UpdaterBranch = "Beta" Then
             cbSearchForBetas.Checked = True
         End If
+
     End Sub
 
     Private Sub btnBrowseCustomUpdater_Click(sender As Object, e As EventArgs) Handles btnBrowseCustomUpdater.Click
@@ -151,6 +201,74 @@
     End Sub
 
     Private Sub rbtnUseLegacyUpdater_Click(sender As Object, e As EventArgs) Handles rbtnUseLegacyUpdater.Click
-        MsgBox("Warning: The legacy updater does not support newer updater features like changelog translations and beta updates and may not even work.", MsgBoxStyle.Exclamation, "Warning")
+        If My.Settings.Language = "German" Then
+            MsgBox("Warnung: Der legacy Updater unterstützt neuere Funktionen wie Changelog-Übersetzungen und Beta-Updates nicht und funktioniert möglicherweise gar nicht.", MsgBoxStyle.Exclamation, "Warnung")
+        ElseIf My.Settings.Language = "English" Then
+            MsgBox("Warning: The legacy updater does not support newer updater features like changelog translations and beta updates and may not even work at all.", MsgBoxStyle.Exclamation, "Warning")
+        End If
+    End Sub
+
+    Private Sub btnUseDefaultUpdater_MouseDown(sender As Object, e As MouseEventArgs) Handles btnUseDefaultUpdater.MouseDown
+        btnUseDefaultUpdater.BackgroundImage = My.Resources.button_click
+    End Sub
+
+    Private Sub btnUseDefaultUpdater_MouseHover(sender As Object, e As EventArgs) Handles btnUseDefaultUpdater.MouseHover
+        btnUseDefaultUpdater.BackgroundImage = My.Resources.button_hover
+    End Sub
+
+    Private Sub btnUseDefaultUpdater_MouseLeave(sender As Object, e As EventArgs) Handles btnUseDefaultUpdater.MouseLeave
+        btnUseDefaultUpdater.BackgroundImage = My.Resources.button
+    End Sub
+
+    Private Sub btnUseDefaultUpdater_MouseUp(sender As Object, e As MouseEventArgs) Handles btnUseDefaultUpdater.MouseUp
+        btnUseDefaultUpdater.BackgroundImage = My.Resources.button
+    End Sub
+
+    Private Sub btnBrowseCustomUpdater_MouseDown(sender As Object, e As MouseEventArgs) Handles btnBrowseCustomUpdater.MouseDown
+        btnBrowseCustomUpdater.BackgroundImage = My.Resources.button_click
+    End Sub
+
+    Private Sub btnBrowseCustomUpdater_MouseHover(sender As Object, e As EventArgs) Handles btnBrowseCustomUpdater.MouseHover
+        btnBrowseCustomUpdater.BackgroundImage = My.Resources.button_hover
+    End Sub
+
+    Private Sub btnBrowseCustomUpdater_MouseLeave(sender As Object, e As EventArgs) Handles btnBrowseCustomUpdater.MouseLeave
+        btnBrowseCustomUpdater.BackgroundImage = My.Resources.button
+    End Sub
+
+    Private Sub btnBrowseCustomUpdater_MouseUp(sender As Object, e As MouseEventArgs) Handles btnBrowseCustomUpdater.MouseUp
+        btnBrowseCustomUpdater.BackgroundImage = My.Resources.button
+    End Sub
+
+    Private Sub btnSave_MouseDown(sender As Object, e As MouseEventArgs) Handles btnSave.MouseDown
+        btnSave.BackgroundImage = My.Resources.button_click
+    End Sub
+
+    Private Sub btnSave_MouseHover(sender As Object, e As EventArgs) Handles btnSave.MouseHover
+        btnSave.BackgroundImage = My.Resources.button_hover
+    End Sub
+
+    Private Sub btnSave_MouseLeave(sender As Object, e As EventArgs) Handles btnSave.MouseLeave
+        btnSave.BackgroundImage = My.Resources.button
+    End Sub
+
+    Private Sub btnSave_MouseUp(sender As Object, e As MouseEventArgs) Handles btnSave.MouseUp
+        btnSave.BackgroundImage = My.Resources.button
+    End Sub
+
+    Private Sub btnCancel_MouseDown(sender As Object, e As MouseEventArgs) Handles btnCancel.MouseDown
+        btnCancel.BackgroundImage = My.Resources.button_click
+    End Sub
+
+    Private Sub btnCancel_MouseHover(sender As Object, e As EventArgs) Handles btnCancel.MouseHover
+        btnCancel.BackgroundImage = My.Resources.button_hover
+    End Sub
+
+    Private Sub btnCancel_MouseLeave(sender As Object, e As EventArgs) Handles btnCancel.MouseLeave
+        btnCancel.BackgroundImage = My.Resources.button
+    End Sub
+
+    Private Sub btnCancel_MouseUp(sender As Object, e As MouseEventArgs) Handles btnCancel.MouseUp
+        btnCancel.BackgroundImage = My.Resources.button
     End Sub
 End Class
