@@ -2,7 +2,7 @@
 Imports System.IO
 Imports System.Net
 Public Class frmSettings
-    Dim currentversion As String = "1.5.1"
+    Dim currentversion As String = "1.6.0"
     Dim newestversion As String
     Dim AppData As String = GetFolderPath(SpecialFolder.ApplicationData)
 
@@ -42,6 +42,7 @@ Public Class frmSettings
             btnStopRunningActions.Text = "Cancel running action"
             btnSave.Text = "Save"
             btnClose.Text = "Close"
+            btnUpdaterSettings.Text = "Updater settings"
 
         ElseIf My.Settings.Language = "German" Then
             cbxLanguage.SelectedItem = "Deutsch (German)"
@@ -405,7 +406,23 @@ Public Class frmSettings
         btnSearchForUpdates.BackgroundImage = My.Resources.button
     End Sub
 
-    Private Sub btnNewUpdaterSettings_Click(sender As Object, e As EventArgs) Handles btnNewUpdaterSettings.Click
+    Private Sub btnNewUpdaterSettings_Click(sender As Object, e As EventArgs) Handles btnUpdaterSettings.Click
         frmUpdaterSettings.ShowDialog()
+    End Sub
+
+    Private Sub btnNewUpdaterSettings_MouseDown(sender As Object, e As MouseEventArgs) Handles btnUpdaterSettings.MouseDown
+        btnUpdaterSettings.BackgroundImage = My.Resources.button_click
+    End Sub
+
+    Private Sub btnNewUpdaterSettings_MouseLeave(sender As Object, e As EventArgs) Handles btnUpdaterSettings.MouseLeave
+        btnUpdaterSettings.BackgroundImage = My.Resources.button
+    End Sub
+
+    Private Sub btnNewUpdaterSettings_MouseHover(sender As Object, e As EventArgs) Handles btnUpdaterSettings.MouseHover
+        btnUpdaterSettings.BackgroundImage = My.Resources.button_hover
+    End Sub
+
+    Private Sub btnNewUpdaterSettings_MouseUp(sender As Object, e As MouseEventArgs) Handles btnUpdaterSettings.MouseUp
+        btnUpdaterSettings.BackgroundImage = My.Resources.button
     End Sub
 End Class

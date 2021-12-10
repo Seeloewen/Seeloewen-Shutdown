@@ -41,7 +41,7 @@ Partial Class frmSettings
         Me.lblLanguage = New System.Windows.Forms.Label()
         Me.cbUpdatesOnStartup = New System.Windows.Forms.CheckBox()
         Me.btnSearchForUpdates = New System.Windows.Forms.Button()
-        Me.btnNewUpdaterSettings = New System.Windows.Forms.Button()
+        Me.btnUpdaterSettings = New System.Windows.Forms.Button()
         Me.rtbCurrentVersion = New System.Windows.Forms.RichTextBox()
         Me.rtbNewestVersion = New System.Windows.Forms.RichTextBox()
         Me.gbRunningAction = New System.Windows.Forms.GroupBox()
@@ -275,16 +275,22 @@ Partial Class frmSettings
         Me.btnSearchForUpdates.Text = "Nach Updates suchen"
         Me.btnSearchForUpdates.UseVisualStyleBackColor = True
         '
-        'btnNewUpdaterSettings
+        'btnUpdaterSettings
         '
-        Me.btnNewUpdaterSettings.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnNewUpdaterSettings.ForeColor = System.Drawing.Color.Black
-        Me.btnNewUpdaterSettings.Location = New System.Drawing.Point(225, 346)
-        Me.btnNewUpdaterSettings.Name = "btnNewUpdaterSettings"
-        Me.btnNewUpdaterSettings.Size = New System.Drawing.Size(187, 23)
-        Me.btnNewUpdaterSettings.TabIndex = 9
-        Me.btnNewUpdaterSettings.Text = "Updater settings"
-        Me.btnNewUpdaterSettings.UseVisualStyleBackColor = True
+        Me.btnUpdaterSettings.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
+        Me.btnUpdaterSettings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnUpdaterSettings.FlatAppearance.BorderSize = 0
+        Me.btnUpdaterSettings.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.btnUpdaterSettings.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.btnUpdaterSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnUpdaterSettings.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnUpdaterSettings.ForeColor = System.Drawing.Color.White
+        Me.btnUpdaterSettings.Location = New System.Drawing.Point(225, 345)
+        Me.btnUpdaterSettings.Name = "btnUpdaterSettings"
+        Me.btnUpdaterSettings.Size = New System.Drawing.Size(187, 24)
+        Me.btnUpdaterSettings.TabIndex = 9
+        Me.btnUpdaterSettings.Text = "Updater Einstellungen"
+        Me.btnUpdaterSettings.UseVisualStyleBackColor = True
         '
         'rtbCurrentVersion
         '
@@ -292,7 +298,7 @@ Partial Class frmSettings
         Me.rtbCurrentVersion.Name = "rtbCurrentVersion"
         Me.rtbCurrentVersion.Size = New System.Drawing.Size(92, 19)
         Me.rtbCurrentVersion.TabIndex = 6
-        Me.rtbCurrentVersion.Text = "1.5.1" & Global.Microsoft.VisualBasic.ChrW(10)
+        Me.rtbCurrentVersion.Text = "1.6.0" & Global.Microsoft.VisualBasic.ChrW(10)
         '
         'rtbNewestVersion
         '
@@ -375,7 +381,7 @@ Partial Class frmSettings
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(442, 557)
-        Me.Controls.Add(Me.btnNewUpdaterSettings)
+        Me.Controls.Add(Me.btnUpdaterSettings)
         Me.Controls.Add(Me.settingsforupdater)
         Me.Controls.Add(Me.gbRunningAction)
         Me.Controls.Add(Me.rtbNewestVersion)
@@ -428,5 +434,5 @@ Partial Class frmSettings
     Friend WithEvents lblDesign As Label
     Friend WithEvents lblLanguage As Label
     Friend WithEvents settingsforupdater As RichTextBox
-    Friend WithEvents btnNewUpdaterSettings As Button
+    Friend WithEvents btnUpdaterSettings As Button
 End Class
