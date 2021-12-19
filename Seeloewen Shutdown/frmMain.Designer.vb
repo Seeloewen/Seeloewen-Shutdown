@@ -69,7 +69,7 @@ Partial Class frmMain
         Me.lblVersion.Name = "lblVersion"
         Me.lblVersion.Size = New System.Drawing.Size(139, 25)
         Me.lblVersion.TabIndex = 1
-        Me.lblVersion.Text = "Version 1.6.0"
+        Me.lblVersion.Text = "Version 1.6.1"
         '
         'gbAction
         '

@@ -39,9 +39,6 @@ Partial Class frmSettings
         Me.cbxLanguage = New System.Windows.Forms.ComboBox()
         Me.lblDesign = New System.Windows.Forms.Label()
         Me.lblLanguage = New System.Windows.Forms.Label()
-        Me.cbUpdatesOnStartup = New System.Windows.Forms.CheckBox()
-        Me.btnSearchForUpdates = New System.Windows.Forms.Button()
-        Me.btnUpdaterSettings = New System.Windows.Forms.Button()
         Me.rtbCurrentVersion = New System.Windows.Forms.RichTextBox()
         Me.rtbNewestVersion = New System.Windows.Forms.RichTextBox()
         Me.gbRunningAction = New System.Windows.Forms.GroupBox()
@@ -180,7 +177,7 @@ Partial Class frmSettings
         Me.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnClose.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnClose.ForeColor = System.Drawing.Color.White
-        Me.btnClose.Location = New System.Drawing.Point(225, 519)
+        Me.btnClose.Location = New System.Drawing.Point(225, 462)
         Me.btnClose.Name = "btnClose"
         Me.btnClose.Size = New System.Drawing.Size(199, 27)
         Me.btnClose.TabIndex = 4
@@ -193,13 +190,11 @@ Partial Class frmSettings
         Me.gbAppSettings.Controls.Add(Me.cbxLanguage)
         Me.gbAppSettings.Controls.Add(Me.lblDesign)
         Me.gbAppSettings.Controls.Add(Me.lblLanguage)
-        Me.gbAppSettings.Controls.Add(Me.cbUpdatesOnStartup)
-        Me.gbAppSettings.Controls.Add(Me.btnSearchForUpdates)
         Me.gbAppSettings.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gbAppSettings.ForeColor = System.Drawing.SystemColors.ControlDarkDark
         Me.gbAppSettings.Location = New System.Drawing.Point(18, 260)
         Me.gbAppSettings.Name = "gbAppSettings"
-        Me.gbAppSettings.Size = New System.Drawing.Size(406, 144)
+        Me.gbAppSettings.Size = New System.Drawing.Size(406, 87)
         Me.gbAppSettings.TabIndex = 5
         Me.gbAppSettings.TabStop = False
         Me.gbAppSettings.Text = "App-Einstellungen"
@@ -246,52 +241,6 @@ Partial Class frmSettings
         Me.lblLanguage.TabIndex = 4
         Me.lblLanguage.Text = "Sprache:"
         '
-        'cbUpdatesOnStartup
-        '
-        Me.cbUpdatesOnStartup.AutoSize = True
-        Me.cbUpdatesOnStartup.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbUpdatesOnStartup.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.cbUpdatesOnStartup.Location = New System.Drawing.Point(16, 115)
-        Me.cbUpdatesOnStartup.Name = "cbUpdatesOnStartup"
-        Me.cbUpdatesOnStartup.Size = New System.Drawing.Size(319, 20)
-        Me.cbUpdatesOnStartup.TabIndex = 1
-        Me.cbUpdatesOnStartup.Text = "Beim Start des Programms nach Updates suchen"
-        Me.cbUpdatesOnStartup.UseVisualStyleBackColor = True
-        '
-        'btnSearchForUpdates
-        '
-        Me.btnSearchForUpdates.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
-        Me.btnSearchForUpdates.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnSearchForUpdates.FlatAppearance.BorderSize = 0
-        Me.btnSearchForUpdates.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
-        Me.btnSearchForUpdates.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
-        Me.btnSearchForUpdates.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnSearchForUpdates.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSearchForUpdates.ForeColor = System.Drawing.Color.White
-        Me.btnSearchForUpdates.Location = New System.Drawing.Point(16, 85)
-        Me.btnSearchForUpdates.Name = "btnSearchForUpdates"
-        Me.btnSearchForUpdates.Size = New System.Drawing.Size(183, 24)
-        Me.btnSearchForUpdates.TabIndex = 0
-        Me.btnSearchForUpdates.Text = "Nach Updates suchen"
-        Me.btnSearchForUpdates.UseVisualStyleBackColor = True
-        '
-        'btnUpdaterSettings
-        '
-        Me.btnUpdaterSettings.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
-        Me.btnUpdaterSettings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnUpdaterSettings.FlatAppearance.BorderSize = 0
-        Me.btnUpdaterSettings.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
-        Me.btnUpdaterSettings.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
-        Me.btnUpdaterSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnUpdaterSettings.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnUpdaterSettings.ForeColor = System.Drawing.Color.White
-        Me.btnUpdaterSettings.Location = New System.Drawing.Point(225, 345)
-        Me.btnUpdaterSettings.Name = "btnUpdaterSettings"
-        Me.btnUpdaterSettings.Size = New System.Drawing.Size(187, 24)
-        Me.btnUpdaterSettings.TabIndex = 9
-        Me.btnUpdaterSettings.Text = "Updater Einstellungen"
-        Me.btnUpdaterSettings.UseVisualStyleBackColor = True
-        '
         'rtbCurrentVersion
         '
         Me.rtbCurrentVersion.Location = New System.Drawing.Point(597, 41)
@@ -314,7 +263,7 @@ Partial Class frmSettings
         Me.gbRunningAction.Controls.Add(Me.lblRunningAction)
         Me.gbRunningAction.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gbRunningAction.ForeColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.gbRunningAction.Location = New System.Drawing.Point(18, 410)
+        Me.gbRunningAction.Location = New System.Drawing.Point(18, 353)
         Me.gbRunningAction.Name = "gbRunningAction"
         Me.gbRunningAction.Size = New System.Drawing.Size(406, 100)
         Me.gbRunningAction.TabIndex = 9
@@ -360,7 +309,7 @@ Partial Class frmSettings
         Me.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSave.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSave.ForeColor = System.Drawing.Color.White
-        Me.btnSave.Location = New System.Drawing.Point(18, 519)
+        Me.btnSave.Location = New System.Drawing.Point(18, 462)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(199, 27)
         Me.btnSave.TabIndex = 3
@@ -380,8 +329,7 @@ Partial Class frmSettings
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(442, 557)
-        Me.Controls.Add(Me.btnUpdaterSettings)
+        Me.ClientSize = New System.Drawing.Size(442, 501)
         Me.Controls.Add(Me.settingsforupdater)
         Me.Controls.Add(Me.gbRunningAction)
         Me.Controls.Add(Me.rtbNewestVersion)
@@ -422,8 +370,6 @@ Partial Class frmSettings
     Friend WithEvents rbtnRestart As RadioButton
     Friend WithEvents rbtnShutdown As RadioButton
     Friend WithEvents gbAppSettings As GroupBox
-    Friend WithEvents cbUpdatesOnStartup As CheckBox
-    Friend WithEvents btnSearchForUpdates As Button
     Friend WithEvents rtbCurrentVersion As RichTextBox
     Friend WithEvents rtbNewestVersion As RichTextBox
     Friend WithEvents gbRunningAction As GroupBox
@@ -434,5 +380,4 @@ Partial Class frmSettings
     Friend WithEvents lblDesign As Label
     Friend WithEvents lblLanguage As Label
     Friend WithEvents settingsforupdater As RichTextBox
-    Friend WithEvents btnUpdaterSettings As Button
 End Class

@@ -3,10 +3,6 @@
         Close()
     End Sub
 
-    Private Sub llblDiscord_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs)
-        Process.Start("https://discord.gg/sBUaRxT")
-    End Sub
-
     Private Sub btnChangelog_Click(sender As Object, e As EventArgs) Handles btnChangelog.Click
         frmChangelog.Show()
     End Sub

@@ -11,9 +11,9 @@ Public Class frmMain
         tbMessage.Text = My.Settings.DefaultMessage
         tbTime.Text = My.Settings.DefaultTime
 
-        If My.Computer.FileSystem.FileExists(AppData + "/Seeloewen Shutdown/Show_Update_News_1.6.0") = False Then
+        If My.Computer.FileSystem.FileExists(AppData + "/Seeloewen Shutdown/Show_Update_News_1.6.1") = False Then
             frmUpdateNews.ShowDialog()
-            Dim fs As FileStream = File.Create(AppData + "/Seeloewen Shutdown/Show_Update_News_1.6.0")
+            Dim fs As FileStream = File.Create(AppData + "/Seeloewen Shutdown/Show_Update_News_1.6.1")
         End If
 
         If My.Settings.Design = "Dark" Then
@@ -93,8 +93,6 @@ Public Class frmMain
                 cbxIn.SelectedItem = "Stunde(n)"
             End If
         End If
-
-        SearchForUpdates()
     End Sub
 
     Private Sub btnOpenHelp_Click(sender As Object, e As EventArgs) Handles btnOpenHelp.Click
@@ -273,31 +271,6 @@ Public Class frmMain
 
     Private Sub btnOpenSettings_Click(sender As Object, e As EventArgs) Handles btnOpenSettings.Click
         frmSettings.Show()
-    End Sub
-
-    Private Sub SearchForUpdates()
-        Dim request = CType(WebRequest.Create("https://raw.githubusercontent.com/Seeloewen/Seeloewen-Shutdown/main/newest_version.txt"), HttpWebRequest)
-        On Error Resume Next
-        request.Accept = "application/vnd.github.v3.raw"
-        request.UserAgent = "Seeloewen Shutdown"
-
-        Using response = request.GetResponse()
-            Dim encoding = System.Text.ASCIIEncoding.UTF8
-
-            Using reader = New System.IO.StreamReader(response.GetResponseStream(), encoding)
-                frmSettings.rtbNewestVersion.Text = reader.ReadToEnd()
-            End Using
-        End Using
-
-        If frmSettings.rtbCurrentVersion.Text = frmSettings.rtbNewestVersion.Text Then
-        ElseIf frmSettings.rtbNewestVersion.Text = "Error.NoServerConnection" Then
-            If My.Settings.Language = "German" Then
-                MsgBox("Bei der Verbindung zum Server ist ein Fehler aufgetreten." + vbNewLine + vbNewLine + "Es konnte nicht automatisch nach Updates gesucht werden.", MsgBoxStyle.Critical, "Aktualisierung")
-            ElseIf My.Settings.Language = "English" Then
-                MsgBox("An error occured while connecting to the server." + vbNewLine + vbNewLine + "Unable to search for updates automatically.", MsgBoxStyle.Critical, "Update")
-            End If
-        Else frmUpdate.ShowDialog()
-        End If
     End Sub
 
     Private Sub btnOpenHelp_MouseDown(sender As Object, e As MouseEventArgs) Handles btnOpenHelp.MouseDown

@@ -32,17 +32,14 @@ Public Class frmSettings
             gbAppSettings.Text = "App settings"
             rbtnShutdown.Text = "Shutdown"
             rbtnRestart.Text = "Restart"
-            cbUpdatesOnStartup.Text = "Search for updates when the app starts"
             lblDefaultAction.Text = "Action"
             lblDefaultTime.Text = "Execute in..."
             lblDefaultMessage.Text = "Message"
             lblRunningAction.Text = "If an action is already running, you can cancel it" + vbNewLine + "here, if you want to."
             lblLanguage.Text = "Language:"
-            btnSearchForUpdates.Text = "Search for updates"
             btnStopRunningActions.Text = "Cancel running action"
             btnSave.Text = "Save"
             btnClose.Text = "Close"
-            btnUpdaterSettings.Text = "Updater settings"
 
         ElseIf My.Settings.Language = "German" Then
             cbxLanguage.SelectedItem = "Deutsch (German)"
@@ -80,7 +77,6 @@ Public Class frmSettings
             gbRunningAction.ForeColor = Color.White
             rbtnShutdown.ForeColor = Color.White
             rbtnRestart.ForeColor = Color.White
-            cbUpdatesOnStartup.ForeColor = Color.White
             tbDefaultMessage.BackColor = Color.Gray
             tbDefaultTime.BackColor = Color.Gray
             tbDefaultMessage.ForeColor = Color.White
@@ -122,12 +118,6 @@ Public Class frmSettings
 
         tbDefaultMessage.Text = My.Settings.DefaultMessage
         tbDefaultTime.Text = My.Settings.DefaultTime
-
-        If My.Settings.UpdatesOnStartup = True Then
-            cbUpdatesOnStartup.Checked = True
-        ElseIf My.Settings.UpdatesOnStartup = False Then
-            cbUpdatesOnStartup.Checked = False
-        End If
     End Sub
 
     Private Sub tbDefaultTime_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tbDefaultTime.KeyPress
@@ -168,13 +158,6 @@ Public Class frmSettings
             My.Settings.DefaultTimeChoice = "seconds"
         ElseIf cbxDefaultIn.SelectedItem = "Second(s)" Then
             My.Settings.DefaultTimeChoice = "seconds"
-        End If
-
-        'Check which option is selected for UpdatesOnStartup.
-        If cbUpdatesOnStartup.Checked = True Then
-            My.Settings.UpdatesOnStartup = True
-        ElseIf cbUpdatesOnStartup.Checked = False Then
-            My.Settings.UpdatesOnStartup = False
         End If
 
         'Save DefaultTime
@@ -223,107 +206,6 @@ Public Class frmSettings
         Loop
         Stopw.Stop()
         Stopw.Reset()
-    End Sub
-
-    Private Async Sub btnSearchForUpdates_Click(sender As Object, e As EventArgs) Handles btnSearchForUpdates.Click
-        'Kill updater process if it's already running
-        Try
-            For Each process As Process In Process.GetProcesses
-                If process.ProcessName = "Seeloewen-Shutdown-Update.exe" Then
-                    process.Kill()
-                End If
-            Next
-        Catch exception As Exception
-            MessageBox.Show(exception.Message)
-        End Try
-
-        'Get updateinfo.txt ready for the updater
-        If My.Computer.FileSystem.FileExists(AppData + "/Seeloewen Shutdown/updateinfo.txt") Then
-            My.Computer.FileSystem.DeleteFile(AppData + "/Seeloewen Shutdown/updateinfo.txt")
-        End If
-        File.Create(AppData + "/Seeloewen Shutdown/updateinfo.txt").Dispose()
-
-        'Write settings to updateinfo.txt
-        settingsforupdater.Clear()
-        settingsforupdater.AppendText(currentversion + vbNewLine)
-
-        If My.Settings.UpdaterSettings = "Current" Then
-            settingsforupdater.AppendText(My.Settings.Language + vbNewLine)
-            settingsforupdater.AppendText(My.Settings.Design + vbNewLine)
-        ElseIf My.Settings.UpdaterSettings = "Custom" Then
-            settingsforupdater.AppendText(My.Settings.CustomUpdaterLanguage + vbNewLine)
-            settingsforupdater.AppendText(My.Settings.CustomUpdaterDesign + vbNewLine)
-        End If
-
-        settingsforupdater.AppendText(My.Settings.UpdaterBranch)
-
-        My.Computer.FileSystem.WriteAllText(AppData + "/Seeloewen Shutdown/updateinfo.txt", settingsforupdater.Text, False)
-
-        'Delete updater if it already exists
-        If My.Computer.FileSystem.FileExists(AppData + "/Seeloewen Shutdown/Seeloewen-Shutdown-Update.exe") Then
-            My.Computer.FileSystem.DeleteFile(AppData + "/Seeloewen Shutdown/Seeloewen-Shutdown-Update.exe")
-        End If
-
-        '(Download and) start new updater
-        If My.Settings.Updater = "Newest" Then
-            Await Task.Run(Sub() DownloadUpdater())
-            Process.Start(AppData + "/Seeloewen Shutdown/Seeloewen-Shutdown-Update.exe")
-        ElseIf My.Settings.Updater = "Legacy" Then
-            LegacyUpdater()
-        ElseIf My.Settings.Updater = "Custom" Then
-            Process.Start(My.Settings.CustomUpdaterPath)
-        End If
-    End Sub
-
-    Private Sub SearchForUpdates()
-        Dim request = CType(WebRequest.Create("https://raw.githubusercontent.com/Seeloewen/Seeloewen-Shutdown/main/newest_version.txt"), HttpWebRequest)
-        On Error Resume Next
-        request.Accept = "application/vnd.github.v3.raw"
-        request.UserAgent = "Seeloewen Shutdown"
-
-        Using response = request.GetResponse()
-            Dim encoding = System.Text.ASCIIEncoding.UTF8
-
-            Using reader = New System.IO.StreamReader(response.GetResponseStream(), encoding)
-                newestversion = reader.ReadToEnd()
-            End Using
-        End Using
-    End Sub
-
-    Private Async Sub LegacyUpdater()
-        If My.Settings.Language = "German" Then
-            btnSearchForUpdates.Text = "Suche nach Updates..."
-        ElseIf My.Settings.Language = "English" Then
-            btnSearchForUpdates.Text = "Searching for updates..."
-        End If
-
-        btnSearchForUpdates.Enabled = False
-
-        Await Task.Run(Sub() SearchForUpdates())
-        rtbNewestVersion.Text = newestversion
-
-        If rtbCurrentVersion.Text = rtbNewestVersion.Text Then
-            If My.Settings.Language = "German" Then
-                MsgBox("Es ist keine neue Version verfügbar.", MsgBoxStyle.Information, "Aktualisierung")
-            ElseIf My.Settings.Language = "English" Then
-                MsgBox("No new version is available.", MsgBoxStyle.Information, "Update")
-            End If
-        ElseIf rtbNewestVersion.Text = "Error.NoServerConnection" Then
-            If My.Settings.Language = "German" Then
-                MsgBox("Bei der Verbindung zum Server ist ein Fehler aufgetreten.", MsgBoxStyle.Critical, "Aktualisierung")
-            ElseIf My.Settings.Language = "English" Then
-                MsgBox("An error occured while connecting to the server.", MsgBoxStyle.Critical, "Update")
-            End If
-        Else frmUpdate.ShowDialog()
-        End If
-
-        If My.Settings.Language = "German" Then
-            btnSearchForUpdates.Text = "Nach Aktualisierungen suchen"
-        ElseIf My.Settings.Language = "English" Then
-            btnSearchForUpdates.Text = "Search for updates"
-        End If
-
-        btnSearchForUpdates.Enabled = True
     End Sub
 
     Private Sub btnStopRunningActions_Click(sender As Object, e As EventArgs) Handles btnStopRunningActions.Click
@@ -388,41 +270,5 @@ Public Class frmSettings
 
     Private Sub btnStopRunningActions_MouseUp(sender As Object, e As MouseEventArgs) Handles btnStopRunningActions.MouseUp
         btnStopRunningActions.BackgroundImage = My.Resources.button
-    End Sub
-
-    Private Sub btnSearchForUpdates_MouseDown(sender As Object, e As MouseEventArgs) Handles btnSearchForUpdates.MouseDown
-        btnSearchForUpdates.BackgroundImage = My.Resources.button_click
-    End Sub
-
-    Private Sub btnSearchForUpdates_MouseHover(sender As Object, e As EventArgs) Handles btnSearchForUpdates.MouseHover
-        btnSearchForUpdates.BackgroundImage = My.Resources.button_hover
-    End Sub
-
-    Private Sub btnSearchForUpdates_MouseLeave(sender As Object, e As EventArgs) Handles btnSearchForUpdates.MouseLeave
-        btnSearchForUpdates.BackgroundImage = My.Resources.button
-    End Sub
-
-    Private Sub btnSearchForUpdates_MouseUp(sender As Object, e As MouseEventArgs) Handles btnSearchForUpdates.MouseUp
-        btnSearchForUpdates.BackgroundImage = My.Resources.button
-    End Sub
-
-    Private Sub btnNewUpdaterSettings_Click(sender As Object, e As EventArgs) Handles btnUpdaterSettings.Click
-        frmUpdaterSettings.ShowDialog()
-    End Sub
-
-    Private Sub btnNewUpdaterSettings_MouseDown(sender As Object, e As MouseEventArgs) Handles btnUpdaterSettings.MouseDown
-        btnUpdaterSettings.BackgroundImage = My.Resources.button_click
-    End Sub
-
-    Private Sub btnNewUpdaterSettings_MouseLeave(sender As Object, e As EventArgs) Handles btnUpdaterSettings.MouseLeave
-        btnUpdaterSettings.BackgroundImage = My.Resources.button
-    End Sub
-
-    Private Sub btnNewUpdaterSettings_MouseHover(sender As Object, e As EventArgs) Handles btnUpdaterSettings.MouseHover
-        btnUpdaterSettings.BackgroundImage = My.Resources.button_hover
-    End Sub
-
-    Private Sub btnNewUpdaterSettings_MouseUp(sender As Object, e As MouseEventArgs) Handles btnUpdaterSettings.MouseUp
-        btnUpdaterSettings.BackgroundImage = My.Resources.button
     End Sub
 End Class
