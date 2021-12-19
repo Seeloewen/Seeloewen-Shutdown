@@ -1,6 +1,0 @@
-Version 1.6.0 - 11.12.2021
-
-+ Updater Einstellungen hinzugefügt
-+ Neuen Updater hinzugefügt
-+ Möglichkeit, nach Beta-Updates zu suchen, hinzugefügt
-+ Update Neuigkeiten hinzugefügt

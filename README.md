@@ -4,7 +4,7 @@
 
 With Seeloewen Shutdown you can choose when your PC will automatically shutdown or restart. The time when it shuts down is fully customizable. You can either choose "in ... seconds/minutes/hours" or a direct point in time. You can also attach a message to action, if you want to.
 
-The settings allow you to save an action, a point in time and a message that will automatically be loaded and selected if you start the programm. You can also update the software in the settings, which makes it easy to stay up-to-date. And If you already have an action running that you want to cancel, you can do that here! You can also change the the design and the language.
+The settings allow you to save an action, a point in time and a message that will automatically be loaded and selected if you start the programm. And If you already have an action running that you want to cancel, you can do that here! You can also change the design and the language.
 
 If you need help or have any questions you can contact Seeloewen#5699 on Discord.
 
