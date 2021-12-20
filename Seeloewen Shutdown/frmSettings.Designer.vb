@@ -39,13 +39,10 @@ Partial Class frmSettings
         Me.cbxLanguage = New System.Windows.Forms.ComboBox()
         Me.lblDesign = New System.Windows.Forms.Label()
         Me.lblLanguage = New System.Windows.Forms.Label()
-        Me.rtbCurrentVersion = New System.Windows.Forms.RichTextBox()
-        Me.rtbNewestVersion = New System.Windows.Forms.RichTextBox()
         Me.gbRunningAction = New System.Windows.Forms.GroupBox()
         Me.btnStopRunningActions = New System.Windows.Forms.Button()
         Me.lblRunningAction = New System.Windows.Forms.Label()
         Me.btnSave = New System.Windows.Forms.Button()
-        Me.settingsforupdater = New System.Windows.Forms.RichTextBox()
         Me.gbDefaultSettings.SuspendLayout()
         Me.gbAppSettings.SuspendLayout()
         Me.gbRunningAction.SuspendLayout()
@@ -241,22 +238,6 @@ Partial Class frmSettings
         Me.lblLanguage.TabIndex = 4
         Me.lblLanguage.Text = "Sprache:"
         '
-        'rtbCurrentVersion
-        '
-        Me.rtbCurrentVersion.Location = New System.Drawing.Point(597, 41)
-        Me.rtbCurrentVersion.Name = "rtbCurrentVersion"
-        Me.rtbCurrentVersion.Size = New System.Drawing.Size(92, 19)
-        Me.rtbCurrentVersion.TabIndex = 6
-        Me.rtbCurrentVersion.Text = "1.6.0" & Global.Microsoft.VisualBasic.ChrW(10)
-        '
-        'rtbNewestVersion
-        '
-        Me.rtbNewestVersion.Location = New System.Drawing.Point(696, 41)
-        Me.rtbNewestVersion.Name = "rtbNewestVersion"
-        Me.rtbNewestVersion.Size = New System.Drawing.Size(91, 19)
-        Me.rtbNewestVersion.TabIndex = 7
-        Me.rtbNewestVersion.Text = "Error.NoServerConnection"
-        '
         'gbRunningAction
         '
         Me.gbRunningAction.Controls.Add(Me.btnStopRunningActions)
@@ -316,24 +297,13 @@ Partial Class frmSettings
         Me.btnSave.Text = "Speichern"
         Me.btnSave.UseVisualStyleBackColor = True
         '
-        'settingsforupdater
-        '
-        Me.settingsforupdater.Location = New System.Drawing.Point(18, 569)
-        Me.settingsforupdater.Name = "settingsforupdater"
-        Me.settingsforupdater.Size = New System.Drawing.Size(182, 52)
-        Me.settingsforupdater.TabIndex = 10
-        Me.settingsforupdater.Text = ""
-        '
         'frmSettings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(442, 501)
-        Me.Controls.Add(Me.settingsforupdater)
+        Me.ClientSize = New System.Drawing.Size(443, 501)
         Me.Controls.Add(Me.gbRunningAction)
-        Me.Controls.Add(Me.rtbNewestVersion)
-        Me.Controls.Add(Me.rtbCurrentVersion)
         Me.Controls.Add(Me.gbAppSettings)
         Me.Controls.Add(Me.btnClose)
         Me.Controls.Add(Me.btnSave)
@@ -370,8 +340,6 @@ Partial Class frmSettings
     Friend WithEvents rbtnRestart As RadioButton
     Friend WithEvents rbtnShutdown As RadioButton
     Friend WithEvents gbAppSettings As GroupBox
-    Friend WithEvents rtbCurrentVersion As RichTextBox
-    Friend WithEvents rtbNewestVersion As RichTextBox
     Friend WithEvents gbRunningAction As GroupBox
     Friend WithEvents btnStopRunningActions As Button
     Friend WithEvents lblRunningAction As Label
@@ -379,5 +347,4 @@ Partial Class frmSettings
     Friend WithEvents cbxLanguage As ComboBox
     Friend WithEvents lblDesign As Label
     Friend WithEvents lblLanguage As Label
-    Friend WithEvents settingsforupdater As RichTextBox
 End Class

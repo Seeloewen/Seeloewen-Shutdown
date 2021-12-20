@@ -218,12 +218,6 @@ Public Class frmSettings
         End If
     End Sub
 
-    Public Sub DownloadUpdater()
-        'Download newest updater
-        Dim wc As New WebClient()
-        wc.DownloadFile(My.Settings.NewestUpdaterLink, AppData + "/Seeloewen Shutdown/Seeloewen-Shutdown-Update.exe")
-    End Sub
-
     Private Sub btnClose_MouseDown(sender As Object, e As MouseEventArgs) Handles btnClose.MouseDown
         btnClose.BackgroundImage = My.Resources.button_click
     End Sub
