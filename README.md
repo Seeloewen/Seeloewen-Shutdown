@@ -25,3 +25,5 @@ In late 2020 and early 2021 I was playing on a vanilla Minecraft server with my 
 Fun fact: After version 0.4 I had to reset my PC and forgot to back up the files, so I had to recode the entire software. Fortunately, I could get some of the code back using decompilers (I still had the executables from older versions.) That's why there was a big break between version 0.4 and 1.0 (almost 5 months) but after I got all the code back I started working more actively on it. I also shared it with my friends, who gave me a lot of good feedback. 
 
 When I had finished version 1.4 I decided that the software was stable enough to be released to the public. And that's how Seeloewen Shutdown was made. I will not release any versions older than 1.4 as I don't think they are stable enough to be publicly used. Most of them are broken due to changes in the updater and stuff and they contained a lot of bugs. You will see a changelog in the software which goes back all the way to version 0.1.
+
+Please note that you can not download versions prior to 1.6.1 due to different reasons I won't mention.
