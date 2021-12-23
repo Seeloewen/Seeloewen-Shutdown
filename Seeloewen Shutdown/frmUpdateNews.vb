@@ -26,10 +26,10 @@
 
     Private Sub frmUpdateNews_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If My.Settings.Language = "English" Then
-            lblHeader.Text = "Version 1.6.0 - What's new?"
+            lblHeader.Text = "Version 1.6.1 - What's new?"
             Text = "Seeloewen Shutdown has been installed!"
-            lblUpdaterHeader.Text = "The updater has been updated"
-            lblUpdater.Text = "The newest version of the updater will now be" + vbNewLine + "downloaded automatically." + vbNewLine + "There is also a new settings menu for the updater"
+            lblUpdaterHeader.Text = "The updater has been removed."
+            lblUpdater.Text = "Because of problems which I dont want" + vbNewLine + "to further talk about, the updater has been removed."
             lblImprovementsHeader.Text = "Other improvements have also been made!"
             lblImprovements.Text = "Besides the updater there are also other" + vbNewLine + "improvements, like design changes and bugfixes."
             lblChangelog.Text = "An exact changelog can be found in"
