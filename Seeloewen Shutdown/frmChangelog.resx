@@ -118,7 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="rtbChangelog.Text" xml:space="preserve">
-    <value>Version 1.6.0 (11.12.2021)
+    <value>Version 1.6.1 (23.12.2021)
+- Der Updater wurde entfernt
+- Die Updater-Einstellungen wurden entfernt
+
+Version 1.6.0 (11.12.2021)
 + Updater Einstellungen hinzugefügt
 + Neuen Updater hinzugefügt
 + Möglichkeit, nach Beta-Updates zu suchen, hinzugefügt
@@ -216,7 +220,11 @@ Version 0.1 (27.10.2020)
 * Inoffizieller Release</value>
   </data>
   <data name="rtbchangelogEnglish.Text" xml:space="preserve">
-    <value>Version 1.6.0 (11.12.2021)
+    <value>Version 1.6.1 (23.12.2021)
+- Removed the updater
+- Removed the updater settings
+
+Version 1.6.0 (11.12.2021)
 + Added updater settings
 + Added new updater
 + Added ability to search for beta updates
