@@ -10,7 +10,7 @@ If you need help or have any questions you can contact Seeloewen#5699 on Discord
 
 The program is licensed under the GNU General Public License v3 which you can find here: https://www.gnu.org/licenses/gpl-3.0.en.html
 
-Seeloewen Shutdown - 2021 by Seeloewen (Louis)
+Seeloewen Shutdown - 2022 by Seeloewen (Louis)
 
 ![Seeloewen_Shutdown_1 5 1_Dark_English](https://user-images.githubusercontent.com/74246933/141370181-f7b8ee64-ec39-4c33-8505-4742858574c4.png)
 
