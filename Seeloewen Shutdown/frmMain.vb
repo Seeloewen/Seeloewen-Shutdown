@@ -1,11 +1,13 @@
-﻿Imports System.Net
+﻿Imports System.Environment
 Imports System.IO
-Imports System.Environment
 
 Public Class frmMain
     Dim shutdownart As String
     Dim maxtime As String
     Dim AppData As String = GetFolderPath(SpecialFolder.ApplicationData)
+    Dim ActionRunning As Boolean = False
+    Dim GrayBoxNewY As Integer
+    Dim PnlActionRunningNewY As Integer
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         tbMessage.Text = My.Settings.DefaultMessage
@@ -100,6 +102,127 @@ Public Class frmMain
     End Sub
 
     Private Sub btnStartAction_Click(sender As Object, e As EventArgs) Handles btnStartAction.Click
+        If ActionRunning = False Then
+            btnStartAction.BackColor = Color.FromArgb(232, 232, 232)
+            btnStartAction.Text = "Stop action"
+            pbGrayBox.Top = 550
+            GrayBoxNewY = 550
+            pnlActionRunning.Top = 550
+            PnlActionRunningNewY = 550
+            pbGrayBox.Show()
+            tmrGrayBoxAnimationUp.Enabled = True
+            tmrPnlActionRunningAnimationUp.Enabled = True
+            ActionRunning = True
+        ElseIf ActionRunning = True Then
+            btnStartAction.BackColor = Color.White
+            btnStartAction.Text = "Start action"
+            pbGrayBox.Top = 347
+            GrayBoxNewY = 347
+            pnlActionRunning.Top = 350
+            PnlActionRunningNewY = 350
+            tmrGrayBoxAnimationDown.Enabled = True
+            tmrPnlActionRunningAnimationDown.Enabled = True
+            ActionRunning = False
+        End If
+    End Sub
+
+    Private Sub tbTime_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tbTime.KeyPress
+        Select Case Asc(e.KeyChar)
+            Case 48 To 57, 8
+            Case Else
+                e.Handled = True
+        End Select
+    End Sub
+
+    Private Sub rbtnZeitpunkt_CheckedChanged(sender As Object, e As EventArgs) Handles rbtnPointInTime.CheckedChanged
+        tbTime.Enabled = False
+        cbxIn.Enabled = False
+        dtpDate.Enabled = True
+        currentDateTime.Enabled = True
+    End Sub
+
+    Private Sub rbtnIn_CheckedChanged(sender As Object, e As EventArgs) Handles rbtnIn.CheckedChanged
+        dtpDate.Enabled = False
+        currentDateTime.Enabled = False
+        tbTime.Enabled = True
+        cbxIn.Enabled = True
+    End Sub
+
+    Private Sub shutdown()
+        Process.Start("shutdown", Action.Text + " -t " + Shutdowntime.Text)
+        Hide()
+        frmFinish.ShowDialog()
+    End Sub
+
+    Private Sub shutdownWithMessage()
+        Finaloutput.Text = Action.Text + " -t " + Shutdowntime.Text + " -c " + tbMessage.Text
+        Process.Start("shutdown", Action.Text + " -t " + Shutdowntime.Text + " -c " + Quotationmark.Text + tbMessage.Text + Quotationmark.Text)
+        Hide()
+        frmFinish.ShowDialog()
+    End Sub
+
+    Private Sub cbMessage_Click(sender As Object, e As EventArgs) Handles cbMessage.Click
+        If cbMessage.Checked = False Then
+            tbMessage.Enabled = False
+        ElseIf cbMessage.Checked = True Then
+            tbMessage.Enabled = True
+        End If
+    End Sub
+
+    Sub Sleep(ByVal sleeptime As Integer)
+        Dim Stopwatch As New Stopwatch
+
+        Stopwatch.Start()
+
+        Do Until Stopwatch.ElapsedMilliseconds >= sleeptime
+            Application.DoEvents()
+        Loop
+        Stopwatch.Stop()
+        Stopwatch.Reset()
+    End Sub
+
+    Private Sub btnOpenSettings_Click(sender As Object, e As EventArgs) Handles btnOpenSettings.Click
+        frmSettings.Show()
+    End Sub
+
+    Private Sub GrayBoxAnimationUp(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tmrGrayBoxAnimationUp.Tick
+        If pbGrayBox.Top >= 331 Then
+            GrayBoxNewY = GrayBoxNewY - 10
+            pbGrayBox.Top = GrayBoxNewY - 10
+        Else
+            tmrGrayBoxAnimationUp.Enabled = False
+        End If
+    End Sub
+
+    Private Sub GrayBoxAnimationDown(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tmrGrayBoxAnimationDown.Tick
+        If pbGrayBox.Top <= 500 Then
+            GrayBoxNewY = GrayBoxNewY + 10
+            pbGrayBox.Top = GrayBoxNewY
+        Else
+            tmrGrayBoxAnimationDown.Enabled = False
+            pbGrayBox.Visible = False
+        End If
+    End Sub
+
+    Private Sub PnlActionRunningAnimationUp(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tmrPnlActionRunningAnimationUp.Tick
+        If pnlActionRunning.Top >= 347 Then
+            PnlActionRunningNewY = PnlActionRunningNewY - 10
+            pnlActionRunning.Top = PnlActionRunningNewY
+        Else
+            tmrPnlActionRunningAnimationUp.Enabled = False
+        End If
+    End Sub
+
+    Private Sub PnlActionRunningAnimationDown(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tmrPnlActionRunningAnimationDown.Tick
+        If pnlActionRunning.Top <= 500 Then
+            PnlActionRunningNewY = PnlActionRunningNewY + 10
+            pnlActionRunning.Top = PnlActionRunningNewY
+        Else
+            tmrPnlActionRunningAnimationDown.Enabled = False
+        End If
+    End Sub
+
+    Private Sub StartAction()
         'Filter quotationmarks out of the message
         tbMessage.Text = tbMessage.Text.Replace("""", "/")
 
@@ -224,53 +347,6 @@ Public Class frmMain
                 End If
             End If
         End If
-    End Sub
-
-    Private Sub tbTime_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tbTime.KeyPress
-        Select Case Asc(e.KeyChar)
-            Case 48 To 57, 8
-            Case Else
-                e.Handled = True
-        End Select
-    End Sub
-
-    Private Sub rbtnZeitpunkt_CheckedChanged(sender As Object, e As EventArgs) Handles rbtnPointInTime.CheckedChanged
-        tbTime.Enabled = False
-        cbxIn.Enabled = False
-        dtpDate.Enabled = True
-        currentDateTime.Enabled = True
-    End Sub
-
-    Private Sub rbtnIn_CheckedChanged(sender As Object, e As EventArgs) Handles rbtnIn.CheckedChanged
-        dtpDate.Enabled = False
-        currentDateTime.Enabled = False
-        tbTime.Enabled = True
-        cbxIn.Enabled = True
-    End Sub
-
-    Private Sub shutdown()
-        Process.Start("shutdown", Action.Text + " -t " + Shutdowntime.Text)
-        Hide()
-        frmFinish.ShowDialog()
-    End Sub
-
-    Private Sub shutdownWithMessage()
-        Finaloutput.Text = Action.Text + " -t " + Shutdowntime.Text + " -c " + tbMessage.Text
-        Process.Start("shutdown", Action.Text + " -t " + Shutdowntime.Text + " -c " + Quotationmark.Text + tbMessage.Text + Quotationmark.Text)
-        Hide()
-        frmFinish.ShowDialog()
-    End Sub
-
-    Private Sub cbMessage_Click(sender As Object, e As EventArgs) Handles cbMessage.Click
-        If cbMessage.Checked = False Then
-            tbMessage.Enabled = False
-        ElseIf cbMessage.Checked = True Then
-            tbMessage.Enabled = True
-        End If
-    End Sub
-
-    Private Sub btnOpenSettings_Click(sender As Object, e As EventArgs) Handles btnOpenSettings.Click
-        frmSettings.Show()
     End Sub
 
     Private Sub btnOpenHelp_MouseDown(sender As Object, e As MouseEventArgs) Handles btnOpenHelp.MouseDown
