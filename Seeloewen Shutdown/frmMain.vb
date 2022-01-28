@@ -10,6 +10,9 @@ Public Class frmMain
     Dim PnlActionRunningNewY As Integer
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        _SelectedAction.Text = "No action selected"
+        _SelectedTime.Text = "No time selected"
+
         tbMessage.Text = My.Settings.DefaultMessage
         tbTime.Text = My.Settings.DefaultTime
 
@@ -46,8 +49,10 @@ Public Class frmMain
 
         If My.Settings.DefaultAction = "shutdown" Then
             rbtnShutdown.Checked = True
+            _SelectedAction.Text = "Shutdown"
         ElseIf My.Settings.DefaultAction = "restart" Then
             rbtnRestart.Checked = True
+            _SelectedAction.Text = "Restart"
         End If
 
 
@@ -55,6 +60,7 @@ Public Class frmMain
         dtpDate.Enabled = False
         currentDateTime.Enabled = False
         dtpDate.CustomFormat = "dd.MM.yyyy HH:mm:ss"
+        dtpSelectedTime.CustomFormat = "dd.MM.yyyy HH:mm:ss"
 
         'Translate all elements
         If My.Settings.Language = "English" Then
@@ -97,7 +103,7 @@ Public Class frmMain
         End If
     End Sub
 
-    Private Sub btnOpenHelp_Click(sender As Object, e As EventArgs) Handles btnOpenHelp.Click
+    Private Sub btnOpenHelp_Click(sender As Object, e As EventArgs)
         frmAbout.Show()
     End Sub
 
@@ -139,6 +145,16 @@ Public Class frmMain
         cbxIn.Enabled = False
         dtpDate.Enabled = True
         currentDateTime.Enabled = True
+
+        If rbtnIn.Checked = True Then
+            If String.IsNullOrEmpty(tbTime.Text) = False Then
+                _SelectedTime.Text = "In " + tbTime.Text + " " + cbxIn.Text
+            Else
+                _SelectedTime.Text = "No time selected"
+            End If
+        ElseIf rbtnPointInTime.Checked = True Then
+            _SelectedTime.Text = dtpDate.Text
+        End If
     End Sub
 
     Private Sub rbtnIn_CheckedChanged(sender As Object, e As EventArgs) Handles rbtnIn.CheckedChanged
@@ -146,6 +162,16 @@ Public Class frmMain
         currentDateTime.Enabled = False
         tbTime.Enabled = True
         cbxIn.Enabled = True
+
+        If rbtnIn.Checked = True Then
+            If String.IsNullOrEmpty(tbTime.Text) = False Then
+                _SelectedTime.Text = "In " + tbTime.Text + " " + cbxIn.Text
+            Else
+                _SelectedTime.Text = "No time selected"
+            End If
+        ElseIf rbtnPointInTime.Checked = True Then
+            _SelectedTime.Text = dtpDate.Text
+        End If
     End Sub
 
     Private Sub shutdown()
@@ -181,7 +207,7 @@ Public Class frmMain
         Stopwatch.Reset()
     End Sub
 
-    Private Sub btnOpenSettings_Click(sender As Object, e As EventArgs) Handles btnOpenSettings.Click
+    Private Sub btnOpenSettings_Click(sender As Object, e As EventArgs)
         frmSettings.Show()
     End Sub
 
@@ -349,38 +375,6 @@ Public Class frmMain
         End If
     End Sub
 
-    Private Sub btnOpenHelp_MouseDown(sender As Object, e As MouseEventArgs) Handles btnOpenHelp.MouseDown
-        btnOpenHelp.BackgroundImage = My.Resources.button_click
-    End Sub
-
-    Private Sub btnOpenHelp_MouseUp(sender As Object, e As MouseEventArgs) Handles btnOpenHelp.MouseUp
-        btnOpenHelp.BackgroundImage = My.Resources.button
-    End Sub
-
-    Private Sub btnOpenHelp_MouseHover(sender As Object, e As EventArgs) Handles btnOpenHelp.MouseHover
-        btnOpenHelp.BackgroundImage = My.Resources.button_hover
-    End Sub
-
-    Private Sub btnOpenHelp_MouseLeave(sender As Object, e As EventArgs) Handles btnOpenHelp.MouseLeave
-        btnOpenHelp.BackgroundImage = My.Resources.button
-    End Sub
-
-    Private Sub btnOpenSettings_MouseDown(sender As Object, e As MouseEventArgs) Handles btnOpenSettings.MouseDown
-        btnOpenSettings.BackgroundImage = My.Resources.button_click
-    End Sub
-
-    Private Sub btnOpenSettings_MouseHover(sender As Object, e As EventArgs) Handles btnOpenSettings.MouseHover
-        btnOpenSettings.BackgroundImage = My.Resources.button_hover
-    End Sub
-
-    Private Sub btnOpenSettings_MouseLeave(sender As Object, e As EventArgs) Handles btnOpenSettings.MouseLeave
-        btnOpenSettings.BackgroundImage = My.Resources.button
-    End Sub
-
-    Private Sub btnOpenSettings_MouseUp(sender As Object, e As MouseEventArgs) Handles btnOpenSettings.MouseUp
-        btnOpenSettings.BackgroundImage = My.Resources.button
-    End Sub
-
     Private Sub btnStartAction_MouseDown(sender As Object, e As MouseEventArgs) Handles btnStartAction.MouseDown
         btnStartAction.BackgroundImage = My.Resources.button_click
     End Sub
@@ -395,5 +389,89 @@ Public Class frmMain
 
     Private Sub btnStartAction_MouseUp(sender As Object, e As MouseEventArgs) Handles btnStartAction.MouseUp
         btnStartAction.BackgroundImage = My.Resources.button
+    End Sub
+
+    Private Sub btnHamburger_Click(sender As Object, e As EventArgs) Handles btnHamburger.Click
+        If cmsHamburgerButton.Visible = True Then
+            cmsHamburgerButton.Hide()
+        Else
+            cmsHamburgerButton.Show(btnHamburger, -100, btnHamburger.Top + 30)
+        End If
+    End Sub
+
+    Private Sub ToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem1.Click
+        frmSettings.Show()
+    End Sub
+
+    Private Sub ToolStripMenuItem3_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem3.Click
+        frmAbout.Show()
+    End Sub
+
+    Private Sub ToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem2.Click
+        frmChangelog.Show()
+    End Sub
+
+    Private Sub btnHamburger_MouseDown(sender As Object, e As MouseEventArgs) Handles btnHamburger.MouseDown
+        btnHamburger.BackgroundImage = My.Resources.btnHamburger_Click
+    End Sub
+
+    Private Sub btnHamburger_MouseHover(sender As Object, e As EventArgs) Handles btnHamburger.MouseHover
+        btnHamburger.BackgroundImage = My.Resources.btnHamburger_Hover
+    End Sub
+
+    Private Sub btnHamburger_MouseLeave(sender As Object, e As EventArgs) Handles btnHamburger.MouseLeave
+        btnHamburger.BackgroundImage = My.Resources.btnHamburger
+    End Sub
+
+    Private Sub btnHamburger_MouseUp(sender As Object, e As MouseEventArgs) Handles btnHamburger.MouseUp
+        btnHamburger.BackgroundImage = My.Resources.btnHamburger
+    End Sub
+
+    Private Sub rbtnShutdown_CheckedChanged(sender As Object, e As EventArgs) Handles rbtnShutdown.CheckedChanged
+        If rbtnShutdown.Checked = True Then
+            _SelectedAction.Text = "Shutdown"
+        ElseIf rbtnRestart.Checked = True Then
+            _SelectedAction.Text = "Restart"
+        End If
+    End Sub
+
+    Private Sub rbtnRestart_CheckedChanged(sender As Object, e As EventArgs) Handles rbtnRestart.CheckedChanged
+
+    End Sub
+
+    Private Sub tbTime_TextChanged(sender As Object, e As EventArgs) Handles tbTime.TextChanged
+        If rbtnIn.Checked = True Then
+            If String.IsNullOrEmpty(tbTime.Text) = False Then
+                _SelectedTime.Text = "In " + tbTime.Text + " " + cbxIn.Text
+            Else
+                _SelectedTime.Text = "No time selected"
+            End If
+        ElseIf rbtnPointInTime.Checked = True Then
+            _SelectedTime.Text = dtpDate.Text
+        End If
+    End Sub
+
+    Private Sub cbxIn_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbxIn.SelectedIndexChanged
+        If rbtnIn.Checked = True Then
+            If String.IsNullOrEmpty(tbTime.Text) = False Then
+                _SelectedTime.Text = "In " + tbTime.Text + " " + cbxIn.Text
+            Else
+                _SelectedTime.Text = "No time selected"
+            End If
+        ElseIf rbtnPointInTime.Checked = True Then
+            _SelectedTime.Text = dtpDate.Text
+        End If
+    End Sub
+
+    Private Sub dtpDate_ValueChanged(sender As Object, e As EventArgs) Handles dtpDate.ValueChanged
+        If rbtnIn.Checked = True Then
+            If String.IsNullOrEmpty(tbTime.Text) = False Then
+                _SelectedTime.Text = "In " + tbTime.Text + " " + cbxIn.Text
+            Else
+                _SelectedTime.Text = "No time selected"
+            End If
+        ElseIf rbtnPointInTime.Checked = True Then
+            _SelectedTime.Text = dtpDate.Text
+        End If
     End Sub
 End Class

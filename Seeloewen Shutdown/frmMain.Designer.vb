@@ -43,8 +43,6 @@ Partial Class frmMain
         Me.Shutdowntime = New System.Windows.Forms.Label()
         Me.Finaloutput = New System.Windows.Forms.Label()
         Me.Quotationmark = New System.Windows.Forms.Label()
-        Me.btnOpenSettings = New System.Windows.Forms.Button()
-        Me.btnOpenHelp = New System.Windows.Forms.Button()
         Me.btnStartAction = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label12 = New System.Windows.Forms.Label()
@@ -67,10 +65,10 @@ Partial Class frmMain
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.tmrGrayBoxAnimationUp = New System.Windows.Forms.Timer(Me.components)
         Me.tmrGrayBoxAnimationDown = New System.Windows.Forms.Timer(Me.components)
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
+        Me.lblSelectedAction = New System.Windows.Forms.Label()
+        Me.lblSelectedTime = New System.Windows.Forms.Label()
+        Me._SelectedAction = New System.Windows.Forms.Label()
+        Me._SelectedTime = New System.Windows.Forms.Label()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.RunningAction = New System.Windows.Forms.Label()
         Me.Label17 = New System.Windows.Forms.Label()
@@ -78,6 +76,11 @@ Partial Class frmMain
         Me.pnlActionRunning = New System.Windows.Forms.Panel()
         Me.tmrPnlActionRunningAnimationUp = New System.Windows.Forms.Timer(Me.components)
         Me.tmrPnlActionRunningAnimationDown = New System.Windows.Forms.Timer(Me.components)
+        Me.cmsHamburgerButton = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.dtpSelectedTime = New System.Windows.Forms.DateTimePicker()
         Me.gbMessage.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -87,6 +90,7 @@ Partial Class frmMain
         CType(Me.pbGrayBox, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlActionRunning.SuspendLayout()
+        Me.cmsHamburgerButton.SuspendLayout()
         Me.SuspendLayout()
         '
         'lblHeader
@@ -294,41 +298,6 @@ Partial Class frmMain
         Me.Quotationmark.TabIndex = 12
         Me.Quotationmark.Text = """"
         '
-        'btnOpenSettings
-        '
-        Me.btnOpenSettings.BackgroundImage = CType(resources.GetObject("btnOpenSettings.BackgroundImage"), System.Drawing.Image)
-        Me.btnOpenSettings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnOpenSettings.FlatAppearance.BorderSize = 0
-        Me.btnOpenSettings.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
-        Me.btnOpenSettings.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
-        Me.btnOpenSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnOpenSettings.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnOpenSettings.ForeColor = System.Drawing.Color.White
-        Me.btnOpenSettings.Image = Global.Seeloewen_Shutdown.My.Resources.Resources.btnSettings
-        Me.btnOpenSettings.Location = New System.Drawing.Point(351, 87)
-        Me.btnOpenSettings.Name = "btnOpenSettings"
-        Me.btnOpenSettings.Size = New System.Drawing.Size(48, 38)
-        Me.btnOpenSettings.TabIndex = 7
-        Me.btnOpenSettings.UseVisualStyleBackColor = True
-        '
-        'btnOpenHelp
-        '
-        Me.btnOpenHelp.BackColor = System.Drawing.Color.Transparent
-        Me.btnOpenHelp.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
-        Me.btnOpenHelp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnOpenHelp.FlatAppearance.BorderSize = 0
-        Me.btnOpenHelp.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
-        Me.btnOpenHelp.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
-        Me.btnOpenHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnOpenHelp.Font = New System.Drawing.Font("Microsoft YaHei", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnOpenHelp.ForeColor = System.Drawing.Color.Transparent
-        Me.btnOpenHelp.Location = New System.Drawing.Point(297, 87)
-        Me.btnOpenHelp.Name = "btnOpenHelp"
-        Me.btnOpenHelp.Size = New System.Drawing.Size(48, 38)
-        Me.btnOpenHelp.TabIndex = 6
-        Me.btnOpenHelp.Text = "?"
-        Me.btnOpenHelp.UseVisualStyleBackColor = False
-        '
         'btnStartAction
         '
         Me.btnStartAction.BackColor = System.Drawing.Color.White
@@ -473,9 +442,9 @@ Partial Class frmMain
         Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.Location = New System.Drawing.Point(16, 187)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(59, 25)
+        Me.Label6.Size = New System.Drawing.Size(311, 25)
         Me.Label6.TabIndex = 33
-        Me.Label6.Text = "Time"
+        Me.Label6.Text = "Time                                          "
         '
         'Panel1
         '
@@ -492,9 +461,9 @@ Partial Class frmMain
         Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.Location = New System.Drawing.Point(16, 87)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(72, 25)
+        Me.Label5.Size = New System.Drawing.Size(312, 25)
         Me.Label5.TabIndex = 31
-        Me.Label5.Text = "Action"
+        Me.Label5.Text = "Action                                        "
         '
         'PictureBox2
         '
@@ -556,49 +525,49 @@ Partial Class frmMain
         '
         Me.tmrGrayBoxAnimationDown.Interval = 1
         '
-        'Label1
+        'lblSelectedAction
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.BackColor = System.Drawing.Color.White
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(44, 363)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(160, 24)
-        Me.Label1.TabIndex = 25
-        Me.Label1.Text = "Selected action:"
+        Me.lblSelectedAction.AutoSize = True
+        Me.lblSelectedAction.BackColor = System.Drawing.Color.White
+        Me.lblSelectedAction.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSelectedAction.Location = New System.Drawing.Point(44, 363)
+        Me.lblSelectedAction.Name = "lblSelectedAction"
+        Me.lblSelectedAction.Size = New System.Drawing.Size(160, 24)
+        Me.lblSelectedAction.TabIndex = 25
+        Me.lblSelectedAction.Text = "Selected action:"
         '
-        'Label2
+        'lblSelectedTime
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.BackColor = System.Drawing.Color.White
-        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(44, 398)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(143, 24)
-        Me.Label2.TabIndex = 26
-        Me.Label2.Text = "Selected time:"
+        Me.lblSelectedTime.AutoSize = True
+        Me.lblSelectedTime.BackColor = System.Drawing.Color.White
+        Me.lblSelectedTime.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSelectedTime.Location = New System.Drawing.Point(44, 398)
+        Me.lblSelectedTime.Name = "lblSelectedTime"
+        Me.lblSelectedTime.Size = New System.Drawing.Size(143, 24)
+        Me.lblSelectedTime.TabIndex = 26
+        Me.lblSelectedTime.Text = "Selected time:"
         '
-        'Label3
+        '_SelectedAction
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.BackColor = System.Drawing.Color.White
-        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(210, 363)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(167, 24)
-        Me.Label3.TabIndex = 28
-        Me.Label3.Text = "%SelectedAction%"
+        Me._SelectedAction.AutoSize = True
+        Me._SelectedAction.BackColor = System.Drawing.Color.White
+        Me._SelectedAction.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me._SelectedAction.Location = New System.Drawing.Point(210, 363)
+        Me._SelectedAction.Name = "_SelectedAction"
+        Me._SelectedAction.Size = New System.Drawing.Size(167, 24)
+        Me._SelectedAction.TabIndex = 28
+        Me._SelectedAction.Text = "%SelectedAction%"
         '
-        'Label4
+        '_SelectedTime
         '
-        Me.Label4.AutoSize = True
-        Me.Label4.BackColor = System.Drawing.Color.White
-        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(193, 398)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(157, 24)
-        Me.Label4.TabIndex = 29
-        Me.Label4.Text = "%SelectedTime%"
+        Me._SelectedTime.AutoSize = True
+        Me._SelectedTime.BackColor = System.Drawing.Color.White
+        Me._SelectedTime.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me._SelectedTime.Location = New System.Drawing.Point(193, 398)
+        Me._SelectedTime.Name = "_SelectedTime"
+        Me._SelectedTime.Size = New System.Drawing.Size(157, 24)
+        Me._SelectedTime.TabIndex = 29
+        Me._SelectedTime.Text = "%SelectedTime%"
         '
         'Label15
         '
@@ -664,12 +633,53 @@ Partial Class frmMain
         '
         Me.tmrPnlActionRunningAnimationDown.Interval = 1
         '
+        'cmsHamburgerButton
+        '
+        Me.cmsHamburgerButton.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1, Me.ToolStripMenuItem2, Me.ToolStripMenuItem3})
+        Me.cmsHamburgerButton.Name = "cmsHamburgerButton"
+        Me.cmsHamburgerButton.Size = New System.Drawing.Size(153, 82)
+        '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ToolStripMenuItem1.Image = CType(resources.GetObject("ToolStripMenuItem1.Image"), System.Drawing.Image)
+        Me.ToolStripMenuItem1.ImageAlign = System.Drawing.ContentAlignment.TopLeft
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(152, 26)
+        Me.ToolStripMenuItem1.Text = "Settings"
+        '
+        'ToolStripMenuItem2
+        '
+        Me.ToolStripMenuItem2.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ToolStripMenuItem2.Image = Global.Seeloewen_Shutdown.My.Resources.Resources.Update
+        Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(152, 26)
+        Me.ToolStripMenuItem2.Text = "Changelog"
+        '
+        'ToolStripMenuItem3
+        '
+        Me.ToolStripMenuItem3.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ToolStripMenuItem3.Image = Global.Seeloewen_Shutdown.My.Resources.Resources.About
+        Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
+        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(152, 26)
+        Me.ToolStripMenuItem3.Text = "About"
+        '
+        'dtpSelectedTime
+        '
+        Me.dtpSelectedTime.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtpSelectedTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.dtpSelectedTime.Location = New System.Drawing.Point(214, 656)
+        Me.dtpSelectedTime.Name = "dtpSelectedTime"
+        Me.dtpSelectedTime.Size = New System.Drawing.Size(185, 22)
+        Me.dtpSelectedTime.TabIndex = 42
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(636, 472)
+        Me.ClientSize = New System.Drawing.Size(629, 471)
+        Me.Controls.Add(Me.dtpSelectedTime)
         Me.Controls.Add(Me.pnlActionRunning)
         Me.Controls.Add(Me.PictureBox3)
         Me.Controls.Add(Me.PictureBox2)
@@ -679,10 +689,10 @@ Partial Class frmMain
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Label5)
-        Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me._SelectedTime)
+        Me.Controls.Add(Me._SelectedAction)
+        Me.Controls.Add(Me.lblSelectedTime)
+        Me.Controls.Add(Me.lblSelectedAction)
         Me.Controls.Add(Me.Label13)
         Me.Controls.Add(Me.Label14)
         Me.Controls.Add(Me.Quotationmark)
@@ -690,8 +700,6 @@ Partial Class frmMain
         Me.Controls.Add(Me.Shutdowntime)
         Me.Controls.Add(Me.Action)
         Me.Controls.Add(Me.currentDateTime)
-        Me.Controls.Add(Me.btnOpenSettings)
-        Me.Controls.Add(Me.btnOpenHelp)
         Me.Controls.Add(Me.btnStartAction)
         Me.Controls.Add(Me.gbMessage)
         Me.Controls.Add(Me.gbTime)
@@ -721,6 +729,7 @@ Partial Class frmMain
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlActionRunning.ResumeLayout(False)
         Me.pnlActionRunning.PerformLayout()
+        Me.cmsHamburgerButton.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -738,8 +747,6 @@ Partial Class frmMain
     Friend WithEvents tbMessage As TextBox
     Friend WithEvents cbMessage As CheckBox
     Friend WithEvents btnStartAction As Button
-    Friend WithEvents btnOpenHelp As Button
-    Friend WithEvents btnOpenSettings As Button
     Friend WithEvents currentDateTime As DateTimePicker
     Friend WithEvents Action As Label
     Friend WithEvents Shutdowntime As Label
@@ -769,10 +776,10 @@ Partial Class frmMain
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents tmrGrayBoxAnimationUp As Timer
     Friend WithEvents tmrGrayBoxAnimationDown As Timer
-    Friend WithEvents Label1 As Label
-    Friend WithEvents Label2 As Label
-    Friend WithEvents Label3 As Label
-    Friend WithEvents Label4 As Label
+    Friend WithEvents lblSelectedAction As Label
+    Friend WithEvents lblSelectedTime As Label
+    Friend WithEvents _SelectedAction As Label
+    Friend WithEvents _SelectedTime As Label
     Friend WithEvents Label15 As Label
     Friend WithEvents RunningAction As Label
     Friend WithEvents Label17 As Label
@@ -780,4 +787,9 @@ Partial Class frmMain
     Friend WithEvents pnlActionRunning As Panel
     Friend WithEvents tmrPnlActionRunningAnimationUp As Timer
     Friend WithEvents tmrPnlActionRunningAnimationDown As Timer
+    Friend WithEvents cmsHamburgerButton As ContextMenuStrip
+    Friend WithEvents ToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem2 As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem3 As ToolStripMenuItem
+    Friend WithEvents dtpSelectedTime As DateTimePicker
 End Class
