@@ -19,6 +19,7 @@ Public Class frmMain
         If My.Computer.FileSystem.FileExists(AppData + "/Seeloewen Shutdown/Show_Update_News_1.6.1") = False Then
             frmUpdateNews.ShowDialog()
             Dim fs As FileStream = File.Create(AppData + "/Seeloewen Shutdown/Show_Update_News_1.6.1")
+            fs.Close()
         End If
 
         If My.Settings.Design = "Dark" Then
