@@ -83,6 +83,8 @@ Public Class frmMain
         Else frmFirstStart.ShowDialog()
         End If
 
+        'This comment was made on 22.02.2022 and committed on 22.02.2022 22:22
+
         If My.Settings.DefaultTimeChoice = "minutes" Then
             If My.Settings.Language = "English" Then
                 cbxIn.SelectedItem = "Minute(s)"
