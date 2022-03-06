@@ -33,13 +33,13 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="LastActionDisplay" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">-</Value>
     </Setting>
     <Setting Name="LastTimeDisplay" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">-</Value>
     </Setting>
     <Setting Name="LastDateDisplay" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">-</Value>
     </Setting>
   </Settings>
 </SettingsFile>
