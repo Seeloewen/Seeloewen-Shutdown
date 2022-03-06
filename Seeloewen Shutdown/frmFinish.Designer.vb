@@ -22,13 +22,11 @@ Partial Class frmFinish
     'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmFinish))
         Me.lblHeader = New System.Windows.Forms.Label()
         Me.rtbInfo = New System.Windows.Forms.RichTextBox()
         Me.lblTimeRemaining = New System.Windows.Forms.Label()
         Me.timeRemaining = New System.Windows.Forms.Label()
-        Me.tmrShutdown = New System.Windows.Forms.Timer(Me.components)
         Me.lblPointInTime = New System.Windows.Forms.Label()
         Me.pointintime = New System.Windows.Forms.Label()
         Me.gbMessage = New System.Windows.Forms.GroupBox()
@@ -80,9 +78,6 @@ Partial Class frmFinish
         Me.timeRemaining.Size = New System.Drawing.Size(143, 20)
         Me.timeRemaining.TabIndex = 5
         Me.timeRemaining.Text = "%timeRemaining%"
-        '
-        'tmrShutdown
-        '
         '
         'lblPointInTime
         '
@@ -139,7 +134,7 @@ Partial Class frmFinish
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(443, 222)
+        Me.ClientSize = New System.Drawing.Size(430, 222)
         Me.Controls.Add(Me.gbMessage)
         Me.Controls.Add(Me.pointintime)
         Me.Controls.Add(Me.lblPointInTime)
@@ -166,7 +161,6 @@ Partial Class frmFinish
     Friend WithEvents rtbInfo As RichTextBox
     Friend WithEvents lblTimeRemaining As Label
     Friend WithEvents timeRemaining As Label
-    Friend WithEvents tmrShutdown As Timer
     Friend WithEvents lblPointInTime As Label
     Friend WithEvents pointintime As Label
     Friend WithEvents gbMessage As GroupBox
