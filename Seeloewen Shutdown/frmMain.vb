@@ -8,12 +8,39 @@ Public Class frmMain
     Dim ActionRunning As Boolean = False
     Dim GrayBoxNewY As Integer
     Dim PnlActionRunningNewY As Integer
+    Dim TargetDT As DateTime
+    Dim CountDownFrom As TimeSpan
+    Dim TimeDifference As TimeSpan
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try
+            TimeDifference = DateTime.Now - Convert.ToDateTime(My.Settings.LastTime)
+        Catch ex As Exception
+        End Try
+
+        If TimeDifference.TotalMilliseconds < 0 Then
+            dtpSelectedTime.Value = Convert.ToDateTime(My.Settings.LastTime)
+            SetupGrayBox()
+            CallLastAction
+            btnStartAction.BackColor = Color.FromArgb(232, 232, 232)
+            btnStartAction.Text = "Stop action"
+            pbGrayBox.Top = 550
+            GrayBoxNewY = 550
+            pnlActionRunning.Top = 550
+            PnlActionRunningNewY = 550
+            pbGrayBox.Show()
+            tmrGrayBoxAnimationUp.Enabled = True
+            tmrPnlActionRunningAnimationUp.Enabled = True
+            ActionRunning = True
+        End If
+
+        _LastAction.Text = My.Settings.LastActionDisplay
+        _LastTime.Text = My.Settings.LastTimeDisplay
+        _ExecutedOn.Text = My.Settings.LastDateDisplay
+
         _SelectedAction.Text = "No action selected"
         _SelectedTime.Text = "No time selected"
 
-        tbMessage.Text = My.Settings.DefaultMessage
         tbTime.Text = My.Settings.DefaultTime
 
         If My.Computer.FileSystem.FileExists(AppData + "/Seeloewen Shutdown/Show_Update_News_1.6.1") = False Then
@@ -30,22 +57,8 @@ Public Class frmMain
             rbtnShutdown.ForeColor = Color.White
             rbtnRestart.ForeColor = Color.White
             rbtnPointInTime.ForeColor = Color.White
-            cbMessage.ForeColor = Color.White
-            gbAction.ForeColor = Color.White
-            gbTime.ForeColor = Color.White
-            gbMessage.ForeColor = Color.White
-            tbMessage.BackColor = Color.Gray
-            tbMessage.ForeColor = Color.White
             tbTime.BackColor = Color.Gray
             tbTime.ForeColor = Color.White
-        End If
-
-        If My.Settings.EnableDefaultMessage = True Then
-            tbMessage.Enabled = True
-            cbMessage.Checked = True
-        ElseIf My.Settings.EnableDefaultMessage = False Then
-            tbMessage.Enabled = False
-            cbMessage.Checked = False
         End If
 
         If My.Settings.DefaultAction = "shutdown" Then
@@ -65,13 +78,9 @@ Public Class frmMain
 
         'Translate all elements
         If My.Settings.Language = "English" Then
-            gbAction.Text = "Action"
-            gbMessage.Text = "Message"
-            gbTime.Text = "Time"
             rbtnShutdown.Text = "Shutdown"
             rbtnRestart.Text = "Restart"
             rbtnPointInTime.Text = "Exact time"
-            cbMessage.Text = "Attach message"
             btnStartAction.Text = "Start action"
             cbxIn.Items.Remove("Sekunde(n)")
             cbxIn.Items.Remove("Minute(n)")
@@ -112,17 +121,10 @@ Public Class frmMain
 
     Private Sub btnStartAction_Click(sender As Object, e As EventArgs) Handles btnStartAction.Click
         If ActionRunning = False Then
-            btnStartAction.BackColor = Color.FromArgb(232, 232, 232)
-            btnStartAction.Text = "Stop action"
-            pbGrayBox.Top = 550
-            GrayBoxNewY = 550
-            pnlActionRunning.Top = 550
-            PnlActionRunningNewY = 550
-            pbGrayBox.Show()
-            tmrGrayBoxAnimationUp.Enabled = True
-            tmrPnlActionRunningAnimationUp.Enabled = True
-            ActionRunning = True
+            StartAction()
         ElseIf ActionRunning = True Then
+            RemoveLastAction()
+            Process.Start("shutdown", "-a")
             btnStartAction.BackColor = Color.White
             btnStartAction.Text = "Start action"
             pbGrayBox.Top = 347
@@ -132,6 +134,86 @@ Public Class frmMain
             tmrGrayBoxAnimationDown.Enabled = True
             tmrPnlActionRunningAnimationDown.Enabled = True
             ActionRunning = False
+        End If
+    End Sub
+
+    Private Sub RemoveLastAction()
+        My.Settings.LastAction = "-"
+        My.Settings.LastTime = "-"
+        My.Settings.LastDate = "-"
+    End Sub
+
+    Private Sub SetLastAction()
+        My.Settings.LastAction = _RunningAction.Text
+        My.Settings.LastTime = dtpSelectedTime.Value
+        My.Settings.LastDate = DateTime.Now
+        My.Settings.LastActionDisplay = _RunningAction.Text
+        My.Settings.LastTimeDisplay = dtpSelectedTime.Value
+        My.Settings.LastDateDisplay = DateTime.Now
+    End Sub
+
+    Private Sub CallLastAction()
+        currentDateTime.Value = DateTime.Now
+        Dim value As DateTime = currentDateTime.Value
+        dtpSelectedTime.Format = DateTimePickerFormat.Long
+        Dim d As DateTime = dtpSelectedTime.Value.Date + dtpSelectedTime.Value.TimeOfDay
+        dtpSelectedTime.Format = DateTimePickerFormat.Custom
+        dtpSelectedTime.CustomFormat = "dd.MM.yyyy HH:mm:ss"
+        Dim timeSpan As TimeSpan = d - value
+        Math.Ceiling(timeSpan.TotalSeconds)
+        Shutdowntime.Text = Math.Ceiling(timeSpan.TotalSeconds)
+
+        CountDownFrom = TimeSpan.FromSeconds(Convert.ToInt32(Shutdowntime.Text))
+        _RunningTime.Text = My.Settings.LastTime
+
+        tmrShutdown.Interval = 100
+        TargetDT = DateTime.Now.Add(CountDownFrom)
+        tmrShutdown.Start()
+    End Sub
+
+    Private Sub SetupGrayBox()
+
+        If rbtnShutdown.Checked Then
+            _RunningAction.Text = "Shutdown"
+        ElseIf rbtnRestart.Checked Then
+            _RunningAction.Text = "Restart"
+        End If
+
+        If rbtnIn.Checked Then
+            If cbxIn.SelectedItem = "Sekunde(n)" Then
+                CountDownFrom = TimeSpan.FromSeconds(Convert.ToInt32(tbTime.Text))
+            ElseIf cbxIn.SelectedItem = "Second(s)" Then
+                CountDownFrom = TimeSpan.FromSeconds(Convert.ToInt32(tbTime.Text))
+            ElseIf cbxIn.SelectedItem = "Minute(n)" Then
+                CountDownFrom = TimeSpan.FromSeconds(Convert.ToInt32(tbTime.Text) * 60)
+            ElseIf cbxIn.SelectedItem = "Minute(s)" Then
+                CountDownFrom = TimeSpan.FromSeconds(Convert.ToInt32(tbTime.Text) * 60)
+            ElseIf cbxIn.SelectedItem = "Stunde(n)" Then
+                CountDownFrom = TimeSpan.FromSeconds(Convert.ToInt32(tbTime.Text) * 3600)
+            ElseIf cbxIn.SelectedItem = "Hour(s)" Then
+                CountDownFrom = TimeSpan.FromSeconds(Convert.ToInt32(tbTime.Text) * 3600)
+            End If
+
+            dtpSelectedTime.Value = DateTime.Now
+            dtpSelectedTime.Value = dtpSelectedTime.Value.AddSeconds(Shutdowntime.Text)
+            _RunningTime.Text = dtpSelectedTime.Text
+        ElseIf rbtnPointInTime.Checked Then
+            CountDownFrom = TimeSpan.FromSeconds(Convert.ToInt32(Shutdowntime.Text))
+            _RunningTime.Text = dtpDate.Text
+        End If
+
+        tmrShutdown.Interval = 100
+        TargetDT = DateTime.Now.Add(CountDownFrom)
+        tmrShutdown.Start()
+    End Sub
+
+    Private Sub tmrShutdown_Tick(sender As Object, e As EventArgs) Handles tmrShutdown.Tick
+        Dim ts As TimeSpan = TargetDT.Subtract(DateTime.Now)
+        If ts.TotalMilliseconds > 0 Then
+            If ts.TotalHours > 24 Then
+                _TimeRemaining.Text = ts.ToString("dd\:hh\:mm\:ss")
+            Else _TimeRemaining.Text = ts.ToString("hh\:mm\:ss")
+            End If
         End If
     End Sub
 
@@ -179,23 +261,6 @@ Public Class frmMain
 
     Private Sub shutdown()
         Process.Start("shutdown", Action.Text + " -t " + Shutdowntime.Text)
-        Hide()
-        frmFinish.ShowDialog()
-    End Sub
-
-    Private Sub shutdownWithMessage()
-        Finaloutput.Text = Action.Text + " -t " + Shutdowntime.Text + " -c " + tbMessage.Text
-        Process.Start("shutdown", Action.Text + " -t " + Shutdowntime.Text + " -c " + Quotationmark.Text + tbMessage.Text + Quotationmark.Text)
-        Hide()
-        frmFinish.ShowDialog()
-    End Sub
-
-    Private Sub cbMessage_Click(sender As Object, e As EventArgs) Handles cbMessage.Click
-        If cbMessage.Checked = False Then
-            tbMessage.Enabled = False
-        ElseIf cbMessage.Checked = True Then
-            tbMessage.Enabled = True
-        End If
     End Sub
 
     Sub Sleep(ByVal sleeptime As Integer)
@@ -252,8 +317,6 @@ Public Class frmMain
     End Sub
 
     Private Sub StartAction()
-        'Filter quotationmarks out of the message
-        tbMessage.Text = tbMessage.Text.Replace("""", "/")
 
         'Set action using "in..."
         If rbtnIn.Checked = True Then
@@ -311,19 +374,19 @@ Public Class frmMain
                         MsgBox("The time cannot be zero!", MsgBoxStyle.Critical, "Error")
                     End If
                 Else
-                    If cbMessage.Checked = True Then
-                        If String.IsNullOrEmpty(tbMessage.Text) Then
-                            If My.Settings.Language = "German" Then
-                                MsgBox("Die Nachricht darf nicht leer sein!", MsgBoxStyle.Critical, "Fehler")
-                            ElseIf My.Settings.Language = "English" Then
-                                MsgBox("The message cannot be empty!", MsgBoxStyle.Critical, "Error")
-                            End If
-                        Else
-                            shutdownWithMessage()
-                        End If
-                    ElseIf cbMessage.Checked = False Then
-                        shutdown()
-                    End If
+                    SetupGrayBox()
+                    SetLastAction()
+                    shutdown()
+                    btnStartAction.BackColor = Color.FromArgb(232, 232, 232)
+                    btnStartAction.Text = "Stop action"
+                    pbGrayBox.Top = 550
+                    GrayBoxNewY = 550
+                    pnlActionRunning.Top = 550
+                    PnlActionRunningNewY = 550
+                    pbGrayBox.Show()
+                    tmrGrayBoxAnimationUp.Enabled = True
+                    tmrPnlActionRunningAnimationUp.Enabled = True
+                    ActionRunning = True
                 End If
             End If
         End If
@@ -361,19 +424,19 @@ Public Class frmMain
                     MsgBox("The selected point in time cannot be in the past!", MsgBoxStyle.Critical, "Error")
                 End If
             Else
-                If cbMessage.Checked Then
-                    If String.IsNullOrEmpty(tbMessage.Text) Then
-                        If My.Settings.Language = "German" Then
-                            MsgBox("Die Nachricht darf nicht leer sein!", MsgBoxStyle.Critical, "Fehler")
-                        ElseIf My.Settings.Language = "English" Then
-                            MsgBox("The message cannot be empty!", MsgBoxStyle.Critical, "Error")
-                        End If
-                    Else
-                        shutdownWithMessage()
-                    End If
-                Else
-                    shutdown()
-                End If
+                SetupGrayBox()
+                SetLastAction()
+                shutdown()
+                btnStartAction.BackColor = Color.FromArgb(232, 232, 232)
+                btnStartAction.Text = "Stop action"
+                pbGrayBox.Top = 550
+                GrayBoxNewY = 550
+                pnlActionRunning.Top = 550
+                PnlActionRunningNewY = 550
+                pbGrayBox.Show()
+                tmrGrayBoxAnimationUp.Enabled = True
+                tmrPnlActionRunningAnimationUp.Enabled = True
+                ActionRunning = True
             End If
         End If
     End Sub
@@ -476,5 +539,9 @@ Public Class frmMain
         ElseIf rbtnPointInTime.Checked = True Then
             _SelectedTime.Text = dtpDate.Text
         End If
+    End Sub
+
+    Private Sub _LastTime_Click(sender As Object, e As EventArgs) Handles _LastTime.Click
+        MsgBox(My.Settings.LastTime)
     End Sub
 End Class

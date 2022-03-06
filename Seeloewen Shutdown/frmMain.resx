@@ -205,7 +205,7 @@
   <data name="ToolStripMenuItem1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACMAAAAgCAYAAACYTcH3AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wgAADsIBFShKgAAAARxJREFUWEfN0A0OwiAUA+Dd/1o7iEfB9whNCqvjbwxNvigd2sYjhPA3ZLiLDHeR
+        vgAADr4B6kKxwAAAARxJREFUWEfN0A0OwiAUA+Dd/1o7iEfB9whNCqvjbwxNvigd2sYjhPA3ZLiLDHeR
         oWKvD1N3ZslQKcc4dW+GDGtWDZKhq5Xh+d2dXjJ0taL03D+8N0aV0bNXx8QyLsTZ+CE+5+/NkKFLhdmg
         IoOYqd/oJUNAkeFy5ZFBMmQoSnhAaXqQDBWUER4CU4NkWINSw0NgeJAMW6DU8BAYGiTDVig1PAS6B8mw
         B0oND4GuQTLshVLDQ6B5kAxHoNTwEGgaJMNRKDU8BKqDZDgDpYaHwO0gGc5CqeEh8HPQJXgKSg0PATko
@@ -213,6 +213,9 @@
         b3CtYE9RAAAAAElFTkSuQmCC
 </value>
   </data>
+  <metadata name="tmrShutdown.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>189, 52</value>
+  </metadata>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAkAEBAAAAEAIABoBAAAlgAAABgYAAABACAAiAkAAP4EAAAgIAAAAQAgAKgQAACGDgAAMDAAAAEA
