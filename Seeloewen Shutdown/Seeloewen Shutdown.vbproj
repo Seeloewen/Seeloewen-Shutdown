@@ -107,12 +107,6 @@
     <Compile Include="frmChangelog.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmFinish.Designer.vb">
-      <DependentUpon>frmFinish.vb</DependentUpon>
-    </Compile>
-    <Compile Include="frmFinish.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="frmFirstStart.Designer.vb">
       <DependentUpon>frmFirstStart.vb</DependentUpon>
     </Compile>
@@ -163,9 +157,6 @@
     <EmbeddedResource Include="frmChangelog.resx">
       <DependentUpon>frmChangelog.vb</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmFinish.resx">
-      <DependentUpon>frmFinish.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmFirstStart.resx">
       <DependentUpon>frmFirstStart.vb</DependentUpon>
