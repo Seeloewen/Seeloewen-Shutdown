@@ -28,16 +28,12 @@ Public Class frmSettings
             Text = "Settings"
             lblSettings.Text = "Settings"
             gbDefaultSettings.Text = "Default settings"
-            gbRunningAction.Text = "Running action"
             gbAppSettings.Text = "App settings"
             rbtnShutdown.Text = "Shutdown"
             rbtnRestart.Text = "Restart"
             lblDefaultAction.Text = "Action"
             lblDefaultTime.Text = "Execute in..."
-            lblDefaultMessage.Text = "Message"
-            lblRunningAction.Text = "If an action is already running, you can cancel it" + vbNewLine + "here, if you want to."
             lblLanguage.Text = "Language:"
-            btnStopRunningActions.Text = "Cancel running action"
             btnSave.Text = "Save"
             btnClose.Text = "Close"
 
@@ -68,18 +64,13 @@ Public Class frmSettings
             lblSettings.ForeColor = Color.White
             lblDefaultAction.ForeColor = Color.White
             lblDefaultTime.ForeColor = Color.White
-            lblDefaultMessage.ForeColor = Color.White
-            lblRunningAction.ForeColor = Color.White
             lblLanguage.ForeColor = Color.White
             lblDesign.ForeColor = Color.White
             gbDefaultSettings.ForeColor = Color.White
             gbAppSettings.ForeColor = Color.White
-            gbRunningAction.ForeColor = Color.White
             rbtnShutdown.ForeColor = Color.White
             rbtnRestart.ForeColor = Color.White
-            tbDefaultMessage.BackColor = Color.Gray
             tbDefaultTime.BackColor = Color.Gray
-            tbDefaultMessage.ForeColor = Color.White
             tbDefaultTime.ForeColor = Color.White
         End If
 
@@ -116,7 +107,6 @@ Public Class frmSettings
 
         End If
 
-        tbDefaultMessage.Text = My.Settings.DefaultMessage
         tbDefaultTime.Text = My.Settings.DefaultTime
     End Sub
 
@@ -134,15 +124,6 @@ Public Class frmSettings
             My.Settings.DefaultAction = "restart"
         ElseIf rbtnShutdown.Checked = True Then
             My.Settings.DefaultAction = "shutdown"
-        End If
-
-        'Check if the DefaultMessage is activated and save text.
-        If String.IsNullOrEmpty(tbDefaultMessage.Text) Then
-            My.Settings.DefaultMessage = ""
-            My.Settings.EnableDefaultMessage = False
-        Else
-            My.Settings.DefaultMessage = tbDefaultMessage.Text
-            My.Settings.EnableDefaultMessage = True
         End If
 
         'Check which option is selected for DefaultTimeChoice.
@@ -208,7 +189,7 @@ Public Class frmSettings
         Stopw.Reset()
     End Sub
 
-    Private Sub btnStopRunningActions_Click(sender As Object, e As EventArgs) Handles btnStopRunningActions.Click
+    Private Sub btnStopRunningActions_Click(sender As Object, e As EventArgs)
         Process.Start("shutdown", "-a")
 
         If My.Settings.Language = "German" Then
@@ -248,21 +229,5 @@ Public Class frmSettings
 
     Private Sub btnSave_MouseUp(sender As Object, e As MouseEventArgs) Handles btnSave.MouseUp
         btnSave.BackgroundImage = My.Resources.button
-    End Sub
-
-    Private Sub btnStopRunningActions_MouseDown(sender As Object, e As MouseEventArgs) Handles btnStopRunningActions.MouseDown
-        btnStopRunningActions.BackgroundImage = My.Resources.button_click
-    End Sub
-
-    Private Sub btnStopRunningActions_MouseHover(sender As Object, e As EventArgs) Handles btnStopRunningActions.MouseHover
-        btnStopRunningActions.BackgroundImage = My.Resources.button_hover
-    End Sub
-
-    Private Sub btnStopRunningActions_MouseLeave(sender As Object, e As EventArgs) Handles btnStopRunningActions.MouseLeave
-        btnStopRunningActions.BackgroundImage = My.Resources.button
-    End Sub
-
-    Private Sub btnStopRunningActions_MouseUp(sender As Object, e As MouseEventArgs) Handles btnStopRunningActions.MouseUp
-        btnStopRunningActions.BackgroundImage = My.Resources.button
     End Sub
 End Class

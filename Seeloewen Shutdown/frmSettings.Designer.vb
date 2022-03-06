@@ -31,28 +31,22 @@ Partial Class frmSettings
         Me.lblDefaultAction = New System.Windows.Forms.Label()
         Me.tbDefaultTime = New System.Windows.Forms.TextBox()
         Me.lblDefaultTime = New System.Windows.Forms.Label()
-        Me.tbDefaultMessage = New System.Windows.Forms.TextBox()
-        Me.lblDefaultMessage = New System.Windows.Forms.Label()
         Me.btnClose = New System.Windows.Forms.Button()
         Me.gbAppSettings = New System.Windows.Forms.GroupBox()
         Me.cbxDesign = New System.Windows.Forms.ComboBox()
         Me.cbxLanguage = New System.Windows.Forms.ComboBox()
         Me.lblDesign = New System.Windows.Forms.Label()
         Me.lblLanguage = New System.Windows.Forms.Label()
-        Me.gbRunningAction = New System.Windows.Forms.GroupBox()
-        Me.btnStopRunningActions = New System.Windows.Forms.Button()
-        Me.lblRunningAction = New System.Windows.Forms.Label()
         Me.btnSave = New System.Windows.Forms.Button()
         Me.gbDefaultSettings.SuspendLayout()
         Me.gbAppSettings.SuspendLayout()
-        Me.gbRunningAction.SuspendLayout()
         Me.SuspendLayout()
         '
         'lblSettings
         '
         Me.lblSettings.AutoSize = True
         Me.lblSettings.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblSettings.Location = New System.Drawing.Point(13, 13)
+        Me.lblSettings.Location = New System.Drawing.Point(13, 18)
         Me.lblSettings.Name = "lblSettings"
         Me.lblSettings.Size = New System.Drawing.Size(155, 25)
         Me.lblSettings.TabIndex = 0
@@ -66,13 +60,11 @@ Partial Class frmSettings
         Me.gbDefaultSettings.Controls.Add(Me.lblDefaultAction)
         Me.gbDefaultSettings.Controls.Add(Me.tbDefaultTime)
         Me.gbDefaultSettings.Controls.Add(Me.lblDefaultTime)
-        Me.gbDefaultSettings.Controls.Add(Me.tbDefaultMessage)
-        Me.gbDefaultSettings.Controls.Add(Me.lblDefaultMessage)
         Me.gbDefaultSettings.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gbDefaultSettings.ForeColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.gbDefaultSettings.Location = New System.Drawing.Point(18, 41)
+        Me.gbDefaultSettings.Location = New System.Drawing.Point(18, 54)
         Me.gbDefaultSettings.Name = "gbDefaultSettings"
-        Me.gbDefaultSettings.Size = New System.Drawing.Size(406, 213)
+        Me.gbDefaultSettings.Size = New System.Drawing.Size(406, 155)
         Me.gbDefaultSettings.TabIndex = 1
         Me.gbDefaultSettings.TabStop = False
         Me.gbDefaultSettings.Text = "Standart-Einstellungen"
@@ -143,27 +135,6 @@ Partial Class frmSettings
         Me.lblDefaultTime.TabIndex = 2
         Me.lblDefaultTime.Text = "Ausführen in..."
         '
-        'tbDefaultMessage
-        '
-        Me.tbDefaultMessage.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbDefaultMessage.Location = New System.Drawing.Point(15, 162)
-        Me.tbDefaultMessage.Multiline = True
-        Me.tbDefaultMessage.Name = "tbDefaultMessage"
-        Me.tbDefaultMessage.ScrollBars = System.Windows.Forms.ScrollBars.Both
-        Me.tbDefaultMessage.Size = New System.Drawing.Size(379, 38)
-        Me.tbDefaultMessage.TabIndex = 1
-        '
-        'lblDefaultMessage
-        '
-        Me.lblDefaultMessage.AutoSize = True
-        Me.lblDefaultMessage.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblDefaultMessage.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.lblDefaultMessage.Location = New System.Drawing.Point(11, 139)
-        Me.lblDefaultMessage.Name = "lblDefaultMessage"
-        Me.lblDefaultMessage.Size = New System.Drawing.Size(76, 20)
-        Me.lblDefaultMessage.TabIndex = 0
-        Me.lblDefaultMessage.Text = "Nachricht"
-        '
         'btnClose
         '
         Me.btnClose.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
@@ -174,9 +145,9 @@ Partial Class frmSettings
         Me.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnClose.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnClose.ForeColor = System.Drawing.Color.White
-        Me.btnClose.Location = New System.Drawing.Point(225, 462)
+        Me.btnClose.Location = New System.Drawing.Point(319, 18)
         Me.btnClose.Name = "btnClose"
-        Me.btnClose.Size = New System.Drawing.Size(199, 27)
+        Me.btnClose.Size = New System.Drawing.Size(105, 27)
         Me.btnClose.TabIndex = 4
         Me.btnClose.Text = "Schließen"
         Me.btnClose.UseVisualStyleBackColor = True
@@ -189,7 +160,7 @@ Partial Class frmSettings
         Me.gbAppSettings.Controls.Add(Me.lblLanguage)
         Me.gbAppSettings.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gbAppSettings.ForeColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.gbAppSettings.Location = New System.Drawing.Point(18, 260)
+        Me.gbAppSettings.Location = New System.Drawing.Point(18, 215)
         Me.gbAppSettings.Name = "gbAppSettings"
         Me.gbAppSettings.Size = New System.Drawing.Size(406, 87)
         Me.gbAppSettings.TabIndex = 5
@@ -238,48 +209,6 @@ Partial Class frmSettings
         Me.lblLanguage.TabIndex = 4
         Me.lblLanguage.Text = "Sprache:"
         '
-        'gbRunningAction
-        '
-        Me.gbRunningAction.Controls.Add(Me.btnStopRunningActions)
-        Me.gbRunningAction.Controls.Add(Me.lblRunningAction)
-        Me.gbRunningAction.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gbRunningAction.ForeColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.gbRunningAction.Location = New System.Drawing.Point(18, 353)
-        Me.gbRunningAction.Name = "gbRunningAction"
-        Me.gbRunningAction.Size = New System.Drawing.Size(406, 100)
-        Me.gbRunningAction.TabIndex = 9
-        Me.gbRunningAction.TabStop = False
-        Me.gbRunningAction.Text = "Laufende Aktion"
-        '
-        'btnStopRunningActions
-        '
-        Me.btnStopRunningActions.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
-        Me.btnStopRunningActions.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnStopRunningActions.FlatAppearance.BorderSize = 0
-        Me.btnStopRunningActions.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
-        Me.btnStopRunningActions.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
-        Me.btnStopRunningActions.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnStopRunningActions.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnStopRunningActions.ForeColor = System.Drawing.Color.White
-        Me.btnStopRunningActions.Location = New System.Drawing.Point(16, 65)
-        Me.btnStopRunningActions.Name = "btnStopRunningActions"
-        Me.btnStopRunningActions.Size = New System.Drawing.Size(378, 23)
-        Me.btnStopRunningActions.TabIndex = 1
-        Me.btnStopRunningActions.Text = "Laufende Aktion abbrechen"
-        Me.btnStopRunningActions.UseVisualStyleBackColor = True
-        '
-        'lblRunningAction
-        '
-        Me.lblRunningAction.AutoSize = True
-        Me.lblRunningAction.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblRunningAction.ForeColor = System.Drawing.Color.Black
-        Me.lblRunningAction.Location = New System.Drawing.Point(12, 22)
-        Me.lblRunningAction.Name = "lblRunningAction"
-        Me.lblRunningAction.Size = New System.Drawing.Size(345, 40)
-        Me.lblRunningAction.TabIndex = 0
-        Me.lblRunningAction.Text = "Falls aktuell eine Aktion läuft, die du abbrechen " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "möchtest, kannst du dies hier" &
-    " tun."
-        '
         'btnSave
         '
         Me.btnSave.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
@@ -290,9 +219,9 @@ Partial Class frmSettings
         Me.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSave.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSave.ForeColor = System.Drawing.Color.White
-        Me.btnSave.Location = New System.Drawing.Point(18, 462)
+        Me.btnSave.Location = New System.Drawing.Point(208, 18)
         Me.btnSave.Name = "btnSave"
-        Me.btnSave.Size = New System.Drawing.Size(199, 27)
+        Me.btnSave.Size = New System.Drawing.Size(105, 27)
         Me.btnSave.TabIndex = 3
         Me.btnSave.Text = "Speichern"
         Me.btnSave.UseVisualStyleBackColor = True
@@ -302,8 +231,7 @@ Partial Class frmSettings
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(443, 501)
-        Me.Controls.Add(Me.gbRunningAction)
+        Me.ClientSize = New System.Drawing.Size(440, 312)
         Me.Controls.Add(Me.gbAppSettings)
         Me.Controls.Add(Me.btnClose)
         Me.Controls.Add(Me.btnSave)
@@ -320,8 +248,6 @@ Partial Class frmSettings
         Me.gbDefaultSettings.PerformLayout()
         Me.gbAppSettings.ResumeLayout(False)
         Me.gbAppSettings.PerformLayout()
-        Me.gbRunningAction.ResumeLayout(False)
-        Me.gbRunningAction.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -329,8 +255,6 @@ Partial Class frmSettings
 
     Friend WithEvents lblSettings As Label
     Friend WithEvents gbDefaultSettings As GroupBox
-    Friend WithEvents tbDefaultMessage As TextBox
-    Friend WithEvents lblDefaultMessage As Label
     Friend WithEvents tbDefaultTime As TextBox
     Friend WithEvents lblDefaultTime As Label
     Friend WithEvents btnSave As Button
@@ -340,9 +264,6 @@ Partial Class frmSettings
     Friend WithEvents rbtnRestart As RadioButton
     Friend WithEvents rbtnShutdown As RadioButton
     Friend WithEvents gbAppSettings As GroupBox
-    Friend WithEvents gbRunningAction As GroupBox
-    Friend WithEvents btnStopRunningActions As Button
-    Friend WithEvents lblRunningAction As Label
     Friend WithEvents cbxDesign As ComboBox
     Friend WithEvents cbxLanguage As ComboBox
     Friend WithEvents lblDesign As Label
