@@ -45,11 +45,15 @@ Public Class frmMain
 
         If My.Computer.FileSystem.FileExists(AppData + "/Seeloewen Shutdown/Show_Update_News_1.6.1") = False Then
             frmUpdateNews.ShowDialog()
+            If My.Computer.FileSystem.DirectoryExists(AppData + "/Seeloewen Shutdown") = False Then
+                My.Computer.FileSystem.CreateDirectory(AppData + "/Seeloewen Shutdown")
+            End If
+
             Dim fs As FileStream = File.Create(AppData + "/Seeloewen Shutdown/Show_Update_News_1.6.1")
             fs.Close()
         End If
 
-        If My.Settings.Design = "Dark" Then
+            If My.Settings.Design = "Dark" Then
             BackColor = Color.FromArgb(41, 41, 41)
             lblHeader.ForeColor = Color.White
             lblVersion.ForeColor = Color.White
