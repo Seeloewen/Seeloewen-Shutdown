@@ -2,6 +2,7 @@
 Imports System.IO
 
 Public Class frmMain
+    Dim Version As String = "1.7.0"
     Dim shutdownart As String
     Dim maxtime As String
     Dim AppData As String = GetFolderPath(SpecialFolder.ApplicationData)
@@ -13,6 +14,7 @@ Public Class frmMain
     Dim TimeDifference As TimeSpan
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'Calculate time difference
         Try
             TimeDifference = DateTime.Now - Convert.ToDateTime(My.Settings.LastTime)
             WriteToLog("Calculated Time Difference: " + TimeDifference.ToString, "Info")
@@ -20,10 +22,11 @@ Public Class frmMain
             WriteToLog("Couldn't calculate Time Difference: " + ex.Message + " Please note that this might be expected and isn't necessarily a bad thing.", "Warning")
         End Try
 
+        'Check if action is already running via TotalMilliseconds of TimeDifference
         If TimeDifference.TotalMilliseconds < 0 Then
             dtpSelectedTime.Value = Convert.ToDateTime(My.Settings.LastTime)
             SetupGrayBox()
-            CallLastAction
+            CallLastAction()
             btnStartAction.BackColor = Color.FromArgb(232, 232, 232)
             btnStartAction.Text = "Stop action"
             pbGrayBox.Top = 550
@@ -34,28 +37,43 @@ Public Class frmMain
             tmrGrayBoxAnimationUp.Enabled = True
             tmrPnlActionRunningAnimationUp.Enabled = True
             ActionRunning = True
+            WriteToLog("Detected that an action is already running. Adjusting elements for action.", "Info")
         End If
 
+        'Load settings that should be displayed in the "Last Action" groupbox
         _LastAction.Text = My.Settings.LastActionDisplay
+        WriteToLog("Loaded LastActionDisplay from settings: " + My.Settings.LastActionDisplay, "Info")
         _LastTime.Text = My.Settings.LastTimeDisplay
+        WriteToLog("Loaded LastTimeDisplay from settings: " + My.Settings.LastTimeDisplay, "Info")
         _ExecutedOn.Text = My.Settings.LastDateDisplay
+        WriteToLog("Loaded LastDateDisplay from settings: " + My.Settings.LastDateDisplay, "Info")
 
+        'Reset UI elements to default
         _SelectedAction.Text = "No action selected"
         _SelectedTime.Text = "No time selected"
-
+        rbtnIn.Checked = True
+        dtpDate.Enabled = False
+        currentDateTime.Enabled = False
+        dtpDate.CustomFormat = "dd.MM.yyyy HH:mm:ss"
+        dtpSelectedTime.CustomFormat = "dd.MM.yyyy HH:mm:ss"
         tbTime.Text = My.Settings.DefaultTime
+        WriteToLog("Reset UI elements to default and loaded DefaultTime from settings: " + My.Settings.DefaultTime, "Info")
 
+        'Show Update News if necessary
         If My.Computer.FileSystem.FileExists(AppData + "/Seeloewen Shutdown/Show_Update_News_1.6.1") = False Then
             frmUpdateNews.ShowDialog()
             If My.Computer.FileSystem.DirectoryExists(AppData + "/Seeloewen Shutdown") = False Then
                 My.Computer.FileSystem.CreateDirectory(AppData + "/Seeloewen Shutdown")
+                WriteToLog("Created directory " + "'" + AppData + "/Seeloewen Shutdown" + "'", "Info")
             End If
 
             Dim fs As FileStream = File.Create(AppData + "/Seeloewen Shutdown/Show_Update_News_1.6.1")
             fs.Close()
+            WriteToLog("Created file " + "'" + AppData + "/Seeloewen Shutdown/Show_Update_News_1.6.1" + "' so the update news don't appear again for this version (" + Version + ")", "Info")
         End If
 
-            If My.Settings.Design = "Dark" Then
+        'Load Design setting
+        If My.Settings.Design = "Dark" Then
             BackColor = Color.FromArgb(41, 41, 41)
             lblHeader.ForeColor = Color.White
             lblVersion.ForeColor = Color.White
@@ -66,7 +84,9 @@ Public Class frmMain
             tbTime.BackColor = Color.Gray
             tbTime.ForeColor = Color.White
         End If
+        WriteToLog("Loaded Design from settings: " + My.Settings.Design, "Info")
 
+        'Load DefaultAction setting
         If My.Settings.DefaultAction = "shutdown" Then
             rbtnShutdown.Checked = True
             _SelectedAction.Text = "Shutdown"
@@ -74,20 +94,13 @@ Public Class frmMain
             rbtnRestart.Checked = True
             _SelectedAction.Text = "Restart"
         End If
+        WriteToLog("Loaded DefaultAction from settings: " + My.Settings.DefaultAction, "Info")
 
-
-        rbtnIn.Checked = True
-        dtpDate.Enabled = False
-        currentDateTime.Enabled = False
-        dtpDate.CustomFormat = "dd.MM.yyyy HH:mm:ss"
-        dtpSelectedTime.CustomFormat = "dd.MM.yyyy HH:mm:ss"
-
-        'Translate all elements
+        'Translate all elements and load Language Setting
         If My.Settings.Language = "English" Then
             rbtnShutdown.Text = "Shutdown"
             rbtnRestart.Text = "Restart"
             rbtnPointInTime.Text = "Exact time"
-            btnStartAction.Text = "Start action"
             cbxIn.Items.Remove("Sekunde(n)")
             cbxIn.Items.Remove("Minute(n)")
             cbxIn.Items.Remove("Stunde(n)")
@@ -97,9 +110,11 @@ Public Class frmMain
         ElseIf My.Settings.Language = "German" Then
         Else frmFirstStart.ShowDialog()
         End If
+        WriteToLog("Loaded Language from settings: " + My.Settings.Language, "Info")
 
         'This comment was made on 22.02.2022 and committed on 22.02.2022 22:22
 
+        'Load DefaultTimeChoice setting
         If My.Settings.DefaultTimeChoice = "minutes" Then
             If My.Settings.Language = "English" Then
                 cbxIn.SelectedItem = "Minute(s)"
@@ -119,6 +134,7 @@ Public Class frmMain
                 cbxIn.SelectedItem = "Stunde(n)"
             End If
         End If
+        WriteToLog("Loaded DefaultTimeChoice from settings: " + My.Settings.DefaultTimeChoice, "Info")
     End Sub
 
     Private Sub btnOpenHelp_Click(sender As Object, e As EventArgs)
@@ -162,6 +178,7 @@ Public Class frmMain
         My.Settings.LastAction = "-"
         My.Settings.LastTime = "-"
         My.Settings.LastDate = "-"
+        WriteToLog("Removed 'last Action'.", "Info")
     End Sub
 
     Private Sub SetLastAction()
@@ -190,6 +207,7 @@ Public Class frmMain
         tmrShutdown.Interval = 100
         TargetDT = DateTime.Now.Add(CountDownFrom)
         tmrShutdown.Start()
+        WriteToLog("Called last action (CountDownFrom: " + CountDownFrom.ToString + ", ShutdownTime.Text: " + Shutdowntime.Text + ", _RunningTime.text: + " + _RunningTime.Text + ")", "Info")
     End Sub
 
     Private Sub SetupGrayBox()
