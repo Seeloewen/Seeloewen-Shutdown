@@ -73,6 +73,7 @@ Partial Class frmLog
         '
         Me.rtbLog.BackColor = System.Drawing.Color.White
         Me.rtbLog.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.rtbLog.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rtbLog.Location = New System.Drawing.Point(6, 10)
         Me.rtbLog.Name = "rtbLog"
         Me.rtbLog.Size = New System.Drawing.Size(687, 488)
