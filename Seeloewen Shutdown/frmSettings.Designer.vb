@@ -38,6 +38,7 @@ Partial Class frmSettings
         Me.lblDesign = New System.Windows.Forms.Label()
         Me.lblLanguage = New System.Windows.Forms.Label()
         Me.btnSave = New System.Windows.Forms.Button()
+        Me.btnLog = New System.Windows.Forms.Button()
         Me.gbDefaultSettings.SuspendLayout()
         Me.gbAppSettings.SuspendLayout()
         Me.SuspendLayout()
@@ -145,9 +146,9 @@ Partial Class frmSettings
         Me.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnClose.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnClose.ForeColor = System.Drawing.Color.White
-        Me.btnClose.Location = New System.Drawing.Point(319, 18)
+        Me.btnClose.Location = New System.Drawing.Point(296, 310)
         Me.btnClose.Name = "btnClose"
-        Me.btnClose.Size = New System.Drawing.Size(105, 27)
+        Me.btnClose.Size = New System.Drawing.Size(128, 27)
         Me.btnClose.TabIndex = 4
         Me.btnClose.Text = "Schließen"
         Me.btnClose.UseVisualStyleBackColor = True
@@ -219,19 +220,37 @@ Partial Class frmSettings
         Me.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSave.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSave.ForeColor = System.Drawing.Color.White
-        Me.btnSave.Location = New System.Drawing.Point(208, 18)
+        Me.btnSave.Location = New System.Drawing.Point(18, 310)
         Me.btnSave.Name = "btnSave"
-        Me.btnSave.Size = New System.Drawing.Size(105, 27)
+        Me.btnSave.Size = New System.Drawing.Size(128, 27)
         Me.btnSave.TabIndex = 3
         Me.btnSave.Text = "Speichern"
         Me.btnSave.UseVisualStyleBackColor = True
+        '
+        'btnLog
+        '
+        Me.btnLog.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
+        Me.btnLog.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnLog.FlatAppearance.BorderSize = 0
+        Me.btnLog.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.btnLog.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.btnLog.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnLog.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnLog.ForeColor = System.Drawing.Color.White
+        Me.btnLog.Location = New System.Drawing.Point(158, 310)
+        Me.btnLog.Name = "btnLog"
+        Me.btnLog.Size = New System.Drawing.Size(128, 27)
+        Me.btnLog.TabIndex = 6
+        Me.btnLog.Text = "Debug-Log"
+        Me.btnLog.UseVisualStyleBackColor = True
         '
         'frmSettings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(440, 312)
+        Me.ClientSize = New System.Drawing.Size(440, 348)
+        Me.Controls.Add(Me.btnLog)
         Me.Controls.Add(Me.gbAppSettings)
         Me.Controls.Add(Me.btnClose)
         Me.Controls.Add(Me.btnSave)
@@ -268,4 +287,5 @@ Partial Class frmSettings
     Friend WithEvents cbxLanguage As ComboBox
     Friend WithEvents lblDesign As Label
     Friend WithEvents lblLanguage As Label
+    Friend WithEvents btnLog As Button
 End Class

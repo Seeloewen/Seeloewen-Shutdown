@@ -230,4 +230,8 @@ Public Class frmSettings
     Private Sub btnSave_MouseUp(sender As Object, e As MouseEventArgs) Handles btnSave.MouseUp
         btnSave.BackgroundImage = My.Resources.button
     End Sub
+
+    Private Sub btnLog_Click(sender As Object, e As EventArgs) Handles btnLog.Click
+        frmLog.Show()
+    End Sub
 End Class
