@@ -15,7 +15,9 @@ Public Class frmMain
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             TimeDifference = DateTime.Now - Convert.ToDateTime(My.Settings.LastTime)
+            WriteToLog("Calculated Time Difference: " + TimeDifference.ToString, "Info")
         Catch ex As Exception
+            WriteToLog("Couldn't calculate Time Difference: " + ex.Message + " Please note that this might be expected and isn't necessarily a bad thing.", "Warning")
         End Try
 
         If TimeDifference.TotalMilliseconds < 0 Then
@@ -138,6 +140,21 @@ Public Class frmMain
             tmrGrayBoxAnimationDown.Enabled = True
             tmrPnlActionRunningAnimationDown.Enabled = True
             ActionRunning = False
+        End If
+    End Sub
+
+    Private Sub WriteToLog(Message As String, Type As String)
+        If Type = "Error" Then
+            frmLog.rtbLog.SelectionColor = Color.Red
+            frmLog.rtbLog.AppendText("[" + DateTime.Now + "] " + "[ERROR] " + Message + vbNewLine)
+        ElseIf Type = "Info" Then
+            frmLog.rtbLog.SelectionColor = Color.Blue
+            frmLog.rtbLog.AppendText("[" + DateTime.Now + "] " + "[INFO] " + Message + vbNewLine)
+        ElseIf Type = "Warning" Then
+            frmLog.rtbLog.SelectionColor = Color.DarkOrange
+            frmLog.rtbLog.AppendText("[" + DateTime.Now + "] " + "[WARNING] " + Message + vbNewLine)
+        Else
+            frmLog.rtbLog.AppendText("--> Critical Log Error: Invalid type received" + vbNewLine)
         End If
     End Sub
 
