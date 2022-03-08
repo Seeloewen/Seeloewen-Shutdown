@@ -3,7 +3,7 @@ Imports System.IO
 
 Public Class frmMain
     Dim Version As String = "1.7.0"
-    Dim shutdownart As String
+    Dim ShutdownTimeType As String
     Dim maxtime As String
     Dim AppData As String = GetFolderPath(SpecialFolder.ApplicationData)
     Dim ActionRunning As Boolean = False
@@ -146,6 +146,7 @@ Public Class frmMain
             StartAction()
         ElseIf ActionRunning = True Then
             RemoveLastAction()
+            WriteToLog("Stopped action.", "Info")
             Process.Start("shutdown", "-a")
             btnStartAction.BackColor = Color.White
             btnStartAction.Text = "Start action"
@@ -244,6 +245,8 @@ Public Class frmMain
         tmrShutdown.Interval = 100
         TargetDT = DateTime.Now.Add(CountDownFrom)
         tmrShutdown.Start()
+
+        WriteToLog("Set gray box up (CountDownFrom: " + CountDownFrom.ToString + ", ShutdownTime.Text: " + Shutdowntime.Text + ", _RunningTime.text: + " + _RunningTime.Text + ")", "Info")
     End Sub
 
     Private Sub tmrShutdown_Tick(sender As Object, e As EventArgs) Handles tmrShutdown.Tick
@@ -254,6 +257,7 @@ Public Class frmMain
             Else _TimeRemaining.Text = ts.ToString("hh\:mm\:ss")
             End If
         End If
+
     End Sub
 
     Private Sub tbTime_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tbTime.KeyPress
@@ -298,7 +302,7 @@ Public Class frmMain
         End If
     End Sub
 
-    Private Sub shutdown()
+    Private Sub CallShutDown()
         Process.Start("shutdown", Action.Text + " -t " + Shutdowntime.Text)
     End Sub
 
@@ -376,35 +380,35 @@ Public Class frmMain
                 If cbxIn.SelectedItem = "Sekunde(n)" Then
                     Shutdowntime.Text = tbTime.Text
                     maxtime = "31535999"
-                    shutdownart = "Sekunde(n)"
+                    ShutdownTimeType = "Sekunde(n)"
                 ElseIf cbxIn.SelectedItem = "Second(s)" Then
                     Shutdowntime.Text = tbTime.Text
                     maxtime = "31535999"
-                    shutdownart = "Second(s)"
+                    ShutdownTimeType = "Second(s)"
                 ElseIf cbxIn.SelectedItem = "Minute(n)" Then
                     Shutdowntime.Text = tbTime.Text * 60
                     maxtime = "525599"
-                    shutdownart = "Minute(n)"
+                    ShutdownTimeType = "Minute(n)"
                 ElseIf cbxIn.SelectedItem = "Minute(s)" Then
                     Shutdowntime.Text = tbTime.Text * 60
                     maxtime = "525599"
-                    shutdownart = "Minute(s)"
+                    ShutdownTimeType = "Minute(s)"
                 ElseIf cbxIn.SelectedItem = "Stunde(n)" Then
                     Shutdowntime.Text = tbTime.Text * 3600
                     maxtime = "8759"
-                    shutdownart = "Stunde(n)"
+                    ShutdownTimeType = "Stunde(n)"
                 ElseIf cbxIn.SelectedItem = "Hour(s)" Then
                     Shutdowntime.Text = tbTime.Text * 3600
                     maxtime = "8759"
-                    shutdownart = "Hour(s)"
+                    ShutdownTimeType = "Hour(s)"
                 End If
 
                 'Run action
                 If Shutdowntime.Text > 31535999 Then
                     If My.Settings.Language = "German" Then
-                        MsgBox("Die maximale Zeitangabe für " + Quotationmark.Text + shutdownart + Quotationmark.Text + " beträgt " + maxtime, MsgBoxStyle.Critical, "Fehler")
+                        MsgBox("Die maximale Zeitangabe für " + Quotationmark.Text + ShutdownTimeType + Quotationmark.Text + " beträgt " + maxtime, MsgBoxStyle.Critical, "Fehler")
                     ElseIf My.Settings.Language = "English" Then
-                        MsgBox("The maximum time for " + Quotationmark.Text + shutdownart + Quotationmark.Text + " is " + maxtime, MsgBoxStyle.Critical, "Error")
+                        MsgBox("The maximum time for " + Quotationmark.Text + ShutdownTimeType + Quotationmark.Text + " is " + maxtime, MsgBoxStyle.Critical, "Error")
                     End If
                 ElseIf Shutdowntime.Text = 0 Then
                     If My.Settings.Language = "German" Then
@@ -415,7 +419,8 @@ Public Class frmMain
                 Else
                     SetupGrayBox()
                     SetLastAction()
-                    shutdown()
+                    CallShutDown()
+                    WriteToLog("Started action (ShutdownTimeType: " + ShutdownTimeType + ", Shutdowntime: " + Shutdowntime.Text + ", Action: " + Action.Text + ", type: In...)", "Info")
                     btnStartAction.BackColor = Color.FromArgb(232, 232, 232)
                     btnStartAction.Text = "Stop action"
                     pbGrayBox.Top = 550
@@ -465,7 +470,8 @@ Public Class frmMain
             Else
                 SetupGrayBox()
                 SetLastAction()
-                shutdown()
+                WriteToLog("Started action (ShutdownTimeType: " + ShutdownTimeType + ", Shutdowntime: " + Shutdowntime.Text + ", Action: " + Action.Text + ", type: PointInTime)", "Info")
+                CallShutDown()
                 btnStartAction.BackColor = Color.FromArgb(232, 232, 232)
                 btnStartAction.Text = "Stop action"
                 pbGrayBox.Top = 550
