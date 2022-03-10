@@ -125,6 +125,7 @@ Public Class frmSettings
         ElseIf rbtnShutdown.Checked = True Then
             My.Settings.DefaultAction = "shutdown"
         End If
+        frmMain.WriteToLog("Saved DefaultAction to settings: " + My.Settings.DefaultAction, "Info")
 
         'Check which option is selected for DefaultTimeChoice.
         If cbxDefaultIn.SelectedItem = "Stunde(n)" Then
@@ -140,9 +141,11 @@ Public Class frmSettings
         ElseIf cbxDefaultIn.SelectedItem = "Second(s)" Then
             My.Settings.DefaultTimeChoice = "seconds"
         End If
+        frmMain.WriteToLog("Saved DefaultTimeChoice to settings: " + My.Settings.DefaultTimeChoice, "Info")
 
         'Save DefaultTime
         My.Settings.DefaultTime = tbDefaultTime.Text
+        frmMain.WriteToLog("Saved DefaultTime to settings: " + My.Settings.DefaultTime, "Info")
 
         'Save Language
         If cbxLanguage.SelectedItem = "English (English)" Then
@@ -152,6 +155,7 @@ Public Class frmSettings
             My.Settings.Language = "German"
             Close()
         End If
+        frmMain.WriteToLog("Saved Language to settings: " + My.Settings.Language, "Info")
 
         'Save Design
         If cbxDesign.SelectedItem = "Light" Then
@@ -163,6 +167,7 @@ Public Class frmSettings
         ElseIf cbxDesign.SelectedItem = "Dark" Then
             My.Settings.Design = "Dark"
         End If
+        frmMain.WriteToLog("Saved Design to settings: " + My.Settings.Design, "Info")
 
         'Show a message that confirms that all settings have been saved
         If My.Settings.Language = "German" Then
@@ -170,7 +175,7 @@ Public Class frmSettings
         ElseIf My.Settings.Language = "English" Then
             MsgBox("All settings have been saved." + vbNewLine + "You may need to restart the application" + vbNewLine + "to apply some settings.", MsgBoxStyle.Information, "Saved successfully!")
         End If
-        Me.Close()
+        Close()
     End Sub
 
     Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
@@ -187,16 +192,6 @@ Public Class frmSettings
         Loop
         Stopw.Stop()
         Stopw.Reset()
-    End Sub
-
-    Private Sub btnStopRunningActions_Click(sender As Object, e As EventArgs)
-        Process.Start("shutdown", "-a")
-
-        If My.Settings.Language = "German" Then
-            MsgBox("Die laufende Aktion wurde erfolgreich abgebrochen.", MsgBoxStyle.Information, "Laufende Aktion abbrechen")
-        ElseIf My.Settings.Language = "English" Then
-            MsgBox("The running action was successfully cancelled.", MsgBoxStyle.Information, "Cancel running action")
-        End If
     End Sub
 
     Private Sub btnClose_MouseDown(sender As Object, e As MouseEventArgs) Handles btnClose.MouseDown
