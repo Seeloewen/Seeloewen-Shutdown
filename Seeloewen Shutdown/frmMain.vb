@@ -160,7 +160,7 @@ Public Class frmMain
         End If
     End Sub
 
-    Private Sub WriteToLog(Message As String, Type As String)
+    Public Sub WriteToLog(Message As String, Type As String)
         If Type = "Error" Then
             frmLog.rtbLog.SelectionColor = Color.Red
             frmLog.rtbLog.AppendText("[" + DateTime.Now + "] " + "[ERROR] " + Message + vbNewLine)
