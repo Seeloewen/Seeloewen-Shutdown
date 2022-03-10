@@ -13,7 +13,57 @@ Public Class frmMain
     Dim CountDownFrom As TimeSpan
     Dim TimeDifference As TimeSpan
 
+
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'Load Design setting
+        If My.Settings.Design = "Dark" Then
+            BackColor = Color.FromArgb(41, 41, 41)
+            lblHeader.ForeColor = Color.White
+            lblVersion.ForeColor = Color.White
+            rbtnIn.ForeColor = Color.White
+            rbtnShutdown.ForeColor = Color.White
+            rbtnRestart.ForeColor = Color.White
+            rbtnPointInTime.ForeColor = Color.White
+            tbTime.BackColor = Color.Gray
+            tbTime.ForeColor = Color.White
+            lblSelectedAction.BackColor = Color.FromArgb(41, 41, 41)
+            lblSelectedTime.BackColor = Color.FromArgb(41, 41, 41)
+            btnStartAction.BackColor = Color.FromArgb(41, 41, 41)
+            _SelectedAction.BackColor = Color.FromArgb(41, 41, 41)
+            _SelectedTime.BackColor = Color.FromArgb(41, 41, 41)
+            lblSelectedAction.ForeColor = Color.White
+            lblSelectedTime.ForeColor = Color.White
+            _SelectedAction.ForeColor = Color.White
+            _SelectedTime.ForeColor = Color.White
+            lblAction.ForeColor = Color.White
+            lblTime.ForeColor = Color.White
+            gbLastAction.ForeColor = Color.White
+            lblLastAction.ForeColor = Color.White
+            _LastAction.ForeColor = Color.White
+            lblLastTime.ForeColor = Color.White
+            _LastTime.ForeColor = Color.White
+            lblExecutedOn.ForeColor = Color.White
+            _ExecutedOn.ForeColor = Color.White
+            lblScheduledAction.BackColor = Color.FromArgb(25, 25, 25)
+            lblScheduledTime.BackColor = Color.FromArgb(25, 25, 25)
+            lblTimeRemaining.BackColor = Color.FromArgb(25, 25, 25)
+            _RunningAction.BackColor = Color.FromArgb(25, 25, 25)
+            _RunningTime.BackColor = Color.FromArgb(25, 25, 25)
+            _TimeRemaining.BackColor = Color.FromArgb(25, 25, 25)
+            lblScheduledAction.ForeColor = Color.White
+            lblScheduledTime.ForeColor = Color.White
+            lblTimeRemaining.ForeColor = Color.White
+            _RunningAction.ForeColor = Color.White
+            _RunningTime.ForeColor = Color.White
+            _TimeRemaining.ForeColor = Color.White
+            pbGrayBox.BackgroundImage = My.Resources.grayBox_dark
+            pbLine.BackgroundImage = My.Resources.Line_Dark
+            pbIcon.BackgroundImage = My.Resources.Icon_Dark
+            pbLine2.BackgroundImage = My.Resources.Line_Dark
+            pnlActionRunning.BackColor = Color.FromArgb(25, 25, 25)
+        End If
+        WriteToLog("Loaded Design from settings: " + My.Settings.Design, "Info")
+
         'Calculate time difference
         Try
             TimeDifference = DateTime.Now - Convert.ToDateTime(My.Settings.LastTime)
@@ -27,7 +77,6 @@ Public Class frmMain
             dtpSelectedTime.Value = Convert.ToDateTime(My.Settings.LastTime)
             SetupGrayBox()
             CallLastAction()
-            btnStartAction.BackColor = Color.FromArgb(232, 232, 232)
             btnStartAction.Text = "Stop action"
             pbGrayBox.Top = 550
             GrayBoxNewY = 550
@@ -37,6 +86,11 @@ Public Class frmMain
             tmrGrayBoxAnimationUp.Enabled = True
             tmrPnlActionRunningAnimationUp.Enabled = True
             ActionRunning = True
+            If My.Settings.Design = "Dark" Then
+                btnStartAction.BackColor = Color.FromArgb(25, 25, 25)
+            ElseIf My.Settings.Design = "Light" Then
+                btnStartAction.BackColor = Color.FromArgb(232, 232, 232)
+            End If
             WriteToLog("Detected that an action is already running. Adjusting elements for action.", "Info")
         End If
 
@@ -71,20 +125,6 @@ Public Class frmMain
             fs.Close()
             WriteToLog("Created file " + "'" + AppData + "/Seeloewen Shutdown/Show_Update_News_1.6.1" + "' so the update news don't appear again for this version (" + Version + ")", "Info")
         End If
-
-        'Load Design setting
-        If My.Settings.Design = "Dark" Then
-            BackColor = Color.FromArgb(41, 41, 41)
-            lblHeader.ForeColor = Color.White
-            lblVersion.ForeColor = Color.White
-            rbtnIn.ForeColor = Color.White
-            rbtnShutdown.ForeColor = Color.White
-            rbtnRestart.ForeColor = Color.White
-            rbtnPointInTime.ForeColor = Color.White
-            tbTime.BackColor = Color.Gray
-            tbTime.ForeColor = Color.White
-        End If
-        WriteToLog("Loaded Design from settings: " + My.Settings.Design, "Info")
 
         'Load DefaultAction setting
         If My.Settings.DefaultAction = "shutdown" Then
@@ -144,12 +184,30 @@ Public Class frmMain
     Private Sub btnStartAction_Click(sender As Object, e As EventArgs) Handles btnStartAction.Click
         If ActionRunning = False Then
             StartAction()
+
+            If My.Settings.Design = "Dark" Then
+                btnStartAction.BackColor = Color.FromArgb(25, 25, 25)
+            ElseIf My.Settings.Design = "Light" Then
+                btnStartAction.BackColor = Color.White
+            End If
+
         ElseIf ActionRunning = True Then
             RemoveLastAction()
             WriteToLog("Stopped action.", "Info")
             Process.Start("shutdown", "-a")
-            btnStartAction.BackColor = Color.White
-            btnStartAction.Text = "Start action"
+
+            If My.Settings.Design = "Dark" Then
+                btnStartAction.BackColor = Color.FromArgb(41, 41, 41)
+            ElseIf My.Settings.Design = "Light" Then
+                btnStartAction.BackColor = Color.White
+            End If
+
+            If My.Settings.Language = "German" Then
+                btnStartAction.Text = "Aktion starten"
+            ElseIf My.Settings.Language = "English" Then
+                btnStartAction.Text = "Start action"
+            End If
+
             pbGrayBox.Top = 347
             GrayBoxNewY = 347
             pnlActionRunning.Top = 350
@@ -470,7 +528,7 @@ Public Class frmMain
             Else
                 SetupGrayBox()
                 SetLastAction()
-                WriteToLog("Started action (ShutdownTimeType: " + ShutdownTimeType + ", Shutdowntime: " + Shutdowntime.Text + ", Action: " + Action.Text + ", type: PointInTime)", "Info")
+                WriteToLog("Started action (ShutdownTimetype: " + ShutdownTimeType + ", Shutdowntime: " + Shutdowntime.Text + ", Action: " + Action.Text + ", type: PointInTime)", "Info")
                 CallShutDown()
                 btnStartAction.BackColor = Color.FromArgb(232, 232, 232)
                 btnStartAction.Text = "Stop action"
@@ -523,11 +581,19 @@ Public Class frmMain
     End Sub
 
     Private Sub btnHamburger_MouseDown(sender As Object, e As MouseEventArgs) Handles btnHamburger.MouseDown
-        btnHamburger.BackgroundImage = My.Resources.btnHamburger_Click
+        If My.Settings.Design = "Dark" Then
+            btnHamburger.BackgroundImage = My.Resources.btnHamburger_Click_Dark
+        ElseIf My.Settings.Design = "Light" Then
+            btnHamburger.BackgroundImage = My.Resources.btnHamburger_Click
+        End If
     End Sub
 
     Private Sub btnHamburger_MouseHover(sender As Object, e As EventArgs) Handles btnHamburger.MouseHover
-        btnHamburger.BackgroundImage = My.Resources.btnHamburger_Hover
+        If My.Settings.Design = "Dark" Then
+            btnHamburger.BackgroundImage = My.Resources.btnHamburger_Hover_Dark
+        ElseIf My.Settings.Design = "Light" Then
+            btnHamburger.BackgroundImage = My.Resources.btnHamburger_Hover
+        End If
     End Sub
 
     Private Sub btnHamburger_MouseLeave(sender As Object, e As EventArgs) Handles btnHamburger.MouseLeave

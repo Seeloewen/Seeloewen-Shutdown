@@ -36,7 +36,6 @@ Partial Class frmMain
         Me.Shutdowntime = New System.Windows.Forms.Label()
         Me.Finaloutput = New System.Windows.Forms.Label()
         Me.Quotationmark = New System.Windows.Forms.Label()
-        Me.btnStartAction = New System.Windows.Forms.Button()
         Me.gbLastAction = New System.Windows.Forms.GroupBox()
         Me._ExecutedOn = New System.Windows.Forms.Label()
         Me.lblExecutedOn = New System.Windows.Forms.Label()
@@ -54,7 +53,7 @@ Partial Class frmMain
         Me.lblVersion = New System.Windows.Forms.Label()
         Me.lblHeader = New System.Windows.Forms.Label()
         Me.pbGrayBox = New System.Windows.Forms.PictureBox()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.pbLine2 = New System.Windows.Forms.PictureBox()
         Me.tmrGrayBoxAnimationUp = New System.Windows.Forms.Timer(Me.components)
         Me.tmrGrayBoxAnimationDown = New System.Windows.Forms.Timer(Me.components)
         Me.lblSelectedAction = New System.Windows.Forms.Label()
@@ -76,13 +75,14 @@ Partial Class frmMain
         Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem()
         Me.dtpSelectedTime = New System.Windows.Forms.DateTimePicker()
         Me.tmrShutdown = New System.Windows.Forms.Timer(Me.components)
+        Me.btnStartAction = New System.Windows.Forms.Button()
         Me.gbLastAction.SuspendLayout()
         CType(Me.pbLine, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlTime.SuspendLayout()
         Me.pnlAction.SuspendLayout()
         CType(Me.pbIcon, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbGrayBox, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pbLine2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlActionRunning.SuspendLayout()
         Me.cmsHamburgerButton.SuspendLayout()
         Me.SuspendLayout()
@@ -214,24 +214,6 @@ Partial Class frmMain
         Me.Quotationmark.TabIndex = 12
         Me.Quotationmark.Text = """"
         '
-        'btnStartAction
-        '
-        Me.btnStartAction.BackColor = System.Drawing.Color.White
-        Me.btnStartAction.BackgroundImage = CType(resources.GetObject("btnStartAction.BackgroundImage"), System.Drawing.Image)
-        Me.btnStartAction.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnStartAction.FlatAppearance.BorderSize = 0
-        Me.btnStartAction.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
-        Me.btnStartAction.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
-        Me.btnStartAction.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnStartAction.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnStartAction.ForeColor = System.Drawing.Color.White
-        Me.btnStartAction.Location = New System.Drawing.Point(433, 364)
-        Me.btnStartAction.Name = "btnStartAction"
-        Me.btnStartAction.Size = New System.Drawing.Size(166, 58)
-        Me.btnStartAction.TabIndex = 5
-        Me.btnStartAction.Text = "Start action"
-        Me.btnStartAction.UseVisualStyleBackColor = False
-        '
         'gbLastAction
         '
         Me.gbLastAction.Controls.Add(Me._ExecutedOn)
@@ -321,7 +303,7 @@ Partial Class frmMain
         '
         'pbLine
         '
-        Me.pbLine.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.Line
+        Me.pbLine.BackgroundImage = CType(resources.GetObject("pbLine.BackgroundImage"), System.Drawing.Image)
         Me.pbLine.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.pbLine.Location = New System.Drawing.Point(7, 57)
         Me.pbLine.Name = "pbLine"
@@ -372,7 +354,7 @@ Partial Class frmMain
         '
         'pbIcon
         '
-        Me.pbIcon.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.Icon1
+        Me.pbIcon.BackgroundImage = CType(resources.GetObject("pbIcon.BackgroundImage"), System.Drawing.Image)
         Me.pbIcon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.pbIcon.Location = New System.Drawing.Point(24, 2)
         Me.pbIcon.Name = "pbIcon"
@@ -412,15 +394,15 @@ Partial Class frmMain
         Me.pbGrayBox.TabStop = False
         Me.pbGrayBox.Visible = False
         '
-        'PictureBox1
+        'pbLine2
         '
-        Me.PictureBox1.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.Line
-        Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.PictureBox1.Location = New System.Drawing.Point(7, 331)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(617, 10)
-        Me.PictureBox1.TabIndex = 27
-        Me.PictureBox1.TabStop = False
+        Me.pbLine2.BackgroundImage = CType(resources.GetObject("pbLine2.BackgroundImage"), System.Drawing.Image)
+        Me.pbLine2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.pbLine2.Location = New System.Drawing.Point(7, 331)
+        Me.pbLine2.Name = "pbLine2"
+        Me.pbLine2.Size = New System.Drawing.Size(617, 10)
+        Me.pbLine2.TabIndex = 27
+        Me.pbLine2.TabStop = False
         '
         'tmrGrayBoxAnimationUp
         '
@@ -605,6 +587,23 @@ Partial Class frmMain
         'tmrShutdown
         '
         '
+        'btnStartAction
+        '
+        Me.btnStartAction.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
+        Me.btnStartAction.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnStartAction.FlatAppearance.BorderSize = 0
+        Me.btnStartAction.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.btnStartAction.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.btnStartAction.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnStartAction.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnStartAction.ForeColor = System.Drawing.Color.White
+        Me.btnStartAction.Location = New System.Drawing.Point(433, 363)
+        Me.btnStartAction.Name = "btnStartAction"
+        Me.btnStartAction.Size = New System.Drawing.Size(162, 59)
+        Me.btnStartAction.TabIndex = 43
+        Me.btnStartAction.Text = "Start Action"
+        Me.btnStartAction.UseVisualStyleBackColor = True
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -634,7 +633,7 @@ Partial Class frmMain
         Me.Controls.Add(Me.Action)
         Me.Controls.Add(Me.currentDateTime)
         Me.Controls.Add(Me.pbGrayBox)
-        Me.Controls.Add(Me.PictureBox1)
+        Me.Controls.Add(Me.pbLine2)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
@@ -651,7 +650,7 @@ Partial Class frmMain
         Me.pnlAction.PerformLayout()
         CType(Me.pbIcon, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pbGrayBox, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pbLine2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlActionRunning.ResumeLayout(False)
         Me.pnlActionRunning.PerformLayout()
         Me.cmsHamburgerButton.ResumeLayout(False)
@@ -663,7 +662,6 @@ Partial Class frmMain
     Friend WithEvents rbtnShutdown As RadioButton
     Friend WithEvents dtpDate As DateTimePicker
     Friend WithEvents tbTime As TextBox
-    Friend WithEvents btnStartAction As Button
     Friend WithEvents currentDateTime As DateTimePicker
     Friend WithEvents Action As Label
     Friend WithEvents Shutdowntime As Label
@@ -689,7 +687,7 @@ Partial Class frmMain
     Friend WithEvents lblVersion As Label
     Friend WithEvents lblHeader As Label
     Friend WithEvents pbGrayBox As PictureBox
-    Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents pbLine2 As PictureBox
     Friend WithEvents tmrGrayBoxAnimationUp As Timer
     Friend WithEvents tmrGrayBoxAnimationDown As Timer
     Friend WithEvents lblSelectedAction As Label
@@ -711,4 +709,5 @@ Partial Class frmMain
     Friend WithEvents _TimeRemaining As Label
     Friend WithEvents lblTimeRemaining As Label
     Friend WithEvents tmrShutdown As Timer
+    Friend WithEvents btnStartAction As Button
 End Class
