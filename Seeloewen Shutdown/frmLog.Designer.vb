@@ -29,6 +29,7 @@ Partial Class frmLog
         Me.btnClose = New System.Windows.Forms.Button()
         Me.rtbLog = New System.Windows.Forms.RichTextBox()
         Me.gbLog = New System.Windows.Forms.GroupBox()
+        Me.sfdLog = New System.Windows.Forms.SaveFileDialog()
         Me.gbLog.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -89,6 +90,12 @@ Partial Class frmLog
         Me.gbLog.TabIndex = 6
         Me.gbLog.TabStop = False
         '
+        'sfdLog
+        '
+        Me.sfdLog.DefaultExt = "txt"
+        Me.sfdLog.FileName = "Seeloewen_Shutdown_Log"
+        Me.sfdLog.Title = "Log als Datei speichern..."
+        '
         'frmLog
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -118,4 +125,5 @@ Partial Class frmLog
     Friend WithEvents btnClose As Button
     Friend WithEvents rtbLog As RichTextBox
     Friend WithEvents gbLog As GroupBox
+    Friend WithEvents sfdLog As SaveFileDialog
 End Class
