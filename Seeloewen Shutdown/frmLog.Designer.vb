@@ -37,14 +37,22 @@ Partial Class frmLog
         '
         Me.lblHeader.AutoSize = True
         Me.lblHeader.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblHeader.Location = New System.Drawing.Point(12, 20)
+        Me.lblHeader.Location = New System.Drawing.Point(13, 20)
         Me.lblHeader.Name = "lblHeader"
-        Me.lblHeader.Size = New System.Drawing.Size(155, 25)
+        Me.lblHeader.Size = New System.Drawing.Size(127, 25)
         Me.lblHeader.TabIndex = 1
-        Me.lblHeader.Text = "Einstellungen"
+        Me.lblHeader.Text = "Debug-Log"
         '
         'btnSaveAsFile
         '
+        Me.btnSaveAsFile.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnSaveAsFile.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
+        Me.btnSaveAsFile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnSaveAsFile.FlatAppearance.BorderSize = 0
+        Me.btnSaveAsFile.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.btnSaveAsFile.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.btnSaveAsFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnSaveAsFile.ForeColor = System.Drawing.Color.White
         Me.btnSaveAsFile.Location = New System.Drawing.Point(300, 22)
         Me.btnSaveAsFile.Name = "btnSaveAsFile"
         Me.btnSaveAsFile.Size = New System.Drawing.Size(133, 27)
@@ -54,6 +62,14 @@ Partial Class frmLog
         '
         'btnClear
         '
+        Me.btnClear.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnClear.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
+        Me.btnClear.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnClear.FlatAppearance.BorderSize = 0
+        Me.btnClear.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.btnClear.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnClear.ForeColor = System.Drawing.Color.White
         Me.btnClear.Location = New System.Drawing.Point(439, 22)
         Me.btnClear.Name = "btnClear"
         Me.btnClear.Size = New System.Drawing.Size(133, 27)
@@ -63,6 +79,14 @@ Partial Class frmLog
         '
         'btnClose
         '
+        Me.btnClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnClose.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
+        Me.btnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnClose.FlatAppearance.BorderSize = 0
+        Me.btnClose.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnClose.ForeColor = System.Drawing.Color.White
         Me.btnClose.Location = New System.Drawing.Point(578, 22)
         Me.btnClose.Name = "btnClose"
         Me.btnClose.Size = New System.Drawing.Size(133, 27)
@@ -72,6 +96,9 @@ Partial Class frmLog
         '
         'rtbLog
         '
+        Me.rtbLog.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.rtbLog.BackColor = System.Drawing.Color.White
         Me.rtbLog.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.rtbLog.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -83,6 +110,9 @@ Partial Class frmLog
         '
         'gbLog
         '
+        Me.gbLog.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.gbLog.Controls.Add(Me.rtbLog)
         Me.gbLog.Location = New System.Drawing.Point(12, 61)
         Me.gbLog.Name = "gbLog"
@@ -108,8 +138,6 @@ Partial Class frmLog
         Me.Controls.Add(Me.btnSaveAsFile)
         Me.Controls.Add(Me.lblHeader)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.MaximizeBox = False
-        Me.MinimizeBox = False
         Me.Name = "frmLog"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Debug-Log"
