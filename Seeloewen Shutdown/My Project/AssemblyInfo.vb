@@ -12,7 +12,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("Schedule automatic restarts and shutdowns easily")>
 <Assembly: AssemblyCompany("")>
 <Assembly: AssemblyProduct("Seeloewen Shutdown")>
-<Assembly: AssemblyCopyright("Seeloewen (Louis)")>
+<Assembly: AssemblyCopyright("2022 Seeloewen (Louis)")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
@@ -31,6 +31,6 @@ Imports System.Runtime.InteropServices
 ' indem Sie "*" wie unten gezeigt eingeben:
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("1.6.1.0")>
-<Assembly: AssemblyFileVersion("1.6.1.0")>
+<Assembly: AssemblyVersion("1.7.0.0")>
+<Assembly: AssemblyFileVersion("1.7.0.0")>
 <Assembly: NeutralResourcesLanguage("de-DE")>
