@@ -49,9 +49,9 @@ Partial Class frmSettings
         Me.lblSettings.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblSettings.Location = New System.Drawing.Point(13, 18)
         Me.lblSettings.Name = "lblSettings"
-        Me.lblSettings.Size = New System.Drawing.Size(155, 25)
+        Me.lblSettings.Size = New System.Drawing.Size(98, 25)
         Me.lblSettings.TabIndex = 0
-        Me.lblSettings.Text = "Einstellungen"
+        Me.lblSettings.Text = "Settings"
         '
         'gbDefaultSettings
         '
@@ -68,7 +68,7 @@ Partial Class frmSettings
         Me.gbDefaultSettings.Size = New System.Drawing.Size(406, 155)
         Me.gbDefaultSettings.TabIndex = 1
         Me.gbDefaultSettings.TabStop = False
-        Me.gbDefaultSettings.Text = "Standart-Einstellungen"
+        Me.gbDefaultSettings.Text = "Default settings"
         '
         'rbtnRestart
         '
@@ -77,10 +77,10 @@ Partial Class frmSettings
         Me.rbtnRestart.ForeColor = System.Drawing.Color.Black
         Me.rbtnRestart.Location = New System.Drawing.Point(15, 76)
         Me.rbtnRestart.Name = "rbtnRestart"
-        Me.rbtnRestart.Size = New System.Drawing.Size(90, 20)
+        Me.rbtnRestart.Size = New System.Drawing.Size(68, 20)
         Me.rbtnRestart.TabIndex = 12
         Me.rbtnRestart.TabStop = True
-        Me.rbtnRestart.Text = "Neustarten"
+        Me.rbtnRestart.Text = "Restart"
         Me.rbtnRestart.UseVisualStyleBackColor = True
         '
         'rbtnShutdown
@@ -90,10 +90,10 @@ Partial Class frmSettings
         Me.rbtnShutdown.ForeColor = System.Drawing.Color.Black
         Me.rbtnShutdown.Location = New System.Drawing.Point(15, 50)
         Me.rbtnShutdown.Name = "rbtnShutdown"
-        Me.rbtnShutdown.Size = New System.Drawing.Size(113, 20)
+        Me.rbtnShutdown.Size = New System.Drawing.Size(83, 20)
         Me.rbtnShutdown.TabIndex = 11
         Me.rbtnShutdown.TabStop = True
-        Me.rbtnShutdown.Text = "Herunterfahren"
+        Me.rbtnShutdown.Text = "Shutdown"
         Me.rbtnShutdown.UseVisualStyleBackColor = True
         '
         'cbxDefaultIn
@@ -101,7 +101,7 @@ Partial Class frmSettings
         Me.cbxDefaultIn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbxDefaultIn.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbxDefaultIn.FormattingEnabled = True
-        Me.cbxDefaultIn.Items.AddRange(New Object() {"Sekunde(n)", "Minute(n)", "Stunde(n)"})
+        Me.cbxDefaultIn.Items.AddRange(New Object() {"Second(s)", "Minute(s)", "Hour(s)"})
         Me.cbxDefaultIn.Location = New System.Drawing.Point(257, 108)
         Me.cbxDefaultIn.Name = "cbxDefaultIn"
         Me.cbxDefaultIn.Size = New System.Drawing.Size(137, 21)
@@ -115,7 +115,7 @@ Partial Class frmSettings
         Me.lblDefaultAction.Name = "lblDefaultAction"
         Me.lblDefaultAction.Size = New System.Drawing.Size(54, 20)
         Me.lblDefaultAction.TabIndex = 7
-        Me.lblDefaultAction.Text = "Aktion"
+        Me.lblDefaultAction.Text = "Action"
         '
         'tbDefaultTime
         '
@@ -132,9 +132,9 @@ Partial Class frmSettings
         Me.lblDefaultTime.ForeColor = System.Drawing.Color.Black
         Me.lblDefaultTime.Location = New System.Drawing.Point(12, 108)
         Me.lblDefaultTime.Name = "lblDefaultTime"
-        Me.lblDefaultTime.Size = New System.Drawing.Size(111, 20)
+        Me.lblDefaultTime.Size = New System.Drawing.Size(95, 20)
         Me.lblDefaultTime.TabIndex = 2
-        Me.lblDefaultTime.Text = "Ausführen in..."
+        Me.lblDefaultTime.Text = "Execute in..."
         '
         'btnClose
         '
@@ -150,7 +150,7 @@ Partial Class frmSettings
         Me.btnClose.Name = "btnClose"
         Me.btnClose.Size = New System.Drawing.Size(128, 27)
         Me.btnClose.TabIndex = 4
-        Me.btnClose.Text = "Schließen"
+        Me.btnClose.Text = "Close"
         Me.btnClose.UseVisualStyleBackColor = True
         '
         'gbAppSettings
@@ -166,17 +166,17 @@ Partial Class frmSettings
         Me.gbAppSettings.Size = New System.Drawing.Size(406, 87)
         Me.gbAppSettings.TabIndex = 5
         Me.gbAppSettings.TabStop = False
-        Me.gbAppSettings.Text = "App-Einstellungen"
+        Me.gbAppSettings.Text = "App settings"
         '
         'cbxDesign
         '
         Me.cbxDesign.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbxDesign.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbxDesign.FormattingEnabled = True
-        Me.cbxDesign.Items.AddRange(New Object() {"Hell", "Dunkel"})
-        Me.cbxDesign.Location = New System.Drawing.Point(90, 50)
+        Me.cbxDesign.Items.AddRange(New Object() {"Light", "Dark"})
+        Me.cbxDesign.Location = New System.Drawing.Point(96, 50)
         Me.cbxDesign.Name = "cbxDesign"
-        Me.cbxDesign.Size = New System.Drawing.Size(304, 21)
+        Me.cbxDesign.Size = New System.Drawing.Size(298, 21)
         Me.cbxDesign.TabIndex = 7
         '
         'cbxLanguage
@@ -185,9 +185,9 @@ Partial Class frmSettings
         Me.cbxLanguage.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbxLanguage.FormattingEnabled = True
         Me.cbxLanguage.Items.AddRange(New Object() {"Deutsch (German)", "English (English)"})
-        Me.cbxLanguage.Location = New System.Drawing.Point(90, 25)
+        Me.cbxLanguage.Location = New System.Drawing.Point(96, 25)
         Me.cbxLanguage.Name = "cbxLanguage"
-        Me.cbxLanguage.Size = New System.Drawing.Size(304, 21)
+        Me.cbxLanguage.Size = New System.Drawing.Size(298, 21)
         Me.cbxLanguage.TabIndex = 6
         '
         'lblDesign
@@ -206,9 +206,9 @@ Partial Class frmSettings
         Me.lblLanguage.ForeColor = System.Drawing.SystemColors.ControlText
         Me.lblLanguage.Location = New System.Drawing.Point(11, 26)
         Me.lblLanguage.Name = "lblLanguage"
-        Me.lblLanguage.Size = New System.Drawing.Size(73, 20)
+        Me.lblLanguage.Size = New System.Drawing.Size(85, 20)
         Me.lblLanguage.TabIndex = 4
-        Me.lblLanguage.Text = "Sprache:"
+        Me.lblLanguage.Text = "Language:"
         '
         'btnSave
         '
@@ -224,7 +224,7 @@ Partial Class frmSettings
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(128, 27)
         Me.btnSave.TabIndex = 3
-        Me.btnSave.Text = "Speichern"
+        Me.btnSave.Text = "Save"
         Me.btnSave.UseVisualStyleBackColor = True
         '
         'btnLog

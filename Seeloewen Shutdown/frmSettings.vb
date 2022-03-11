@@ -1,44 +1,41 @@
 ﻿Imports System.Environment
-Imports System.IO
-Imports System.Net
+
 Public Class frmSettings
-    Dim currentversion As String = "1.6.0"
-    Dim newestversion As String
     Dim AppData As String = GetFolderPath(SpecialFolder.ApplicationData)
 
     Private Sub frmSettings_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         'Translations
-        If My.Settings.Language = "English" Then
+        If My.Settings.Language = "German" Then
 
             'Initialize comboboxes if language English is selected
-            cbxDefaultIn.Items.Remove("Sekunde(n)")
-            cbxDefaultIn.Items.Remove("Minute(n)")
-            cbxDefaultIn.Items.Remove("Stunde(n)")
-            cbxDefaultIn.Items.Add("Second(s)")
-            cbxDefaultIn.Items.Add("Minute(s)")
-            cbxDefaultIn.Items.Add("Hour(s)")
-            cbxDesign.Items.Remove("Hell")
-            cbxDesign.Items.Remove("Dunkel")
-            cbxDesign.Items.Add("Light")
-            cbxDesign.Items.Add("Dark")
-            cbxLanguage.SelectedItem = "English (English)"
+            cbxDefaultIn.Items.Add("Sekunde(n)")
+            cbxDefaultIn.Items.Add("Minute(n)")
+            cbxDefaultIn.Items.Add("Stunde(n)")
+            cbxDefaultIn.Items.Remove("Second(s)")
+            cbxDefaultIn.Items.Remove("Minute(s)")
+            cbxDefaultIn.Items.Remove("Hour(s)")
+            cbxDesign.Items.Add("Hell")
+            cbxDesign.Items.Add("Dunkel")
+            cbxDesign.Items.Remove("Light")
+            cbxDesign.Items.Remove("Dark")
+            cbxLanguage.SelectedItem = "Deutsch (German)"
 
             'Change text to english translation
-            Text = "Settings"
-            lblSettings.Text = "Settings"
-            gbDefaultSettings.Text = "Default settings"
-            gbAppSettings.Text = "App settings"
-            rbtnShutdown.Text = "Shutdown"
-            rbtnRestart.Text = "Restart"
-            lblDefaultAction.Text = "Action"
-            lblDefaultTime.Text = "Execute in..."
-            lblLanguage.Text = "Language:"
-            btnSave.Text = "Save"
-            btnClose.Text = "Close"
+            Text = "Einstellungen"
+            lblSettings.Text = "Einstellungen"
+            gbDefaultSettings.Text = "Standart-Einstellungen"
+            gbAppSettings.Text = "App-Einstellungen"
+            rbtnShutdown.Text = "Herunterfahren"
+            rbtnRestart.Text = "Neustarten"
+            lblDefaultAction.Text = "Aktion"
+            lblDefaultTime.Text = "Ausführen in..."
+            lblLanguage.Text = "Sprache:"
+            btnSave.Text = "Speichern"
+            btnClose.Text = "Schließen"
 
-        ElseIf My.Settings.Language = "German" Then
-            cbxLanguage.SelectedItem = "Deutsch (German)"
+        ElseIf My.Settings.Language = "English" Then
+            cbxLanguage.SelectedItem = "English (English)"
         End If
 
         If My.Settings.Design = "Light" Then
@@ -228,5 +225,21 @@ Public Class frmSettings
 
     Private Sub btnLog_Click(sender As Object, e As EventArgs) Handles btnLog.Click
         frmLog.Show()
+    End Sub
+
+    Private Sub btnLog_MouseDown(sender As Object, e As MouseEventArgs) Handles btnLog.MouseDown
+        btnLog.BackgroundImage = My.Resources.button_click
+    End Sub
+
+    Private Sub btnLog_MouseHover(sender As Object, e As EventArgs) Handles btnLog.MouseHover
+        btnLog.BackgroundImage = My.Resources.button_hover
+    End Sub
+
+    Private Sub btnLog_MouseLeave(sender As Object, e As EventArgs) Handles btnLog.MouseLeave
+        btnLog.BackgroundImage = My.Resources.button
+    End Sub
+
+    Private Sub btnLog_MouseUp(sender As Object, e As MouseEventArgs) Handles btnLog.MouseUp
+        btnLog.BackgroundImage = My.Resources.button
     End Sub
 End Class
