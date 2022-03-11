@@ -48,9 +48,9 @@ Partial Class frmChangelog
         Me.lblChangelogDescription.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblChangelogDescription.Location = New System.Drawing.Point(15, 34)
         Me.lblChangelogDescription.Name = "lblChangelogDescription"
-        Me.lblChangelogDescription.Size = New System.Drawing.Size(483, 16)
+        Me.lblChangelogDescription.Size = New System.Drawing.Size(377, 16)
         Me.lblChangelogDescription.TabIndex = 2
-        Me.lblChangelogDescription.Text = "Im Changelog können die Neuigkeiten von Versionen einfach abgerufen werden."
+        Me.lblChangelogDescription.Text = "In the changelog you can easily find news for different versions."
         '
         'btnClose
         '
@@ -66,7 +66,7 @@ Partial Class frmChangelog
         '
         Me.rtbChangelog.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.rtbChangelog.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.rtbChangelog.Location = New System.Drawing.Point(6, 11)
+        Me.rtbChangelog.Location = New System.Drawing.Point(18, 462)
         Me.rtbChangelog.Name = "rtbChangelog"
         Me.rtbChangelog.Size = New System.Drawing.Size(473, 258)
         Me.rtbChangelog.TabIndex = 5
@@ -74,7 +74,7 @@ Partial Class frmChangelog
         '
         'gbChangelog
         '
-        Me.gbChangelog.Controls.Add(Me.rtbChangelog)
+        Me.gbChangelog.Controls.Add(Me.rtbchangelogEnglish)
         Me.gbChangelog.Location = New System.Drawing.Point(18, 53)
         Me.gbChangelog.Name = "gbChangelog"
         Me.gbChangelog.Size = New System.Drawing.Size(485, 276)
@@ -83,9 +83,13 @@ Partial Class frmChangelog
         '
         'rtbchangelogEnglish
         '
-        Me.rtbchangelogEnglish.Location = New System.Drawing.Point(396, 411)
+        Me.rtbchangelogEnglish.BackColor = System.Drawing.Color.White
+        Me.rtbchangelogEnglish.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.rtbchangelogEnglish.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.rtbchangelogEnglish.Location = New System.Drawing.Point(6, 13)
         Me.rtbchangelogEnglish.Name = "rtbchangelogEnglish"
-        Me.rtbchangelogEnglish.Size = New System.Drawing.Size(107, 33)
+        Me.rtbchangelogEnglish.ReadOnly = True
+        Me.rtbchangelogEnglish.Size = New System.Drawing.Size(473, 257)
         Me.rtbchangelogEnglish.TabIndex = 7
         Me.rtbchangelogEnglish.Text = resources.GetString("rtbchangelogEnglish.Text")
         '
@@ -96,8 +100,8 @@ Partial Class frmChangelog
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.CancelButton = Me.btnClose
-        Me.ClientSize = New System.Drawing.Size(518, 341)
-        Me.Controls.Add(Me.rtbchangelogEnglish)
+        Me.ClientSize = New System.Drawing.Size(518, 340)
+        Me.Controls.Add(Me.rtbChangelog)
         Me.Controls.Add(Me.gbChangelog)
         Me.Controls.Add(Me.btnClose)
         Me.Controls.Add(Me.lblChangelogDescription)
