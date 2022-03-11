@@ -37,7 +37,17 @@ Seeloewen Shutdown
   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
 </summary>
 </member>
+<member name="P:Seeloewen_Shutdown.My.Resources.Resources.btnHamburger_Click_Dark">
+<summary>
+  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+</summary>
+</member>
 <member name="P:Seeloewen_Shutdown.My.Resources.Resources.btnHamburger_Hover">
+<summary>
+  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:Seeloewen_Shutdown.My.Resources.Resources.btnHamburger_Hover_Dark">
 <summary>
   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
 </summary>
@@ -67,9 +77,19 @@ Seeloewen Shutdown
   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
 </summary>
 </member>
+<member name="P:Seeloewen_Shutdown.My.Resources.Resources.grayBox_dark">
+<summary>
+  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+</summary>
+</member>
 <member name="P:Seeloewen_Shutdown.My.Resources.Resources.Icon">
 <summary>
   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Icon ähnlich wie (Symbol).
+</summary>
+</member>
+<member name="P:Seeloewen_Shutdown.My.Resources.Resources.Icon_Dark">
+<summary>
+  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
 </summary>
 </member>
 <member name="P:Seeloewen_Shutdown.My.Resources.Resources.Icon1">
@@ -78,6 +98,11 @@ Seeloewen Shutdown
 </summary>
 </member>
 <member name="P:Seeloewen_Shutdown.My.Resources.Resources.Line">
+<summary>
+  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:Seeloewen_Shutdown.My.Resources.Resources.Line_Dark">
 <summary>
   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
 </summary>
