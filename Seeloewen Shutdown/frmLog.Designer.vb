@@ -57,7 +57,7 @@ Partial Class frmLog
         Me.btnSaveAsFile.Name = "btnSaveAsFile"
         Me.btnSaveAsFile.Size = New System.Drawing.Size(133, 27)
         Me.btnSaveAsFile.TabIndex = 2
-        Me.btnSaveAsFile.Text = "Als Datei speichern"
+        Me.btnSaveAsFile.Text = "Save as file"
         Me.btnSaveAsFile.UseVisualStyleBackColor = True
         '
         'btnClear
@@ -74,7 +74,7 @@ Partial Class frmLog
         Me.btnClear.Name = "btnClear"
         Me.btnClear.Size = New System.Drawing.Size(133, 27)
         Me.btnClear.TabIndex = 3
-        Me.btnClear.Text = "Leeren"
+        Me.btnClear.Text = "Clear"
         Me.btnClear.UseVisualStyleBackColor = True
         '
         'btnClose
@@ -91,7 +91,7 @@ Partial Class frmLog
         Me.btnClose.Name = "btnClose"
         Me.btnClose.Size = New System.Drawing.Size(133, 27)
         Me.btnClose.TabIndex = 4
-        Me.btnClose.Text = "Schließen"
+        Me.btnClose.Text = "Close"
         Me.btnClose.UseVisualStyleBackColor = True
         '
         'rtbLog
@@ -124,7 +124,7 @@ Partial Class frmLog
         '
         Me.sfdLog.DefaultExt = "txt"
         Me.sfdLog.FileName = "Seeloewen_Shutdown_Log"
-        Me.sfdLog.Title = "Log als Datei speichern..."
+        Me.sfdLog.Title = "Save log as file..."
         '
         'frmLog
         '

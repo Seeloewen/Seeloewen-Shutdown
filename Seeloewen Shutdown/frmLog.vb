@@ -63,4 +63,20 @@
     Private Sub btnClose_MouseUp(sender As Object, e As MouseEventArgs) Handles btnClose.MouseUp
         btnClose.BackgroundImage = My.Resources.button
     End Sub
+
+    Private Sub frmLog_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        If My.Settings.Design = "Dark" Then
+            BackColor = Color.FromArgb(41, 41, 41)
+            lblHeader.ForeColor = Color.White
+            rtbLog.ForeColor = Color.White
+            rtbLog.BackColor = Color.FromArgb(41, 41, 41)
+        End If
+
+        If My.Settings.Language = "German" Then
+            sfdLog.Title = "Speichere Log als Datei..."
+            btnSaveAsFile.Text = "Als Datei speichern"
+            btnClear.Text = "Leeren"
+            btnClose.Text = "Schließen"
+        End If
+    End Sub
 End Class
