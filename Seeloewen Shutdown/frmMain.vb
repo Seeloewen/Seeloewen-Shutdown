@@ -15,6 +15,50 @@ Public Class frmMain
 
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'Translate all elements and load Language Setting
+        If My.Settings.Language = "English" OrElse My.Settings.Language = "German" Then
+        Else frmFirstStart.ShowDialog()
+        End If
+
+        If My.Settings.Language = "German" Then
+            If My.Settings.LastActionDisplay = "Restart" Then
+                My.Settings.LastActionDisplay = "Neustarten"
+            ElseIf My.Settings.LastActionDisplay = "Shutdown" Then
+                My.Settings.LastActionDisplay = "Herunterfahren"
+            End If
+
+            lblAction.Text = "Aktion                                        "
+            lblTime.Text = "Zeit                                            "
+            rbtnShutdown.Text = "Herunterfahren"
+            rbtnRestart.Text = "Neustarten"
+            rbtnPointInTime.Text = "Zeitpunkt"
+            ToolStripMenuItem1.Text = "Einstellungen"
+            ToolStripMenuItem2.Text = "Changelog"
+            ToolStripMenuItem3.Text = "Über"
+            lblSelectedAction.Text = "Gewählte Aktion:"
+            lblSelectedTime.Text = "Gewählte Zeit:"
+            lblScheduledAction.Text = "Geplante Aktion:"
+            lblScheduledTime.Text = "Geplante Zeit:"
+            lblTimeRemaining.Text = "Verbleibende Zeit:"
+            gbLastAction.Text = "Letzte Aktion"
+            lblLastAction.Text = "Aktion:"
+            lblLastTime.Text = "Zeit:"
+            lblExecutedOn.Text = "Ausgeführt am:"
+            cbxIn.Items.Remove("Second(s)")
+            cbxIn.Items.Remove("Minute(s)")
+            cbxIn.Items.Remove("Hour(s)")
+            cbxIn.Items.Add("Sekunde(n)")
+            cbxIn.Items.Add("Minute(n)")
+            cbxIn.Items.Add("Stunde(n)")
+        ElseIf My.Settings.Language = "English" Then
+            If My.Settings.LastActionDisplay = "Neustarten" Then
+                My.Settings.LastActionDisplay = "Restart"
+            ElseIf My.Settings.LastActionDisplay = "Herunterfahren" Then
+                My.Settings.LastActionDisplay = "Shutdown"
+            End If
+        End If
+        WriteToLog("Loaded Language from settings: " + My.Settings.Language, "Info")
+
         'Load Design setting
         If My.Settings.Design = "Dark" Then
             BackColor = Color.FromArgb(41, 41, 41)
@@ -77,7 +121,13 @@ Public Class frmMain
             dtpSelectedTime.Value = Convert.ToDateTime(My.Settings.LastTime)
             SetupGrayBox()
             CallLastAction()
-            btnStartAction.Text = "Stop action"
+
+            If My.Settings.Language = "English" Then
+                btnStartAction.Text = "Stop action"
+            ElseIf My.Settings.Language = "German" Then
+                btnStartAction.Text = "Aktion stoppen"
+            End If
+
             pbGrayBox.Top = 550
             GrayBoxNewY = 550
             pnlActionRunning.Top = 550
@@ -94,8 +144,8 @@ Public Class frmMain
             WriteToLog("Detected that an action is already running. Adjusting elements for action.", "Info")
         End If
 
-        'Load settings that should be displayed in the "Last Action" groupbox
-        _LastAction.Text = My.Settings.LastActionDisplay
+            'Load settings that should be displayed in the "Last Action" groupbox
+            _LastAction.Text = My.Settings.LastActionDisplay
         WriteToLog("Loaded LastActionDisplay from settings: " + My.Settings.LastActionDisplay, "Info")
         _LastTime.Text = My.Settings.LastTimeDisplay
         WriteToLog("Loaded LastTimeDisplay from settings: " + My.Settings.LastTimeDisplay, "Info")
@@ -103,8 +153,14 @@ Public Class frmMain
         WriteToLog("Loaded LastDateDisplay from settings: " + My.Settings.LastDateDisplay, "Info")
 
         'Reset UI elements to default
-        _SelectedAction.Text = "No action selected"
-        _SelectedTime.Text = "No time selected"
+        If My.Settings.Language = "English" Then
+            _SelectedAction.Text = "No action selected"
+            _SelectedTime.Text = "No time selected"
+        ElseIf My.Settings.Language = "German" Then
+            _SelectedAction.Text = "Keine Aktion gewählt"
+            _SelectedTime.Text = "Keine Zeit gewählt"
+        End If
+
         rbtnIn.Checked = True
         dtpDate.Enabled = False
         currentDateTime.Enabled = False
@@ -114,43 +170,35 @@ Public Class frmMain
         WriteToLog("Reset UI elements to default and loaded DefaultTime from settings: " + My.Settings.DefaultTime, "Info")
 
         'Show Update News if necessary
-        If My.Computer.FileSystem.FileExists(AppData + "/Seeloewen Shutdown/Show_Update_News_1.6.1") = False Then
+        If My.Computer.FileSystem.FileExists(AppData + "/Seeloewen Shutdown/Show_Update_News_" + Version) = False Then
             frmUpdateNews.ShowDialog()
             If My.Computer.FileSystem.DirectoryExists(AppData + "/Seeloewen Shutdown") = False Then
                 My.Computer.FileSystem.CreateDirectory(AppData + "/Seeloewen Shutdown")
                 WriteToLog("Created directory " + "'" + AppData + "/Seeloewen Shutdown" + "'", "Info")
             End If
 
-            Dim fs As FileStream = File.Create(AppData + "/Seeloewen Shutdown/Show_Update_News_1.6.1")
+            Dim fs As FileStream = File.Create(AppData + "/Seeloewen Shutdown/Show_Update_News_" + Version)
             fs.Close()
-            WriteToLog("Created file " + "'" + AppData + "/Seeloewen Shutdown/Show_Update_News_1.6.1" + "' so the update news don't appear again for this version (" + Version + ")", "Info")
+            WriteToLog("Created file " + "'" + AppData + "/Seeloewen Shutdown/Show_Update_News_" + Version + "' so the update news don't appear again for this version (" + Version + ")", "Info")
         End If
 
         'Load DefaultAction setting
         If My.Settings.DefaultAction = "shutdown" Then
             rbtnShutdown.Checked = True
-            _SelectedAction.Text = "Shutdown"
+            If My.Settings.Language = "English" Then
+                _SelectedAction.Text = "Shutdown"
+            ElseIf My.Settings.Language = "German" Then
+                _SelectedAction.Text = "Herunterfahren"
+            End If
         ElseIf My.Settings.DefaultAction = "restart" Then
             rbtnRestart.Checked = True
-            _SelectedAction.Text = "Restart"
+            If My.Settings.Language = "English" Then
+                _SelectedAction.Text = "Restart"
+            ElseIf My.Settings.Language = "German" Then
+                _SelectedAction.Text = "Neustarten"
+            End If
         End If
         WriteToLog("Loaded DefaultAction from settings: " + My.Settings.DefaultAction, "Info")
-
-        'Translate all elements and load Language Setting
-        If My.Settings.Language = "English" Then
-            rbtnShutdown.Text = "Shutdown"
-            rbtnRestart.Text = "Restart"
-            rbtnPointInTime.Text = "Exact time"
-            cbxIn.Items.Remove("Sekunde(n)")
-            cbxIn.Items.Remove("Minute(n)")
-            cbxIn.Items.Remove("Stunde(n)")
-            cbxIn.Items.Add("Second(s)")
-            cbxIn.Items.Add("Minute(s)")
-            cbxIn.Items.Add("Hour(s)")
-        ElseIf My.Settings.Language = "German" Then
-        Else frmFirstStart.ShowDialog()
-        End If
-        WriteToLog("Loaded Language from settings: " + My.Settings.Language, "Info")
 
         'This comment was made on 22.02.2022 and committed on 22.02.2022 22:22
 
@@ -188,7 +236,7 @@ Public Class frmMain
             If My.Settings.Design = "Dark" Then
                 btnStartAction.BackColor = Color.FromArgb(25, 25, 25)
             ElseIf My.Settings.Design = "Light" Then
-                btnStartAction.BackColor = Color.White
+                btnStartAction.BackColor = Color.FromArgb(232, 232, 232)
             End If
 
         ElseIf ActionRunning = True Then
@@ -223,7 +271,7 @@ Public Class frmMain
             frmLog.rtbLog.SelectionColor = Color.Red
             frmLog.rtbLog.AppendText("[" + DateTime.Now + "] " + "[ERROR] " + Message + vbNewLine)
         ElseIf Type = "Info" Then
-            frmLog.rtbLog.SelectionColor = Color.Blue
+            frmLog.rtbLog.SelectionColor = Color.FromArgb(50, 177, 205)
             frmLog.rtbLog.AppendText("[" + DateTime.Now + "] " + "[INFO] " + Message + vbNewLine)
         ElseIf Type = "Warning" Then
             frmLog.rtbLog.SelectionColor = Color.DarkOrange
@@ -270,11 +318,18 @@ Public Class frmMain
     End Sub
 
     Private Sub SetupGrayBox()
-
-        If rbtnShutdown.Checked Then
-            _RunningAction.Text = "Shutdown"
-        ElseIf rbtnRestart.Checked Then
-            _RunningAction.Text = "Restart"
+        If My.Settings.Language = "English" Then
+            If rbtnShutdown.Checked Then
+                _RunningAction.Text = "Shutdown"
+            ElseIf rbtnRestart.Checked Then
+                _RunningAction.Text = "Restart"
+            End If
+        ElseIf My.Settings.Language = "German" Then
+            If rbtnShutdown.Checked Then
+                _RunningAction.Text = "Herunterfahren"
+            ElseIf rbtnRestart.Checked Then
+                _RunningAction.Text = "Neustarten"
+            End If
         End If
 
         If rbtnIn.Checked Then
@@ -336,7 +391,11 @@ Public Class frmMain
             If String.IsNullOrEmpty(tbTime.Text) = False Then
                 _SelectedTime.Text = "In " + tbTime.Text + " " + cbxIn.Text
             Else
-                _SelectedTime.Text = "No time selected"
+                If My.Settings.Language = "English" Then
+                    _SelectedTime.Text = "No time selected"
+                ElseIf My.Settings.Language = "German" Then
+                    _SelectedTime.Text = "Keine Zeit gewählt"
+                End If
             End If
         ElseIf rbtnPointInTime.Checked = True Then
             _SelectedTime.Text = dtpDate.Text
@@ -353,7 +412,11 @@ Public Class frmMain
             If String.IsNullOrEmpty(tbTime.Text) = False Then
                 _SelectedTime.Text = "In " + tbTime.Text + " " + cbxIn.Text
             Else
-                _SelectedTime.Text = "No time selected"
+                If My.Settings.Language = "English" Then
+                    _SelectedTime.Text = "No time selected"
+                ElseIf My.Settings.Language = "German" Then
+                    _SelectedTime.Text = "Keine Zeit gewählt"
+                End If
             End If
         ElseIf rbtnPointInTime.Checked = True Then
             _SelectedTime.Text = dtpDate.Text
@@ -480,7 +543,13 @@ Public Class frmMain
                     CallShutDown()
                     WriteToLog("Started action (ShutdownTimeType: " + ShutdownTimeType + ", Shutdowntime: " + Shutdowntime.Text + ", Action: " + Action.Text + ", type: In...)", "Info")
                     btnStartAction.BackColor = Color.FromArgb(232, 232, 232)
-                    btnStartAction.Text = "Stop action"
+
+                    If My.Settings.Language = "English" Then
+                        btnStartAction.Text = "Stop action"
+                    ElseIf My.Settings.Language = "German" Then
+                        btnStartAction.Text = "Aktion stoppen"
+                    End If
+
                     pbGrayBox.Top = 550
                     GrayBoxNewY = 550
                     pnlActionRunning.Top = 550
@@ -531,7 +600,13 @@ Public Class frmMain
                 WriteToLog("Started action (ShutdownTimetype: " + ShutdownTimeType + ", Shutdowntime: " + Shutdowntime.Text + ", Action: " + Action.Text + ", type: PointInTime)", "Info")
                 CallShutDown()
                 btnStartAction.BackColor = Color.FromArgb(232, 232, 232)
-                btnStartAction.Text = "Stop action"
+
+                If My.Settings.Language = "English" Then
+                    btnStartAction.Text = "Stop action"
+                ElseIf My.Settings.Language = "German" Then
+                    btnStartAction.Text = "Aktion stoppen"
+                End If
+
                 pbGrayBox.Top = 550
                 GrayBoxNewY = 550
                 pnlActionRunning.Top = 550
@@ -541,7 +616,7 @@ Public Class frmMain
                 tmrPnlActionRunningAnimationUp.Enabled = True
                 ActionRunning = True
             End If
-        End If
+            End If
     End Sub
 
     Private Sub btnStartAction_MouseDown(sender As Object, e As MouseEventArgs) Handles btnStartAction.MouseDown
@@ -613,7 +688,19 @@ Public Class frmMain
     End Sub
 
     Private Sub rbtnRestart_CheckedChanged(sender As Object, e As EventArgs) Handles rbtnRestart.CheckedChanged
-
+        If rbtnShutdown.Checked = True Then
+            If My.Settings.Language = "English" Then
+                _SelectedAction.Text = "Shutdown"
+            ElseIf My.Settings.Language = "German" Then
+                _SelectedAction.Text = "Herunterfahren"
+            End If
+        ElseIf rbtnRestart.Checked = True Then
+                If My.Settings.Language = "English" Then
+                _SelectedAction.Text = "Restart"
+            ElseIf My.Settings.Language = "German" Then
+                _SelectedAction.Text = "Neustarten"
+            End If
+        End If
     End Sub
 
     Private Sub tbTime_TextChanged(sender As Object, e As EventArgs) Handles tbTime.TextChanged
@@ -621,7 +708,11 @@ Public Class frmMain
             If String.IsNullOrEmpty(tbTime.Text) = False Then
                 _SelectedTime.Text = "In " + tbTime.Text + " " + cbxIn.Text
             Else
-                _SelectedTime.Text = "No time selected"
+                If My.Settings.Language = "English" Then
+                    _SelectedTime.Text = "No time selected"
+                ElseIf My.Settings.Language = "German" Then
+                    _SelectedTime.Text = "Keine Zeit gewählt"
+                End If
             End If
         ElseIf rbtnPointInTime.Checked = True Then
             _SelectedTime.Text = dtpDate.Text
@@ -633,7 +724,11 @@ Public Class frmMain
             If String.IsNullOrEmpty(tbTime.Text) = False Then
                 _SelectedTime.Text = "In " + tbTime.Text + " " + cbxIn.Text
             Else
-                _SelectedTime.Text = "No time selected"
+                If My.Settings.Language = "English" Then
+                    _SelectedTime.Text = "No time selected"
+                ElseIf My.Settings.Language = "German" Then
+                    _SelectedTime.Text = "Keine Zeit gewählt"
+                End If
             End If
         ElseIf rbtnPointInTime.Checked = True Then
             _SelectedTime.Text = dtpDate.Text
@@ -645,14 +740,14 @@ Public Class frmMain
             If String.IsNullOrEmpty(tbTime.Text) = False Then
                 _SelectedTime.Text = "In " + tbTime.Text + " " + cbxIn.Text
             Else
-                _SelectedTime.Text = "No time selected"
+                If My.Settings.Language = "English" Then
+                    _SelectedTime.Text = "No time selected"
+                ElseIf My.Settings.Language = "German" Then
+                    _SelectedTime.Text = "Keine Zeit gewählt"
+                End If
             End If
         ElseIf rbtnPointInTime.Checked = True Then
             _SelectedTime.Text = dtpDate.Text
         End If
-    End Sub
-
-    Private Sub _LastTime_Click(sender As Object, e As EventArgs) Handles _LastTime.Click
-        MsgBox(My.Settings.LastTime)
     End Sub
 End Class

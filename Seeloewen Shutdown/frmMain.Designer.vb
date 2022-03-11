@@ -156,7 +156,7 @@ Partial Class frmMain
         Me.cbxIn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbxIn.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbxIn.FormattingEnabled = True
-        Me.cbxIn.Items.AddRange(New Object() {"Sekunde(n)", "Minute(n)", "Stunde(n)"})
+        Me.cbxIn.Items.AddRange(New Object() {"Second(s)", "Minute(s)", "Hour(s)"})
         Me.cbxIn.Location = New System.Drawing.Point(163, 5)
         Me.cbxIn.Name = "cbxIn"
         Me.cbxIn.Size = New System.Drawing.Size(132, 21)
@@ -461,7 +461,7 @@ Partial Class frmMain
         Me._RunningTime.AutoSize = True
         Me._RunningTime.BackColor = System.Drawing.Color.FromArgb(CType(CType(232, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(232, Byte), Integer))
         Me._RunningTime.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me._RunningTime.Location = New System.Drawing.Point(171, 38)
+        Me._RunningTime.Location = New System.Drawing.Point(188, 38)
         Me._RunningTime.Name = "_RunningTime"
         Me._RunningTime.Size = New System.Drawing.Size(155, 24)
         Me._RunningTime.TabIndex = 40
@@ -519,7 +519,7 @@ Partial Class frmMain
         Me._TimeRemaining.AutoSize = True
         Me._TimeRemaining.BackColor = System.Drawing.Color.FromArgb(CType(CType(232, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(232, Byte), Integer))
         Me._TimeRemaining.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me._TimeRemaining.Location = New System.Drawing.Point(171, 65)
+        Me._TimeRemaining.Location = New System.Drawing.Point(188, 65)
         Me._TimeRemaining.Name = "_TimeRemaining"
         Me._TimeRemaining.Size = New System.Drawing.Size(174, 24)
         Me._TimeRemaining.TabIndex = 42
@@ -609,7 +609,7 @@ Partial Class frmMain
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(634, 468)
+        Me.ClientSize = New System.Drawing.Size(634, 467)
         Me.Controls.Add(Me.btnStartAction)
         Me.Controls.Add(Me.dtpSelectedTime)
         Me.Controls.Add(Me.pnlActionRunning)
