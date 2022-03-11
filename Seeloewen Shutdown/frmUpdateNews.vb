@@ -25,15 +25,15 @@
     End Sub
 
     Private Sub frmUpdateNews_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        If My.Settings.Language = "English" Then
-            lblHeader.Text = "Version 1.6.1 - What's new?"
-            Text = "Seeloewen Shutdown has been installed!"
-            lblUpdaterHeader.Text = "The updater has been removed."
-            lblUpdater.Text = "Because of problems which I dont want" + vbNewLine + "to further talk about, the updater has been removed."
-            lblImprovementsHeader.Text = "Other improvements have also been made!"
-            lblImprovements.Text = "Besides the updater there are also other" + vbNewLine + "improvements, like design changes and bugfixes."
-            lblChangelog.Text = "An exact changelog can be found in"
-            btnOK.Text = "Got it!"
+        If My.Settings.Language = "German" Then
+            lblHeader.Text = "Version 1.7.0 - Was ist neu?"
+            Text = "Seeloewen Shutdown wurde installiert!"
+            lblUpdaterHeader.Text = "Ein neues Design"
+            lblUpdater.Text = "Die Software besitzt nun ein neues Design, um" + vbNewLine + "sie ansprechender, einfacher zu verstehen und leichter nutzbar" + vbNewLine + "zu machen"
+            lblImprovementsHeader.Text = "Einige Fehlerbehebungen und neue Funktionen"
+            lblImprovements.Text = "Die Software ist nun außerdem deutlich stabiler wegen Fehlerbehebungen." + vbNewLine + "Es gibt außerdem ein paar neue Funktionen wie beispielsweise Erkennung" + vbNewLine + "für laufende Aktionen. Zusätzlich wurde die Nachrichten-Funktion entfernt."
+            lblChangelog.Text = "Eine genaue Änderungsliste kann im                           gefunden werden"
+            btnOK.Text = "Alles Klar!"
         End If
 
         If My.Settings.Design = "Dark" Then

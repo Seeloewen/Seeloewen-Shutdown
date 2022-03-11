@@ -42,15 +42,15 @@ Partial Class frmUpdateNews
         Me.lblHeader.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblHeader.Location = New System.Drawing.Point(13, 13)
         Me.lblHeader.Name = "lblHeader"
-        Me.lblHeader.Size = New System.Drawing.Size(403, 29)
+        Me.lblHeader.Size = New System.Drawing.Size(332, 29)
         Me.lblHeader.TabIndex = 0
-        Me.lblHeader.Text = "Version 1.6.1 - Was gibt's Neues?"
+        Me.lblHeader.Text = "Version 1.7.0 - What's new?"
         '
         'pbUpdate
         '
         Me.pbUpdate.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.Update
         Me.pbUpdate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.pbUpdate.Location = New System.Drawing.Point(17, 69)
+        Me.pbUpdate.Location = New System.Drawing.Point(17, 79)
         Me.pbUpdate.Name = "pbUpdate"
         Me.pbUpdate.Size = New System.Drawing.Size(53, 54)
         Me.pbUpdate.TabIndex = 1
@@ -62,9 +62,9 @@ Partial Class frmUpdateNews
         Me.lblUpdaterHeader.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblUpdaterHeader.Location = New System.Drawing.Point(76, 69)
         Me.lblUpdaterHeader.Name = "lblUpdaterHeader"
-        Me.lblUpdaterHeader.Size = New System.Drawing.Size(277, 25)
+        Me.lblUpdaterHeader.Size = New System.Drawing.Size(141, 25)
         Me.lblUpdaterHeader.TabIndex = 2
-        Me.lblUpdaterHeader.Text = "Der Updater wurde entfernt."
+        Me.lblUpdaterHeader.Text = "A new design"
         '
         'lblUpdater
         '
@@ -72,27 +72,27 @@ Partial Class frmUpdateNews
         Me.lblUpdater.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblUpdater.Location = New System.Drawing.Point(77, 94)
         Me.lblUpdater.Name = "lblUpdater"
-        Me.lblUpdater.Size = New System.Drawing.Size(348, 40)
+        Me.lblUpdater.Size = New System.Drawing.Size(484, 40)
         Me.lblUpdater.TabIndex = 3
-        Me.lblUpdater.Text = "Aufgrund von Problemen, auf die ich nicht weiter" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "eingehen möchte, wurde der Upda" &
-    "ter entfernt." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        Me.lblUpdater.Text = "The software now features a new design to make it more appealing " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "and easier und" &
+    "erstandable and improve usability." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         '
         'lblChangelog
         '
         Me.lblChangelog.AutoSize = True
         Me.lblChangelog.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblChangelog.Location = New System.Drawing.Point(15, 173)
+        Me.lblChangelog.Location = New System.Drawing.Point(15, 303)
         Me.lblChangelog.Name = "lblChangelog"
-        Me.lblChangelog.Size = New System.Drawing.Size(408, 32)
+        Me.lblChangelog.Size = New System.Drawing.Size(218, 16)
         Me.lblChangelog.TabIndex = 7
-        Me.lblChangelog.Text = "Eine genaue Änderungsliste kann im                           gefunden werden" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        Me.lblChangelog.Text = "An exact changelog can be found in" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         '
         'llblChangelog
         '
         Me.llblChangelog.AutoSize = True
         Me.llblChangelog.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.llblChangelog.LinkColor = System.Drawing.Color.Cyan
-        Me.llblChangelog.Location = New System.Drawing.Point(240, 173)
+        Me.llblChangelog.Location = New System.Drawing.Point(240, 303)
         Me.llblChangelog.Name = "llblChangelog"
         Me.llblChangelog.Size = New System.Drawing.Size(73, 16)
         Me.llblChangelog.TabIndex = 8
@@ -109,11 +109,11 @@ Partial Class frmUpdateNews
         Me.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnOK.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnOK.ForeColor = System.Drawing.Color.White
-        Me.btnOK.Location = New System.Drawing.Point(429, 165)
+        Me.btnOK.Location = New System.Drawing.Point(488, 295)
         Me.btnOK.Name = "btnOK"
         Me.btnOK.Size = New System.Drawing.Size(117, 28)
         Me.btnOK.TabIndex = 9
-        Me.btnOK.Text = "Alles klar!"
+        Me.btnOK.Text = "Got it!"
         Me.btnOK.TextAlign = System.Drawing.ContentAlignment.TopCenter
         Me.btnOK.UseVisualStyleBackColor = True
         '
@@ -121,29 +121,30 @@ Partial Class frmUpdateNews
         '
         Me.lblImprovements.AutoSize = True
         Me.lblImprovements.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblImprovements.Location = New System.Drawing.Point(97, 387)
+        Me.lblImprovements.Location = New System.Drawing.Point(76, 196)
         Me.lblImprovements.Name = "lblImprovements"
-        Me.lblImprovements.Size = New System.Drawing.Size(411, 40)
+        Me.lblImprovements.Size = New System.Drawing.Size(516, 60)
         Me.lblImprovements.TabIndex = 12
-        Me.lblImprovements.Text = "Zusätzlich zum Updater wurden auch andere Feinschliffe" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "vorgenommen, wie Designve" &
-    "rbesserungen und Bugfixes."
+        Me.lblImprovements.Text = "The software is now much more stable due to bug fixes. There are also " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "some new " &
+    "features like auto detection for running actions. In addition to " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "that the mess" &
+    "age feature was removed."
         '
         'lblImprovementsHeader
         '
         Me.lblImprovementsHeader.AutoSize = True
         Me.lblImprovementsHeader.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblImprovementsHeader.Location = New System.Drawing.Point(96, 362)
+        Me.lblImprovementsHeader.Location = New System.Drawing.Point(75, 171)
         Me.lblImprovementsHeader.Name = "lblImprovementsHeader"
-        Me.lblImprovementsHeader.Size = New System.Drawing.Size(460, 25)
+        Me.lblImprovementsHeader.Size = New System.Drawing.Size(359, 25)
         Me.lblImprovementsHeader.TabIndex = 11
-        Me.lblImprovementsHeader.Text = "Einige Verbesserungen wurden vorgenommen!" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        Me.lblImprovementsHeader.Text = "Several bug fixes and other features" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         '
         'lblStar
         '
         Me.lblStar.AutoSize = True
         Me.lblStar.Font = New System.Drawing.Font("Microsoft Sans Serif", 99.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblStar.ForeColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.lblStar.Location = New System.Drawing.Point(12, 347)
+        Me.lblStar.Location = New System.Drawing.Point(-9, 171)
         Me.lblStar.Name = "lblStar"
         Me.lblStar.Size = New System.Drawing.Size(116, 152)
         Me.lblStar.TabIndex = 10
@@ -154,24 +155,24 @@ Partial Class frmUpdateNews
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(558, 204)
+        Me.ClientSize = New System.Drawing.Size(617, 334)
         Me.Controls.Add(Me.lblImprovements)
         Me.Controls.Add(Me.lblImprovementsHeader)
-        Me.Controls.Add(Me.lblStar)
         Me.Controls.Add(Me.btnOK)
         Me.Controls.Add(Me.llblChangelog)
-        Me.Controls.Add(Me.lblChangelog)
         Me.Controls.Add(Me.lblUpdater)
         Me.Controls.Add(Me.lblUpdaterHeader)
         Me.Controls.Add(Me.pbUpdate)
         Me.Controls.Add(Me.lblHeader)
+        Me.Controls.Add(Me.lblChangelog)
+        Me.Controls.Add(Me.lblStar)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "frmUpdateNews"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Seeloewen Shutdown wurde installiert!"
+        Me.Text = "Seeloewen Shutdown has been installed!"
         CType(Me.pbUpdate, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
