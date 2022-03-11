@@ -19,9 +19,9 @@
             rtbInfo.ForeColor = Color.White
         End If
 
-        If My.Settings.Language = "English" Then
-            Text = "About..."
-            btnClose.Text = "Close"
+        If My.Settings.Language = "German" Then
+            Text = "Über"
+            btnClose.Text = "Schließen"
         End If
     End Sub
 

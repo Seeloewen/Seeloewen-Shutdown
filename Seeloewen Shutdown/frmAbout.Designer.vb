@@ -52,7 +52,7 @@ Partial Class frmAbout
         Me.lblInfo.Name = "lblInfo"
         Me.lblInfo.Size = New System.Drawing.Size(230, 72)
         Me.lblInfo.TabIndex = 1
-        Me.lblInfo.Text = "Version 1.7.0 - 06.03.2022" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Seeloewen (Louis)" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Discord: Seeloewen#5699" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        Me.lblInfo.Text = "Version 1.7.0 - 11.03.2022" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Seeloewen (Louis)" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Discord: Seeloewen#5699" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         Me.lblInfo.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'gbInfo
@@ -125,7 +125,7 @@ Partial Class frmAbout
         Me.btnClose.Name = "btnClose"
         Me.btnClose.Size = New System.Drawing.Size(160, 29)
         Me.btnClose.TabIndex = 4
-        Me.btnClose.Text = "Schließen"
+        Me.btnClose.Text = "Close"
         Me.btnClose.UseVisualStyleBackColor = False
         '
         'frmAbout
@@ -146,7 +146,7 @@ Partial Class frmAbout
         Me.MinimizeBox = False
         Me.Name = "frmAbout"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Über..."
+        Me.Text = "About"
         Me.gbInfo.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
