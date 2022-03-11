@@ -93,30 +93,6 @@ Namespace My
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("")>  _
-        Public Property DefaultMessage() As String
-            Get
-                Return CType(Me("DefaultMessage"),String)
-            End Get
-            Set
-                Me("DefaultMessage") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
-        Public Property EnableDefaultMessage() As Boolean
-            Get
-                Return CType(Me("EnableDefaultMessage"),Boolean)
-            End Get
-            Set
-                Me("EnableDefaultMessage") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
         Public Property Language() As String
             Get
                 Return CType(Me("Language"),String)
