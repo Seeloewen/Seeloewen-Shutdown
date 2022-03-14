@@ -8,7 +8,7 @@ Public Class frmSettings
         'Translations
         If My.Settings.Language = "German" Then
 
-            'Initialize comboboxes if language English is selected
+            'Initialize comboboxes if language german is selected
             cbxDefaultIn.Items.Add("Sekunde(n)")
             cbxDefaultIn.Items.Add("Minute(n)")
             cbxDefaultIn.Items.Add("Stunde(n)")
@@ -21,7 +21,7 @@ Public Class frmSettings
             cbxDesign.Items.Remove("Dark")
             cbxLanguage.SelectedItem = "Deutsch (German)"
 
-            'Change text to english translation
+            'Change text to german translation
             Text = "Einstellungen"
             lblSettings.Text = "Einstellungen"
             gbDefaultSettings.Text = "Standart-Einstellungen"
