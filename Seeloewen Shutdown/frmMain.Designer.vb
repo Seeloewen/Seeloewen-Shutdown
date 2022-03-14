@@ -601,7 +601,7 @@ Partial Class frmMain
         Me.btnStartAction.Name = "btnStartAction"
         Me.btnStartAction.Size = New System.Drawing.Size(162, 59)
         Me.btnStartAction.TabIndex = 43
-        Me.btnStartAction.Text = "Start Action"
+        Me.btnStartAction.Text = "Start action"
         Me.btnStartAction.UseVisualStyleBackColor = True
         '
         'frmMain

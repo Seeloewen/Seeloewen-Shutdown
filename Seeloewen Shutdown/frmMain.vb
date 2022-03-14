@@ -29,6 +29,7 @@ Public Class frmMain
 
             lblAction.Text = "Aktion                                        "
             lblTime.Text = "Zeit                                            "
+            btnStartAction.Text = "Aktion starten"
             rbtnShutdown.Text = "Herunterfahren"
             rbtnRestart.Text = "Neustarten"
             rbtnPointInTime.Text = "Zeitpunkt"
