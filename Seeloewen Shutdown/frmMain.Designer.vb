@@ -76,6 +76,7 @@ Partial Class frmMain
         Me.dtpSelectedTime = New System.Windows.Forms.DateTimePicker()
         Me.tmrShutdown = New System.Windows.Forms.Timer(Me.components)
         Me.btnStartAction = New System.Windows.Forms.Button()
+        Me.rtbLog = New System.Windows.Forms.RichTextBox()
         Me.gbLastAction.SuspendLayout()
         CType(Me.pbLine, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlTime.SuspendLayout()
@@ -371,7 +372,7 @@ Partial Class frmMain
         Me.lblVersion.Name = "lblVersion"
         Me.lblVersion.Size = New System.Drawing.Size(75, 31)
         Me.lblVersion.TabIndex = 22
-        Me.lblVersion.Text = "1.7.0"
+        Me.lblVersion.Text = "1.7.1"
         '
         'lblHeader
         '
@@ -604,12 +605,24 @@ Partial Class frmMain
         Me.btnStartAction.Text = "Start action"
         Me.btnStartAction.UseVisualStyleBackColor = True
         '
+        'rtbLog
+        '
+        Me.rtbLog.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.rtbLog.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.rtbLog.Location = New System.Drawing.Point(405, 656)
+        Me.rtbLog.Name = "rtbLog"
+        Me.rtbLog.ReadOnly = True
+        Me.rtbLog.Size = New System.Drawing.Size(76, 65)
+        Me.rtbLog.TabIndex = 44
+        Me.rtbLog.Text = ""
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(634, 467)
+        Me.ClientSize = New System.Drawing.Size(634, 468)
+        Me.Controls.Add(Me.rtbLog)
         Me.Controls.Add(Me.btnStartAction)
         Me.Controls.Add(Me.dtpSelectedTime)
         Me.Controls.Add(Me.pnlActionRunning)
@@ -710,4 +723,5 @@ Partial Class frmMain
     Friend WithEvents lblTimeRemaining As Label
     Friend WithEvents tmrShutdown As Timer
     Friend WithEvents btnStartAction As Button
+    Public WithEvents rtbLog As RichTextBox
 End Class

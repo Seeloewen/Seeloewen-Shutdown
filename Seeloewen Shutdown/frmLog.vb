@@ -10,6 +10,7 @@
 
     Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
         rtbLog.Clear()
+        frmMain.rtbLog.Clear()
     End Sub
 
     Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
@@ -68,7 +69,6 @@
         If My.Settings.Design = "Dark" Then
             BackColor = Color.FromArgb(41, 41, 41)
             lblHeader.ForeColor = Color.White
-            rtbLog.ForeColor = Color.White
             rtbLog.BackColor = Color.FromArgb(41, 41, 41)
         End If
 
@@ -78,5 +78,7 @@
             btnClear.Text = "Leeren"
             btnClose.Text = "Schließen"
         End If
+
+        rtbLog.LoadFile("DebugLogTemp")
     End Sub
 End Class

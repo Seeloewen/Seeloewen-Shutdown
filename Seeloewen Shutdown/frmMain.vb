@@ -2,7 +2,9 @@
 Imports System.IO
 
 Public Class frmMain
-    Dim Version As String = "1.7.0"
+    Public LogLoadedOnce As Boolean
+    Dim Version As String = "1.7.1"
+    Dim VerDate As String = "19.03.2022"
     Dim ShutdownTimeType As String
     Dim maxtime As String
     Dim AppData As String = GetFolderPath(SpecialFolder.ApplicationData)
@@ -15,6 +17,7 @@ Public Class frmMain
 
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        WriteToLog("Loading Seeloewen Shutdown " + Version + " (" + VerDate + ")", "Info")
         'Translate all elements and load Language Setting
         If My.Settings.Language = "English" OrElse My.Settings.Language = "German" Then
         Else frmFirstStart.ShowDialog()
@@ -145,8 +148,8 @@ Public Class frmMain
             WriteToLog("Detected that an action is already running. Adjusting elements for action.", "Info")
         End If
 
-            'Load settings that should be displayed in the "Last Action" groupbox
-            _LastAction.Text = My.Settings.LastActionDisplay
+        'Load settings that should be displayed in the "Last Action" groupbox
+        _LastAction.Text = My.Settings.LastActionDisplay
         WriteToLog("Loaded LastActionDisplay from settings: " + My.Settings.LastActionDisplay, "Info")
         _LastTime.Text = My.Settings.LastTimeDisplay
         WriteToLog("Loaded LastTimeDisplay from settings: " + My.Settings.LastTimeDisplay, "Info")
@@ -269,16 +272,17 @@ Public Class frmMain
 
     Public Sub WriteToLog(Message As String, Type As String)
         If Type = "Error" Then
-            frmLog.rtbLog.SelectionColor = Color.Red
-            frmLog.rtbLog.AppendText("[" + DateTime.Now + "] " + "[ERROR] " + Message + vbNewLine)
+            rtbLog.SelectionColor = Color.Red
+            rtbLog.AppendText("[" + DateTime.Now + "] " + "[ERROR] " + Message + vbNewLine)
         ElseIf Type = "Info" Then
-            frmLog.rtbLog.SelectionColor = Color.FromArgb(50, 177, 205)
-            frmLog.rtbLog.AppendText("[" + DateTime.Now + "] " + "[INFO] " + Message + vbNewLine)
+            rtbLog.SelectionColor = Color.FromArgb(50, 177, 205)
+            rtbLog.AppendText("[" + DateTime.Now + "] " + "[INFO] " + Message + vbNewLine)
         ElseIf Type = "Warning" Then
-            frmLog.rtbLog.SelectionColor = Color.DarkOrange
-            frmLog.rtbLog.AppendText("[" + DateTime.Now + "] " + "[WARNING] " + Message + vbNewLine)
+            rtbLog.SelectionColor = Color.DarkOrange
+            rtbLog.AppendText("[" + DateTime.Now + "] " + "[WARNING] " + Message + vbNewLine)
         Else
-            frmLog.rtbLog.AppendText("--> Critical Log Error: Invalid type received" + vbNewLine)
+            rtbLog.SelectionColor = Color.Red
+            rtbLog.AppendText("--> Critical Log Error: Invalid type received" + vbNewLine)
         End If
     End Sub
 
@@ -360,7 +364,7 @@ Public Class frmMain
         TargetDT = DateTime.Now.Add(CountDownFrom)
         tmrShutdown.Start()
 
-        WriteToLog("Set gray box up (CountDownFrom: " + CountDownFrom.ToString + ", ShutdownTime.Text: " + Shutdowntime.Text + ", _RunningTime.text: + " + _RunningTime.Text + ")", "Info")
+        WriteToLog("Set gray box up (CountDownFrom: " + CountDownFrom.ToString + ", ShutdownTime.ext: " + Shutdowntime.Text + ", _RunningTime.Text: " + _RunningTime.Text + ")", "Info")
     End Sub
 
     Private Sub tmrShutdown_Tick(sender As Object, e As EventArgs) Handles tmrShutdown.Tick
@@ -617,7 +621,7 @@ Public Class frmMain
                 tmrPnlActionRunningAnimationUp.Enabled = True
                 ActionRunning = True
             End If
-            End If
+        End If
     End Sub
 
     Private Sub btnStartAction_MouseDown(sender As Object, e As MouseEventArgs) Handles btnStartAction.MouseDown
@@ -696,7 +700,7 @@ Public Class frmMain
                 _SelectedAction.Text = "Herunterfahren"
             End If
         ElseIf rbtnRestart.Checked = True Then
-                If My.Settings.Language = "English" Then
+            If My.Settings.Language = "English" Then
                 _SelectedAction.Text = "Restart"
             ElseIf My.Settings.Language = "German" Then
                 _SelectedAction.Text = "Neustarten"
@@ -750,5 +754,10 @@ Public Class frmMain
         ElseIf rbtnPointInTime.Checked = True Then
             _SelectedTime.Text = dtpDate.Text
         End If
+    End Sub
+
+    Private Sub rtbLog_TextChanged(sender As Object, e As EventArgs) Handles rtbLog.TextChanged
+        rtbLog.SaveFile("DebugLogTemp")
+        frmLog.rtbLog.LoadFile("DebugLogTemp")
     End Sub
 End Class
