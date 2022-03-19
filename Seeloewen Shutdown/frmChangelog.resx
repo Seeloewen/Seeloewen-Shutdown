@@ -118,7 +118,14 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="rtbChangelog.Text" xml:space="preserve">
-    <value>Version 1.7.0 (11.03.2022)
+    <value>Version 1.7.1 (19.03.2022)
+* Fehler behoben, dass der 'Aktion Starten" Knopf teilweise falsch übersetzt war
+* Fehler behoben, dass die Debug-Log Farben bei Designänderung zurückgesetzt wurden
+* Rechtschreibfehler im 'Start action' button behoben
+* Fehler behoben, dass der Log seinen Inhalt beim erneuten Öffnen verliert
+* Mehrere Rechtschreibfehler in Log-Nachrichten behoben
+
+Version 1.7.0 (11.03.2022)
 + Automatische Erkennung für laufende Aktionen wurde hinzugefügt
 + Debug-Log wurde hinzugefügt
 * Größere Design-Änderungen wurden vorgenommen
@@ -227,7 +234,14 @@ Version 0.1 (27.10.2020)
 * Inoffizieller Release</value>
   </data>
   <data name="rtbchangelogEnglish.Text" xml:space="preserve">
-    <value>Version 1.7.0 (11.03.2022)
+    <value>Version 1.7.1 (19.03.2022)
+* Fixed the bug, that the 'Start Action' button sometimes isn't translated correctly
+* Fixed the bug, that the debug-log colors get reset if you change design
+* Fixed typo in 'Start action' button
+* Fixed log losing all its content upon reopening
+* Fixed several typos in log messages
+
+Version 1.7.0 (11.03.2022)
 + Added automatic detection for running actions
 + Added debug-log
 * Major design changes
