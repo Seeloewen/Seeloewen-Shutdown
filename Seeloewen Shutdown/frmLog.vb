@@ -79,6 +79,6 @@
             btnClose.Text = "Schließen"
         End If
 
-        rtbLog.LoadFile("DebugLogTemp")
+        rtbLog.LoadFile(frmMain.AppData + "/Seeloewen Shutdown/DebugLogTemp")
     End Sub
 End Class

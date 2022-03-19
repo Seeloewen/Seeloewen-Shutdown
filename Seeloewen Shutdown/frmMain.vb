@@ -7,7 +7,7 @@ Public Class frmMain
     Dim VerDate As String = "19.03.2022"
     Dim ShutdownTimeType As String
     Dim maxtime As String
-    Dim AppData As String = GetFolderPath(SpecialFolder.ApplicationData)
+    Public AppData As String = GetFolderPath(SpecialFolder.ApplicationData)
     Dim ActionRunning As Boolean = False
     Dim GrayBoxNewY As Integer
     Dim PnlActionRunningNewY As Integer
@@ -17,6 +17,11 @@ Public Class frmMain
 
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        If My.Computer.FileSystem.DirectoryExists(AppData + "/Seeloewen Shutdown") = False Then
+            My.Computer.FileSystem.CreateDirectory(AppData + "/Seeloewen Shutdown")
+            WriteToLog("Created directory " + "'" + AppData + "/Seeloewen Shutdown" + "'", "Info")
+        End If
+
         WriteToLog("Loading Seeloewen Shutdown " + Version + " (" + VerDate + ")", "Info")
         'Translate all elements and load Language Setting
         If My.Settings.Language = "English" OrElse My.Settings.Language = "German" Then
@@ -176,11 +181,6 @@ Public Class frmMain
         'Show Update News if necessary
         If My.Computer.FileSystem.FileExists(AppData + "/Seeloewen Shutdown/Show_Update_News_" + Version) = False Then
             frmUpdateNews.ShowDialog()
-            If My.Computer.FileSystem.DirectoryExists(AppData + "/Seeloewen Shutdown") = False Then
-                My.Computer.FileSystem.CreateDirectory(AppData + "/Seeloewen Shutdown")
-                WriteToLog("Created directory " + "'" + AppData + "/Seeloewen Shutdown" + "'", "Info")
-            End If
-
             Dim fs As FileStream = File.Create(AppData + "/Seeloewen Shutdown/Show_Update_News_" + Version)
             fs.Close()
             WriteToLog("Created file " + "'" + AppData + "/Seeloewen Shutdown/Show_Update_News_" + Version + "' so the update news don't appear again for this version (" + Version + ")", "Info")
@@ -757,7 +757,7 @@ Public Class frmMain
     End Sub
 
     Private Sub rtbLog_TextChanged(sender As Object, e As EventArgs) Handles rtbLog.TextChanged
-        rtbLog.SaveFile("DebugLogTemp")
-        frmLog.rtbLog.LoadFile("DebugLogTemp")
+        rtbLog.SaveFile(AppData + "/Seeloewen Shutdown/DebugLogTemp")
+        frmLog.rtbLog.LoadFile(AppData + "/Seeloewen Shutdown/DebugLogTemp")
     End Sub
 End Class
