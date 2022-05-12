@@ -71,12 +71,19 @@ Partial Class frmMain
         Me.tmrPnlActionRunningAnimationDown = New System.Windows.Forms.Timer(Me.components)
         Me.cmsHamburgerButton = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MinimalisticViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem()
         Me.dtpSelectedTime = New System.Windows.Forms.DateTimePicker()
         Me.tmrShutdown = New System.Windows.Forms.Timer(Me.components)
         Me.btnStartAction = New System.Windows.Forms.Button()
         Me.rtbLog = New System.Windows.Forms.RichTextBox()
+        Me.pbNotification = New System.Windows.Forms.PictureBox()
+        Me.pnlNotification = New System.Windows.Forms.Panel()
+        Me.lblNotification = New System.Windows.Forms.Label()
+        Me.tmrPnlNotificationAnimationDown = New System.Windows.Forms.Timer(Me.components)
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.tmrPnlNotificationAnimationUp = New System.Windows.Forms.Timer(Me.components)
         Me.gbLastAction.SuspendLayout()
         CType(Me.pbLine, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlTime.SuspendLayout()
@@ -86,6 +93,9 @@ Partial Class frmMain
         CType(Me.pbLine2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlActionRunning.SuspendLayout()
         Me.cmsHamburgerButton.SuspendLayout()
+        CType(Me.pbNotification, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pnlNotification.SuspendLayout()
+        Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'rbtnRestart
@@ -224,9 +234,9 @@ Partial Class frmMain
         Me.gbLastAction.Controls.Add(Me._LastAction)
         Me.gbLastAction.Controls.Add(Me.lblLastAction)
         Me.gbLastAction.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gbLastAction.Location = New System.Drawing.Point(420, 75)
+        Me.gbLastAction.Location = New System.Drawing.Point(420, 107)
         Me.gbLastAction.Name = "gbLastAction"
-        Me.gbLastAction.Size = New System.Drawing.Size(191, 238)
+        Me.gbLastAction.Size = New System.Drawing.Size(191, 206)
         Me.gbLastAction.TabIndex = 36
         Me.gbLastAction.TabStop = False
         Me.gbLastAction.Text = "Last action"
@@ -234,7 +244,7 @@ Partial Class frmMain
         '_ExecutedOn
         '
         Me._ExecutedOn.AutoSize = True
-        Me._ExecutedOn.Location = New System.Drawing.Point(9, 189)
+        Me._ExecutedOn.Location = New System.Drawing.Point(9, 176)
         Me._ExecutedOn.Name = "_ExecutedOn"
         Me._ExecutedOn.Size = New System.Drawing.Size(125, 20)
         Me._ExecutedOn.TabIndex = 6
@@ -244,7 +254,7 @@ Partial Class frmMain
         '
         Me.lblExecutedOn.AutoSize = True
         Me.lblExecutedOn.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblExecutedOn.Location = New System.Drawing.Point(9, 169)
+        Me.lblExecutedOn.Location = New System.Drawing.Point(9, 156)
         Me.lblExecutedOn.Name = "lblExecutedOn"
         Me.lblExecutedOn.Size = New System.Drawing.Size(114, 20)
         Me.lblExecutedOn.TabIndex = 5
@@ -253,7 +263,7 @@ Partial Class frmMain
         '_LastTime
         '
         Me._LastTime.AutoSize = True
-        Me._LastTime.Location = New System.Drawing.Point(9, 116)
+        Me._LastTime.Location = New System.Drawing.Point(9, 109)
         Me._LastTime.Name = "_LastTime"
         Me._LastTime.Size = New System.Drawing.Size(102, 20)
         Me._LastTime.TabIndex = 3
@@ -263,7 +273,7 @@ Partial Class frmMain
         '
         Me.lblLastTime.AutoSize = True
         Me.lblLastTime.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblLastTime.Location = New System.Drawing.Point(9, 94)
+        Me.lblLastTime.Location = New System.Drawing.Point(9, 87)
         Me.lblLastTime.Name = "lblLastTime"
         Me.lblLastTime.Size = New System.Drawing.Size(52, 20)
         Me.lblLastTime.TabIndex = 2
@@ -296,7 +306,7 @@ Partial Class frmMain
         Me.btnHamburger.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
         Me.btnHamburger.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
         Me.btnHamburger.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnHamburger.Location = New System.Drawing.Point(564, 12)
+        Me.btnHamburger.Location = New System.Drawing.Point(560, 13)
         Me.btnHamburger.Name = "btnHamburger"
         Me.btnHamburger.Size = New System.Drawing.Size(47, 44)
         Me.btnHamburger.TabIndex = 20
@@ -306,7 +316,7 @@ Partial Class frmMain
         '
         Me.pbLine.BackgroundImage = CType(resources.GetObject("pbLine.BackgroundImage"), System.Drawing.Image)
         Me.pbLine.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.pbLine.Location = New System.Drawing.Point(7, 57)
+        Me.pbLine.Location = New System.Drawing.Point(3, 58)
         Me.pbLine.Name = "pbLine"
         Me.pbLine.Size = New System.Drawing.Size(617, 12)
         Me.pbLine.TabIndex = 35
@@ -319,7 +329,7 @@ Partial Class frmMain
         Me.pnlTime.Controls.Add(Me.cbxIn)
         Me.pnlTime.Controls.Add(Me.rbtnIn)
         Me.pnlTime.Controls.Add(Me.tbTime)
-        Me.pnlTime.Location = New System.Drawing.Point(21, 215)
+        Me.pnlTime.Location = New System.Drawing.Point(17, 227)
         Me.pnlTime.Name = "pnlTime"
         Me.pnlTime.Size = New System.Drawing.Size(318, 84)
         Me.pnlTime.TabIndex = 34
@@ -328,7 +338,7 @@ Partial Class frmMain
         '
         Me.lblTime.AutoSize = True
         Me.lblTime.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTime.Location = New System.Drawing.Point(16, 187)
+        Me.lblTime.Location = New System.Drawing.Point(12, 199)
         Me.lblTime.Name = "lblTime"
         Me.lblTime.Size = New System.Drawing.Size(311, 25)
         Me.lblTime.TabIndex = 33
@@ -338,7 +348,7 @@ Partial Class frmMain
         '
         Me.pnlAction.Controls.Add(Me.rbtnRestart)
         Me.pnlAction.Controls.Add(Me.rbtnShutdown)
-        Me.pnlAction.Location = New System.Drawing.Point(21, 115)
+        Me.pnlAction.Location = New System.Drawing.Point(17, 127)
         Me.pnlAction.Name = "pnlAction"
         Me.pnlAction.Size = New System.Drawing.Size(141, 58)
         Me.pnlAction.TabIndex = 32
@@ -347,7 +357,7 @@ Partial Class frmMain
         '
         Me.lblAction.AutoSize = True
         Me.lblAction.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblAction.Location = New System.Drawing.Point(16, 87)
+        Me.lblAction.Location = New System.Drawing.Point(12, 99)
         Me.lblAction.Name = "lblAction"
         Me.lblAction.Size = New System.Drawing.Size(312, 25)
         Me.lblAction.TabIndex = 31
@@ -357,7 +367,7 @@ Partial Class frmMain
         '
         Me.pbIcon.BackgroundImage = CType(resources.GetObject("pbIcon.BackgroundImage"), System.Drawing.Image)
         Me.pbIcon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.pbIcon.Location = New System.Drawing.Point(24, 2)
+        Me.pbIcon.Location = New System.Drawing.Point(20, 3)
         Me.pbIcon.Name = "pbIcon"
         Me.pbIcon.Size = New System.Drawing.Size(64, 59)
         Me.pbIcon.TabIndex = 30
@@ -368,7 +378,7 @@ Partial Class frmMain
         Me.lblVersion.AutoSize = True
         Me.lblVersion.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblVersion.ForeColor = System.Drawing.SystemColors.ButtonShadow
-        Me.lblVersion.Location = New System.Drawing.Point(449, 23)
+        Me.lblVersion.Location = New System.Drawing.Point(445, 24)
         Me.lblVersion.Name = "lblVersion"
         Me.lblVersion.Size = New System.Drawing.Size(75, 31)
         Me.lblVersion.TabIndex = 22
@@ -378,7 +388,7 @@ Partial Class frmMain
         '
         Me.lblHeader.AutoSize = True
         Me.lblHeader.Font = New System.Drawing.Font("Microsoft Sans Serif", 26.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblHeader.Location = New System.Drawing.Point(94, 17)
+        Me.lblHeader.Location = New System.Drawing.Point(90, 18)
         Me.lblHeader.Name = "lblHeader"
         Me.lblHeader.Size = New System.Drawing.Size(349, 39)
         Me.lblHeader.TabIndex = 21
@@ -512,7 +522,7 @@ Partial Class frmMain
         Me.pnlActionRunning.Controls.Add(Me._RunningAction)
         Me.pnlActionRunning.Location = New System.Drawing.Point(41, 492)
         Me.pnlActionRunning.Name = "pnlActionRunning"
-        Me.pnlActionRunning.Size = New System.Drawing.Size(390, 100)
+        Me.pnlActionRunning.Size = New System.Drawing.Size(380, 100)
         Me.pnlActionRunning.TabIndex = 41
         '
         '_TimeRemaining
@@ -547,9 +557,9 @@ Partial Class frmMain
         '
         'cmsHamburgerButton
         '
-        Me.cmsHamburgerButton.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1, Me.ToolStripMenuItem2, Me.ToolStripMenuItem3})
+        Me.cmsHamburgerButton.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1, Me.MinimalisticViewToolStripMenuItem, Me.ToolStripMenuItem2, Me.ToolStripMenuItem3})
         Me.cmsHamburgerButton.Name = "cmsHamburgerButton"
-        Me.cmsHamburgerButton.Size = New System.Drawing.Size(153, 82)
+        Me.cmsHamburgerButton.Size = New System.Drawing.Size(200, 108)
         '
         'ToolStripMenuItem1
         '
@@ -557,15 +567,23 @@ Partial Class frmMain
         Me.ToolStripMenuItem1.Image = CType(resources.GetObject("ToolStripMenuItem1.Image"), System.Drawing.Image)
         Me.ToolStripMenuItem1.ImageAlign = System.Drawing.ContentAlignment.TopLeft
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(152, 26)
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(199, 26)
         Me.ToolStripMenuItem1.Text = "Settings"
+        '
+        'MinimalisticViewToolStripMenuItem
+        '
+        Me.MinimalisticViewToolStripMenuItem.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MinimalisticViewToolStripMenuItem.Image = Global.Seeloewen_Shutdown.My.Resources.Resources.MinimalisticView
+        Me.MinimalisticViewToolStripMenuItem.Name = "MinimalisticViewToolStripMenuItem"
+        Me.MinimalisticViewToolStripMenuItem.Size = New System.Drawing.Size(199, 26)
+        Me.MinimalisticViewToolStripMenuItem.Text = "Minimalistic View"
         '
         'ToolStripMenuItem2
         '
         Me.ToolStripMenuItem2.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ToolStripMenuItem2.Image = Global.Seeloewen_Shutdown.My.Resources.Resources.Update
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(152, 26)
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(199, 26)
         Me.ToolStripMenuItem2.Text = "Changelog"
         '
         'ToolStripMenuItem3
@@ -573,7 +591,7 @@ Partial Class frmMain
         Me.ToolStripMenuItem3.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ToolStripMenuItem3.Image = Global.Seeloewen_Shutdown.My.Resources.Resources.About
         Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
-        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(152, 26)
+        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(199, 26)
         Me.ToolStripMenuItem3.Text = "About"
         '
         'dtpSelectedTime
@@ -616,30 +634,78 @@ Partial Class frmMain
         Me.rtbLog.TabIndex = 44
         Me.rtbLog.Text = ""
         '
+        'pbNotification
+        '
+        Me.pbNotification.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.Notification
+        Me.pbNotification.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.pbNotification.Location = New System.Drawing.Point(13, 3)
+        Me.pbNotification.Name = "pbNotification"
+        Me.pbNotification.Size = New System.Drawing.Size(591, 26)
+        Me.pbNotification.TabIndex = 45
+        Me.pbNotification.TabStop = False
+        '
+        'pnlNotification
+        '
+        Me.pnlNotification.Controls.Add(Me.lblNotification)
+        Me.pnlNotification.Controls.Add(Me.pbNotification)
+        Me.pnlNotification.Location = New System.Drawing.Point(9, 27)
+        Me.pnlNotification.Name = "pnlNotification"
+        Me.pnlNotification.Size = New System.Drawing.Size(620, 31)
+        Me.pnlNotification.TabIndex = 46
+        '
+        'lblNotification
+        '
+        Me.lblNotification.AutoSize = True
+        Me.lblNotification.BackColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(217, Byte), Integer), CType(CType(93, Byte), Integer))
+        Me.lblNotification.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblNotification.ForeColor = System.Drawing.Color.Black
+        Me.lblNotification.Location = New System.Drawing.Point(20, 6)
+        Me.lblNotification.Name = "lblNotification"
+        Me.lblNotification.Size = New System.Drawing.Size(116, 20)
+        Me.lblNotification.TabIndex = 46
+        Me.lblNotification.Text = "%Notification%"
+        '
+        'tmrPnlNotificationAnimationDown
+        '
+        Me.tmrPnlNotificationAnimationDown.Interval = 1
+        '
+        'Panel1
+        '
+        Me.Panel1.Controls.Add(Me.pbIcon)
+        Me.Panel1.Controls.Add(Me.lblHeader)
+        Me.Panel1.Controls.Add(Me.lblVersion)
+        Me.Panel1.Controls.Add(Me.btnHamburger)
+        Me.Panel1.Controls.Add(Me.pbLine)
+        Me.Panel1.Location = New System.Drawing.Point(3, -1)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(626, 68)
+        Me.Panel1.TabIndex = 48
+        '
+        'tmrPnlNotificationAnimationUp
+        '
+        Me.tmrPnlNotificationAnimationUp.Interval = 1
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(634, 468)
-        Me.Controls.Add(Me.rtbLog)
+        Me.ClientSize = New System.Drawing.Size(634, 469)
+        Me.Controls.Add(Me.Panel1)
+        Me.Controls.Add(Me.pnlNotification)
+        Me.Controls.Add(Me.lblAction)
         Me.Controls.Add(Me.btnStartAction)
+        Me.Controls.Add(Me.rtbLog)
         Me.Controls.Add(Me.dtpSelectedTime)
         Me.Controls.Add(Me.pnlActionRunning)
-        Me.Controls.Add(Me.pbLine)
-        Me.Controls.Add(Me.pbIcon)
         Me.Controls.Add(Me.gbLastAction)
-        Me.Controls.Add(Me.btnHamburger)
         Me.Controls.Add(Me.pnlTime)
         Me.Controls.Add(Me.lblTime)
         Me.Controls.Add(Me.pnlAction)
-        Me.Controls.Add(Me.lblAction)
         Me.Controls.Add(Me._SelectedTime)
         Me.Controls.Add(Me._SelectedAction)
         Me.Controls.Add(Me.lblSelectedTime)
         Me.Controls.Add(Me.lblSelectedAction)
-        Me.Controls.Add(Me.lblVersion)
-        Me.Controls.Add(Me.lblHeader)
         Me.Controls.Add(Me.Quotationmark)
         Me.Controls.Add(Me.Finaloutput)
         Me.Controls.Add(Me.Shutdowntime)
@@ -667,6 +733,11 @@ Partial Class frmMain
         Me.pnlActionRunning.ResumeLayout(False)
         Me.pnlActionRunning.PerformLayout()
         Me.cmsHamburgerButton.ResumeLayout(False)
+        CType(Me.pbNotification, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.pnlNotification.ResumeLayout(False)
+        Me.pnlNotification.PerformLayout()
+        Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -724,4 +795,11 @@ Partial Class frmMain
     Friend WithEvents tmrShutdown As Timer
     Friend WithEvents btnStartAction As Button
     Public WithEvents rtbLog As RichTextBox
+    Friend WithEvents MinimalisticViewToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents pbNotification As PictureBox
+    Friend WithEvents pnlNotification As Panel
+    Friend WithEvents tmrPnlNotificationAnimationDown As Timer
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents lblNotification As Label
+    Friend WithEvents tmrPnlNotificationAnimationUp As Timer
 End Class

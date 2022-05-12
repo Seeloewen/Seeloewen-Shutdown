@@ -11,6 +11,7 @@ Public Class frmMain
     Dim ActionRunning As Boolean = False
     Dim GrayBoxNewY As Integer
     Dim PnlActionRunningNewY As Integer
+    Dim PnlNotificationNewY As Integer
     Dim TargetDT As DateTime
     Dim CountDownFrom As TimeSpan
     Dim TimeDifference As TimeSpan
@@ -759,5 +760,37 @@ Public Class frmMain
     Private Sub rtbLog_TextChanged(sender As Object, e As EventArgs) Handles rtbLog.TextChanged
         rtbLog.SaveFile(AppData + "/Seeloewen Shutdown/DebugLogTemp")
         frmLog.rtbLog.LoadFile(AppData + "/Seeloewen Shutdown/DebugLogTemp")
+    End Sub
+
+    Private Sub EnableMinimalisticView()
+        frmMinimalisticView.Show()
+        Hide()
+    End Sub
+
+    Private Sub ShowNotification(Text As String)
+        lblNotification.Text = Text
+        pnlNotification.Top = 20
+        PnlNotificationNewY = 20
+        tmrPnlNotificationAnimationDown.Enabled = True
+    End Sub
+
+    Private Sub PnlNotificationAnimationDown(sender As Object, e As EventArgs) Handles tmrPnlNotificationAnimationDown.Tick
+        If pnlNotification.Top <= 66 Then
+            PnlNotificationNewY = PnlNotificationNewY + 3
+            pnlNotification.Top = PnlNotificationNewY
+        Else
+            tmrPnlNotificationAnimationDown.Enabled = False
+            Sleep(2500)
+            tmrPnlNotificationAnimationUp.Enabled = True
+        End If
+    End Sub
+
+    Private Sub PnlNotificationAnimationUp(sender As Object, e As EventArgs) Handles tmrPnlNotificationAnimationUp.Tick
+        If pnlNotification.Top >= 20 Then
+            PnlNotificationNewY = PnlNotificationNewY - 3
+            pnlNotification.Top = PnlNotificationNewY
+        Else
+            tmrPnlNotificationAnimationUp.Enabled = False
+        End If
     End Sub
 End Class
