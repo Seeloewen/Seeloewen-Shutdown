@@ -126,6 +126,12 @@
       <DependentUpon>frmMain.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmMinimalisticView.Designer.vb">
+      <DependentUpon>frmMinimalisticView.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMinimalisticView.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmUpdateNews.Designer.vb">
       <DependentUpon>frmUpdateNews.vb</DependentUpon>
     </Compile>
@@ -172,6 +178,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMinimalisticView.resx">
+      <DependentUpon>frmMinimalisticView.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmUpdateNews.resx">
       <DependentUpon>frmUpdateNews.vb</DependentUpon>

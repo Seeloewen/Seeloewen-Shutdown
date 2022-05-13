@@ -54,3 +54,4 @@ C:\Users\Louis\OneDrive\Dokumente\Programmieren\Visual Studio Projekte\Seeloewen
 C:\Users\Louis\OneDrive\Dokumente\Programmieren\Visual Studio Projekte\Seeloewen Shutdown\Github Repository\Seeloewen-Shutdown\Seeloewen Shutdown\obj\Release\Seeloewen Shutdown.vbproj.SuggestedBindingRedirects.cache
 C:\Users\Louis\OneDrive\Dokumente\Programmieren\Visual Studio Projekte\Seeloewen Shutdown\Github Repository\Seeloewen-Shutdown\Seeloewen Shutdown\obj\Release\Seeloewen_Shutdown.frmUpdateNews.resources
 C:\Users\Louis\OneDrive\Dokumente\Programmieren\Visual Studio Projekte\Seeloewen Shutdown\Github Repository\Seeloewen-Shutdown\Seeloewen Shutdown\obj\Release\Seeloewen_Shutdown.frmLog.resources
+C:\Users\Louis\OneDrive\Dokumente\Programmieren\Visual Studio Projekte\Seeloewen Shutdown\Github Repository\Seeloewen-Shutdown\Seeloewen Shutdown\obj\Release\Seeloewen_Shutdown.frmMinimalisticView.resources

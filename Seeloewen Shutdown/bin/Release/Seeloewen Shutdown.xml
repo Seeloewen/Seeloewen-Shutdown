@@ -107,6 +107,16 @@ Seeloewen Shutdown
   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
 </summary>
 </member>
+<member name="P:Seeloewen_Shutdown.My.Resources.Resources.MinimalisticView">
+<summary>
+  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:Seeloewen_Shutdown.My.Resources.Resources.Notification">
+<summary>
+  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+</summary>
+</member>
 <member name="P:Seeloewen_Shutdown.My.Resources.Resources.Update">
 <summary>
   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
