@@ -44,7 +44,7 @@ Partial Class frmUpdateNews
         Me.lblHeader.Name = "lblHeader"
         Me.lblHeader.Size = New System.Drawing.Size(332, 29)
         Me.lblHeader.TabIndex = 0
-        Me.lblHeader.Text = "Version 1.7.1 - What's new?"
+        Me.lblHeader.Text = "Version 1.7.2 - What's new?"
         '
         'pbUpdate
         '
@@ -81,7 +81,7 @@ Partial Class frmUpdateNews
         '
         Me.lblChangelog.AutoSize = True
         Me.lblChangelog.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblChangelog.Location = New System.Drawing.Point(15, 144)
+        Me.lblChangelog.Location = New System.Drawing.Point(15, 148)
         Me.lblChangelog.Name = "lblChangelog"
         Me.lblChangelog.Size = New System.Drawing.Size(218, 16)
         Me.lblChangelog.TabIndex = 7
@@ -92,7 +92,7 @@ Partial Class frmUpdateNews
         Me.llblChangelog.AutoSize = True
         Me.llblChangelog.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.llblChangelog.LinkColor = System.Drawing.Color.Cyan
-        Me.llblChangelog.Location = New System.Drawing.Point(240, 144)
+        Me.llblChangelog.Location = New System.Drawing.Point(240, 148)
         Me.llblChangelog.Name = "llblChangelog"
         Me.llblChangelog.Size = New System.Drawing.Size(73, 16)
         Me.llblChangelog.TabIndex = 8
@@ -109,7 +109,7 @@ Partial Class frmUpdateNews
         Me.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnOK.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnOK.ForeColor = System.Drawing.Color.White
-        Me.btnOK.Location = New System.Drawing.Point(488, 136)
+        Me.btnOK.Location = New System.Drawing.Point(488, 142)
         Me.btnOK.Name = "btnOK"
         Me.btnOK.Size = New System.Drawing.Size(117, 28)
         Me.btnOK.TabIndex = 9
@@ -123,10 +123,10 @@ Partial Class frmUpdateNews
         Me.lblImprovements.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblImprovements.Location = New System.Drawing.Point(77, 79)
         Me.lblImprovements.Name = "lblImprovements"
-        Me.lblImprovements.Size = New System.Drawing.Size(514, 40)
+        Me.lblImprovements.Size = New System.Drawing.Size(510, 60)
         Me.lblImprovements.TabIndex = 12
-        Me.lblImprovements.Text = "Especially the log had a bunch of errors. Those and several others have " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "been fi" &
-    "xed and the software should be more stable now!"
+        Me.lblImprovements.Text = "The new 'Minimalistic View' is now available! It will only show a small part" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "of " &
+    "the software when enabled. Notifications are added with this update" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "as well."
         '
         'lblImprovementsHeader
         '
@@ -134,9 +134,9 @@ Partial Class frmUpdateNews
         Me.lblImprovementsHeader.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblImprovementsHeader.Location = New System.Drawing.Point(76, 54)
         Me.lblImprovementsHeader.Name = "lblImprovementsHeader"
-        Me.lblImprovementsHeader.Size = New System.Drawing.Size(178, 25)
+        Me.lblImprovementsHeader.Size = New System.Drawing.Size(342, 25)
         Me.lblImprovementsHeader.TabIndex = 11
-        Me.lblImprovementsHeader.Text = "Several bug fixes" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        Me.lblImprovementsHeader.Text = "Minimalistic View and Notifications" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         '
         'lblStar
         '
@@ -154,7 +154,7 @@ Partial Class frmUpdateNews
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(617, 175)
+        Me.ClientSize = New System.Drawing.Size(617, 180)
         Me.Controls.Add(Me.lblImprovements)
         Me.Controls.Add(Me.lblImprovementsHeader)
         Me.Controls.Add(Me.btnOK)

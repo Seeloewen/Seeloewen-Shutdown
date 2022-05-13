@@ -30,8 +30,8 @@
             Text = "Seeloewen Shutdown wurde installiert!"
             lblUpdaterHeader.Text = "Ein neues Design"
             lblUpdater.Text = "Die Software besitzt nun ein neues Design, um" + vbNewLine + "sie ansprechender, einfacher zu verstehen und leichter nutzbar" + vbNewLine + "zu machen"
-            lblImprovementsHeader.Text = "Einige Fehlerbehebungen"
-            lblImprovements.Text = "Besonders der Log hatte einige Fehler. Diese und ein paar andere" + vbNewLine + "wurden behoben und die Software sollte nun stabiler sein!"
+            lblImprovementsHeader.Text = "Minimalistische Ansicht und Benachrichtigungen"
+            lblImprovements.Text = "Die neue 'Minimalistische Ansicht' ist nun verfügbar! Es wird nur ein kleiner" + vbNewLine + "Teil der Software gezeigt, wenn dies aktiviert ist. Benachrichtigungen" + vbNewLine + "wurden ebenfalls durch dieses Update hinzugefügt."
             lblChangelog.Text = "Eine genaue Änderungsliste kann im                           gefunden werden"
             btnOK.Text = "Alles klar!"
         End If
