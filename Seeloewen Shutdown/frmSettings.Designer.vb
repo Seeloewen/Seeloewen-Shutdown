@@ -33,14 +33,19 @@ Partial Class frmSettings
         Me.lblDefaultTime = New System.Windows.Forms.Label()
         Me.btnClose = New System.Windows.Forms.Button()
         Me.gbAppSettings = New System.Windows.Forms.GroupBox()
+        Me.cbShowNotifications = New System.Windows.Forms.CheckBox()
         Me.cbxDesign = New System.Windows.Forms.ComboBox()
         Me.cbxLanguage = New System.Windows.Forms.ComboBox()
         Me.lblDesign = New System.Windows.Forms.Label()
         Me.lblLanguage = New System.Windows.Forms.Label()
         Me.btnSave = New System.Windows.Forms.Button()
         Me.btnLog = New System.Windows.Forms.Button()
+        Me.gbMinimalisticView = New System.Windows.Forms.GroupBox()
+        Me.cbEnableMinimalisticViewByDefault = New System.Windows.Forms.CheckBox()
+        Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.gbDefaultSettings.SuspendLayout()
         Me.gbAppSettings.SuspendLayout()
+        Me.gbMinimalisticView.SuspendLayout()
         Me.SuspendLayout()
         '
         'lblSettings
@@ -73,11 +78,11 @@ Partial Class frmSettings
         'rbtnRestart
         '
         Me.rbtnRestart.AutoSize = True
-        Me.rbtnRestart.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.rbtnRestart.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rbtnRestart.ForeColor = System.Drawing.Color.Black
         Me.rbtnRestart.Location = New System.Drawing.Point(15, 76)
         Me.rbtnRestart.Name = "rbtnRestart"
-        Me.rbtnRestart.Size = New System.Drawing.Size(68, 20)
+        Me.rbtnRestart.Size = New System.Drawing.Size(74, 22)
         Me.rbtnRestart.TabIndex = 12
         Me.rbtnRestart.TabStop = True
         Me.rbtnRestart.Text = "Restart"
@@ -86,11 +91,11 @@ Partial Class frmSettings
         'rbtnShutdown
         '
         Me.rbtnShutdown.AutoSize = True
-        Me.rbtnShutdown.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.rbtnShutdown.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rbtnShutdown.ForeColor = System.Drawing.Color.Black
         Me.rbtnShutdown.Location = New System.Drawing.Point(15, 50)
         Me.rbtnShutdown.Name = "rbtnShutdown"
-        Me.rbtnShutdown.Size = New System.Drawing.Size(83, 20)
+        Me.rbtnShutdown.Size = New System.Drawing.Size(92, 22)
         Me.rbtnShutdown.TabIndex = 11
         Me.rbtnShutdown.TabStop = True
         Me.rbtnShutdown.Text = "Shutdown"
@@ -146,7 +151,7 @@ Partial Class frmSettings
         Me.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnClose.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnClose.ForeColor = System.Drawing.Color.White
-        Me.btnClose.Location = New System.Drawing.Point(296, 310)
+        Me.btnClose.Location = New System.Drawing.Point(296, 428)
         Me.btnClose.Name = "btnClose"
         Me.btnClose.Size = New System.Drawing.Size(128, 27)
         Me.btnClose.TabIndex = 4
@@ -155,6 +160,7 @@ Partial Class frmSettings
         '
         'gbAppSettings
         '
+        Me.gbAppSettings.Controls.Add(Me.cbShowNotifications)
         Me.gbAppSettings.Controls.Add(Me.cbxDesign)
         Me.gbAppSettings.Controls.Add(Me.cbxLanguage)
         Me.gbAppSettings.Controls.Add(Me.lblDesign)
@@ -163,10 +169,22 @@ Partial Class frmSettings
         Me.gbAppSettings.ForeColor = System.Drawing.SystemColors.ControlDarkDark
         Me.gbAppSettings.Location = New System.Drawing.Point(18, 215)
         Me.gbAppSettings.Name = "gbAppSettings"
-        Me.gbAppSettings.Size = New System.Drawing.Size(406, 87)
+        Me.gbAppSettings.Size = New System.Drawing.Size(406, 113)
         Me.gbAppSettings.TabIndex = 5
         Me.gbAppSettings.TabStop = False
         Me.gbAppSettings.Text = "App settings"
+        '
+        'cbShowNotifications
+        '
+        Me.cbShowNotifications.AutoSize = True
+        Me.cbShowNotifications.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbShowNotifications.ForeColor = System.Drawing.Color.Black
+        Me.cbShowNotifications.Location = New System.Drawing.Point(15, 77)
+        Me.cbShowNotifications.Name = "cbShowNotifications"
+        Me.cbShowNotifications.Size = New System.Drawing.Size(148, 22)
+        Me.cbShowNotifications.TabIndex = 8
+        Me.cbShowNotifications.Text = "Show notifications"
+        Me.cbShowNotifications.UseVisualStyleBackColor = True
         '
         'cbxDesign
         '
@@ -220,7 +238,7 @@ Partial Class frmSettings
         Me.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSave.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSave.ForeColor = System.Drawing.Color.White
-        Me.btnSave.Location = New System.Drawing.Point(18, 310)
+        Me.btnSave.Location = New System.Drawing.Point(18, 428)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(128, 27)
         Me.btnSave.TabIndex = 3
@@ -237,19 +255,44 @@ Partial Class frmSettings
         Me.btnLog.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnLog.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnLog.ForeColor = System.Drawing.Color.White
-        Me.btnLog.Location = New System.Drawing.Point(158, 310)
+        Me.btnLog.Location = New System.Drawing.Point(158, 428)
         Me.btnLog.Name = "btnLog"
         Me.btnLog.Size = New System.Drawing.Size(128, 27)
         Me.btnLog.TabIndex = 6
         Me.btnLog.Text = "Debug-Log"
         Me.btnLog.UseVisualStyleBackColor = True
         '
+        'gbMinimalisticView
+        '
+        Me.gbMinimalisticView.Controls.Add(Me.cbEnableMinimalisticViewByDefault)
+        Me.gbMinimalisticView.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gbMinimalisticView.ForeColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.gbMinimalisticView.Location = New System.Drawing.Point(18, 334)
+        Me.gbMinimalisticView.Name = "gbMinimalisticView"
+        Me.gbMinimalisticView.Size = New System.Drawing.Size(406, 79)
+        Me.gbMinimalisticView.TabIndex = 7
+        Me.gbMinimalisticView.TabStop = False
+        Me.gbMinimalisticView.Text = "Minimalistic View settings"
+        '
+        'cbEnableMinimalisticViewByDefault
+        '
+        Me.cbEnableMinimalisticViewByDefault.AutoSize = True
+        Me.cbEnableMinimalisticViewByDefault.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbEnableMinimalisticViewByDefault.ForeColor = System.Drawing.Color.Black
+        Me.cbEnableMinimalisticViewByDefault.Location = New System.Drawing.Point(15, 26)
+        Me.cbEnableMinimalisticViewByDefault.Name = "cbEnableMinimalisticViewByDefault"
+        Me.cbEnableMinimalisticViewByDefault.Size = New System.Drawing.Size(378, 40)
+        Me.cbEnableMinimalisticViewByDefault.TabIndex = 0
+        Me.cbEnableMinimalisticViewByDefault.Text = "Enable Minimalistic View automatically when you start" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "an action"
+        Me.cbEnableMinimalisticViewByDefault.UseVisualStyleBackColor = True
+        '
         'frmSettings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(440, 348)
+        Me.ClientSize = New System.Drawing.Size(440, 469)
+        Me.Controls.Add(Me.gbMinimalisticView)
         Me.Controls.Add(Me.btnLog)
         Me.Controls.Add(Me.gbAppSettings)
         Me.Controls.Add(Me.btnClose)
@@ -267,6 +310,8 @@ Partial Class frmSettings
         Me.gbDefaultSettings.PerformLayout()
         Me.gbAppSettings.ResumeLayout(False)
         Me.gbAppSettings.PerformLayout()
+        Me.gbMinimalisticView.ResumeLayout(False)
+        Me.gbMinimalisticView.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -288,4 +333,8 @@ Partial Class frmSettings
     Friend WithEvents lblDesign As Label
     Friend WithEvents lblLanguage As Label
     Friend WithEvents btnLog As Button
+    Friend WithEvents cbShowNotifications As CheckBox
+    Friend WithEvents gbMinimalisticView As GroupBox
+    Friend WithEvents cbEnableMinimalisticViewByDefault As CheckBox
+    Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
 End Class

@@ -33,6 +33,9 @@ Public Class frmSettings
             lblLanguage.Text = "Sprache:"
             btnSave.Text = "Speichern"
             btnClose.Text = "Schließen"
+            cbEnableMinimalisticViewByDefault.Text = "Aktiviere die Minimalistische Ansicht automatisch," + vbNewLine + "wenn du eine Aktion startest."
+            cbShowNotifications.Text = "Benachrichtigungen zeigen"
+            gbMinimalisticView.Text = "Minimalistische Ansicht-Einstellungen"
 
         ElseIf My.Settings.Language = "English" Then
             cbxLanguage.SelectedItem = "English (English)"
@@ -69,6 +72,9 @@ Public Class frmSettings
             rbtnRestart.ForeColor = Color.White
             tbDefaultTime.BackColor = Color.Gray
             tbDefaultTime.ForeColor = Color.White
+            cbShowNotifications.ForeColor = Color.White
+            cbEnableMinimalisticViewByDefault.ForeColor = Color.White
+            gbMinimalisticView.ForeColor = Color.White
         End If
 
         'Load default settings from settings
@@ -105,6 +111,20 @@ Public Class frmSettings
         End If
 
         tbDefaultTime.Text = My.Settings.DefaultTime
+
+        'Load Notifications
+        If My.Settings.ShowNotifications = True Then
+            cbShowNotifications.Checked = True
+        Else
+            cbShowNotifications.Checked = False
+        End If
+
+        'Load Minimalistic View
+        If My.Settings.EnableMinimalisticView = True Then
+            cbEnableMinimalisticViewByDefault.Checked = True
+        Else
+            cbEnableMinimalisticViewByDefault.Checked = False
+        End If
     End Sub
 
     Private Sub tbDefaultTime_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tbDefaultTime.KeyPress
@@ -166,11 +186,25 @@ Public Class frmSettings
         End If
         frmMain.WriteToLog("Saved Design to settings: " + My.Settings.Design, "Info")
 
+        'Save Notifications
+        If cbShowNotifications.Checked Then
+            My.Settings.ShowNotifications = True
+        Else
+            My.Settings.ShowNotifications = False
+        End If
+
+        'Save Minimalistic View
+        If cbEnableMinimalisticViewByDefault.Checked Then
+            My.Settings.EnableMinimalisticView = True
+        Else
+            My.Settings.EnableMinimalisticView = False
+        End If
+
         'Show a message that confirms that all settings have been saved
         If My.Settings.Language = "German" Then
-            MsgBox("Alle ausgewählten Optionen wurden gespeichert!" + vbNewLine + "Du musst möglicherweise die App neustarten," + vbNewLine + "um manche Einstellungen anzuwenden.", MsgBoxStyle.Information, "Erfolgreich gespeichert!")
+            frmMain.ShowNotification("Gespeichert! Du musst die Software möglicherweise neustarten.")
         ElseIf My.Settings.Language = "English" Then
-            MsgBox("All settings have been saved." + vbNewLine + "You may need to restart the application" + vbNewLine + "to apply some settings.", MsgBoxStyle.Information, "Saved successfully!")
+            frmMain.ShowNotification("Saved! You may need to restart the software.")
         End If
         Close()
     End Sub
