@@ -6,6 +6,8 @@ With Seeloewen Shutdown you can choose when your PC will automatically shutdown 
 
 The settings allow you to save an action and a time that will automatically be loaded and selected when you start the software. You can also change the design and the language.
 
+It also features in-App notifications was well as a 'Minimalistic View'-Mode. This only shows the necessary contents when activated, like the timer and when exactly the software will execute the action.
+
 If you need help or have any questions you can contact Seeloewen#5699 on Discord.
 
 The software is licensed under the GNU General Public License v3 which you can find here: https://www.gnu.org/licenses/gpl-3.0.en.html
