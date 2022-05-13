@@ -3,8 +3,8 @@ Imports System.IO
 
 Public Class frmMain
     Public LogLoadedOnce As Boolean
-    Dim Version As String = "1.7.1"
-    Dim VerDate As String = "19.03.2022"
+    Dim Version As String = "1.7.2"
+    Dim VerDate As String = "14.05.2022"
     Dim ShutdownTimeType As String
     Dim maxtime As String
     Public AppData As String = GetFolderPath(SpecialFolder.ApplicationData)
@@ -15,6 +15,7 @@ Public Class frmMain
     Dim TargetDT As DateTime
     Dim CountDownFrom As TimeSpan
     Dim TimeDifference As TimeSpan
+    Public ts As TimeSpan
 
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -24,6 +25,7 @@ Public Class frmMain
         End If
 
         WriteToLog("Loading Seeloewen Shutdown " + Version + " (" + VerDate + ")", "Info")
+
         'Translate all elements and load Language Setting
         If My.Settings.Language = "English" OrElse My.Settings.Language = "German" Then
         Else frmFirstStart.ShowDialog()
@@ -42,9 +44,10 @@ Public Class frmMain
             rbtnShutdown.Text = "Herunterfahren"
             rbtnRestart.Text = "Neustarten"
             rbtnPointInTime.Text = "Zeitpunkt"
-            ToolStripMenuItem1.Text = "Einstellungen"
-            ToolStripMenuItem2.Text = "Changelog"
-            ToolStripMenuItem3.Text = "Über"
+            SettingsToolStripMenuItem.Text = "Einstellungen"
+            ChangelogToolStripMenuItem.Text = "Changelog"
+            AboutToolStripMenuItem.Text = "Über"
+            MinimalisticViewToolStripMenuItem.Text = "Minimalistische Ansicht"
             lblSelectedAction.Text = "Gewählte Aktion:"
             lblSelectedTime.Text = "Gewählte Zeit:"
             lblScheduledAction.Text = "Geplante Aktion:"
@@ -230,10 +233,6 @@ Public Class frmMain
         WriteToLog("Loaded DefaultTimeChoice from settings: " + My.Settings.DefaultTimeChoice, "Info")
     End Sub
 
-    Private Sub btnOpenHelp_Click(sender As Object, e As EventArgs)
-        frmAbout.Show()
-    End Sub
-
     Private Sub btnStartAction_Click(sender As Object, e As EventArgs) Handles btnStartAction.Click
         If ActionRunning = False Then
             StartAction()
@@ -248,6 +247,11 @@ Public Class frmMain
             RemoveLastAction()
             WriteToLog("Stopped action.", "Info")
             Process.Start("shutdown", "-a")
+            If My.Settings.Language = "German" Then
+                ShowNotification("Die laufende Aktion wurde abgebrochen!")
+            ElseIf My.Settings.Language = "English" Then
+                ShowNotification("The running action was cancelled!")
+            End If
 
             If My.Settings.Design = "Dark" Then
                 btnStartAction.BackColor = Color.FromArgb(41, 41, 41)
@@ -365,68 +369,7 @@ Public Class frmMain
         TargetDT = DateTime.Now.Add(CountDownFrom)
         tmrShutdown.Start()
 
-        WriteToLog("Set gray box up (CountDownFrom: " + CountDownFrom.ToString + ", ShutdownTime.ext: " + Shutdowntime.Text + ", _RunningTime.Text: " + _RunningTime.Text + ")", "Info")
-    End Sub
-
-    Private Sub tmrShutdown_Tick(sender As Object, e As EventArgs) Handles tmrShutdown.Tick
-        Dim ts As TimeSpan = TargetDT.Subtract(DateTime.Now)
-        If ts.TotalMilliseconds > 0 Then
-            If ts.TotalHours > 24 Then
-                _TimeRemaining.Text = ts.ToString("dd\:hh\:mm\:ss")
-            Else _TimeRemaining.Text = ts.ToString("hh\:mm\:ss")
-            End If
-        End If
-
-    End Sub
-
-    Private Sub tbTime_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tbTime.KeyPress
-        Select Case Asc(e.KeyChar)
-            Case 48 To 57, 8
-            Case Else
-                e.Handled = True
-        End Select
-    End Sub
-
-    Private Sub rbtnZeitpunkt_CheckedChanged(sender As Object, e As EventArgs) Handles rbtnPointInTime.CheckedChanged
-        tbTime.Enabled = False
-        cbxIn.Enabled = False
-        dtpDate.Enabled = True
-        currentDateTime.Enabled = True
-
-        If rbtnIn.Checked = True Then
-            If String.IsNullOrEmpty(tbTime.Text) = False Then
-                _SelectedTime.Text = "In " + tbTime.Text + " " + cbxIn.Text
-            Else
-                If My.Settings.Language = "English" Then
-                    _SelectedTime.Text = "No time selected"
-                ElseIf My.Settings.Language = "German" Then
-                    _SelectedTime.Text = "Keine Zeit gewählt"
-                End If
-            End If
-        ElseIf rbtnPointInTime.Checked = True Then
-            _SelectedTime.Text = dtpDate.Text
-        End If
-    End Sub
-
-    Private Sub rbtnIn_CheckedChanged(sender As Object, e As EventArgs) Handles rbtnIn.CheckedChanged
-        dtpDate.Enabled = False
-        currentDateTime.Enabled = False
-        tbTime.Enabled = True
-        cbxIn.Enabled = True
-
-        If rbtnIn.Checked = True Then
-            If String.IsNullOrEmpty(tbTime.Text) = False Then
-                _SelectedTime.Text = "In " + tbTime.Text + " " + cbxIn.Text
-            Else
-                If My.Settings.Language = "English" Then
-                    _SelectedTime.Text = "No time selected"
-                ElseIf My.Settings.Language = "German" Then
-                    _SelectedTime.Text = "Keine Zeit gewählt"
-                End If
-            End If
-        ElseIf rbtnPointInTime.Checked = True Then
-            _SelectedTime.Text = dtpDate.Text
-        End If
+        WriteToLog("Set gray box up (CountDownFrom: " + CountDownFrom.ToString + ", Shutdowntime.Text: " + Shutdowntime.Text + ", _RunningTime.Text: " + _RunningTime.Text + ")", "Info")
     End Sub
 
     Private Sub CallShutDown()
@@ -443,47 +386,6 @@ Public Class frmMain
         Loop
         Stopwatch.Stop()
         Stopwatch.Reset()
-    End Sub
-
-    Private Sub btnOpenSettings_Click(sender As Object, e As EventArgs)
-        frmSettings.Show()
-    End Sub
-
-    Private Sub GrayBoxAnimationUp(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tmrGrayBoxAnimationUp.Tick
-        If pbGrayBox.Top >= 331 Then
-            GrayBoxNewY = GrayBoxNewY - 10
-            pbGrayBox.Top = GrayBoxNewY - 10
-        Else
-            tmrGrayBoxAnimationUp.Enabled = False
-        End If
-    End Sub
-
-    Private Sub GrayBoxAnimationDown(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tmrGrayBoxAnimationDown.Tick
-        If pbGrayBox.Top <= 500 Then
-            GrayBoxNewY = GrayBoxNewY + 10
-            pbGrayBox.Top = GrayBoxNewY
-        Else
-            tmrGrayBoxAnimationDown.Enabled = False
-            pbGrayBox.Visible = False
-        End If
-    End Sub
-
-    Private Sub PnlActionRunningAnimationUp(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tmrPnlActionRunningAnimationUp.Tick
-        If pnlActionRunning.Top >= 347 Then
-            PnlActionRunningNewY = PnlActionRunningNewY - 10
-            pnlActionRunning.Top = PnlActionRunningNewY
-        Else
-            tmrPnlActionRunningAnimationUp.Enabled = False
-        End If
-    End Sub
-
-    Private Sub PnlActionRunningAnimationDown(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tmrPnlActionRunningAnimationDown.Tick
-        If pnlActionRunning.Top <= 500 Then
-            PnlActionRunningNewY = PnlActionRunningNewY + 10
-            pnlActionRunning.Top = PnlActionRunningNewY
-        Else
-            tmrPnlActionRunningAnimationDown.Enabled = False
-        End If
     End Sub
 
     Private Sub StartAction()
@@ -547,6 +449,11 @@ Public Class frmMain
                     SetupGrayBox()
                     SetLastAction()
                     CallShutDown()
+                    If My.Settings.Language = "German" Then
+                        ShowNotification("Eine Aktion wurde gestartet!")
+                    ElseIf My.Settings.Language = "English" Then
+                        ShowNotification("An Action was started!")
+                    End If
                     WriteToLog("Started action (ShutdownTimeType: " + ShutdownTimeType + ", Shutdowntime: " + Shutdowntime.Text + ", Action: " + Action.Text + ", type: In...)", "Info")
                     btnStartAction.BackColor = Color.FromArgb(232, 232, 232)
 
@@ -564,6 +471,9 @@ Public Class frmMain
                     tmrGrayBoxAnimationUp.Enabled = True
                     tmrPnlActionRunningAnimationUp.Enabled = True
                     ActionRunning = True
+                    If My.Settings.EnableMinimalisticView = True Then
+                        EnableMinimalisticView()
+                    End If
                 End If
             End If
         End If
@@ -621,6 +531,33 @@ Public Class frmMain
                 tmrGrayBoxAnimationUp.Enabled = True
                 tmrPnlActionRunningAnimationUp.Enabled = True
                 ActionRunning = True
+                If My.Settings.EnableMinimalisticView = True Then
+                    EnableMinimalisticView()
+                End If
+            End If
+        End If
+    End Sub
+
+    Public Sub ShowNotification(Text As String)
+        If My.Settings.ShowNotifications = True Then
+            tmrPnlNotificationAnimationDown.Enabled = False
+            tmrPnlNotificationAnimationUp.Enabled = False
+            lblNotification.Text = Text
+            pnlNotification.Top = 20
+            PnlNotificationNewY = 20
+            tmrPnlNotificationAnimationDown.Enabled = True
+        End If
+    End Sub
+
+    Private Sub EnableMinimalisticView()
+        If ActionRunning Then
+            frmMinimalisticView.Show()
+            Hide()
+        Else
+            If My.Settings.Language = "German" Then
+                MsgBox("Es läuft aktuell keine Aktion.", MsgBoxStyle.Critical, "Fehler")
+            ElseIf My.Settings.Language = "English" Then
+                MsgBox("There is currently no running action.", MsgBoxStyle.Critical, "Error")
             End If
         End If
     End Sub
@@ -649,15 +586,15 @@ Public Class frmMain
         End If
     End Sub
 
-    Private Sub ToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem1.Click
+    Private Sub ToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles SettingsToolStripMenuItem.Click
         frmSettings.Show()
     End Sub
 
-    Private Sub ToolStripMenuItem3_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem3.Click
+    Private Sub ToolStripMenuItem3_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
         frmAbout.Show()
     End Sub
 
-    Private Sub ToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem2.Click
+    Private Sub ToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles ChangelogToolStripMenuItem.Click
         frmChangelog.Show()
     End Sub
 
@@ -762,18 +699,6 @@ Public Class frmMain
         frmLog.rtbLog.LoadFile(AppData + "/Seeloewen Shutdown/DebugLogTemp")
     End Sub
 
-    Private Sub EnableMinimalisticView()
-        frmMinimalisticView.Show()
-        Hide()
-    End Sub
-
-    Private Sub ShowNotification(Text As String)
-        lblNotification.Text = Text
-        pnlNotification.Top = 20
-        PnlNotificationNewY = 20
-        tmrPnlNotificationAnimationDown.Enabled = True
-    End Sub
-
     Private Sub PnlNotificationAnimationDown(sender As Object, e As EventArgs) Handles tmrPnlNotificationAnimationDown.Tick
         If pnlNotification.Top <= 66 Then
             PnlNotificationNewY = PnlNotificationNewY + 3
@@ -792,5 +717,115 @@ Public Class frmMain
         Else
             tmrPnlNotificationAnimationUp.Enabled = False
         End If
+    End Sub
+
+    Private Sub btnOpenSettings_Click(sender As Object, e As EventArgs)
+        frmSettings.Show()
+    End Sub
+
+    Private Sub GrayBoxAnimationUp(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tmrGrayBoxAnimationUp.Tick
+        If pbGrayBox.Top >= 331 Then
+            GrayBoxNewY = GrayBoxNewY - 10
+            pbGrayBox.Top = GrayBoxNewY - 10
+        Else
+            tmrGrayBoxAnimationUp.Enabled = False
+        End If
+    End Sub
+
+    Private Sub GrayBoxAnimationDown(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tmrGrayBoxAnimationDown.Tick
+        If pbGrayBox.Top <= 500 Then
+            GrayBoxNewY = GrayBoxNewY + 10
+            pbGrayBox.Top = GrayBoxNewY
+        Else
+            tmrGrayBoxAnimationDown.Enabled = False
+            pbGrayBox.Visible = False
+        End If
+    End Sub
+
+    Private Sub PnlActionRunningAnimationUp(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tmrPnlActionRunningAnimationUp.Tick
+        If pnlActionRunning.Top >= 347 Then
+            PnlActionRunningNewY = PnlActionRunningNewY - 10
+            pnlActionRunning.Top = PnlActionRunningNewY
+        Else
+            tmrPnlActionRunningAnimationUp.Enabled = False
+        End If
+    End Sub
+
+    Private Sub PnlActionRunningAnimationDown(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tmrPnlActionRunningAnimationDown.Tick
+        If pnlActionRunning.Top <= 500 Then
+            PnlActionRunningNewY = PnlActionRunningNewY + 10
+            pnlActionRunning.Top = PnlActionRunningNewY
+        Else
+            tmrPnlActionRunningAnimationDown.Enabled = False
+        End If
+    End Sub
+
+    Private Sub tmrShutdown_Tick(sender As Object, e As EventArgs) Handles tmrShutdown.Tick
+        ts = TargetDT.Subtract(DateTime.Now)
+        If ts.TotalMilliseconds > 0 Then
+            If ts.TotalHours > 24 Then
+                _TimeRemaining.Text = ts.ToString("dd\:hh\:mm\:ss")
+            Else _TimeRemaining.Text = ts.ToString("hh\:mm\:ss")
+            End If
+        End If
+
+    End Sub
+
+    Private Sub tbTime_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tbTime.KeyPress
+        Select Case Asc(e.KeyChar)
+            Case 48 To 57, 8
+            Case Else
+                e.Handled = True
+        End Select
+    End Sub
+
+    Private Sub rbtnZeitpunkt_CheckedChanged(sender As Object, e As EventArgs) Handles rbtnPointInTime.CheckedChanged
+        tbTime.Enabled = False
+        cbxIn.Enabled = False
+        dtpDate.Enabled = True
+        currentDateTime.Enabled = True
+
+        If rbtnIn.Checked = True Then
+            If String.IsNullOrEmpty(tbTime.Text) = False Then
+                _SelectedTime.Text = "In " + tbTime.Text + " " + cbxIn.Text
+            Else
+                If My.Settings.Language = "English" Then
+                    _SelectedTime.Text = "No time selected"
+                ElseIf My.Settings.Language = "German" Then
+                    _SelectedTime.Text = "Keine Zeit gewählt"
+                End If
+            End If
+        ElseIf rbtnPointInTime.Checked = True Then
+            _SelectedTime.Text = dtpDate.Text
+        End If
+    End Sub
+
+    Private Sub rbtnIn_CheckedChanged(sender As Object, e As EventArgs) Handles rbtnIn.CheckedChanged
+        dtpDate.Enabled = False
+        currentDateTime.Enabled = False
+        tbTime.Enabled = True
+        cbxIn.Enabled = True
+
+        If rbtnIn.Checked = True Then
+            If String.IsNullOrEmpty(tbTime.Text) = False Then
+                _SelectedTime.Text = "In " + tbTime.Text + " " + cbxIn.Text
+            Else
+                If My.Settings.Language = "English" Then
+                    _SelectedTime.Text = "No time selected"
+                ElseIf My.Settings.Language = "German" Then
+                    _SelectedTime.Text = "Keine Zeit gewählt"
+                End If
+            End If
+        ElseIf rbtnPointInTime.Checked = True Then
+            _SelectedTime.Text = dtpDate.Text
+        End If
+    End Sub
+
+    Private Sub btnOpenHelp_Click(sender As Object, e As EventArgs)
+        frmAbout.Show()
+    End Sub
+
+    Private Sub MinimalisticViewToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MinimalisticViewToolStripMenuItem.Click
+        EnableMinimalisticView()
     End Sub
 End Class

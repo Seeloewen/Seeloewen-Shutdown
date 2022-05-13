@@ -70,10 +70,10 @@ Partial Class frmMain
         Me.tmrPnlActionRunningAnimationUp = New System.Windows.Forms.Timer(Me.components)
         Me.tmrPnlActionRunningAnimationDown = New System.Windows.Forms.Timer(Me.components)
         Me.cmsHamburgerButton = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SettingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MinimalisticViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ChangelogToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.dtpSelectedTime = New System.Windows.Forms.DateTimePicker()
         Me.tmrShutdown = New System.Windows.Forms.Timer(Me.components)
         Me.btnStartAction = New System.Windows.Forms.Button()
@@ -382,7 +382,7 @@ Partial Class frmMain
         Me.lblVersion.Name = "lblVersion"
         Me.lblVersion.Size = New System.Drawing.Size(75, 31)
         Me.lblVersion.TabIndex = 22
-        Me.lblVersion.Text = "1.7.1"
+        Me.lblVersion.Text = "1.7.2"
         '
         'lblHeader
         '
@@ -557,18 +557,18 @@ Partial Class frmMain
         '
         'cmsHamburgerButton
         '
-        Me.cmsHamburgerButton.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1, Me.MinimalisticViewToolStripMenuItem, Me.ToolStripMenuItem2, Me.ToolStripMenuItem3})
+        Me.cmsHamburgerButton.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SettingsToolStripMenuItem, Me.MinimalisticViewToolStripMenuItem, Me.ChangelogToolStripMenuItem, Me.AboutToolStripMenuItem})
         Me.cmsHamburgerButton.Name = "cmsHamburgerButton"
         Me.cmsHamburgerButton.Size = New System.Drawing.Size(200, 108)
         '
-        'ToolStripMenuItem1
+        'SettingsToolStripMenuItem
         '
-        Me.ToolStripMenuItem1.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ToolStripMenuItem1.Image = CType(resources.GetObject("ToolStripMenuItem1.Image"), System.Drawing.Image)
-        Me.ToolStripMenuItem1.ImageAlign = System.Drawing.ContentAlignment.TopLeft
-        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(199, 26)
-        Me.ToolStripMenuItem1.Text = "Settings"
+        Me.SettingsToolStripMenuItem.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SettingsToolStripMenuItem.Image = CType(resources.GetObject("SettingsToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.SettingsToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.TopLeft
+        Me.SettingsToolStripMenuItem.Name = "SettingsToolStripMenuItem"
+        Me.SettingsToolStripMenuItem.Size = New System.Drawing.Size(199, 26)
+        Me.SettingsToolStripMenuItem.Text = "Settings"
         '
         'MinimalisticViewToolStripMenuItem
         '
@@ -578,21 +578,21 @@ Partial Class frmMain
         Me.MinimalisticViewToolStripMenuItem.Size = New System.Drawing.Size(199, 26)
         Me.MinimalisticViewToolStripMenuItem.Text = "Minimalistic View"
         '
-        'ToolStripMenuItem2
+        'ChangelogToolStripMenuItem
         '
-        Me.ToolStripMenuItem2.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ToolStripMenuItem2.Image = Global.Seeloewen_Shutdown.My.Resources.Resources.Update
-        Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(199, 26)
-        Me.ToolStripMenuItem2.Text = "Changelog"
+        Me.ChangelogToolStripMenuItem.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ChangelogToolStripMenuItem.Image = Global.Seeloewen_Shutdown.My.Resources.Resources.Update
+        Me.ChangelogToolStripMenuItem.Name = "ChangelogToolStripMenuItem"
+        Me.ChangelogToolStripMenuItem.Size = New System.Drawing.Size(199, 26)
+        Me.ChangelogToolStripMenuItem.Text = "Changelog"
         '
-        'ToolStripMenuItem3
+        'AboutToolStripMenuItem
         '
-        Me.ToolStripMenuItem3.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ToolStripMenuItem3.Image = Global.Seeloewen_Shutdown.My.Resources.Resources.About
-        Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
-        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(199, 26)
-        Me.ToolStripMenuItem3.Text = "About"
+        Me.AboutToolStripMenuItem.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.AboutToolStripMenuItem.Image = Global.Seeloewen_Shutdown.My.Resources.Resources.About
+        Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(199, 26)
+        Me.AboutToolStripMenuItem.Text = "About"
         '
         'dtpSelectedTime
         '
@@ -636,7 +636,8 @@ Partial Class frmMain
         '
         'pbNotification
         '
-        Me.pbNotification.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.Notification
+        Me.pbNotification.BackColor = System.Drawing.Color.Transparent
+        Me.pbNotification.BackgroundImage = CType(resources.GetObject("pbNotification.BackgroundImage"), System.Drawing.Image)
         Me.pbNotification.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.pbNotification.Location = New System.Drawing.Point(13, 3)
         Me.pbNotification.Name = "pbNotification"
@@ -646,6 +647,7 @@ Partial Class frmMain
         '
         'pnlNotification
         '
+        Me.pnlNotification.BackColor = System.Drawing.Color.Transparent
         Me.pnlNotification.Controls.Add(Me.lblNotification)
         Me.pnlNotification.Controls.Add(Me.pbNotification)
         Me.pnlNotification.Location = New System.Drawing.Point(9, 27)
@@ -690,7 +692,7 @@ Partial Class frmMain
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(634, 469)
+        Me.ClientSize = New System.Drawing.Size(634, 466)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.pnlNotification)
         Me.Controls.Add(Me.lblAction)
@@ -786,9 +788,9 @@ Partial Class frmMain
     Friend WithEvents tmrPnlActionRunningAnimationUp As Timer
     Friend WithEvents tmrPnlActionRunningAnimationDown As Timer
     Friend WithEvents cmsHamburgerButton As ContextMenuStrip
-    Friend WithEvents ToolStripMenuItem1 As ToolStripMenuItem
-    Friend WithEvents ToolStripMenuItem2 As ToolStripMenuItem
-    Friend WithEvents ToolStripMenuItem3 As ToolStripMenuItem
+    Friend WithEvents SettingsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ChangelogToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AboutToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents dtpSelectedTime As DateTimePicker
     Friend WithEvents _TimeRemaining As Label
     Friend WithEvents lblTimeRemaining As Label
