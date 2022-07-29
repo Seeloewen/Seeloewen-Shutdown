@@ -77,9 +77,9 @@ Partial Class frmMinimalisticView
         Me.btnSwitchToNormalView.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSwitchToNormalView.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSwitchToNormalView.ForeColor = System.Drawing.Color.White
-        Me.btnSwitchToNormalView.Location = New System.Drawing.Point(132, 116)
+        Me.btnSwitchToNormalView.Location = New System.Drawing.Point(93, 116)
         Me.btnSwitchToNormalView.Name = "btnSwitchToNormalView"
-        Me.btnSwitchToNormalView.Size = New System.Drawing.Size(160, 28)
+        Me.btnSwitchToNormalView.Size = New System.Drawing.Size(241, 28)
         Me.btnSwitchToNormalView.TabIndex = 3
         Me.btnSwitchToNormalView.Text = "Switch to Normal View"
         Me.btnSwitchToNormalView.UseVisualStyleBackColor = True

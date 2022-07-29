@@ -78,4 +78,8 @@
     Private Sub btnSwitchToNormalView_MouseUp(sender As Object, e As MouseEventArgs) Handles btnSwitchToNormalView.MouseUp
         btnSwitchToNormalView.BackgroundImage = My.Resources.button
     End Sub
+
+    Private Sub frmMinimalisticView_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        frmMain.Close()
+    End Sub
 End Class
