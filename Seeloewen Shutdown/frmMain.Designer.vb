@@ -398,9 +398,9 @@ Partial Class frmMain
         '
         Me.pbGrayBox.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.grayBox
         Me.pbGrayBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.pbGrayBox.Location = New System.Drawing.Point(12, 331)
+        Me.pbGrayBox.Location = New System.Drawing.Point(9, 331)
         Me.pbGrayBox.Name = "pbGrayBox"
-        Me.pbGrayBox.Size = New System.Drawing.Size(617, 133)
+        Me.pbGrayBox.Size = New System.Drawing.Size(620, 133)
         Me.pbGrayBox.TabIndex = 23
         Me.pbGrayBox.TabStop = False
         Me.pbGrayBox.Visible = False
@@ -692,7 +692,7 @@ Partial Class frmMain
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(634, 466)
+        Me.ClientSize = New System.Drawing.Size(634, 469)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.pnlNotification)
         Me.Controls.Add(Me.lblAction)

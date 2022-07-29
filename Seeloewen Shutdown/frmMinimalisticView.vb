@@ -1,18 +1,5 @@
 ﻿Public Class frmMinimalisticView
 
-    Dim TargetDT As DateTime
-
-    Private Sub tmrShutdown_Tick(sender As Object, e As EventArgs) Handles tmrShutdown.Tick
-        Dim ts As TimeSpan = TargetDT.Subtract(DateTime.Now)
-        If ts.TotalMilliseconds > 0 Then
-            If ts.TotalHours > 24 Then
-                lblTimerShutdown.Text = ts.ToString("dd\:hh\:mm\:ss")
-            Else lblTimerShutdown.Text = ts.ToString("hh\:mm\:ss")
-            End If
-        End If
-    End Sub
-
-
     Private Sub frmMinimalisticView_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Load action
         If frmMain._RunningAction.Text = "Shutdown" Or frmMain._RunningAction.Text = "Herunterfahren" Then
@@ -31,10 +18,6 @@
 
         'Load time
         lblTime.Text = frmMain._RunningTime.Text
-
-        'Load timer
-        TargetDT = DateTime.Now.AddSeconds(frmMain.ts.TotalSeconds)
-        tmrShutdown.Enabled = True
 
         'Load design
         If My.Settings.Design = "Dark" Then
@@ -59,7 +42,6 @@
     End Sub
 
     Private Sub btnSwitchToNormalView_Click(sender As Object, e As EventArgs) Handles btnSwitchToNormalView.Click
-        frmMain.Show()
         Close()
     End Sub
 
@@ -80,6 +62,6 @@
     End Sub
 
     Private Sub frmMinimalisticView_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
-        frmMain.Close()
+        frmMain.Show()
     End Sub
 End Class

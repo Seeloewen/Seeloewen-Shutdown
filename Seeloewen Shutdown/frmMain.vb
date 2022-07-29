@@ -472,6 +472,7 @@ Public Class frmMain
                     tmrPnlActionRunningAnimationUp.Enabled = True
                     ActionRunning = True
                     If My.Settings.EnableMinimalisticView = True Then
+
                         EnableMinimalisticView()
                     End If
                 End If
@@ -827,5 +828,9 @@ Public Class frmMain
 
     Private Sub MinimalisticViewToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MinimalisticViewToolStripMenuItem.Click
         EnableMinimalisticView()
+    End Sub
+
+    Private Sub _TimeRemaining_TextChanged(sender As Object, e As EventArgs) Handles _TimeRemaining.TextChanged
+        frmMinimalisticView.lblTimerShutdown.Text = _TimeRemaining.Text
     End Sub
 End Class
