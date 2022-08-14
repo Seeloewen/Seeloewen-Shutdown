@@ -37,6 +37,7 @@ Partial Class frmMain
         Me.Finaloutput = New System.Windows.Forms.Label()
         Me.Quotationmark = New System.Windows.Forms.Label()
         Me.gbLastAction = New System.Windows.Forms.GroupBox()
+        Me.btnShowActionHistory = New System.Windows.Forms.Button()
         Me._ExecutedOn = New System.Windows.Forms.Label()
         Me.lblExecutedOn = New System.Windows.Forms.Label()
         Me._LastTime = New System.Windows.Forms.Label()
@@ -227,6 +228,7 @@ Partial Class frmMain
         '
         'gbLastAction
         '
+        Me.gbLastAction.Controls.Add(Me.btnShowActionHistory)
         Me.gbLastAction.Controls.Add(Me._ExecutedOn)
         Me.gbLastAction.Controls.Add(Me.lblExecutedOn)
         Me.gbLastAction.Controls.Add(Me._LastTime)
@@ -236,10 +238,20 @@ Partial Class frmMain
         Me.gbLastAction.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gbLastAction.Location = New System.Drawing.Point(420, 107)
         Me.gbLastAction.Name = "gbLastAction"
-        Me.gbLastAction.Size = New System.Drawing.Size(191, 206)
+        Me.gbLastAction.Size = New System.Drawing.Size(191, 240)
         Me.gbLastAction.TabIndex = 36
         Me.gbLastAction.TabStop = False
         Me.gbLastAction.Text = "Last action"
+        '
+        'btnShowActionHistory
+        '
+        Me.btnShowActionHistory.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnShowActionHistory.Location = New System.Drawing.Point(13, 206)
+        Me.btnShowActionHistory.Name = "btnShowActionHistory"
+        Me.btnShowActionHistory.Size = New System.Drawing.Size(162, 23)
+        Me.btnShowActionHistory.TabIndex = 7
+        Me.btnShowActionHistory.Text = "View history"
+        Me.btnShowActionHistory.UseVisualStyleBackColor = True
         '
         '_ExecutedOn
         '
@@ -398,7 +410,7 @@ Partial Class frmMain
         '
         Me.pbGrayBox.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.grayBox
         Me.pbGrayBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.pbGrayBox.Location = New System.Drawing.Point(9, 331)
+        Me.pbGrayBox.Location = New System.Drawing.Point(9, 353)
         Me.pbGrayBox.Name = "pbGrayBox"
         Me.pbGrayBox.Size = New System.Drawing.Size(620, 133)
         Me.pbGrayBox.TabIndex = 23
@@ -409,7 +421,7 @@ Partial Class frmMain
         '
         Me.pbLine2.BackgroundImage = CType(resources.GetObject("pbLine2.BackgroundImage"), System.Drawing.Image)
         Me.pbLine2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.pbLine2.Location = New System.Drawing.Point(7, 331)
+        Me.pbLine2.Location = New System.Drawing.Point(7, 353)
         Me.pbLine2.Name = "pbLine2"
         Me.pbLine2.Size = New System.Drawing.Size(617, 10)
         Me.pbLine2.TabIndex = 27
@@ -428,7 +440,7 @@ Partial Class frmMain
         Me.lblSelectedAction.AutoSize = True
         Me.lblSelectedAction.BackColor = System.Drawing.Color.White
         Me.lblSelectedAction.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblSelectedAction.Location = New System.Drawing.Point(44, 363)
+        Me.lblSelectedAction.Location = New System.Drawing.Point(44, 385)
         Me.lblSelectedAction.Name = "lblSelectedAction"
         Me.lblSelectedAction.Size = New System.Drawing.Size(160, 24)
         Me.lblSelectedAction.TabIndex = 25
@@ -439,7 +451,7 @@ Partial Class frmMain
         Me.lblSelectedTime.AutoSize = True
         Me.lblSelectedTime.BackColor = System.Drawing.Color.White
         Me.lblSelectedTime.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblSelectedTime.Location = New System.Drawing.Point(44, 398)
+        Me.lblSelectedTime.Location = New System.Drawing.Point(44, 420)
         Me.lblSelectedTime.Name = "lblSelectedTime"
         Me.lblSelectedTime.Size = New System.Drawing.Size(143, 24)
         Me.lblSelectedTime.TabIndex = 26
@@ -450,7 +462,7 @@ Partial Class frmMain
         Me._SelectedAction.AutoSize = True
         Me._SelectedAction.BackColor = System.Drawing.Color.White
         Me._SelectedAction.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me._SelectedAction.Location = New System.Drawing.Point(210, 363)
+        Me._SelectedAction.Location = New System.Drawing.Point(210, 385)
         Me._SelectedAction.Name = "_SelectedAction"
         Me._SelectedAction.Size = New System.Drawing.Size(167, 24)
         Me._SelectedAction.TabIndex = 28
@@ -461,7 +473,7 @@ Partial Class frmMain
         Me._SelectedTime.AutoSize = True
         Me._SelectedTime.BackColor = System.Drawing.Color.White
         Me._SelectedTime.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me._SelectedTime.Location = New System.Drawing.Point(193, 398)
+        Me._SelectedTime.Location = New System.Drawing.Point(193, 420)
         Me._SelectedTime.Name = "_SelectedTime"
         Me._SelectedTime.Size = New System.Drawing.Size(157, 24)
         Me._SelectedTime.TabIndex = 29
@@ -520,9 +532,9 @@ Partial Class frmMain
         Me.pnlActionRunning.Controls.Add(Me._RunningTime)
         Me.pnlActionRunning.Controls.Add(Me.lblScheduledTime)
         Me.pnlActionRunning.Controls.Add(Me._RunningAction)
-        Me.pnlActionRunning.Location = New System.Drawing.Point(41, 492)
+        Me.pnlActionRunning.Location = New System.Drawing.Point(44, 529)
         Me.pnlActionRunning.Name = "pnlActionRunning"
-        Me.pnlActionRunning.Size = New System.Drawing.Size(380, 100)
+        Me.pnlActionRunning.Size = New System.Drawing.Size(379, 100)
         Me.pnlActionRunning.TabIndex = 41
         '
         '_TimeRemaining
@@ -616,7 +628,7 @@ Partial Class frmMain
         Me.btnStartAction.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnStartAction.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnStartAction.ForeColor = System.Drawing.Color.White
-        Me.btnStartAction.Location = New System.Drawing.Point(433, 363)
+        Me.btnStartAction.Location = New System.Drawing.Point(433, 385)
         Me.btnStartAction.Name = "btnStartAction"
         Me.btnStartAction.Size = New System.Drawing.Size(162, 59)
         Me.btnStartAction.TabIndex = 43
@@ -692,7 +704,7 @@ Partial Class frmMain
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(634, 469)
+        Me.ClientSize = New System.Drawing.Size(634, 496)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.pnlNotification)
         Me.Controls.Add(Me.lblAction)
@@ -704,15 +716,15 @@ Partial Class frmMain
         Me.Controls.Add(Me.pnlTime)
         Me.Controls.Add(Me.lblTime)
         Me.Controls.Add(Me.pnlAction)
-        Me.Controls.Add(Me._SelectedTime)
-        Me.Controls.Add(Me._SelectedAction)
-        Me.Controls.Add(Me.lblSelectedTime)
-        Me.Controls.Add(Me.lblSelectedAction)
         Me.Controls.Add(Me.Quotationmark)
         Me.Controls.Add(Me.Finaloutput)
         Me.Controls.Add(Me.Shutdowntime)
         Me.Controls.Add(Me.Action)
         Me.Controls.Add(Me.currentDateTime)
+        Me.Controls.Add(Me._SelectedTime)
+        Me.Controls.Add(Me._SelectedAction)
+        Me.Controls.Add(Me.lblSelectedTime)
+        Me.Controls.Add(Me.lblSelectedAction)
         Me.Controls.Add(Me.pbGrayBox)
         Me.Controls.Add(Me.pbLine2)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
@@ -804,4 +816,5 @@ Partial Class frmMain
     Friend WithEvents Panel1 As Panel
     Friend WithEvents lblNotification As Label
     Friend WithEvents tmrPnlNotificationAnimationUp As Timer
+    Friend WithEvents btnShowActionHistory As Button
 End Class

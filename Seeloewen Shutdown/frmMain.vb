@@ -26,6 +26,11 @@ Public Class frmMain
 
         WriteToLog("Loading Seeloewen Shutdown " + Version + " (" + VerDate + ")", "Info")
 
+        'Create ActionHistory file if it doesn't already exist
+        If My.Computer.FileSystem.FileExists(AppData + "/Seeloewen Shutdown/ActionHistory.txt") = False Then
+            My.Computer.FileSystem.WriteAllText(AppData + "/Seeloewen Shutdown/ActionHistory.txt", "", False)
+        End If
+
         'Translate all elements and load Language Setting
         If My.Settings.Language = "English" OrElse My.Settings.Language = "German" Then
         Else frmFirstStart.ShowDialog()
@@ -275,7 +280,7 @@ Public Class frmMain
         End If
     End Sub
 
-    Public Sub WriteToLog(Message As String, Type As String)
+    Public Sub WriteToLog(Message As String, Type As String) 'Writes message into log, possible types are "Info", "Warning" and "Error"
         If Type = "Error" Then
             rtbLog.SelectionColor = Color.Red
             rtbLog.AppendText("[" + DateTime.Now + "] " + "[ERROR] " + Message + vbNewLine)
@@ -291,20 +296,40 @@ Public Class frmMain
         End If
     End Sub
 
-    Private Sub RemoveLastAction()
+    Private Sub RemoveLastAction() 'Runs if last action gets cancelled manually
+        'Remove last action so software does not detect a running action
         My.Settings.LastAction = "-"
         My.Settings.LastTime = "-"
         My.Settings.LastDate = "-"
-        WriteToLog("Removed 'last Action'.", "Info")
+        WriteToLog("Removed last Action.", "Info")
+
+        'Remove last line from Action History file (basically remove last action)
+        Dim file As String = AppData + "/Seeloewen Shutdown/ActionHistory.txt"
+        Dim lines() As String = IO.File.ReadAllLines(file)
+        Dim length As String = lines.Last.Length.ToString
+        Dim fs As New FileStream(file, FileMode.Open, FileAccess.ReadWrite)
+
+        fs.SetLength(fs.Length - length - 2)
+        fs.Close()
     End Sub
 
     Private Sub SetLastAction()
+        'Set action so software can recognize that an action is running when being restarted
         My.Settings.LastAction = _RunningAction.Text
         My.Settings.LastTime = dtpSelectedTime.Value
         My.Settings.LastDate = DateTime.Now
+
+        'Display last action
         My.Settings.LastActionDisplay = _RunningAction.Text
         My.Settings.LastTimeDisplay = dtpSelectedTime.Value
         My.Settings.LastDateDisplay = DateTime.Now
+
+        'Add action to Action History file
+        Try
+            My.Computer.FileSystem.WriteAllText(AppData + "/Seeloewen Shutdown/ActionHistory.txt", _RunningAction.Text + ";" + dtpSelectedTime.Value + ";" + DateTime.Now.ToString + vbNewLine, True)
+        Catch ex As Exception
+            WriteToLog("Couldn't add last action to Action History. " + ex.Message, "Error")
+        End Try
     End Sub
 
     Private Sub CallLastAction()
@@ -725,7 +750,7 @@ Public Class frmMain
     End Sub
 
     Private Sub GrayBoxAnimationUp(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tmrGrayBoxAnimationUp.Tick
-        If pbGrayBox.Top >= 331 Then
+        If pbGrayBox.Top >= 353 Then
             GrayBoxNewY = GrayBoxNewY - 10
             pbGrayBox.Top = GrayBoxNewY - 10
         Else
@@ -744,7 +769,7 @@ Public Class frmMain
     End Sub
 
     Private Sub PnlActionRunningAnimationUp(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tmrPnlActionRunningAnimationUp.Tick
-        If pnlActionRunning.Top >= 347 Then
+        If pnlActionRunning.Top >= 366 Then
             PnlActionRunningNewY = PnlActionRunningNewY - 10
             pnlActionRunning.Top = PnlActionRunningNewY
         Else
@@ -832,5 +857,9 @@ Public Class frmMain
 
     Private Sub _TimeRemaining_TextChanged(sender As Object, e As EventArgs) Handles _TimeRemaining.TextChanged
         frmMinimalisticView.lblTimerShutdown.Text = _TimeRemaining.Text
+    End Sub
+
+    Private Sub btnShowActionHistory_Click(sender As Object, e As EventArgs) Handles btnShowActionHistory.Click
+        frmActionHistory.Show()
     End Sub
 End Class
