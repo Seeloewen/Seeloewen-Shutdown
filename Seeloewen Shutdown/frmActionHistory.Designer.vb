@@ -81,28 +81,46 @@ Partial Class frmActionHistory
         '
         'btnClose
         '
-        Me.btnClose.Location = New System.Drawing.Point(314, 433)
+        Me.btnClose.BackColor = System.Drawing.Color.Transparent
+        Me.btnClose.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
+        Me.btnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnClose.FlatAppearance.BorderSize = 0
+        Me.btnClose.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnClose.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnClose.ForeColor = System.Drawing.Color.White
+        Me.btnClose.Location = New System.Drawing.Point(314, 429)
         Me.btnClose.Name = "btnClose"
-        Me.btnClose.Size = New System.Drawing.Size(302, 23)
+        Me.btnClose.Size = New System.Drawing.Size(302, 29)
         Me.btnClose.TabIndex = 7
         Me.btnClose.Text = "Close"
-        Me.btnClose.UseVisualStyleBackColor = True
+        Me.btnClose.UseVisualStyleBackColor = False
         '
         'btnClear
         '
-        Me.btnClear.Location = New System.Drawing.Point(15, 433)
+        Me.btnClear.BackColor = System.Drawing.Color.Transparent
+        Me.btnClear.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
+        Me.btnClear.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnClear.FlatAppearance.BorderSize = 0
+        Me.btnClear.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.btnClear.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnClear.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnClear.ForeColor = System.Drawing.Color.White
+        Me.btnClear.Location = New System.Drawing.Point(15, 429)
         Me.btnClear.Name = "btnClear"
-        Me.btnClear.Size = New System.Drawing.Size(293, 23)
+        Me.btnClear.Size = New System.Drawing.Size(293, 29)
         Me.btnClear.TabIndex = 8
-        Me.btnClear.Text = "Cear"
-        Me.btnClear.UseVisualStyleBackColor = True
+        Me.btnClear.Text = "Cear Action History"
+        Me.btnClear.UseVisualStyleBackColor = False
         '
         'frmActionHistory
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(625, 467)
+        Me.ClientSize = New System.Drawing.Size(625, 468)
         Me.Controls.Add(Me.btnClear)
         Me.Controls.Add(Me.btnClose)
         Me.Controls.Add(Me.lblPastActionsDesc)
