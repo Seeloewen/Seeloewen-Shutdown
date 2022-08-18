@@ -520,6 +520,8 @@ Public Class frmMain
         tmrShutdown.Interval = 100
         TargetDT = DateTime.Now.Add(CountDownFrom)
         tmrShutdown.Start()
+
+        _RunningAction.Text = My.Settings.LastAction
         WriteToLog("Called last action (CountDownFrom: " + CountDownFrom.ToString + ", ShutdownTime.Text: " + Shutdowntime.Text + ", _RunningTime.text: + " + _RunningTime.Text + ")", "Info")
     End Sub
 
