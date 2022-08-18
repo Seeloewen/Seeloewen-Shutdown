@@ -1,4 +1,16 @@
 ﻿Public Class frmAbout
+
+    '-- Event handlers --
+
+    Private Sub frmAbout_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        LoadDesign()
+        LoadLanguage()
+    End Sub
+
+    Private Sub llblSeeloewenShutdownGithub_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles llblSeeloewenShutdownGithub.LinkClicked
+        Process.Start("https://github.com/Seeloewen/Seeloewen-Shutdown") 'Open Seeloewen Shutdown Github page in default Webbrowser
+    End Sub
+
     Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
         Close()
     End Sub
@@ -7,7 +19,9 @@
         frmChangelog.Show()
     End Sub
 
-    Private Sub frmAbout_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    '-- Custom methods --
+
+    Private Sub LoadDesign()
         If My.Settings.Design = "Dark" Then
             BackColor = Color.FromArgb(41, 41, 41)
             rtbInfo.BackColor = Color.FromArgb(41, 41, 41)
@@ -18,16 +32,16 @@
             gbInfo.ForeColor = Color.White
             rtbInfo.ForeColor = Color.White
         End If
+    End Sub
 
+    Private Sub LoadLanguage()
         If My.Settings.Language = "German" Then
             Text = "Über"
             btnClose.Text = "Schließen"
         End If
     End Sub
 
-    Private Sub llblSeeloewenShutdownGithub_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles llblSeeloewenShutdownGithub.LinkClicked
-        Process.Start("https://github.com/Seeloewen/Seeloewen-Shutdown")
-    End Sub
+    '-- button designs --
 
     Private Sub btnClose_MouseDown(sender As Object, e As MouseEventArgs) Handles btnClose.MouseDown
         btnClose.BackgroundImage = My.Resources.button_click
@@ -59,9 +73,5 @@
 
     Private Sub btnChangelog_MouseLeave(sender As Object, e As EventArgs) Handles btnChangelog.MouseLeave
         btnChangelog.BackgroundImage = My.Resources.button
-    End Sub
-
-    Private Sub btnHelp_Click(sender As Object, e As EventArgs)
-
     End Sub
 End Class
