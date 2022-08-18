@@ -1,18 +1,23 @@
 ﻿Public Class frmFirstStart
-    Private Sub frmFirstStart_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    '-- Event handlers --
+
+    Private Sub frmFirstStart_Load(sender As Object, e As EventArgs) Handles MyBase.Load 'Selects English by default
         cbxLanguage.SelectedItem = "English (English)"
     End Sub
 
-    Private Sub btnOK_Click(sender As Object, e As EventArgs) Handles btnOK.Click
+    Private Sub btnOK_Click(sender As Object, e As EventArgs) Handles btnOK.Click 'Saves settings and closes this window
         If cbxLanguage.SelectedItem = "English (English)" Then
             My.Settings.Language = "English"
             Close()
         ElseIf cbxLanguage.SelectedItem = "Deutsch (German)" Then
             My.Settings.Language = "German"
             Close()
-        Else msgbox("Please pick a Language!")
+        Else MsgBox("Please pick a Language!")
         End If
     End Sub
+
+    '-- Button designs --
 
     Private Sub btnOK_MouseDown(sender As Object, e As MouseEventArgs) Handles btnOK.MouseDown
         btnOK.BackgroundImage = My.Resources.button_click
