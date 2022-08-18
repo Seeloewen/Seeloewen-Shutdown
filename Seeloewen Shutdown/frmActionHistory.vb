@@ -5,10 +5,12 @@ Public Class frmActionHistory
     Dim ClearMsgBoxText As String
     Dim ClearMsgBoxHeader As String
 
+    '-- Event handlers --
+
     Private Sub frmActionHistory_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LoadActionHistory()
-        EnableDarkmode()
-        ChangeLanguageToGerman()
+        LoadDesign()
+        LoadLanguage()
     End Sub
 
     Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
@@ -20,7 +22,9 @@ Public Class frmActionHistory
         Close()
     End Sub
 
-    Private Sub EnableDarkmode() 'Change to darkmode if design is set to dark
+    '-- Custom methods --
+
+    Private Sub LoadDesign() 'Change to darkmode if design is set to dark
         If My.Settings.Design = "Dark" Then
             BackColor = Color.FromArgb(41, 41, 41)
             lblPastActionsDesc.ForeColor = Color.White
@@ -30,7 +34,7 @@ Public Class frmActionHistory
         End If
     End Sub
 
-    Private Sub ChangeLanguageToGerman() 'Translate elements to german if language is set to german
+    Private Sub LoadLanguage() 'Translate elements to german if language is set to german
         If My.Settings.Language = "German" Then
             lblPastActionsHeader.Text = "Aktionsverlauf"
             lblPastActionsDesc.Text = "Betrachte deine vergangenen Aktionen."
@@ -70,7 +74,8 @@ Public Class frmActionHistory
         Next
     End Sub
 
-    'Button animations
+    '-- Button designs --
+
     Private Sub btnClear_MouseDown(sender As Object, e As MouseEventArgs) Handles btnClear.MouseDown
         btnClear.BackgroundImage = My.Resources.button_click
     End Sub
