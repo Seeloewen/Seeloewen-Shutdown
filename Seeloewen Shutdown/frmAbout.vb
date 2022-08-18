@@ -21,7 +21,7 @@
 
     '-- Custom methods --
 
-    Private Sub LoadDesign()
+    Private Sub LoadDesign() 'Load darkmode if design dark is selected
         If My.Settings.Design = "Dark" Then
             BackColor = Color.FromArgb(41, 41, 41)
             rtbInfo.BackColor = Color.FromArgb(41, 41, 41)
@@ -34,7 +34,7 @@
         End If
     End Sub
 
-    Private Sub LoadLanguage()
+    Private Sub LoadLanguage() 'Translate strings if language is set to German
         If My.Settings.Language = "German" Then
             Text = "Über"
             btnClose.Text = "Schließen"
