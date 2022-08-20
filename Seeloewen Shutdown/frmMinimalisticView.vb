@@ -1,5 +1,7 @@
 ﻿Public Class frmMinimalisticView
 
+    '-- Event handlers --
+
     Private Sub frmMinimalisticView_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Load action
         If frmMain._RunningAction.Text = "Shutdown" Or frmMain._RunningAction.Text = "Herunterfahren" Then
@@ -19,23 +21,9 @@
         'Load time
         lblTime.Text = frmMain._RunningTime.Text
 
-        'Load design
-        If My.Settings.Design = "Dark" Then
-            lblAction.ForeColor = Color.White
-            lblScheduledTime.ForeColor = Color.White
-            lblTime.ForeColor = Color.White
-            lblTimeRemaining.ForeColor = Color.White
-            lblTimerShutdown.ForeColor = Color.White
-            BackColor = Color.FromArgb(41, 41, 41)
-        End If
-
-        'Load language
-        If My.Settings.Language = "German" Then
-            lblScheduledTime.Text = "Geplante Zeit:"
-            lblTimeRemaining.Text = "Verbleibende Zeit:"
-            Text = "Seeloewen Shutdown - Minimalistische Ansicht"
-            btnSwitchToNormalView.Text = "Zur Normalen Ansicht wechseln"
-        End If
+        'Load UI settings
+        LoadDesign()
+        LoadLanguage()
 
         'Hide frmMain in case it wasn't hidden when enabling minimalistic view
         frmMain.Hide()
@@ -44,6 +32,30 @@
     Private Sub btnSwitchToNormalView_Click(sender As Object, e As EventArgs) Handles btnSwitchToNormalView.Click
         Close()
     End Sub
+
+    '-- Custom methods --
+
+    Private Sub LoadDesign() 'Set to darkmode if design dark is selected
+        If My.Settings.Design = "Dark" Then
+            lblAction.ForeColor = Color.White
+            lblScheduledTime.ForeColor = Color.White
+            lblTime.ForeColor = Color.White
+            lblTimeRemaining.ForeColor = Color.White
+            lblTimerShutdown.ForeColor = Color.White
+            BackColor = Color.FromArgb(41, 41, 41)
+        End If
+    End Sub
+
+    Private Sub LoadLanguage() 'Translate string if language is set to German
+        If My.Settings.Language = "German" Then
+            lblScheduledTime.Text = "Geplante Zeit:"
+            lblTimeRemaining.Text = "Verbleibende Zeit:"
+            Text = "Seeloewen Shutdown - Minimalistische Ansicht"
+            btnSwitchToNormalView.Text = "Zur Normalen Ansicht wechseln"
+        End If
+    End Sub
+
+    '-- Button designs --
 
     Private Sub btnSwitchToNormalView_MouseDown(sender As Object, e As MouseEventArgs) Handles btnSwitchToNormalView.MouseDown
         btnSwitchToNormalView.BackgroundImage = My.Resources.button_click
