@@ -17,7 +17,7 @@
 
     '-- Custom methods --
 
-    Private Sub LoadLanguage()
+    Private Sub LoadLanguage() 'Translate strings if language german is selected
         If My.Settings.Language = "German" Then
             lblHeader.Text = "Version 1.7.2 - Was ist neu?"
             Text = "Seeloewen Shutdown wurde installiert!"
@@ -30,7 +30,7 @@
         End If
     End Sub
 
-    Private Sub LoadDesign()
+    Private Sub LoadDesign() 'Set to darkmode if design dark is selected
         If My.Settings.Design = "Dark" Then
             lblHeader.ForeColor = Color.White
             lblUpdaterHeader.ForeColor = Color.White
