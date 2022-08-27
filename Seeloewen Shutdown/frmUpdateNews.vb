@@ -19,12 +19,12 @@
 
     Private Sub LoadLanguage() 'Translate strings if language german is selected
         If My.Settings.Language = "German" Then
-            lblHeader.Text = "Version 1.7.2 - Was ist neu?"
+            lblHeader.Text = "Version 1.8.0 - Was ist neu?"
             Text = "Seeloewen Shutdown wurde installiert!"
-            lblUpdaterHeader.Text = "Ein neues Design"
-            lblUpdater.Text = "Die Software besitzt nun ein neues Design, um" + vbNewLine + "sie ansprechender, einfacher zu verstehen und leichter nutzbar" + vbNewLine + "zu machen"
-            lblImprovementsHeader.Text = "Minimalistische Ansicht und Benachrichtigungen"
-            lblImprovements.Text = "Die neue 'Minimalistische Ansicht' ist nun verfügbar! Es wird nur ein kleiner" + vbNewLine + "Teil der Software gezeigt, wenn dies aktiviert ist. Benachrichtigungen" + vbNewLine + "wurden ebenfalls durch dieses Update hinzugefügt."
+            lblNewsHeader.Text = "Profile und Aktionsverlauf"
+            lblNews.Text = "Die Software unterstützt nun das erstellen von Profilen, sodass du einfach" + vbNewLine + "Voreinstellungen speichern und laden kannst. Zusätzlich wurde der" + vbNewLine + "Aktionsverlauf hinzugefügt, damit du deine vergangenen Aktionen im" + vbNewLine + "Auge behalten kannst."
+            lblImprovementsHeader.Text = "Viele andere Verbesserungen und Fehlerbehebungen"
+            lblImprovements.Text = "Der Darkmode wurde verbessert und viele andere Quality-Of-Live" + vbNewLine + "Verbesserungen wurden vorgenommen. Zusätzlich wurden ein ganzer" + vbNewLine + "Haufen Fehler behoben."
             lblChangelog.Text = "Eine genaue Änderungsliste kann im                           gefunden werden"
             btnOK.Text = "Alles klar!"
         End If
@@ -33,8 +33,8 @@
     Private Sub LoadDesign() 'Set to darkmode if design dark is selected
         If My.Settings.Design = "Dark" Then
             lblHeader.ForeColor = Color.White
-            lblUpdaterHeader.ForeColor = Color.White
-            lblUpdater.ForeColor = Color.White
+            lblNewsHeader.ForeColor = Color.White
+            lblNews.ForeColor = Color.White
             lblImprovementsHeader.ForeColor = Color.White
             lblImprovements.ForeColor = Color.White
             lblChangelog.ForeColor = Color.White
@@ -56,7 +56,7 @@
         btnOK.BackgroundImage = My.Resources.button_click
     End Sub
 
-    Private Sub btnOK_MouseHover(sender As Object, e As EventArgs) Handles btnOK.MouseHover
+    Private Sub btnOK_MouseEnter(sender As Object, e As EventArgs) Handles btnOK.MouseEnter
         btnOK.BackgroundImage = My.Resources.button_hover
     End Sub
 End Class
