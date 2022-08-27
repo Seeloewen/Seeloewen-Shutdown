@@ -3,8 +3,8 @@ Imports System.IO
 
 Public Class frmMain
     Public LogLoadedOnce As Boolean
-    Dim Version As String = "1.8.0-DEV"
-    Dim VerDate As String = "16.08.2022"
+    Dim Version As String = "1.8.0"
+    Dim VerDate As String = "27.08.2022"
     Dim ShutdownTimeType As String
     Dim maxtime As String
     Public AppData As String = GetFolderPath(SpecialFolder.ApplicationData)
@@ -16,6 +16,8 @@ Public Class frmMain
     Dim CountDownFrom As TimeSpan
     Dim TimeDifference As TimeSpan
     Public ts As TimeSpan
+    Public ProfileDirectory As String = AppData + "\Seeloewen Shutdown\Profiles\"
+    Dim ProfileList As String()
 
     '-- Event Handlers --
 
@@ -26,7 +28,7 @@ Public Class frmMain
         LoadDesign()
         CheckForRunningAction()
         ResetUIElements()
-        LoadDefaultSettings()
+        InitializeProfiles()
         ShowUpdateNews()
     End Sub
 
@@ -146,6 +148,9 @@ Public Class frmMain
 
     Private Sub tbTime_TextChanged(sender As Object, e As EventArgs) Handles tbTime.TextChanged
         If rbtnIn.Checked = True Then
+            If String.IsNullOrEmpty(cbxIn.Text) Then
+                cbxIn.SelectedIndex = 1
+            End If
             If String.IsNullOrEmpty(tbTime.Text) = False Then
                 _SelectedTime.Text = "In " + tbTime.Text + " " + cbxIn.Text
             Else
@@ -210,11 +215,35 @@ Public Class frmMain
     End Sub
 
     Private Sub btnShowActionHistory_Click(sender As Object, e As EventArgs) Handles btnShowActionHistory.Click
-        frmActionHistory.Show()
+        If My.Settings.EnableActionHistory = True Then
+            frmActionHistory.Show()
+        Else
+            If My.Settings.Language = "English" Then
+                MsgBox("Action History is currently disabled. Head to the settings to enable it.", MsgBoxStyle.Critical, "Error")
+            ElseIf My.Settings.Language = "German" Then
+                MsgBox("Der Aktionsverlauf ist aktuell deaktiviert. Gehe in die Einstellungen um ihn zu aktivieren.", MsgBoxStyle.Critical, "Fehler")
+            End If
+        End If
     End Sub
 
     Private Sub btnOpenSettings_Click(sender As Object, e As EventArgs)
         frmSettings.Show()
+    End Sub
+
+    Private Sub btnSaveProfile_Click(sender As Object, e As EventArgs) Handles btnSaveProfile.Click
+        If rbtnIn.Checked Then
+            frmSaveProfileAs.ShowDialog()
+        Else
+            If My.Settings.Language = "English" Then
+                MsgBox("Please choose option 'In...' to save a profile.", MsgBoxStyle.Critical, "Error")
+            ElseIf My.Settings.Language = "German" Then
+                MsgBox("Bitte wähle die Option 'In...' um ein Profil zu speichern.", MsgBoxStyle.Critical, "Fehler")
+            End If
+        End If
+    End Sub
+
+    Private Sub btnLoadProfile_Click(sender As Object, e As EventArgs) Handles btnLoadProfile.Click
+        frmLoadProfileFrom.ShowDialog()
     End Sub
 
     '-- Custom methods --
@@ -225,54 +254,6 @@ Public Class frmMain
         currentDateTime.Enabled = False
         dtpDate.CustomFormat = "dd.MM.yyyy HH:mm:ss"
         dtpSelectedTime.CustomFormat = "dd.MM.yyyy HH:mm:ss"
-    End Sub
-
-    Private Sub LoadDefaultSettings()
-        'Load DefaultTime setting
-        tbTime.Text = My.Settings.DefaultTime
-        WriteToLog("Loaded DefaultTime from settings: " + My.Settings.DefaultTime, "Info")
-
-        'Load DefaultAction setting
-        If My.Settings.DefaultAction = "shutdown" Then
-            rbtnShutdown.Checked = True
-            If My.Settings.Language = "English" Then
-                _SelectedAction.Text = "Shutdown"
-            ElseIf My.Settings.Language = "German" Then
-                _SelectedAction.Text = "Herunterfahren"
-            End If
-        ElseIf My.Settings.DefaultAction = "restart" Then
-            rbtnRestart.Checked = True
-            If My.Settings.Language = "English" Then
-                _SelectedAction.Text = "Restart"
-            ElseIf My.Settings.Language = "German" Then
-                _SelectedAction.Text = "Neustarten"
-            End If
-        End If
-        WriteToLog("Loaded DefaultAction from settings: " + My.Settings.DefaultAction, "Info")
-
-        'This comment was made on 22.02.2022 and committed on 22.02.2022 22:22
-
-        'Load DefaultTimeChoice setting
-        If My.Settings.DefaultTimeChoice = "minutes" Then
-            If My.Settings.Language = "English" Then
-                cbxIn.SelectedItem = "Minute(s)"
-            ElseIf My.Settings.Language = "German" Then
-                cbxIn.SelectedItem = "Minute(n)"
-            End If
-        ElseIf My.Settings.DefaultTimeChoice = "seconds" Then
-            If My.Settings.Language = "English" Then
-                cbxIn.SelectedItem = "Second(s)"
-            ElseIf My.Settings.Language = "German" Then
-                cbxIn.SelectedItem = "Sekunde(n)"
-            End If
-        ElseIf My.Settings.DefaultTimeChoice = "hours" Then
-            If My.Settings.Language = "English" Then
-                cbxIn.SelectedItem = "Hour(s)"
-            ElseIf My.Settings.Language = "German" Then
-                cbxIn.SelectedItem = "Stunde(n)"
-            End If
-        End If
-        WriteToLog("Loaded DefaultTimeChoice from settings: " + My.Settings.DefaultTimeChoice, "Info")
     End Sub
 
     Private Sub ShowUpdateNews()
@@ -298,8 +279,11 @@ Public Class frmMain
             ElseIf My.Settings.LastActionDisplay = "Shutdown" Then
                 My.Settings.LastActionDisplay = "Herunterfahren"
             End If
-            lblAction.Text = "Aktion                                        "
-            lblTime.Text = "Zeit                                            "
+            btnSaveProfile.Text = "Profil speichern"
+            btnLoadProfile.Text = "Profil laden"
+            lblAction.Text = "Aktion                                           "
+            lblTime.Text = "Zeit                                               "
+            btnShowActionHistory.Text = "Verlauf anzeigen"
             btnStartAction.Text = "Aktion starten"
             rbtnShutdown.Text = "Herunterfahren"
             rbtnRestart.Text = "Neustarten"
@@ -316,7 +300,7 @@ Public Class frmMain
             gbLastAction.Text = "Letzte Aktion"
             lblLastAction.Text = "Aktion:"
             lblLastTime.Text = "Zeit:"
-            lblExecutedOn.Text = "Ausgeführt am:"
+            lblStartedOn.Text = "Gestartet am:"
             cbxIn.Items.Remove("Second(s)")
             cbxIn.Items.Remove("Minute(s)")
             cbxIn.Items.Remove("Hour(s)")
@@ -352,6 +336,10 @@ Public Class frmMain
             rbtnPointInTime.ForeColor = Color.White
             tbTime.BackColor = Color.Gray
             tbTime.ForeColor = Color.White
+            cbxIn.ForeColor = Color.White
+            cbxIn.BackColor = Color.Gray
+            cmsHamburgerButton.BackColor = Color.Gray
+            cmsHamburgerButton.ForeColor = Color.White
             lblSelectedAction.BackColor = Color.FromArgb(41, 41, 41)
             lblSelectedTime.BackColor = Color.FromArgb(41, 41, 41)
             btnStartAction.BackColor = Color.FromArgb(41, 41, 41)
@@ -368,8 +356,8 @@ Public Class frmMain
             _LastAction.ForeColor = Color.White
             lblLastTime.ForeColor = Color.White
             _LastTime.ForeColor = Color.White
-            lblExecutedOn.ForeColor = Color.White
-            _ExecutedOn.ForeColor = Color.White
+            lblStartedOn.ForeColor = Color.White
+            _StartedOn.ForeColor = Color.White
             lblScheduledAction.BackColor = Color.FromArgb(25, 25, 25)
             lblScheduledTime.BackColor = Color.FromArgb(25, 25, 25)
             lblTimeRemaining.BackColor = Color.FromArgb(25, 25, 25)
@@ -434,7 +422,7 @@ Public Class frmMain
         WriteToLog("Loaded LastActionDisplay from settings: " + My.Settings.LastActionDisplay, "Info")
         _LastTime.Text = My.Settings.LastTimeDisplay
         WriteToLog("Loaded LastTimeDisplay from settings: " + My.Settings.LastTimeDisplay, "Info")
-        _ExecutedOn.Text = My.Settings.LastDateDisplay
+        _StartedOn.Text = My.Settings.LastDateDisplay
         WriteToLog("Loaded LastDateDisplay from settings: " + My.Settings.LastDateDisplay, "Info")
     End Sub
 
@@ -445,9 +433,18 @@ Public Class frmMain
             WriteToLog("Created directory " + "'" + AppData + "/Seeloewen Shutdown" + "'", "Info")
         End If
 
-        'Create ActionHistory file if it doesn't already exist
-        If My.Computer.FileSystem.FileExists(AppData + "/Seeloewen Shutdown/ActionHistory.txt") = False Then
-            My.Computer.FileSystem.WriteAllText(AppData + "/Seeloewen Shutdown/ActionHistory.txt", "", False)
+        'Create ActionHistory file (if enabled)
+        If My.Settings.EnableActionHistory = True Then
+            If My.Computer.FileSystem.FileExists(AppData + "/Seeloewen Shutdown/ActionHistory.txt") = False Then
+                My.Computer.FileSystem.WriteAllText(AppData + "/Seeloewen Shutdown/ActionHistory.txt", "", False)
+                WriteToLog("Created directory " + "'" + AppData + "/Seeloewen Shutdown/ActionHistory.txt" + "'", "Info")
+            End If
+        End If
+
+        'Create Profile Directory
+        If My.Computer.FileSystem.DirectoryExists(AppData + "/Seeloewen Shutdown/Profiles") = False Then
+            My.Computer.FileSystem.CreateDirectory(AppData + "/Seeloewen Shutdown/Profiles")
+            WriteToLog("Created directory " + "'" + AppData + "/Seeloewen Shutdown/Profiles" + "'", "Info")
         End If
     End Sub
 
@@ -475,13 +472,15 @@ Public Class frmMain
         WriteToLog("Removed last Action.", "Info")
 
         'Remove last line from Action History file (basically remove last action)
-        Dim file As String = AppData + "/Seeloewen Shutdown/ActionHistory.txt"
-        Dim lines() As String = IO.File.ReadAllLines(file)
-        Dim length As String = lines.Last.Length.ToString
-        Dim fs As New FileStream(file, FileMode.Open, FileAccess.ReadWrite)
+        If My.Settings.EnableActionHistory Then
+            Dim file As String = AppData + "/Seeloewen Shutdown/ActionHistory.txt"
+            Dim lines() As String = IO.File.ReadAllLines(file)
+            Dim length As String = lines.Last.Length.ToString
+            Dim fs As New FileStream(file, FileMode.Open, FileAccess.ReadWrite)
 
-        fs.SetLength(fs.Length - length - 2)
-        fs.Close()
+            fs.SetLength(fs.Length - length - 2)
+            fs.Close()
+        End If
     End Sub
 
     Private Sub SetLastAction()
@@ -496,11 +495,13 @@ Public Class frmMain
         My.Settings.LastDateDisplay = DateTime.Now
 
         'Add action to Action History file
-        Try
-            My.Computer.FileSystem.WriteAllText(AppData + "/Seeloewen Shutdown/ActionHistory.txt", _RunningAction.Text + ";" + dtpSelectedTime.Value + ";" + DateTime.Now.ToString + vbNewLine, True)
-        Catch ex As Exception
-            WriteToLog("Couldn't add last action to Action History. " + ex.Message, "Error")
-        End Try
+        If My.Settings.EnableActionHistory Then
+            Try
+                My.Computer.FileSystem.WriteAllText(AppData + "/Seeloewen Shutdown/ActionHistory.txt", _RunningAction.Text + ";" + dtpSelectedTime.Value + ";" + DateTime.Now.ToString + vbNewLine, True)
+            Catch ex As Exception
+                WriteToLog("Couldn't add last action to Action History. " + ex.Message, "Error")
+            End Try
+        End If
     End Sub
 
     Private Sub CallLastAction() 'If an action is currently running, it will pull infos from settings to display the last known action
@@ -807,6 +808,72 @@ Public Class frmMain
         End If
     End Sub
 
+    Private Sub InitializeProfiles()
+        If My.Computer.FileSystem.DirectoryExists(ProfileDirectory) = False Then
+            My.Computer.FileSystem.CreateDirectory(ProfileDirectory)
+        End If
+
+        GetFiles(ProfileDirectory)
+
+        WriteToLog("Loading default profile...", "Info")
+        If My.Settings.LoadProfileByDefault = True Then
+            frmSettings.cbLoadProfileByDefault.Checked = True
+            If String.IsNullOrEmpty(My.Settings.DefaultProfile) = False Then
+                If My.Computer.FileSystem.FileExists(AppData + "\Seeloewen Shutdown\Profiles\" + My.Settings.DefaultProfile + ".txt") Then
+                    cbxDefaultProfile.SelectedItem = My.Settings.DefaultProfile
+                    frmLoadProfileFrom.LoadProfile(cbxDefaultProfile.SelectedItem, False)
+                Else
+                    If My.Settings.Language = "English" Then
+                        MsgBox("Error: Default profile no longer exists. Option will be disabled automatically.", MsgBoxStyle.Critical, "Error")
+                    ElseIf My.Settings.Language = "German" Then
+                        MsgBox("Fehler: Standart-Profil existiert nicht mehr. Die Option wird automatisch deaktiviert.", MsgBoxStyle.Critical, "Fehler")
+                    End If
+                    WriteToLog("Default profile no longer exists. Option will be disabled automatically.", "Error")
+                    frmSettings.cbLoadProfileByDefault.Checked = False
+                    My.Settings.LoadProfileByDefault = False
+                End If
+            Else
+                If My.Settings.Language = "English" Then
+                    MsgBox("Error: Could not load default profile as it is empty. Option will be disabled automatically.", MsgBoxStyle.Critical, "Error")
+                ElseIf My.Settings.Language = "German" Then
+                    MsgBox("Fehler: Standart-Profil konnte nicht geladen werden da es leer ist. Die Option wird automatisch deaktiviert.", MsgBoxStyle.Critical, "Fehler")
+                End If
+                WriteToLog("Error: Could not load default profile as it is empty. Option will be disabled automatically.", "Error")
+                frmSettings.cbLoadProfileByDefault.Checked = False
+                My.Settings.LoadProfileByDefault = False
+            End If
+        End If
+    End Sub
+
+    Sub GetFiles(Path As String)
+        WriteToLog("Getting profiles for frmMain...", "Info")
+        If Path.Trim().Length = 0 Then
+            Return
+        End If
+
+        ProfileList = Directory.GetFileSystemEntries(Path)
+
+        Try
+            For Each Profile As String In ProfileList
+                If Directory.Exists(Profile) Then
+                    GetFiles(Profile)
+                Else
+                    Profile = Profile.Replace(AppData + "\Seeloewen Shutdown\Profiles\", "")
+                    Profile = Profile.Replace(".txt", "")
+                    cbxDefaultProfile.Items.Add(Profile)
+                End If
+            Next
+            WriteToLog("Found " + cbxDefaultProfile.Items.Count.ToString + " profiles!", "Info")
+        Catch ex As Exception
+            If My.Settings.Language = "English" Then
+                MsgBox("Error: Could not load profiles. Please restart the application and try again." + vbNewLine + "Exception: " + ex.Message, MsgBoxStyle.Critical, "Error")
+            ElseIf My.Settings.Language = "German" Then
+                MsgBox("Fehler: Konnte Profile nicht laden. Bitte starte die App neu und versuche es erneut." + vbNewLine + "Ausnahme: " + ex.Message, MsgBoxStyle.Critical, "Fehler")
+            End If
+            WriteToLog("Error: Could not load profiles for frmMain. " + ex.Message, "Error")
+        End Try
+    End Sub
+
     '-- Animations --
 
     Private Sub PnlNotificationAnimationDown(sender As Object, e As EventArgs) Handles tmrPnlNotificationAnimationDown.Tick
@@ -872,7 +939,7 @@ Public Class frmMain
         btnStartAction.BackgroundImage = My.Resources.button_click
     End Sub
 
-    Private Sub btnStartAction_MouseHover(sender As Object, e As EventArgs) Handles btnStartAction.MouseHover
+    Private Sub btnStartAction_MouseEnter(sender As Object, e As EventArgs) Handles btnStartAction.MouseEnter
         btnStartAction.BackgroundImage = My.Resources.button_hover
     End Sub
 
@@ -888,7 +955,7 @@ Public Class frmMain
         btnShowActionHistory.BackgroundImage = My.Resources.button_click
     End Sub
 
-    Private Sub btnShowActionHistory_MouseHover(sender As Object, e As EventArgs) Handles btnShowActionHistory.MouseHover
+    Private Sub btnShowActionHistory_MouseEnter(sender As Object, e As EventArgs) Handles btnShowActionHistory.MouseEnter
         btnShowActionHistory.BackgroundImage = My.Resources.button_hover
     End Sub
 
@@ -908,7 +975,7 @@ Public Class frmMain
         End If
     End Sub
 
-    Private Sub btnHamburger_MouseHover(sender As Object, e As EventArgs) Handles btnHamburger.MouseHover
+    Private Sub btnHamburger_MouseEnter(sender As Object, e As EventArgs) Handles btnHamburger.MouseEnter
         If My.Settings.Design = "Dark" Then
             btnHamburger.BackgroundImage = My.Resources.btnHamburger_Hover_Dark
         ElseIf My.Settings.Design = "Light" Then
@@ -922,5 +989,41 @@ Public Class frmMain
 
     Private Sub btnHamburger_MouseUp(sender As Object, e As MouseEventArgs) Handles btnHamburger.MouseUp
         btnHamburger.BackgroundImage = My.Resources.btnHamburger
+    End Sub
+
+    Private Sub btnSaveProfile_MouseDown(sender As Object, e As MouseEventArgs) Handles btnSaveProfile.MouseDown
+        btnSaveProfile.BackgroundImage = My.Resources.button_click
+    End Sub
+
+    Private Sub btnSaveProfile_MouseEnter(sender As Object, e As EventArgs) Handles btnSaveProfile.MouseEnter
+        btnSaveProfile.BackgroundImage = My.Resources.button_hover
+    End Sub
+
+    Private Sub btnSaveProfile_MouseLeave(sender As Object, e As EventArgs) Handles btnSaveProfile.MouseLeave
+        btnSaveProfile.BackgroundImage = My.Resources.button
+    End Sub
+
+    Private Sub btnSaveProfile_MouseUp(sender As Object, e As MouseEventArgs) Handles btnSaveProfile.MouseUp
+        btnSaveProfile.BackgroundImage = My.Resources.button
+    End Sub
+
+    Private Sub btnLoadProfile_MouseDown(sender As Object, e As MouseEventArgs) Handles btnLoadProfile.MouseDown
+        btnLoadProfile.BackgroundImage = My.Resources.button_click
+    End Sub
+
+    Private Sub btnLoadProfile_MouseEnter(sender As Object, e As EventArgs) Handles btnLoadProfile.MouseEnter
+        btnLoadProfile.BackgroundImage = My.Resources.button_hover
+    End Sub
+
+    Private Sub btnLoadProfile_MouseLeave(sender As Object, e As EventArgs) Handles btnLoadProfile.MouseLeave
+        btnLoadProfile.BackgroundImage = My.Resources.button
+    End Sub
+
+    Private Sub btnLoadProfile_MouseUp(sender As Object, e As MouseEventArgs) Handles btnLoadProfile.MouseUp
+        btnLoadProfile.BackgroundImage = My.Resources.button
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs)
+        cmsHamburgerButton.Dispose()
     End Sub
 End Class

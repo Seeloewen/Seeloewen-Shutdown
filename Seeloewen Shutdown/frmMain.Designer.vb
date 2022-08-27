@@ -38,8 +38,8 @@ Partial Class frmMain
         Me.Quotationmark = New System.Windows.Forms.Label()
         Me.gbLastAction = New System.Windows.Forms.GroupBox()
         Me.btnShowActionHistory = New System.Windows.Forms.Button()
-        Me._ExecutedOn = New System.Windows.Forms.Label()
-        Me.lblExecutedOn = New System.Windows.Forms.Label()
+        Me._StartedOn = New System.Windows.Forms.Label()
+        Me.lblStartedOn = New System.Windows.Forms.Label()
         Me._LastTime = New System.Windows.Forms.Label()
         Me.lblLastTime = New System.Windows.Forms.Label()
         Me._LastAction = New System.Windows.Forms.Label()
@@ -85,6 +85,9 @@ Partial Class frmMain
         Me.tmrPnlNotificationAnimationDown = New System.Windows.Forms.Timer(Me.components)
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.tmrPnlNotificationAnimationUp = New System.Windows.Forms.Timer(Me.components)
+        Me.btnSaveProfile = New System.Windows.Forms.Button()
+        Me.btnLoadProfile = New System.Windows.Forms.Button()
+        Me.cbxDefaultProfile = New System.Windows.Forms.ComboBox()
         Me.gbLastAction.SuspendLayout()
         CType(Me.pbLine, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlTime.SuspendLayout()
@@ -229,8 +232,8 @@ Partial Class frmMain
         'gbLastAction
         '
         Me.gbLastAction.Controls.Add(Me.btnShowActionHistory)
-        Me.gbLastAction.Controls.Add(Me._ExecutedOn)
-        Me.gbLastAction.Controls.Add(Me.lblExecutedOn)
+        Me.gbLastAction.Controls.Add(Me._StartedOn)
+        Me.gbLastAction.Controls.Add(Me.lblStartedOn)
         Me.gbLastAction.Controls.Add(Me._LastTime)
         Me.gbLastAction.Controls.Add(Me.lblLastTime)
         Me.gbLastAction.Controls.Add(Me._LastAction)
@@ -245,32 +248,40 @@ Partial Class frmMain
         '
         'btnShowActionHistory
         '
+        Me.btnShowActionHistory.BackColor = System.Drawing.Color.Transparent
+        Me.btnShowActionHistory.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
+        Me.btnShowActionHistory.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnShowActionHistory.FlatAppearance.BorderSize = 0
+        Me.btnShowActionHistory.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.btnShowActionHistory.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.btnShowActionHistory.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnShowActionHistory.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnShowActionHistory.ForeColor = System.Drawing.Color.White
         Me.btnShowActionHistory.Location = New System.Drawing.Point(13, 206)
         Me.btnShowActionHistory.Name = "btnShowActionHistory"
         Me.btnShowActionHistory.Size = New System.Drawing.Size(162, 23)
         Me.btnShowActionHistory.TabIndex = 7
         Me.btnShowActionHistory.Text = "View history"
-        Me.btnShowActionHistory.UseVisualStyleBackColor = True
+        Me.btnShowActionHistory.UseVisualStyleBackColor = False
         '
-        '_ExecutedOn
+        '_StartedOn
         '
-        Me._ExecutedOn.AutoSize = True
-        Me._ExecutedOn.Location = New System.Drawing.Point(9, 176)
-        Me._ExecutedOn.Name = "_ExecutedOn"
-        Me._ExecutedOn.Size = New System.Drawing.Size(125, 20)
-        Me._ExecutedOn.TabIndex = 6
-        Me._ExecutedOn.Text = "%ExecutedOn%"
+        Me._StartedOn.AutoSize = True
+        Me._StartedOn.Location = New System.Drawing.Point(9, 176)
+        Me._StartedOn.Name = "_StartedOn"
+        Me._StartedOn.Size = New System.Drawing.Size(111, 20)
+        Me._StartedOn.TabIndex = 6
+        Me._StartedOn.Text = "%StartedOn%"
         '
-        'lblExecutedOn
+        'lblStartedOn
         '
-        Me.lblExecutedOn.AutoSize = True
-        Me.lblExecutedOn.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblExecutedOn.Location = New System.Drawing.Point(9, 156)
-        Me.lblExecutedOn.Name = "lblExecutedOn"
-        Me.lblExecutedOn.Size = New System.Drawing.Size(114, 20)
-        Me.lblExecutedOn.TabIndex = 5
-        Me.lblExecutedOn.Text = "Executed on:"
+        Me.lblStartedOn.AutoSize = True
+        Me.lblStartedOn.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblStartedOn.Location = New System.Drawing.Point(9, 156)
+        Me.lblStartedOn.Name = "lblStartedOn"
+        Me.lblStartedOn.Size = New System.Drawing.Size(99, 20)
+        Me.lblStartedOn.TabIndex = 5
+        Me.lblStartedOn.Text = "Started on:"
         '
         '_LastTime
         '
@@ -352,9 +363,9 @@ Partial Class frmMain
         Me.lblTime.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblTime.Location = New System.Drawing.Point(12, 199)
         Me.lblTime.Name = "lblTime"
-        Me.lblTime.Size = New System.Drawing.Size(311, 25)
+        Me.lblTime.Size = New System.Drawing.Size(329, 25)
         Me.lblTime.TabIndex = 33
-        Me.lblTime.Text = "Time                                          "
+        Me.lblTime.Text = "Time                                             "
         '
         'pnlAction
         '
@@ -371,9 +382,9 @@ Partial Class frmMain
         Me.lblAction.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblAction.Location = New System.Drawing.Point(12, 99)
         Me.lblAction.Name = "lblAction"
-        Me.lblAction.Size = New System.Drawing.Size(312, 25)
+        Me.lblAction.Size = New System.Drawing.Size(330, 25)
         Me.lblAction.TabIndex = 31
-        Me.lblAction.Text = "Action                                        "
+        Me.lblAction.Text = "Action                                           "
         '
         'pbIcon
         '
@@ -390,16 +401,16 @@ Partial Class frmMain
         Me.lblVersion.AutoSize = True
         Me.lblVersion.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblVersion.ForeColor = System.Drawing.SystemColors.ButtonShadow
-        Me.lblVersion.Location = New System.Drawing.Point(445, 24)
+        Me.lblVersion.Location = New System.Drawing.Point(445, 23)
         Me.lblVersion.Name = "lblVersion"
         Me.lblVersion.Size = New System.Drawing.Size(75, 31)
         Me.lblVersion.TabIndex = 22
-        Me.lblVersion.Text = "1.7.2"
+        Me.lblVersion.Text = "1.8.0"
         '
         'lblHeader
         '
         Me.lblHeader.AutoSize = True
-        Me.lblHeader.Font = New System.Drawing.Font("Microsoft Sans Serif", 26.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblHeader.Font = New System.Drawing.Font("Microsoft Sans Serif", 26.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblHeader.Location = New System.Drawing.Point(90, 18)
         Me.lblHeader.Name = "lblHeader"
         Me.lblHeader.Size = New System.Drawing.Size(349, 39)
@@ -571,6 +582,7 @@ Partial Class frmMain
         '
         Me.cmsHamburgerButton.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SettingsToolStripMenuItem, Me.MinimalisticViewToolStripMenuItem, Me.ChangelogToolStripMenuItem, Me.AboutToolStripMenuItem})
         Me.cmsHamburgerButton.Name = "cmsHamburgerButton"
+        Me.cmsHamburgerButton.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
         Me.cmsHamburgerButton.Size = New System.Drawing.Size(200, 108)
         '
         'SettingsToolStripMenuItem
@@ -699,12 +711,57 @@ Partial Class frmMain
         '
         Me.tmrPnlNotificationAnimationUp.Interval = 1
         '
+        'btnSaveProfile
+        '
+        Me.btnSaveProfile.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
+        Me.btnSaveProfile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnSaveProfile.FlatAppearance.BorderSize = 0
+        Me.btnSaveProfile.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.btnSaveProfile.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.btnSaveProfile.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnSaveProfile.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSaveProfile.ForeColor = System.Drawing.Color.White
+        Me.btnSaveProfile.Location = New System.Drawing.Point(17, 317)
+        Me.btnSaveProfile.Name = "btnSaveProfile"
+        Me.btnSaveProfile.Size = New System.Drawing.Size(157, 23)
+        Me.btnSaveProfile.TabIndex = 49
+        Me.btnSaveProfile.Text = "Save profile"
+        Me.btnSaveProfile.UseVisualStyleBackColor = True
+        '
+        'btnLoadProfile
+        '
+        Me.btnLoadProfile.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
+        Me.btnLoadProfile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnLoadProfile.FlatAppearance.BorderSize = 0
+        Me.btnLoadProfile.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.btnLoadProfile.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.btnLoadProfile.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnLoadProfile.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnLoadProfile.ForeColor = System.Drawing.Color.White
+        Me.btnLoadProfile.Location = New System.Drawing.Point(180, 317)
+        Me.btnLoadProfile.Name = "btnLoadProfile"
+        Me.btnLoadProfile.Size = New System.Drawing.Size(155, 23)
+        Me.btnLoadProfile.TabIndex = 50
+        Me.btnLoadProfile.Text = "Load profile"
+        Me.btnLoadProfile.UseVisualStyleBackColor = True
+        '
+        'cbxDefaultProfile
+        '
+        Me.cbxDefaultProfile.FormattingEnabled = True
+        Me.cbxDefaultProfile.Location = New System.Drawing.Point(214, 684)
+        Me.cbxDefaultProfile.Name = "cbxDefaultProfile"
+        Me.cbxDefaultProfile.Size = New System.Drawing.Size(185, 21)
+        Me.cbxDefaultProfile.TabIndex = 51
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(634, 496)
+        Me.ClientSize = New System.Drawing.Size(634, 495)
+        Me.Controls.Add(Me.cbxDefaultProfile)
+        Me.Controls.Add(Me.btnLoadProfile)
+        Me.Controls.Add(Me.btnSaveProfile)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.pnlNotification)
         Me.Controls.Add(Me.lblAction)
@@ -769,8 +826,8 @@ Partial Class frmMain
     Friend WithEvents rbtnPointInTime As RadioButton
     Friend WithEvents rbtnIn As RadioButton
     Friend WithEvents gbLastAction As GroupBox
-    Friend WithEvents _ExecutedOn As Label
-    Friend WithEvents lblExecutedOn As Label
+    Friend WithEvents _StartedOn As Label
+    Friend WithEvents lblStartedOn As Label
     Friend WithEvents _LastTime As Label
     Friend WithEvents lblLastTime As Label
     Friend WithEvents _LastAction As Label
@@ -817,4 +874,7 @@ Partial Class frmMain
     Friend WithEvents lblNotification As Label
     Friend WithEvents tmrPnlNotificationAnimationUp As Timer
     Friend WithEvents btnShowActionHistory As Button
+    Friend WithEvents btnSaveProfile As Button
+    Friend WithEvents btnLoadProfile As Button
+    Friend WithEvents cbxDefaultProfile As ComboBox
 End Class
