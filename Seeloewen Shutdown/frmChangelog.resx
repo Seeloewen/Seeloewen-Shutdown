@@ -118,7 +118,18 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="rtbChangelog.Text" xml:space="preserve">
-    <value>Version 1.7.2 (14.05.2022)
+    <value>Version 1.8.0 (27.08.2022)
++ Profile hinzugefügt
++ Aktionsverlauf hinzugefügt
+* Fehler behoben, dass "Zur Normalen Ansicht wechseln" Button in Deutscher Übersetzung abgeschnitten war
+* Mehrere Fehler in der Minimalistischen Ansicht behoben
+* Fehler behoben, dass laufende Aktion beim Neustart der App nicht korrekt erkannt wurde
+* Memory-Leak beim Hamburger Menu behoben
+* Fehler behoben, durch den die Animationen beim Bewegen des Mauszeigers über Buttons Verzögerungen hatten
+* Darkmode bei Comboboxen und dem Hamburger Menu verbessert
+* Alle Fälle von "Ausgeführt am..." mit "Gestartet am..." ersetzt
+
+Version 1.7.2 (14.05.2022)
 + Benachrichtigungen hinzugefügt
 + Minimalistische Ansicht hinzugefügt
 * Rechtschreibfehler im Log behoben
@@ -239,7 +250,18 @@ Version 0.1 (27.10.2020)
 * Inoffizieller Release</value>
   </data>
   <data name="rtbchangelogEnglish.Text" xml:space="preserve">
-    <value>Version 1.7.2 (14.05.2022)
+    <value>Version 1.8.0 (27.08.2022)
++ Added Profiles
++ Added Action History
+* Fixed "Switch to Normal View" button being cut off in German translation
+* Fixed several issues in Minimalistic View
+* Fixed running action not being detected correctly when restarting the app
+* Fixed memory leak on hamburger menu
+* Fixed animation delay when hovering over buttons
+* Improved darkmode on comboboxes and hamburger menu
+* Replaced "Executed on..." in all cases with "Started on..."
+
+Version 1.7.2 (14.05.2022)
 + Added notifications
 + Added minimalistic view
 * Fixed a typo in the log

@@ -51,7 +51,7 @@
         btnClose.BackgroundImage = My.Resources.button
     End Sub
 
-    Private Sub btnClose_MouseHover(sender As Object, e As EventArgs) Handles btnClose.MouseHover
+    Private Sub btnClose_MouseEnter(sender As Object, e As EventArgs) Handles btnClose.MouseEnter
         btnClose.BackgroundImage = My.Resources.button_hover
     End Sub
 
@@ -63,7 +63,7 @@
         btnChangelog.BackgroundImage = My.Resources.button_click
     End Sub
 
-    Private Sub btnChangelog_MouseHover(sender As Object, e As EventArgs) Handles btnChangelog.MouseHover
+    Private Sub btnChangelog_MouseEnter(sender As Object, e As EventArgs) Handles btnChangelog.MouseEnter
         btnChangelog.BackgroundImage = My.Resources.button_hover
     End Sub
 
