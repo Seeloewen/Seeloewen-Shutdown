@@ -23,7 +23,7 @@
         btnOK.BackgroundImage = My.Resources.button_click
     End Sub
 
-    Private Sub btnOK_MouseHover(sender As Object, e As EventArgs) Handles btnOK.MouseHover
+    Private Sub btnOK_MouseEnter(sender As Object, e As EventArgs) Handles btnOK.MouseEnter
         btnOK.BackgroundImage = My.Resources.button_hover
     End Sub
 
