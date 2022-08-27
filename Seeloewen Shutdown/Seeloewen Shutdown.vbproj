@@ -101,6 +101,12 @@
     <Compile Include="frmAbout.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmActionHistory.Designer.vb">
+      <DependentUpon>frmActionHistory.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmActionHistory.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmChangelog.Designer.vb">
       <DependentUpon>frmChangelog.vb</DependentUpon>
     </Compile>
@@ -111,6 +117,12 @@
       <DependentUpon>frmFirstStart.vb</DependentUpon>
     </Compile>
     <Compile Include="frmFirstStart.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLoadProfileFrom.Designer.vb">
+      <DependentUpon>frmLoadProfileFrom.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmLoadProfileFrom.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmLog.Designer.vb">
@@ -130,6 +142,18 @@
       <DependentUpon>frmMinimalisticView.vb</DependentUpon>
     </Compile>
     <Compile Include="frmMinimalisticView.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProfileEditor.Designer.vb">
+      <DependentUpon>frmProfileEditor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmProfileEditor.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSaveProfileAs.Designer.vb">
+      <DependentUpon>frmSaveProfileAs.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmSaveProfileAs.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmUpdateNews.Designer.vb">
@@ -166,12 +190,18 @@
     <EmbeddedResource Include="frmAbout.resx">
       <DependentUpon>frmAbout.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmActionHistory.resx">
+      <DependentUpon>frmActionHistory.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmChangelog.resx">
       <DependentUpon>frmChangelog.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmFirstStart.resx">
       <DependentUpon>frmFirstStart.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLoadProfileFrom.resx">
+      <DependentUpon>frmLoadProfileFrom.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLog.resx">
       <DependentUpon>frmLog.vb</DependentUpon>
@@ -181,6 +211,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMinimalisticView.resx">
       <DependentUpon>frmMinimalisticView.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmProfileEditor.resx">
+      <DependentUpon>frmProfileEditor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSaveProfileAs.resx">
+      <DependentUpon>frmSaveProfileAs.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmUpdateNews.resx">
       <DependentUpon>frmUpdateNews.vb</DependentUpon>
@@ -228,6 +264,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnHamburger.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnHamburger_Click.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnHamburger_Click_Dark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnHamburger_Hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnHamburger_Hover_Dark.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
