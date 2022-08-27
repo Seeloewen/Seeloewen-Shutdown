@@ -61,7 +61,7 @@
         btnSwitchToNormalView.BackgroundImage = My.Resources.button_click
     End Sub
 
-    Private Sub btnSwitchToNormalView_MouseHover(sender As Object, e As EventArgs) Handles btnSwitchToNormalView.MouseHover
+    Private Sub btnSwitchToNormalView_MouseEnter(sender As Object, e As EventArgs) Handles btnSwitchToNormalView.MouseEnter
         btnSwitchToNormalView.BackgroundImage = My.Resources.button_hover
     End Sub
 
