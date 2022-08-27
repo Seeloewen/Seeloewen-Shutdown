@@ -26,7 +26,7 @@ Partial Class frmActionHistory
         Me.lvActionHistory = New System.Windows.Forms.ListView()
         Me.chAction = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.chTime = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.chExecutedOn = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.chStartedOn = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.lblPastActionsHeader = New System.Windows.Forms.Label()
         Me.lblPastActionsDesc = New System.Windows.Forms.Label()
         Me.btnClose = New System.Windows.Forms.Button()
@@ -35,7 +35,7 @@ Partial Class frmActionHistory
         '
         'lvActionHistory
         '
-        Me.lvActionHistory.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.chAction, Me.chTime, Me.chExecutedOn})
+        Me.lvActionHistory.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.chAction, Me.chTime, Me.chStartedOn})
         Me.lvActionHistory.HideSelection = False
         Me.lvActionHistory.Location = New System.Drawing.Point(15, 64)
         Me.lvActionHistory.Name = "lvActionHistory"
@@ -54,10 +54,10 @@ Partial Class frmActionHistory
         Me.chTime.Text = "Time"
         Me.chTime.Width = 212
         '
-        'chExecutedOn
+        'chStartedOn
         '
-        Me.chExecutedOn.Text = "Executed on"
-        Me.chExecutedOn.Width = 243
+        Me.chStartedOn.Text = "Started on"
+        Me.chStartedOn.Width = 243
         '
         'lblPastActionsHeader
         '
@@ -143,7 +143,7 @@ Partial Class frmActionHistory
     Friend WithEvents lblPastActionsDesc As Label
     Friend WithEvents chAction As ColumnHeader
     Friend WithEvents chTime As ColumnHeader
-    Friend WithEvents chExecutedOn As ColumnHeader
+    Friend WithEvents chStartedOn As ColumnHeader
     Friend WithEvents btnClose As Button
     Friend WithEvents btnClear As Button
 End Class

@@ -40,7 +40,7 @@ Public Class frmActionHistory
             lblPastActionsDesc.Text = "Betrachte deine vergangenen Aktionen."
             lvActionHistory.Columns(0).Text = "Aktion"
             lvActionHistory.Columns(1).Text = "Zeit"
-            lvActionHistory.Columns(2).Text = "Ausgeführt am"
+            lvActionHistory.Columns(2).Text = "Gestartet am"
             btnClear.Text = "Aktionsverlauf leeren"
             btnClose.Text = "Schließen"
             Text = "Aktionsverlauf"
@@ -62,6 +62,7 @@ Public Class frmActionHistory
             Case Windows.Forms.DialogResult.Yes
                 lvActionHistory.Clear()
                 My.Computer.FileSystem.WriteAllText(frmMain.AppData + "/Seeloewen Shutdown/ActionHistory.txt", "", False)
+                frmMain.WriteToLog("Cleared Action History", "Info")
         End Select
     End Sub
 
@@ -80,7 +81,7 @@ Public Class frmActionHistory
         btnClear.BackgroundImage = My.Resources.button_click
     End Sub
 
-    Private Sub btnClear_MouseHover(sender As Object, e As EventArgs) Handles btnClear.MouseHover
+    Private Sub btnClear_MouseEnter(sender As Object, e As EventArgs) Handles btnClear.MouseEnter
         btnClear.BackgroundImage = My.Resources.button_hover
     End Sub
 
@@ -96,7 +97,7 @@ Public Class frmActionHistory
         btnClose.BackgroundImage = My.Resources.button_click
     End Sub
 
-    Private Sub btnClose_MouseHover(sender As Object, e As EventArgs) Handles btnClose.MouseHover
+    Private Sub btnClose_MouseEnter(sender As Object, e As EventArgs) Handles btnClose.MouseEnter
         btnClose.BackgroundImage = My.Resources.button_hover
     End Sub
 
