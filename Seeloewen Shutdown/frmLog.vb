@@ -50,7 +50,7 @@
         btnSaveAsFile.BackgroundImage = My.Resources.button_click
     End Sub
 
-    Private Sub btnSaveAsFile_MouseHover(sender As Object, e As EventArgs) Handles btnSaveAsFile.MouseHover
+    Private Sub btnSaveAsFile_MouseEnter(sender As Object, e As EventArgs) Handles btnSaveAsFile.MouseEnter
         btnSaveAsFile.BackgroundImage = My.Resources.button_hover
     End Sub
 
@@ -66,7 +66,7 @@
         btnClear.BackgroundImage = My.Resources.button_click
     End Sub
 
-    Private Sub btnClear_MouseHover(sender As Object, e As EventArgs) Handles btnClear.MouseHover
+    Private Sub btnClear_MouseEnter(sender As Object, e As EventArgs) Handles btnClear.MouseEnter
         btnClear.BackgroundImage = My.Resources.button_hover
     End Sub
 
@@ -82,7 +82,7 @@
         btnClose.BackgroundImage = My.Resources.button_click
     End Sub
 
-    Private Sub btnClose_MouseHover(sender As Object, e As EventArgs) Handles btnClose.MouseHover
+    Private Sub btnClose_MouseEnter(sender As Object, e As EventArgs) Handles btnClose.MouseEnter
         btnClose.BackgroundImage = My.Resources.button_hover
     End Sub
 
