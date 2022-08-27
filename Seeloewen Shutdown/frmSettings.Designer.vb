@@ -24,13 +24,6 @@ Partial Class frmSettings
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmSettings))
         Me.lblSettings = New System.Windows.Forms.Label()
-        Me.gbDefaultSettings = New System.Windows.Forms.GroupBox()
-        Me.rbtnRestart = New System.Windows.Forms.RadioButton()
-        Me.rbtnShutdown = New System.Windows.Forms.RadioButton()
-        Me.cbxDefaultIn = New System.Windows.Forms.ComboBox()
-        Me.lblDefaultAction = New System.Windows.Forms.Label()
-        Me.tbDefaultTime = New System.Windows.Forms.TextBox()
-        Me.lblDefaultTime = New System.Windows.Forms.Label()
         Me.btnClose = New System.Windows.Forms.Button()
         Me.gbAppSettings = New System.Windows.Forms.GroupBox()
         Me.cbShowNotifications = New System.Windows.Forms.CheckBox()
@@ -42,10 +35,17 @@ Partial Class frmSettings
         Me.btnLog = New System.Windows.Forms.Button()
         Me.gbMinimalisticView = New System.Windows.Forms.GroupBox()
         Me.cbEnableMinimalisticViewByDefault = New System.Windows.Forms.CheckBox()
-        Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
-        Me.gbDefaultSettings.SuspendLayout()
+        Me.gbActionHistory = New System.Windows.Forms.GroupBox()
+        Me.cbEnableActionHistory = New System.Windows.Forms.CheckBox()
+        Me.btnClearActionHistory = New System.Windows.Forms.Button()
+        Me.gbProfiles = New System.Windows.Forms.GroupBox()
+        Me.cbxDefaultProfile = New System.Windows.Forms.ComboBox()
+        Me.cbLoadProfileByDefault = New System.Windows.Forms.CheckBox()
+        Me.btnOpenProfileEditor = New System.Windows.Forms.Button()
         Me.gbAppSettings.SuspendLayout()
         Me.gbMinimalisticView.SuspendLayout()
+        Me.gbActionHistory.SuspendLayout()
+        Me.gbProfiles.SuspendLayout()
         Me.SuspendLayout()
         '
         'lblSettings
@@ -58,89 +58,6 @@ Partial Class frmSettings
         Me.lblSettings.TabIndex = 0
         Me.lblSettings.Text = "Settings"
         '
-        'gbDefaultSettings
-        '
-        Me.gbDefaultSettings.Controls.Add(Me.rbtnRestart)
-        Me.gbDefaultSettings.Controls.Add(Me.rbtnShutdown)
-        Me.gbDefaultSettings.Controls.Add(Me.cbxDefaultIn)
-        Me.gbDefaultSettings.Controls.Add(Me.lblDefaultAction)
-        Me.gbDefaultSettings.Controls.Add(Me.tbDefaultTime)
-        Me.gbDefaultSettings.Controls.Add(Me.lblDefaultTime)
-        Me.gbDefaultSettings.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gbDefaultSettings.ForeColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.gbDefaultSettings.Location = New System.Drawing.Point(18, 54)
-        Me.gbDefaultSettings.Name = "gbDefaultSettings"
-        Me.gbDefaultSettings.Size = New System.Drawing.Size(406, 155)
-        Me.gbDefaultSettings.TabIndex = 1
-        Me.gbDefaultSettings.TabStop = False
-        Me.gbDefaultSettings.Text = "Default settings"
-        '
-        'rbtnRestart
-        '
-        Me.rbtnRestart.AutoSize = True
-        Me.rbtnRestart.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.rbtnRestart.ForeColor = System.Drawing.Color.Black
-        Me.rbtnRestart.Location = New System.Drawing.Point(15, 76)
-        Me.rbtnRestart.Name = "rbtnRestart"
-        Me.rbtnRestart.Size = New System.Drawing.Size(74, 22)
-        Me.rbtnRestart.TabIndex = 12
-        Me.rbtnRestart.TabStop = True
-        Me.rbtnRestart.Text = "Restart"
-        Me.rbtnRestart.UseVisualStyleBackColor = True
-        '
-        'rbtnShutdown
-        '
-        Me.rbtnShutdown.AutoSize = True
-        Me.rbtnShutdown.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.rbtnShutdown.ForeColor = System.Drawing.Color.Black
-        Me.rbtnShutdown.Location = New System.Drawing.Point(15, 50)
-        Me.rbtnShutdown.Name = "rbtnShutdown"
-        Me.rbtnShutdown.Size = New System.Drawing.Size(92, 22)
-        Me.rbtnShutdown.TabIndex = 11
-        Me.rbtnShutdown.TabStop = True
-        Me.rbtnShutdown.Text = "Shutdown"
-        Me.rbtnShutdown.UseVisualStyleBackColor = True
-        '
-        'cbxDefaultIn
-        '
-        Me.cbxDefaultIn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbxDefaultIn.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbxDefaultIn.FormattingEnabled = True
-        Me.cbxDefaultIn.Items.AddRange(New Object() {"Second(s)", "Minute(s)", "Hour(s)"})
-        Me.cbxDefaultIn.Location = New System.Drawing.Point(257, 108)
-        Me.cbxDefaultIn.Name = "cbxDefaultIn"
-        Me.cbxDefaultIn.Size = New System.Drawing.Size(137, 21)
-        Me.cbxDefaultIn.TabIndex = 10
-        '
-        'lblDefaultAction
-        '
-        Me.lblDefaultAction.AutoSize = True
-        Me.lblDefaultAction.ForeColor = System.Drawing.Color.Black
-        Me.lblDefaultAction.Location = New System.Drawing.Point(11, 26)
-        Me.lblDefaultAction.Name = "lblDefaultAction"
-        Me.lblDefaultAction.Size = New System.Drawing.Size(54, 20)
-        Me.lblDefaultAction.TabIndex = 7
-        Me.lblDefaultAction.Text = "Action"
-        '
-        'tbDefaultTime
-        '
-        Me.tbDefaultTime.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbDefaultTime.Location = New System.Drawing.Point(129, 108)
-        Me.tbDefaultTime.Name = "tbDefaultTime"
-        Me.tbDefaultTime.Size = New System.Drawing.Size(122, 20)
-        Me.tbDefaultTime.TabIndex = 3
-        '
-        'lblDefaultTime
-        '
-        Me.lblDefaultTime.AutoSize = True
-        Me.lblDefaultTime.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblDefaultTime.ForeColor = System.Drawing.Color.Black
-        Me.lblDefaultTime.Location = New System.Drawing.Point(12, 108)
-        Me.lblDefaultTime.Name = "lblDefaultTime"
-        Me.lblDefaultTime.Size = New System.Drawing.Size(95, 20)
-        Me.lblDefaultTime.TabIndex = 2
-        Me.lblDefaultTime.Text = "Execute in..."
-        '
         'btnClose
         '
         Me.btnClose.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
@@ -151,7 +68,7 @@ Partial Class frmSettings
         Me.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnClose.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnClose.ForeColor = System.Drawing.Color.White
-        Me.btnClose.Location = New System.Drawing.Point(296, 428)
+        Me.btnClose.Location = New System.Drawing.Point(296, 504)
         Me.btnClose.Name = "btnClose"
         Me.btnClose.Size = New System.Drawing.Size(128, 27)
         Me.btnClose.TabIndex = 4
@@ -167,7 +84,7 @@ Partial Class frmSettings
         Me.gbAppSettings.Controls.Add(Me.lblLanguage)
         Me.gbAppSettings.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gbAppSettings.ForeColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.gbAppSettings.Location = New System.Drawing.Point(18, 215)
+        Me.gbAppSettings.Location = New System.Drawing.Point(18, 57)
         Me.gbAppSettings.Name = "gbAppSettings"
         Me.gbAppSettings.Size = New System.Drawing.Size(406, 113)
         Me.gbAppSettings.TabIndex = 5
@@ -238,7 +155,7 @@ Partial Class frmSettings
         Me.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSave.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSave.ForeColor = System.Drawing.Color.White
-        Me.btnSave.Location = New System.Drawing.Point(18, 428)
+        Me.btnSave.Location = New System.Drawing.Point(18, 504)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(128, 27)
         Me.btnSave.TabIndex = 3
@@ -255,7 +172,7 @@ Partial Class frmSettings
         Me.btnLog.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnLog.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnLog.ForeColor = System.Drawing.Color.White
-        Me.btnLog.Location = New System.Drawing.Point(158, 428)
+        Me.btnLog.Location = New System.Drawing.Point(158, 504)
         Me.btnLog.Name = "btnLog"
         Me.btnLog.Size = New System.Drawing.Size(128, 27)
         Me.btnLog.TabIndex = 6
@@ -267,7 +184,7 @@ Partial Class frmSettings
         Me.gbMinimalisticView.Controls.Add(Me.cbEnableMinimalisticViewByDefault)
         Me.gbMinimalisticView.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gbMinimalisticView.ForeColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.gbMinimalisticView.Location = New System.Drawing.Point(18, 334)
+        Me.gbMinimalisticView.Location = New System.Drawing.Point(18, 410)
         Me.gbMinimalisticView.Name = "gbMinimalisticView"
         Me.gbMinimalisticView.Size = New System.Drawing.Size(406, 79)
         Me.gbMinimalisticView.TabIndex = 7
@@ -286,18 +203,114 @@ Partial Class frmSettings
         Me.cbEnableMinimalisticViewByDefault.Text = "Enable Minimalistic View automatically when you start" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "an action"
         Me.cbEnableMinimalisticViewByDefault.UseVisualStyleBackColor = True
         '
+        'gbActionHistory
+        '
+        Me.gbActionHistory.Controls.Add(Me.cbEnableActionHistory)
+        Me.gbActionHistory.Controls.Add(Me.btnClearActionHistory)
+        Me.gbActionHistory.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gbActionHistory.ForeColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.gbActionHistory.Location = New System.Drawing.Point(18, 177)
+        Me.gbActionHistory.Name = "gbActionHistory"
+        Me.gbActionHistory.Size = New System.Drawing.Size(406, 86)
+        Me.gbActionHistory.TabIndex = 8
+        Me.gbActionHistory.TabStop = False
+        Me.gbActionHistory.Text = "Action History"
+        '
+        'cbEnableActionHistory
+        '
+        Me.cbEnableActionHistory.AutoSize = True
+        Me.cbEnableActionHistory.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbEnableActionHistory.ForeColor = System.Drawing.Color.Black
+        Me.cbEnableActionHistory.Location = New System.Drawing.Point(16, 56)
+        Me.cbEnableActionHistory.Name = "cbEnableActionHistory"
+        Me.cbEnableActionHistory.Size = New System.Drawing.Size(154, 20)
+        Me.cbEnableActionHistory.TabIndex = 1
+        Me.cbEnableActionHistory.Text = "Enable Action History"
+        Me.cbEnableActionHistory.UseVisualStyleBackColor = True
+        '
+        'btnClearActionHistory
+        '
+        Me.btnClearActionHistory.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
+        Me.btnClearActionHistory.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnClearActionHistory.FlatAppearance.BorderSize = 0
+        Me.btnClearActionHistory.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.btnClearActionHistory.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.btnClearActionHistory.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnClearActionHistory.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnClearActionHistory.ForeColor = System.Drawing.Color.White
+        Me.btnClearActionHistory.Location = New System.Drawing.Point(16, 26)
+        Me.btnClearActionHistory.Name = "btnClearActionHistory"
+        Me.btnClearActionHistory.Size = New System.Drawing.Size(206, 23)
+        Me.btnClearActionHistory.TabIndex = 0
+        Me.btnClearActionHistory.Text = "Clear Action History"
+        Me.btnClearActionHistory.UseVisualStyleBackColor = True
+        '
+        'gbProfiles
+        '
+        Me.gbProfiles.Controls.Add(Me.cbxDefaultProfile)
+        Me.gbProfiles.Controls.Add(Me.cbLoadProfileByDefault)
+        Me.gbProfiles.Controls.Add(Me.btnOpenProfileEditor)
+        Me.gbProfiles.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gbProfiles.ForeColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.gbProfiles.Location = New System.Drawing.Point(18, 269)
+        Me.gbProfiles.Name = "gbProfiles"
+        Me.gbProfiles.Size = New System.Drawing.Size(406, 132)
+        Me.gbProfiles.TabIndex = 9
+        Me.gbProfiles.TabStop = False
+        Me.gbProfiles.Text = "Profiles"
+        '
+        'cbxDefaultProfile
+        '
+        Me.cbxDefaultProfile.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbxDefaultProfile.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbxDefaultProfile.FormattingEnabled = True
+        Me.cbxDefaultProfile.Location = New System.Drawing.Point(16, 90)
+        Me.cbxDefaultProfile.Name = "cbxDefaultProfile"
+        Me.cbxDefaultProfile.Size = New System.Drawing.Size(252, 24)
+        Me.cbxDefaultProfile.TabIndex = 2
+        '
+        'cbLoadProfileByDefault
+        '
+        Me.cbLoadProfileByDefault.AutoSize = True
+        Me.cbLoadProfileByDefault.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbLoadProfileByDefault.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.cbLoadProfileByDefault.Location = New System.Drawing.Point(16, 63)
+        Me.cbLoadProfileByDefault.Name = "cbLoadProfileByDefault"
+        Me.cbLoadProfileByDefault.Size = New System.Drawing.Size(158, 20)
+        Me.cbLoadProfileByDefault.TabIndex = 1
+        Me.cbLoadProfileByDefault.Text = "Load profile by default"
+        Me.cbLoadProfileByDefault.UseVisualStyleBackColor = True
+        '
+        'btnOpenProfileEditor
+        '
+        Me.btnOpenProfileEditor.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
+        Me.btnOpenProfileEditor.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnOpenProfileEditor.FlatAppearance.BorderSize = 0
+        Me.btnOpenProfileEditor.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.btnOpenProfileEditor.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.btnOpenProfileEditor.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnOpenProfileEditor.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnOpenProfileEditor.ForeColor = System.Drawing.Color.White
+        Me.btnOpenProfileEditor.Location = New System.Drawing.Point(15, 25)
+        Me.btnOpenProfileEditor.Name = "btnOpenProfileEditor"
+        Me.btnOpenProfileEditor.Size = New System.Drawing.Size(207, 23)
+        Me.btnOpenProfileEditor.TabIndex = 0
+        Me.btnOpenProfileEditor.Text = "Open the Profile Editor"
+        Me.btnOpenProfileEditor.UseVisualStyleBackColor = True
+        '
         'frmSettings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(440, 469)
+        Me.ClientSize = New System.Drawing.Size(440, 549)
+        Me.Controls.Add(Me.gbProfiles)
+        Me.Controls.Add(Me.gbActionHistory)
         Me.Controls.Add(Me.gbMinimalisticView)
         Me.Controls.Add(Me.btnLog)
         Me.Controls.Add(Me.gbAppSettings)
         Me.Controls.Add(Me.btnClose)
         Me.Controls.Add(Me.btnSave)
-        Me.Controls.Add(Me.gbDefaultSettings)
         Me.Controls.Add(Me.lblSettings)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -306,27 +319,22 @@ Partial Class frmSettings
         Me.Name = "frmSettings"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Einstellungen"
-        Me.gbDefaultSettings.ResumeLayout(False)
-        Me.gbDefaultSettings.PerformLayout()
         Me.gbAppSettings.ResumeLayout(False)
         Me.gbAppSettings.PerformLayout()
         Me.gbMinimalisticView.ResumeLayout(False)
         Me.gbMinimalisticView.PerformLayout()
+        Me.gbActionHistory.ResumeLayout(False)
+        Me.gbActionHistory.PerformLayout()
+        Me.gbProfiles.ResumeLayout(False)
+        Me.gbProfiles.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
 
     Friend WithEvents lblSettings As Label
-    Friend WithEvents gbDefaultSettings As GroupBox
-    Friend WithEvents tbDefaultTime As TextBox
-    Friend WithEvents lblDefaultTime As Label
     Friend WithEvents btnSave As Button
     Friend WithEvents btnClose As Button
-    Friend WithEvents lblDefaultAction As Label
-    Friend WithEvents cbxDefaultIn As ComboBox
-    Friend WithEvents rbtnRestart As RadioButton
-    Friend WithEvents rbtnShutdown As RadioButton
     Friend WithEvents gbAppSettings As GroupBox
     Friend WithEvents cbxDesign As ComboBox
     Friend WithEvents cbxLanguage As ComboBox
@@ -336,5 +344,11 @@ Partial Class frmSettings
     Friend WithEvents cbShowNotifications As CheckBox
     Friend WithEvents gbMinimalisticView As GroupBox
     Friend WithEvents cbEnableMinimalisticViewByDefault As CheckBox
-    Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
+    Friend WithEvents gbActionHistory As GroupBox
+    Friend WithEvents gbProfiles As GroupBox
+    Friend WithEvents btnOpenProfileEditor As Button
+    Friend WithEvents cbEnableActionHistory As CheckBox
+    Friend WithEvents btnClearActionHistory As Button
+    Friend WithEvents cbxDefaultProfile As ComboBox
+    Friend WithEvents cbLoadProfileByDefault As CheckBox
 End Class

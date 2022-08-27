@@ -139,20 +139,8 @@
   <data name="Icon_Dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\..\..\..\Media\Icon_Dark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="btnHamburger_Click" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\..\..\..\Media\btnHamburger_Click.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="grayBox" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\..\..\..\Media\grayBox.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="btnHamburger_Hover" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\..\..\..\Media\btnHamburger_Hover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="btnHamburger" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\..\..\..\Media\btnHamburger.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="btnHamburger_Click_Dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\..\..\..\Media\btnHamburger_Click_Dark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="button_click" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\button_click.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -172,10 +160,22 @@
   <data name="MinimalisticView" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\..\..\..\Media\MinimalisticView.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="btnHamburger_Hover_Dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\..\..\..\Media\btnHamburger_Hover_Dark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Notification" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\..\..\..\Media\Notification.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btnHamburger" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btnHamburger.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btnHamburger_Click" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btnHamburger_Click.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btnHamburger_Click_Dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btnHamburger_Click_Dark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btnHamburger_Hover" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btnHamburger_Hover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btnHamburger_Hover_Dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btnHamburger_Hover_Dark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

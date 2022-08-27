@@ -1,133 +1,23 @@
 ﻿Imports System.Environment
+Imports System.IO
 
 Public Class frmSettings
+
+    Dim ClearMsgBoxText As String
+    Dim ClearMsgBoxHeader As String
+    Dim DisableMsgBoxText As String
+    Dim DisableMsgBoxHeader As String
+    Dim ProfileDirectory As String = frmMain.ProfileDirectory
+    Dim ProfileList As String()
     Dim AppData As String = GetFolderPath(SpecialFolder.ApplicationData)
 
+    '-- Event handlers --
     Private Sub frmSettings_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-        'Translations
-        If My.Settings.Language = "German" Then
-
-            'Initialize comboboxes if language german is selected
-            cbxDefaultIn.Items.Add("Sekunde(n)")
-            cbxDefaultIn.Items.Add("Minute(n)")
-            cbxDefaultIn.Items.Add("Stunde(n)")
-            cbxDefaultIn.Items.Remove("Second(s)")
-            cbxDefaultIn.Items.Remove("Minute(s)")
-            cbxDefaultIn.Items.Remove("Hour(s)")
-            cbxDesign.Items.Add("Hell")
-            cbxDesign.Items.Add("Dunkel")
-            cbxDesign.Items.Remove("Light")
-            cbxDesign.Items.Remove("Dark")
-            cbxLanguage.SelectedItem = "Deutsch (German)"
-
-            'Change text to german translation
-            Text = "Einstellungen"
-            lblSettings.Text = "Einstellungen"
-            gbDefaultSettings.Text = "Standart-Einstellungen"
-            gbAppSettings.Text = "App-Einstellungen"
-            rbtnShutdown.Text = "Herunterfahren"
-            rbtnRestart.Text = "Neustarten"
-            lblDefaultAction.Text = "Aktion"
-            lblDefaultTime.Text = "Ausführen in..."
-            lblLanguage.Text = "Sprache:"
-            btnSave.Text = "Speichern"
-            btnClose.Text = "Schließen"
-            cbEnableMinimalisticViewByDefault.Text = "Aktiviere die Minimalistische Ansicht automatisch," + vbNewLine + "wenn du eine Aktion startest."
-            cbShowNotifications.Text = "Benachrichtigungen zeigen"
-            gbMinimalisticView.Text = "Minimalistische Ansicht-Einstellungen"
-
-        ElseIf My.Settings.Language = "English" Then
-            cbxLanguage.SelectedItem = "English (English)"
-        End If
-
-        If My.Settings.Design = "Light" Then
-
-            'Initialize Design combobox if Darkmode is selected
-            If My.Settings.Language = "German" Then
-                cbxDesign.SelectedItem = "Hell"
-            ElseIf My.Settings.Language = "English" Then
-                cbxDesign.SelectedItem = "Light"
-            End If
-
-        ElseIf My.Settings.Design = "Dark" Then
-
-            'Initialize Design combobox if Darkmode is selected
-            If My.Settings.Language = "German" Then
-                cbxDesign.SelectedItem = "Dunkel"
-            ElseIf My.Settings.Language = "English" Then
-                cbxDesign.SelectedItem = "Dark"
-            End If
-
-            'Change window to Darkmode
-            BackColor = Color.FromArgb(41, 41, 41)
-            lblSettings.ForeColor = Color.White
-            lblDefaultAction.ForeColor = Color.White
-            lblDefaultTime.ForeColor = Color.White
-            lblLanguage.ForeColor = Color.White
-            lblDesign.ForeColor = Color.White
-            gbDefaultSettings.ForeColor = Color.White
-            gbAppSettings.ForeColor = Color.White
-            rbtnShutdown.ForeColor = Color.White
-            rbtnRestart.ForeColor = Color.White
-            tbDefaultTime.BackColor = Color.Gray
-            tbDefaultTime.ForeColor = Color.White
-            cbShowNotifications.ForeColor = Color.White
-            cbEnableMinimalisticViewByDefault.ForeColor = Color.White
-            gbMinimalisticView.ForeColor = Color.White
-        End If
-
-        'Load default settings from settings
-        If My.Settings.DefaultAction = "shutdown" Then
-            rbtnShutdown.Checked = True
-        ElseIf My.Settings.DefaultAction = "restart" Then
-            rbtnRestart.Checked = True
-        End If
-
-        If My.Settings.DefaultTimeChoice = "minutes" Then
-
-            If My.Settings.Language = "English" Then
-                cbxDefaultIn.SelectedItem = "Minute(s)"
-            ElseIf My.Settings.Language = "German" Then
-                cbxDefaultIn.SelectedItem = "Minute(n)"
-            End If
-
-        ElseIf My.Settings.DefaultTimeChoice = "seconds" Then
-
-            If My.Settings.Language = "English" Then
-                cbxDefaultIn.SelectedItem = "Second(s)"
-            ElseIf My.Settings.Language = "German" Then
-                cbxDefaultIn.SelectedItem = "Sekunde(n)"
-            End If
-
-        ElseIf My.Settings.DefaultTimeChoice = "hours" Then
-
-            If My.Settings.Language = "English" Then
-                cbxDefaultIn.SelectedItem = "Hour(s)"
-            ElseIf My.Settings.Language = "German" Then
-                cbxDefaultIn.SelectedItem = "Stunde(n)"
-            End If
-
-        End If
-
-        tbDefaultTime.Text = My.Settings.DefaultTime
-
-        'Load Notifications
-        If My.Settings.ShowNotifications = True Then
-            cbShowNotifications.Checked = True
-        Else
-            cbShowNotifications.Checked = False
-        End If
-
-        'Load Minimalistic View
-        If My.Settings.EnableMinimalisticView = True Then
-            cbEnableMinimalisticViewByDefault.Checked = True
-        Else
-            cbEnableMinimalisticViewByDefault.Checked = False
-        End If
+        GetProfiles(ProfileDirectory)
+        LoadSettings()
     End Sub
 
-    Private Sub tbDefaultTime_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tbDefaultTime.KeyPress
+    Private Sub tbDefaultTime_KeyPress(sender As Object, e As KeyPressEventArgs)
         Select Case Asc(e.KeyChar)
             Case 48 To 57, 8
             Case Else
@@ -136,34 +26,54 @@ Public Class frmSettings
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
-        'Check which action was selected for DefaultAction.
-        If rbtnRestart.Checked = True Then
-            My.Settings.DefaultAction = "restart"
-        ElseIf rbtnShutdown.Checked = True Then
-            My.Settings.DefaultAction = "shutdown"
+        SaveSettings()
+    End Sub
+
+    Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
+        Close()
+    End Sub
+    Private Sub btnClearActionHistory_Click(sender As Object, e As EventArgs) Handles btnClearActionHistory.Click
+        SetMessageboxLanguage()
+        ShowClearHistoryMsgBox()
+    End Sub
+
+    Private Sub btnLog_Click(sender As Object, e As EventArgs) Handles btnLog.Click
+        frmLog.Show()
+    End Sub
+
+    Private Sub btnOpenProfileManager_Click(sender As Object, e As EventArgs) Handles btnOpenProfileEditor.Click
+        frmProfileEditor.ShowDialog()
+    End Sub
+    Private Sub cbEnableActionHistory_CheckedChanged(sender As Object, e As EventArgs) Handles cbEnableActionHistory.CheckedChanged
+        'Set messagebox text depending on language
+        If My.Settings.Language = "German" Then
+            DisableMsgBoxHeader = "Aktionsverlauf deaktivieren"
+            DisableMsgBoxText = "Bist du dir sicher, dass du den Aktionsverlauf deaktivieren möchtest? Dadurch wird der aktuelle Verlauf gelöscht."
+        ElseIf My.Settings.Language = "English" Then
+            DisableMsgBoxHeader = "Disble Action History"
+            DisableMsgBoxText = "Are you sure that you want to disable the Action History? This will delete your current history."
         End If
-        frmMain.WriteToLog("Saved DefaultAction to settings: " + My.Settings.DefaultAction, "Info")
 
-        'Check which option is selected for DefaultTimeChoice.
-        If cbxDefaultIn.SelectedItem = "Stunde(n)" Then
-            My.Settings.DefaultTimeChoice = "hours"
-        ElseIf cbxDefaultIn.SelectedItem = "Hour(s)" Then
-            My.Settings.DefaultTimeChoice = "hours"
-        ElseIf cbxDefaultIn.SelectedItem = "Minute(n)" Then
-            My.Settings.DefaultTimeChoice = "minutes"
-        ElseIf cbxDefaultIn.SelectedItem = "Minute(s)" Then
-            My.Settings.DefaultTimeChoice = "minutes"
-        ElseIf cbxDefaultIn.SelectedItem = "Sekunde(n)" Then
-            My.Settings.DefaultTimeChoice = "seconds"
-        ElseIf cbxDefaultIn.SelectedItem = "Second(s)" Then
-            My.Settings.DefaultTimeChoice = "seconds"
+        'Show messagebox to warn user that disabling action history deletes the file
+        If cbEnableActionHistory.Checked = False Then
+            Select Case MsgBox(DisableMsgBoxText, MsgBoxStyle.YesNo, DisableMsgBoxHeader)
+                Case Windows.Forms.DialogResult.No
+                    cbEnableActionHistory.Checked = False
+            End Select
         End If
-        frmMain.WriteToLog("Saved DefaultTimeChoice to settings: " + My.Settings.DefaultTimeChoice, "Info")
+    End Sub
 
-        'Save DefaultTime
-        My.Settings.DefaultTime = tbDefaultTime.Text
-        frmMain.WriteToLog("Saved DefaultTime to settings: " + My.Settings.DefaultTime, "Info")
+    Private Sub cbLoadProfileByDefault_CheckedChanged(sender As Object, e As EventArgs) Handles cbLoadProfileByDefault.CheckedChanged
+        If cbLoadProfileByDefault.Checked Then
+            cbxDefaultProfile.Enabled = True
+        Else
+            cbxDefaultProfile.Enabled = False
+        End If
+    End Sub
 
+    '-- Custom methods --
+
+    Private Sub SaveSettings()
         'Save Language
         If cbxLanguage.SelectedItem = "English (English)" Then
             My.Settings.Language = "English"
@@ -193,6 +103,27 @@ Public Class frmSettings
             My.Settings.ShowNotifications = False
         End If
 
+        'Save Action History
+        If cbEnableActionHistory.Checked Then
+            My.Settings.EnableActionHistory = True
+            frmActionHistory.lvActionHistory.Clear()
+            My.Computer.FileSystem.WriteAllText(frmMain.AppData + "/Seeloewen Shutdown/ActionHistory.txt", "", False)
+            frmMain.WriteToLog("Cleared Action History", "Info")
+        Else
+            My.Settings.EnableActionHistory = False
+            If My.Computer.FileSystem.FileExists(AppData + "/Seeloewen Shutdown/ActionHistory.txt") = False Then
+                My.Computer.FileSystem.WriteAllText(AppData + "/Seeloewen Shutdown/ActionHistory.txt", "", False)
+            End If
+        End If
+
+        'Save Default Profile
+        If cbLoadProfileByDefault.Checked Then
+            My.Settings.LoadProfileByDefault = True
+        Else
+            My.Settings.LoadProfileByDefault = False
+        End If
+        My.Settings.DefaultProfile = cbxDefaultProfile.SelectedItem
+
         'Save Minimalistic View
         If cbEnableMinimalisticViewByDefault.Checked Then
             My.Settings.EnableMinimalisticView = True
@@ -209,8 +140,106 @@ Public Class frmSettings
         Close()
     End Sub
 
-    Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
-        Close()
+    Private Sub LoadSettings()
+        'Translations
+        If My.Settings.Language = "German" Then
+
+            'Initialize comboboxes if language german is selected
+            cbxDesign.Items.Add("Hell")
+            cbxDesign.Items.Add("Dunkel")
+            cbxDesign.Items.Remove("Light")
+            cbxDesign.Items.Remove("Dark")
+            cbxLanguage.SelectedItem = "Deutsch (German)"
+
+            'Change text to german translation
+            Text = "Einstellungen"
+            lblSettings.Text = "Einstellungen"
+            gbAppSettings.Text = "App-Einstellungen"
+            lblLanguage.Text = "Sprache:"
+            btnSave.Text = "Speichern"
+            btnClose.Text = "Schließen"
+            cbEnableMinimalisticViewByDefault.Text = "Aktiviere die Minimalistische Ansicht automatisch," + vbNewLine + "wenn du eine Aktion startest."
+            cbShowNotifications.Text = "Benachrichtigungen zeigen"
+            gbMinimalisticView.Text = "Minimalistische Ansicht-Einstellungen"
+            gbActionHistory.Text = "Aktionsverlauf"
+            btnClearActionHistory.Text = "Aktionsverlauf leeren"
+            cbEnableActionHistory.Text = "Aktionsverlauf aktivieren"
+            gbProfiles.Text = "Profile"
+            btnOpenProfileEditor.Text = "Profil-Editor öffnen"
+            cbLoadProfileByDefault.Text = "Profil standartmäßig laden"
+
+        ElseIf My.Settings.Language = "English" Then
+            cbxLanguage.SelectedItem = "English (English)"
+        End If
+
+        'Design
+        If My.Settings.Design = "Light" Then
+
+            'Initialize Design combobox if Darkmode is selected
+            If My.Settings.Language = "German" Then
+                cbxDesign.SelectedItem = "Hell"
+            ElseIf My.Settings.Language = "English" Then
+                cbxDesign.SelectedItem = "Light"
+            End If
+
+        ElseIf My.Settings.Design = "Dark" Then
+
+            'Initialize Design combobox if Darkmode is selected
+            If My.Settings.Language = "German" Then
+                cbxDesign.SelectedItem = "Dunkel"
+            ElseIf My.Settings.Language = "English" Then
+                cbxDesign.SelectedItem = "Dark"
+            End If
+
+            'Change window to Darkmode
+            BackColor = Color.FromArgb(41, 41, 41)
+            lblSettings.ForeColor = Color.White
+            lblLanguage.ForeColor = Color.White
+            lblDesign.ForeColor = Color.White
+            gbAppSettings.ForeColor = Color.White
+            cbShowNotifications.ForeColor = Color.White
+            cbEnableMinimalisticViewByDefault.ForeColor = Color.White
+            gbMinimalisticView.ForeColor = Color.White
+            gbActionHistory.ForeColor = Color.White
+            cbEnableActionHistory.ForeColor = Color.White
+            gbProfiles.ForeColor = Color.White
+            cbLoadProfileByDefault.ForeColor = Color.White
+            cbxLanguage.ForeColor = Color.White
+            cbxLanguage.BackColor = Color.Gray
+            cbxDesign.ForeColor = Color.White
+            cbxDesign.BackColor = Color.Gray
+            cbxDefaultProfile.ForeColor = Color.White
+            cbxDefaultProfile.BackColor = Color.Gray
+        End If
+
+        'Load Notifications
+        If My.Settings.ShowNotifications = True Then
+            cbShowNotifications.Checked = True
+        Else
+            cbShowNotifications.Checked = False
+        End If
+
+        'Load Action History
+        If My.Settings.EnableActionHistory = True Then
+            cbEnableActionHistory.Checked = True
+        Else
+            cbEnableActionHistory.Checked = False
+        End If
+
+        'Load Default Profile
+        If My.Settings.LoadProfileByDefault = True Then
+            cbLoadProfileByDefault.Checked = True
+        Else
+            cbLoadProfileByDefault.Checked = False
+        End If
+        cbxDefaultProfile.SelectedItem = My.Settings.DefaultProfile
+
+        'Load Minimalistic View
+        If My.Settings.EnableMinimalisticView = True Then
+            cbEnableMinimalisticViewByDefault.Checked = True
+        Else
+            cbEnableMinimalisticViewByDefault.Checked = False
+        End If
     End Sub
 
     Sub Sleep(ByVal sleeptime As Integer)
@@ -225,11 +254,54 @@ Public Class frmSettings
         Stopw.Reset()
     End Sub
 
+    Private Sub SetMessageboxLanguage() 'Change text of the messagebox based on the language
+        If My.Settings.Language = "German" Then
+            ClearMsgBoxHeader = "Liste leeren"
+            ClearMsgBoxText = "Bist du dir sicher, dass du die Liste leeren möchtest?"
+        ElseIf My.Settings.Language = "English" Then
+            ClearMsgBoxHeader = "Clear list"
+            ClearMsgBoxText = "Are you sure that you want to clear the list?"
+        End If
+    End Sub
+
+    Private Sub ShowClearHistoryMsgBox() 'Show messagebox, clicking "yes" will result in the Action History file being cleared
+        Select Case MsgBox(ClearMsgBoxText, MsgBoxStyle.YesNo, ClearMsgBoxHeader)
+            Case Windows.Forms.DialogResult.Yes
+                frmActionHistory.lvActionHistory.Clear()
+                My.Computer.FileSystem.WriteAllText(frmMain.AppData + "/Seeloewen Shutdown/ActionHistory.txt", "", False)
+                frmMain.WriteToLog("Cleared Action History", "Info")
+        End Select
+    End Sub
+
+    Private Sub GetProfiles(Path As String)
+        If Path.Trim().Length = 0 Then
+            Return
+        End If
+
+        ProfileList = Directory.GetFileSystemEntries(Path)
+
+        Try
+            For Each Profile As String In ProfileList
+                If Directory.Exists(Profile) Then
+                    GetProfiles(Profile)
+                Else
+                    Profile = Profile.Replace(frmMain.AppData + "\Seeloewen Shutdown\Profiles\", "")
+                    Profile = Profile.Replace(".txt", "")
+                    cbxDefaultProfile.Items.Add(Profile)
+                End If
+            Next
+        Catch ex As Exception
+            MsgBox("Error: Could not load profiles. Please try again." + vbNewLine + "Exception: " + ex.Message)
+        End Try
+    End Sub
+
+    '-- Button designs --
+
     Private Sub btnClose_MouseDown(sender As Object, e As MouseEventArgs) Handles btnClose.MouseDown
         btnClose.BackgroundImage = My.Resources.button_click
     End Sub
 
-    Private Sub btnClose_MouseHover(sender As Object, e As EventArgs) Handles btnClose.MouseHover
+    Private Sub btnClose_MouseEnter(sender As Object, e As EventArgs) Handles btnClose.MouseEnter
         btnClose.BackgroundImage = My.Resources.button_hover
     End Sub
 
@@ -245,7 +317,7 @@ Public Class frmSettings
         btnSave.BackgroundImage = My.Resources.button_click
     End Sub
 
-    Private Sub btnSave_MouseHover(sender As Object, e As EventArgs) Handles btnSave.MouseHover
+    Private Sub btnSave_MouseEnter(sender As Object, e As EventArgs) Handles btnSave.MouseEnter
         btnSave.BackgroundImage = My.Resources.button_hover
     End Sub
 
@@ -257,15 +329,11 @@ Public Class frmSettings
         btnSave.BackgroundImage = My.Resources.button
     End Sub
 
-    Private Sub btnLog_Click(sender As Object, e As EventArgs) Handles btnLog.Click
-        frmLog.Show()
-    End Sub
-
     Private Sub btnLog_MouseDown(sender As Object, e As MouseEventArgs) Handles btnLog.MouseDown
         btnLog.BackgroundImage = My.Resources.button_click
     End Sub
 
-    Private Sub btnLog_MouseHover(sender As Object, e As EventArgs) Handles btnLog.MouseHover
+    Private Sub btnLog_MouseEnter(sender As Object, e As EventArgs) Handles btnLog.MouseEnter
         btnLog.BackgroundImage = My.Resources.button_hover
     End Sub
 
@@ -275,5 +343,37 @@ Public Class frmSettings
 
     Private Sub btnLog_MouseUp(sender As Object, e As MouseEventArgs) Handles btnLog.MouseUp
         btnLog.BackgroundImage = My.Resources.button
+    End Sub
+
+    Private Sub btnClearActionHistory_MouseDown(sender As Object, e As MouseEventArgs) Handles btnClearActionHistory.MouseDown
+        btnClearActionHistory.BackgroundImage = My.Resources.button_click
+    End Sub
+
+    Private Sub btnClearActionHistory_MouseEnter(sender As Object, e As EventArgs) Handles btnClearActionHistory.MouseEnter
+        btnClearActionHistory.BackgroundImage = My.Resources.button_hover
+    End Sub
+
+    Private Sub btnClearActionHistory_MouseLeave(sender As Object, e As EventArgs) Handles btnClearActionHistory.MouseLeave
+        btnClearActionHistory.BackgroundImage = My.Resources.button
+    End Sub
+
+    Private Sub btnClearActionHistory_MouseUp(sender As Object, e As MouseEventArgs) Handles btnClearActionHistory.MouseUp
+        btnClearActionHistory.BackgroundImage = My.Resources.button
+    End Sub
+
+    Private Sub btnOpenProfileEditor_MouseDown(sender As Object, e As MouseEventArgs) Handles btnOpenProfileEditor.MouseDown
+        btnOpenProfileEditor.BackgroundImage = My.Resources.button_click
+    End Sub
+
+    Private Sub btnOpenProfileEditor_MouseEnter(sender As Object, e As EventArgs) Handles btnOpenProfileEditor.MouseEnter
+        btnOpenProfileEditor.BackgroundImage = My.Resources.button_hover
+    End Sub
+
+    Private Sub btnOpenProfileEditor_MouseLeave(sender As Object, e As EventArgs) Handles btnOpenProfileEditor.MouseLeave
+        btnOpenProfileEditor.BackgroundImage = My.Resources.button
+    End Sub
+
+    Private Sub btnOpenProfileEditor_MouseUp(sender As Object, e As MouseEventArgs) Handles btnOpenProfileEditor.MouseUp
+        btnOpenProfileEditor.BackgroundImage = My.Resources.button
     End Sub
 End Class
