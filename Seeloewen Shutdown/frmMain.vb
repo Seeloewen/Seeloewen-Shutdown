@@ -668,10 +668,6 @@ Public Class frmMain
                         btnStartAction.Text = "Aktion stoppen"
                     End If
 
-                    If My.Settings.EnableMinimalisticView = True Then
-                        EnableMinimalisticView()
-                    End If
-
                     'Animations for graybox etc.
                     pbGrayBox.Top = 550
                     GrayBoxNewY = 550
@@ -681,6 +677,10 @@ Public Class frmMain
                     tmrGrayBoxAnimationUp.Enabled = True
                     tmrPnlActionRunningAnimationUp.Enabled = True
                     ActionRunning = True
+
+                    If My.Settings.EnableMinimalisticView = True Then
+                        EnableMinimalisticView()
+                    End If
 
                     WriteToLog("Started action (ShutdownTimeType: " + ShutdownTimeType + ", Shutdowntime: " + Shutdowntime.Text + ", Action: " + Action.Text + ", type: In...)", "Info")
                 End If
@@ -730,10 +730,6 @@ Public Class frmMain
                     btnStartAction.Text = "Aktion stoppen"
                 End If
 
-                If My.Settings.EnableMinimalisticView = True Then
-                    EnableMinimalisticView()
-                End If
-
                 'Animations for graybox etc.
                 pbGrayBox.Top = 550
                 GrayBoxNewY = 550
@@ -743,6 +739,10 @@ Public Class frmMain
                 tmrGrayBoxAnimationUp.Enabled = True
                 tmrPnlActionRunningAnimationUp.Enabled = True
                 ActionRunning = True
+
+                If My.Settings.EnableMinimalisticView = True Then
+                    EnableMinimalisticView()
+                End If
 
                 WriteToLog("Started action (ShutdownTimetype: " + ShutdownTimeType + ", Shutdowntime: " + Shutdowntime.Text + ", Action: " + Action.Text + ", type: PointInTime)", "Info")
             End If
