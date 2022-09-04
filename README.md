@@ -4,8 +4,9 @@
 
 With Seeloewen Shutdown you can choose when your PC will automatically shutdown or restart. The time when it shuts down is fully customizable. You can either choose "in ... seconds/minutes/hours" or a direct point in time. It can also detect if an action was already started and remember the last executed action.
 
-The settings allow you to save an action and a time that will automatically be loaded and selected when you start the software. You can also change the design and the language.
+The settings allow you to customize the software the way you like. Toggle notifications, change the design and the language, toggle Action History and edit profiles.
 
+This app has profiles, which makes it easy to save and load presets!
 It also features in-App notifications was well as a 'Minimalistic View'-Mode. This only shows the necessary contents when activated, like the timer and when exactly the software will execute the action.
 
 If you need help or have any questions you can contact Seeloewen#5699 on Discord.
@@ -14,7 +15,7 @@ The software is licensed under the GNU General Public License v3 which you can f
 
 Seeloewen Shutdown - 2022 by Seeloewen (Louis)
 
-![Seeloewen_Shutdown_1 7 2_Dark_English](https://user-images.githubusercontent.com/74246933/168396338-3bd06b83-46e6-42da-8822-7fcc71a8b7ed.png)
+![Seeloewen_Shutdown_1 8 0_English_Dark](https://user-images.githubusercontent.com/74246933/187009634-1168144f-a9d2-4f0a-bc52-38abb17c4212.png)
 
 All releases since version 1.4.1 are shipped with a setup, which was made using Inno Setup: https://github.com/jrsoftware/issrc
 
