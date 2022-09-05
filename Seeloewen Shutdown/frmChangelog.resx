@@ -118,7 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="rtbChangelog.Text" xml:space="preserve">
-    <value>Version 1.8.0 (27.08.2022)
+    <value>Version 1.8.1 (06.09.2022)
+* Fehler behoben, durch den die Minimalistische Ansicht nicht automatisch geöffnet wurde
+* .NET Framework Version auf 4.8.1 aktualisiert 
+
+Version 1.8.0 (27.08.2022)
 + Profile hinzugefügt
 + Aktionsverlauf hinzugefügt
 * Fehler behoben, dass "Zur Normalen Ansicht wechseln" Button in Deutscher Übersetzung abgeschnitten war
@@ -250,7 +254,11 @@ Version 0.1 (27.10.2020)
 * Inoffizieller Release</value>
   </data>
   <data name="rtbchangelogEnglish.Text" xml:space="preserve">
-    <value>Version 1.8.0 (27.08.2022)
+    <value>Version 1.8.1 (06.09.2022)
+* Fixed a bug which caused the Minimalistic View to not open automatically
+* Updated the .NET Framework Version to 4.8.1
+
+Version 1.8.0 (27.08.2022)
 + Added Profiles
 + Added Action History
 * Fixed "Switch to Normal View" button being cut off in German translation

@@ -405,7 +405,7 @@ Partial Class frmMain
         Me.lblVersion.Name = "lblVersion"
         Me.lblVersion.Size = New System.Drawing.Size(75, 31)
         Me.lblVersion.TabIndex = 22
-        Me.lblVersion.Text = "1.8.0"
+        Me.lblVersion.Text = "1.8.1"
         '
         'lblHeader
         '

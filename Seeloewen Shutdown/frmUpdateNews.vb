@@ -19,12 +19,12 @@
 
     Private Sub LoadLanguage() 'Translate strings if language german is selected
         If My.Settings.Language = "German" Then
-            lblHeader.Text = "Version 1.8.0 - Was ist neu?"
+            lblHeader.Text = "Version 1.8.1 - Was ist neu?"
             Text = "Seeloewen Shutdown wurde installiert!"
             lblNewsHeader.Text = "Profile und Aktionsverlauf"
             lblNews.Text = "Die Software unterstützt nun das erstellen von Profilen, sodass du einfach" + vbNewLine + "Voreinstellungen speichern und laden kannst. Zusätzlich wurde der" + vbNewLine + "Aktionsverlauf hinzugefügt, damit du deine vergangenen Aktionen im" + vbNewLine + "Auge behalten kannst."
-            lblImprovementsHeader.Text = "Viele andere Verbesserungen und Fehlerbehebungen"
-            lblImprovements.Text = "Der Darkmode wurde verbessert und viele andere Quality-Of-Live" + vbNewLine + "Verbesserungen wurden vorgenommen. Zusätzlich wurden ein ganzer" + vbNewLine + "Haufen Fehler behoben."
+            lblImprovementsHeader.Text = "Ein paar Verbesserungen und Fehlerbehebungen"
+            lblImprovements.Text = "Ein Bug, durch den die Minimalistische Ansicht nicht richtig" + vbNewLine + "funktioniert hat, wurde behoben. Zusätzlich wurde die .NET Framework" + vbNewLine + "Version auf 4.8.1 aktualisiert, was eine bessere Performance bietet."
             lblChangelog.Text = "Eine genaue Änderungsliste kann im                           gefunden werden"
             btnOK.Text = "Alles klar!"
         End If

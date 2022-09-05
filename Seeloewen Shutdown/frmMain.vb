@@ -3,8 +3,8 @@ Imports System.IO
 
 Public Class frmMain
     Public LogLoadedOnce As Boolean
-    Dim Version As String = "1.8.0"
-    Dim VerDate As String = "27.08.2022"
+    Dim Version As String = "1.8.1"
+    Dim VerDate As String = "06.09.2022"
     Dim ShutdownTimeType As String
     Dim maxtime As String
     Public AppData As String = GetFolderPath(SpecialFolder.ApplicationData)
