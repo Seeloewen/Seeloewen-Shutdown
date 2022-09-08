@@ -106,13 +106,12 @@ Public Class frmSettings
         'Save Action History
         If cbEnableActionHistory.Checked Then
             My.Settings.EnableActionHistory = True
-            frmActionHistory.lvActionHistory.Clear()
-            My.Computer.FileSystem.WriteAllText(frmMain.AppData + "/Seeloewen Shutdown/ActionHistory.txt", "", False)
-            frmMain.WriteToLog("Cleared Action History", "Info")
         Else
             My.Settings.EnableActionHistory = False
             If My.Computer.FileSystem.FileExists(AppData + "/Seeloewen Shutdown/ActionHistory.txt") = False Then
                 My.Computer.FileSystem.WriteAllText(AppData + "/Seeloewen Shutdown/ActionHistory.txt", "", False)
+                frmActionHistory.lvActionHistory.Clear()
+                frmMain.WriteToLog("Cleared Action History", "Info")
             End If
         End If
 
