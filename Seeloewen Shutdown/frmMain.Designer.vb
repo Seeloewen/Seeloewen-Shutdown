@@ -88,6 +88,7 @@ Partial Class frmMain
         Me.btnSaveProfile = New System.Windows.Forms.Button()
         Me.btnLoadProfile = New System.Windows.Forms.Button()
         Me.cbxDefaultProfile = New System.Windows.Forms.ComboBox()
+        Me.SettingsFilePreset = New System.Windows.Forms.RichTextBox()
         Me.gbLastAction.SuspendLayout()
         CType(Me.pbLine, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlTime.SuspendLayout()
@@ -753,12 +754,21 @@ Partial Class frmMain
         Me.cbxDefaultProfile.Size = New System.Drawing.Size(185, 21)
         Me.cbxDefaultProfile.TabIndex = 51
         '
+        'SettingsFilePreset
+        '
+        Me.SettingsFilePreset.Location = New System.Drawing.Point(707, 199)
+        Me.SettingsFilePreset.Name = "SettingsFilePreset"
+        Me.SettingsFilePreset.Size = New System.Drawing.Size(282, 241)
+        Me.SettingsFilePreset.TabIndex = 52
+        Me.SettingsFilePreset.Text = resources.GetString("SettingsFilePreset.Text")
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(634, 495)
+        Me.ClientSize = New System.Drawing.Size(636, 495)
+        Me.Controls.Add(Me.SettingsFilePreset)
         Me.Controls.Add(Me.cbxDefaultProfile)
         Me.Controls.Add(Me.btnLoadProfile)
         Me.Controls.Add(Me.btnSaveProfile)
@@ -877,4 +887,5 @@ Partial Class frmMain
     Friend WithEvents btnSaveProfile As Button
     Friend WithEvents btnLoadProfile As Button
     Friend WithEvents cbxDefaultProfile As ComboBox
+    Friend WithEvents SettingsFilePreset As RichTextBox
 End Class
