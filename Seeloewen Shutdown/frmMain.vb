@@ -5,6 +5,9 @@ Public Class frmMain
     Public LogLoadedOnce As Boolean
     Dim Version As String = "1.8.1"
     Dim VerDate As String = "06.09.2022"
+    Public SettingsVersion As Integer = 1
+    Dim LoadedSettingsVersion As Integer
+    Dim SettingsArray As String()
     Dim ShutdownTimeType As String
     Dim maxtime As String
     Public AppData As String = GetFolderPath(SpecialFolder.ApplicationData)
@@ -18,11 +21,14 @@ Public Class frmMain
     Public ts As TimeSpan
     Public ProfileDirectory As String = AppData + "\Seeloewen Shutdown\Profiles\"
     Dim ProfileList As String()
+    Dim LoadErrorMsgText As String
+    Dim LoadErrorMsgHeader As String
 
     '-- Event Handlers --
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         CreateFiles()
+        InitializeLoadingSettings()
         WriteToLog("Loading Seeloewen Shutdown " + Version + " (" + VerDate + ")", "Info")
         LoadLanguage()
         LoadDesign()
@@ -247,6 +253,117 @@ Public Class frmMain
     End Sub
 
     '-- Custom methods --
+
+    Private Sub InitializeLoadingSettings()
+        If My.Computer.FileSystem.FileExists(AppData + "/Seeloewen Shutdown/Settings.txt") Then
+            'Load settings and determine version
+            SettingsArray = File.ReadAllLines(AppData + "/Seeloewen Shutdown/Settings.txt")
+            LoadedSettingsVersion = SettingsArray(1).Replace("Version=", "")
+            WriteToLog("Found settings version " + LoadedSettingsVersion.ToString, "Info")
+
+            'Check if settings version is outdated or newer (or just right)
+            If LoadedSettingsVersion < SettingsVersion Then
+
+                'Load settings from older version. You can either select to import the settings into the new version or overwrite them.
+                Select Case MsgBox("Your settings from a previous version were found." + vbNewLine + "Do you want to try to import them?" + vbNewLine + " This will overwrite your current settings.", vbQuestion + vbYesNo, "Found older settings")
+                    Case Windows.Forms.DialogResult.Yes
+                        WriteToLog("Importing settings from older version. Please note that due to version differences not everything might be imported.", "Warning")
+                        LoadSettings()
+                        MsgBox("Finished Importing settings. Please note that not everything might have been imported due to the settings file being an older version.", MsgBoxStyle.Information, "Import older settings")
+                        WriteToLog("Finished importing settings from older version.", "Info")
+                    Case Windows.Forms.DialogResult.No
+                        WriteToLog("Ignored settings from previous version. Creating new file, current one will be renamed to settings.old", "Info")
+                        My.Computer.FileSystem.RenameFile(AppData + "/Seeloewen Shutdown/Settings.txt", "settings.old")
+                        My.Computer.FileSystem.WriteAllText(AppData + "/Seeloewen Shutdown/Settings.txt", "", False)
+                        frmSettings.ResetSettings(AppData + "/Seeloewen Shutdown/Settings.txt")
+                End Select
+
+            ElseIf LoadedSettingsVersion > SettingsVersion Then
+
+                'Load settings from newer version. You can either select to import the settings into the new version or overwrite them.
+                Select Case MsgBox("The settings file that was detected belongs to a newer version of the Random Item Giver Updater." + vbNewLine + "Loading it can cause issues. Do you still want to load it?", vbQuestion + vbYesNo, "Found newer settings")
+                    Case Windows.Forms.DialogResult.Yes
+                        WriteToLog("Importing settings from newer version. Please note that due to version differences this can issues.", "Warning")
+                        LoadSettings()
+                        MsgBox("Finished Importing settings. Please note that not everything might work correctly.", MsgBoxStyle.Information, "Imported newer settings")
+                        WriteToLog("Finished importing settings from newer version.", "Info")
+                    Case Windows.Forms.DialogResult.No
+                        WriteToLog("Ignored settings from newer version. Creating new file, current one will be renamed to settings.old", "Info")
+                        My.Computer.FileSystem.RenameFile(AppData + "/Seeloewen Shutdown/Settings.txt", "settings.old")
+                        My.Computer.FileSystem.WriteAllText(AppData + "/Seeloewen Shutdown/Settings.txt", "", False)
+                        frmSettings.ResetSettings(AppData + "/Seeloewen Shutdown/Settings.txt")
+                End Select
+
+            Else
+
+                'Just load settings
+                WriteToLog("Loading settings...", "Info")
+                LoadSettings()
+
+            End If
+
+        Else
+            'Show error and create new settings file if none exists
+            WriteToLog("Could not find settings file. Creating a new one (Version " + SettingsVersion.ToString + ").", "Warning")
+            My.Computer.FileSystem.WriteAllText(AppData + "/Seeloewen Shutdown/Settings.txt", "", False)
+            frmSettings.ResetSettings(AppData + "/Seeloewen Shutdown/Settings.txt")
+        End If
+    End Sub
+
+    Private Sub LoadSettings()
+
+        If My.Settings.Language = "English" Then
+            LoadErrorMsgHeader = "Error"
+            LoadErrorMsgText = "An error occured while loading your settings. " + vbNewLine + "Do you want to reset your settings? This probably fixes the problem."
+        ElseIf My.Settings.Language = "German" Then
+            LoadErrorMsgHeader = "Fehler"
+            LoadErrorMsgText = "Beim Laden deiner Einstellungen ist ein Fehler aufgetreten. " + vbNewLine + "Möchtest du deine Einstellungen zurücksetzen? Das behebt vermutlich das Problem."
+        End If
+        Try
+
+            'Load App settings
+            My.Settings.Language = SettingsArray(4).Replace("Language=", "")
+            WriteToLog("Loaded setting " + SettingsArray(4), "Info")
+            My.Settings.Design = SettingsArray(5).Replace("Design=", "")
+            WriteToLog("Loaded setting " + SettingsArray(5), "Info")
+            My.Settings.ShowNotifications = Convert.ToBoolean(SettingsArray(6).Replace("ShowNotifications=", ""))
+            WriteToLog("Loaded setting " + SettingsArray(6), "Info")
+
+            'Load Action History settings
+            My.Settings.EnableActionHistory = Convert.ToBoolean(SettingsArray(9).Replace("EnableActionHistory=", ""))
+            WriteToLog("Loaded setting " + SettingsArray(9), "Info")
+
+            'Load Profile settings
+            My.Settings.LoadProfileByDefault = Convert.ToBoolean(SettingsArray(12).Replace("LoadProfileByDefault=", ""))
+            WriteToLog("Loaded setting " + SettingsArray(12), "Info")
+            My.Settings.DefaultProfile = SettingsArray(13).Replace("DefaultProfile=", "")
+            WriteToLog("Loaded setting " + SettingsArray(13), "Info")
+
+            'Load Minimalistic View settings
+            My.Settings.EnableMinimalisticView = Convert.ToBoolean(SettingsArray(16).Replace("EnableMinimalisticView=", ""))
+            WriteToLog("Loaded setting " + SettingsArray(16), "Info")
+
+        Catch ex As Exception
+
+            MsgBox("Could not load settings: " + ex.Message, MsgBoxStyle.Critical, "Error")
+            WriteToLog("Could not load settings: " + ex.Message, "Error")
+
+            'If loading settings failed, show an option to reset settings
+            Select Case MsgBox(LoadErrorMsgText, vbCritical + vbYesNo, LoadErrorMsgHeader)
+                Case Windows.Forms.DialogResult.Yes
+                    My.Computer.FileSystem.WriteAllText(AppData + "/Seeloewen Shutdown/Settings.txt", "", False)
+                    frmSettings.ResetSettings(AppData + "/Seeloewen Shutdown/Settings.txt")
+                    If My.Settings.Language = "English" Then
+                        MsgBox("Successfully reset your settings!" + vbNewLine + "The application needs to be restarted to apply changes.", MsgBoxStyle.Information, "Reset settings")
+                    ElseIf My.Settings.Language = "German" Then
+                        MsgBox("Einstellungen wurden erfolgreich zurückgesetzt. Die App muss neugestartet werden, um die Änderungen zu übernehmen.", MsgBoxStyle.Information, "Einstellungen zurückgesetzt")
+                    End If
+                    WriteToLog("Successfully reset settings!", "Info")
+                    Close()
+            End Select
+
+        End Try
+    End Sub
 
     Private Sub ResetUIElements()
         rbtnIn.Checked = True

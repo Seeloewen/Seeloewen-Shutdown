@@ -9,6 +9,7 @@ Public Class frmSettings
     Dim DisableMsgBoxHeader As String
     Dim ProfileDirectory As String = frmMain.ProfileDirectory
     Dim ProfileList As String()
+    Dim SettingsArray As String()
     Dim AppData As String = GetFolderPath(SpecialFolder.ApplicationData)
 
     '-- Event handlers --
@@ -26,7 +27,13 @@ Public Class frmSettings
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
-        SaveSettings()
+        'Check if settings file exists. If not, create one.
+        If My.Computer.FileSystem.FileExists(frmMain.AppData + "/Seeloewen Shutdown/Settings.txt") Then
+            SaveSettings(frmMain.AppData + "/Seeloewen Shutdown/Settings.txt")
+        Else
+            My.Computer.FileSystem.WriteAllText(frmMain.AppData + "/Seeloewen Shutdown/Settings.txt", "", False)
+            SaveSettings(frmMain.AppData + "/Seeloewen Shutdown/Settings.txt")
+        End If
     End Sub
 
     Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
@@ -73,70 +80,111 @@ Public Class frmSettings
 
     '-- Custom methods --
 
-    Private Sub SaveSettings()
-        'Save Language
-        If cbxLanguage.SelectedItem = "English (English)" Then
-            My.Settings.Language = "English"
-            Close()
-        ElseIf cbxLanguage.SelectedItem = "Deutsch (German)" Then
-            My.Settings.Language = "German"
-            Close()
-        End If
-        frmMain.WriteToLog("Saved Language to settings: " + My.Settings.Language, "Info")
+    Public Sub SaveSettings(Path As String)
+        'Save the settings into the settings array
+        Try
+            frmMain.WriteToLog("Saving settings...", "Info")
+            ResetSettings(Path)
 
-        'Save Design
-        If cbxDesign.SelectedItem = "Light" Then
-            My.Settings.Design = "Light"
-        ElseIf cbxDesign.SelectedItem = "Hell" Then
-            My.Settings.Design = "Light"
-        ElseIf cbxDesign.SelectedItem = "Dunkel" Then
-            My.Settings.Design = "Dark"
-        ElseIf cbxDesign.SelectedItem = "Dark" Then
-            My.Settings.Design = "Dark"
-        End If
-        frmMain.WriteToLog("Saved Design to settings: " + My.Settings.Design, "Info")
+            'Load settings into array
+            SettingsArray = File.ReadAllLines(Path)
 
-        'Save Notifications
-        If cbShowNotifications.Checked Then
-            My.Settings.ShowNotifications = True
-        Else
-            My.Settings.ShowNotifications = False
-        End If
+            'Set current version number in settings file
+            SettingsArray(1) = "Version=" + frmMain.SettingsVersion.ToString
+            frmMain.WriteToLog("Set new version number to " + frmMain.SettingsVersion.ToString, "Info")
 
-        'Save Action History
-        If cbEnableActionHistory.Checked Then
-            My.Settings.EnableActionHistory = True
-        Else
-            My.Settings.EnableActionHistory = False
-            If My.Computer.FileSystem.FileExists(AppData + "/Seeloewen Shutdown/ActionHistory.txt") = False Then
-                My.Computer.FileSystem.WriteAllText(AppData + "/Seeloewen Shutdown/ActionHistory.txt", "", False)
-                frmActionHistory.lvActionHistory.Clear()
-                frmMain.WriteToLog("Cleared Action History", "Info")
+            'Save App Settings
+            If cbxLanguage.SelectedItem = "English (English)" Then
+                My.Settings.Language = "English"
+                Close()
+            ElseIf cbxLanguage.SelectedItem = "Deutsch (German)" Then
+                My.Settings.Language = "German"
+                Close()
             End If
-        End If
+            SettingsArray(4) = "Language=" + My.Settings.Language.ToString
+            frmMain.WriteToLog("Saved setting " + SettingsArray(4), "Info")
 
-        'Save Default Profile
-        If cbLoadProfileByDefault.Checked Then
-            My.Settings.LoadProfileByDefault = True
-        Else
-            My.Settings.LoadProfileByDefault = False
-        End If
-        My.Settings.DefaultProfile = cbxDefaultProfile.SelectedItem
+            If cbxDesign.SelectedItem = "Light" Then
+                My.Settings.Design = "Light"
+            ElseIf cbxDesign.SelectedItem = "Hell" Then
+                My.Settings.Design = "Light"
+            ElseIf cbxDesign.SelectedItem = "Dunkel" Then
+                My.Settings.Design = "Dark"
+            ElseIf cbxDesign.SelectedItem = "Dark" Then
+                My.Settings.Design = "Dark"
+            End If
+            SettingsArray(5) = "Design=" + My.Settings.Design.ToString
+            frmMain.WriteToLog("Saved setting " + SettingsArray(5), "Info")
 
-        'Save Minimalistic View
-        If cbEnableMinimalisticViewByDefault.Checked Then
-            My.Settings.EnableMinimalisticView = True
-        Else
-            My.Settings.EnableMinimalisticView = False
-        End If
+            If cbShowNotifications.Checked Then
+                My.Settings.ShowNotifications = True
+            Else
+                My.Settings.ShowNotifications = False
+            End If
+            SettingsArray(6) = "ShowNotifications=" + My.Settings.ShowNotifications.ToString
+            frmMain.WriteToLog("Saved setting " + SettingsArray(6), "Info")
 
-        'Show a message that confirms that all settings have been saved
-        If My.Settings.Language = "German" Then
-            frmMain.ShowNotification("Gespeichert! Du musst die Software möglicherweise neustarten.")
-        ElseIf My.Settings.Language = "English" Then
-            frmMain.ShowNotification("Saved! You may need to restart the software.")
-        End If
-        Close()
+            'Save Action History settings
+            If cbEnableActionHistory.Checked Then
+                My.Settings.EnableActionHistory = True
+            Else
+                My.Settings.EnableActionHistory = False
+                If My.Computer.FileSystem.FileExists(AppData + "/Seeloewen Shutdown/ActionHistory.txt") = False Then
+                    My.Computer.FileSystem.WriteAllText(AppData + "/Seeloewen Shutdown/ActionHistory.txt", "", False)
+                    frmActionHistory.lvActionHistory.Clear()
+                    frmMain.WriteToLog("Cleared Action History", "Info")
+                End If
+            End If
+            SettingsArray(9) = "EnableActionHistory=" + My.Settings.EnableActionHistory.ToString
+            frmMain.WriteToLog("Saved setting " + SettingsArray(9), "Info")
+
+            'Save Default Profile settings
+            If cbLoadProfileByDefault.Checked Then
+                My.Settings.LoadProfileByDefault = True
+            Else
+                My.Settings.LoadProfileByDefault = False
+            End If
+            SettingsArray(12) = "LoadProfileByDefault=" + My.Settings.LoadProfileByDefault.ToString
+            frmMain.WriteToLog("Saved setting " + SettingsArray(12), "Info")
+
+            My.Settings.DefaultProfile = cbxDefaultProfile.SelectedItem
+            SettingsArray(13) = "DefaultProfile=" + My.Settings.DefaultProfile.ToString
+            frmMain.WriteToLog("Saved setting " + SettingsArray(13), "Info")
+
+            'Save Minimalistic View settings
+            If cbEnableMinimalisticViewByDefault.Checked Then
+                My.Settings.EnableMinimalisticView = True
+            Else
+                My.Settings.EnableMinimalisticView = False
+            End If
+            SettingsArray(16) = "EnableMinimalisticView=" + My.Settings.EnableMinimalisticView.ToString
+            frmMain.WriteToLog("Saved setting " + SettingsArray(16), "Info")
+
+            File.WriteAllLines(Path, SettingsArray)
+
+            'Show a message that confirms that all settings have been saved
+            If My.Settings.Language = "German" Then
+                frmMain.ShowNotification("Gespeichert! Du musst die Software möglicherweise neustarten.")
+            ElseIf My.Settings.Language = "English" Then
+                frmMain.ShowNotification("Saved! You may need to restart the software.")
+            End If
+
+            Close()
+        Catch ex As Exception
+            If My.Settings.Language = "German" Then
+                MsgBox("Speichern der Einstellungen ist fehlgeschlagen. " + ex.Message, MsgBoxStyle.Critical, "Fehler")
+            ElseIf My.Settings.Language = "English" Then
+                MsgBox("Saving settings failed. " + ex.Message, MsgBoxStyle.Critical, "Error")
+            End If
+
+            frmMain.WriteToLog("Saving settings failed: " + ex.Message, "Error")
+        End Try
+    End Sub
+
+    Public Sub ResetSettings(Path)
+        'Reset settings to default and write to file.
+        SettingsArray = frmMain.SettingsFilePreset.Lines
+        File.WriteAllLines(Path, SettingsArray)
     End Sub
 
     Private Sub LoadSettings()

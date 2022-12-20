@@ -4776,6 +4776,25 @@
   <metadata name="tmrPnlNotificationAnimationUp.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>539, 52</value>
   </metadata>
+  <data name="SettingsFilePreset.Text" xml:space="preserve">
+    <value>#Seeloewen Shutdown Settings File
+Version=1
+
+#AppSettings
+Language=English
+Design=Light
+ShowNotifications=true
+
+#ActionHistory
+EnableActionHistory=true
+
+#Profiles
+LoadProfileByDefault=false
+DefaultProfile=
+
+#MinimalisticView
+EnableMinimalisticView=false</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAkAEBAAAAEAIABoBAAAlgAAABgYAAABACAAiAkAAP4EAAAgIAAAAQAgAKgQAACGDgAAMDAAAAEA
