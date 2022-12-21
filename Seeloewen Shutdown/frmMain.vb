@@ -2,27 +2,37 @@
 Imports System.IO
 
 Public Class frmMain
-    Public LogLoadedOnce As Boolean
+
+    'General variables
     Dim Version As String = "1.8.1"
     Dim VerDate As String = "06.09.2022"
     Public SettingsVersion As Integer = 1
     Dim LoadedSettingsVersion As Integer
-    Dim SettingsArray As String()
-    Dim ShutdownTimeType As String
-    Dim maxtime As String
-    Public AppData As String = GetFolderPath(SpecialFolder.ApplicationData)
+    Public LogLoadedOnce As Boolean
     Dim ActionRunning As Boolean = False
+    Public AppData As String = GetFolderPath(SpecialFolder.ApplicationData)
+    Public ClosingResult As String = "Close"
+
+    'Variables used for settings and profiles
+    Dim SettingsArray As String()
+    Dim ProfileList As String()
+    Public ProfileDirectory As String = AppData + "\Seeloewen Shutdown\Profiles\"
+
+    'Variables used for animations and designs
     Dim GrayBoxNewY As Integer
     Dim PnlActionRunningNewY As Integer
     Dim PnlNotificationNewY As Integer
+    Dim LoadErrorMsgText As String
+    Dim LoadErrorMsgHeader As String
+
+    'Variables used for the timer and action
+    Dim ShutdownTimeType As String
+    Dim maxtime As String
     Dim TargetDT As DateTime
     Dim CountDownFrom As TimeSpan
     Dim TimeDifference As TimeSpan
     Public ts As TimeSpan
-    Public ProfileDirectory As String = AppData + "\Seeloewen Shutdown\Profiles\"
-    Dim ProfileList As String()
-    Dim LoadErrorMsgText As String
-    Dim LoadErrorMsgHeader As String
+
 
     '-- Event Handlers --
 
@@ -38,6 +48,15 @@ Public Class frmMain
         ShowUpdateNews()
     End Sub
 
+    Private Sub frmMain_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        'If the user wants to close the application while an action is still running, it will show an information
+        If ActionRunning = True And My.Settings.ShowCloseWarning = True Then
+            frmClosing.ShowDialog()
+            If ClosingResult = "Return" Then
+                e.Cancel = True
+            End If
+        End If
+    End Sub
 
     Private Sub btnStartAction_Click(sender As Object, e As EventArgs) Handles btnStartAction.Click
         If ActionRunning = False Then
@@ -328,20 +347,22 @@ Public Class frmMain
             WriteToLog("Loaded setting " + SettingsArray(5), "Info")
             My.Settings.ShowNotifications = Convert.ToBoolean(SettingsArray(6).Replace("ShowNotifications=", ""))
             WriteToLog("Loaded setting " + SettingsArray(6), "Info")
+            My.Settings.ShowCloseWarning = Convert.ToBoolean(SettingsArray(7).Replace("ShowCloseWarning=", ""))
+            WriteToLog("Loaded setting " + SettingsArray(7), "Info")
 
             'Load Action History settings
-            My.Settings.EnableActionHistory = Convert.ToBoolean(SettingsArray(9).Replace("EnableActionHistory=", ""))
-            WriteToLog("Loaded setting " + SettingsArray(9), "Info")
+            My.Settings.EnableActionHistory = Convert.ToBoolean(SettingsArray(10).Replace("EnableActionHistory=", ""))
+            WriteToLog("Loaded setting " + SettingsArray(10), "Info")
 
             'Load Profile settings
-            My.Settings.LoadProfileByDefault = Convert.ToBoolean(SettingsArray(12).Replace("LoadProfileByDefault=", ""))
-            WriteToLog("Loaded setting " + SettingsArray(12), "Info")
-            My.Settings.DefaultProfile = SettingsArray(13).Replace("DefaultProfile=", "")
+            My.Settings.LoadProfileByDefault = Convert.ToBoolean(SettingsArray(13).Replace("LoadProfileByDefault=", ""))
             WriteToLog("Loaded setting " + SettingsArray(13), "Info")
+            My.Settings.DefaultProfile = SettingsArray(14).Replace("DefaultProfile=", "")
+            WriteToLog("Loaded setting " + SettingsArray(14), "Info")
 
             'Load Minimalistic View settings
-            My.Settings.EnableMinimalisticView = Convert.ToBoolean(SettingsArray(16).Replace("EnableMinimalisticView=", ""))
-            WriteToLog("Loaded setting " + SettingsArray(16), "Info")
+            My.Settings.EnableMinimalisticView = Convert.ToBoolean(SettingsArray(17).Replace("EnableMinimalisticView=", ""))
+            WriteToLog("Loaded setting " + SettingsArray(17), "Info")
 
         Catch ex As Exception
 

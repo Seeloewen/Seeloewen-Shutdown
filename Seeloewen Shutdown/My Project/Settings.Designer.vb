@@ -209,6 +209,18 @@ Namespace My
                 Me("EnableActionHistory") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public Property ShowCloseWarning() As Boolean
+            Get
+                Return CType(Me("ShowCloseWarning"),Boolean)
+            End Get
+            Set
+                Me("ShowCloseWarning") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

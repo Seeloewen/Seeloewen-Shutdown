@@ -4784,6 +4784,7 @@ Version=1
 Language=English
 Design=Light
 ShowNotifications=true
+ShowCloseWarning=true
 
 #ActionHistory
 EnableActionHistory=true
