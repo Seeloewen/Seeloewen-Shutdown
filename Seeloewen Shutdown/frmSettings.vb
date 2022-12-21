@@ -11,6 +11,7 @@ Public Class frmSettings
     Dim ProfileList As String()
     Dim SettingsArray As String()
     Dim AppData As String = GetFolderPath(SpecialFolder.ApplicationData)
+    Public ShowMessage As Boolean = True
 
     '-- Event handlers --
     Private Sub frmSettings_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -87,7 +88,7 @@ Public Class frmSettings
             ResetSettings(Path)
 
             'Load settings into array
-            SettingsArray = File.ReadAllLines(Path)
+            SettingsArray = frmMain.SettingsFilePreset.Lines
 
             'Set current version number in settings file
             SettingsArray(1) = "Version=" + frmMain.SettingsVersion.ToString
@@ -101,7 +102,7 @@ Public Class frmSettings
                 My.Settings.Language = "German"
                 Close()
             End If
-            SettingsArray(4) = "Language=" + My.Settings.Language.ToString
+            SettingsArray(4) = "Language=" + My.Settings.Language
             frmMain.WriteToLog("Saved setting " + SettingsArray(4), "Info")
 
             If cbxDesign.SelectedItem = "Light" Then
@@ -113,7 +114,7 @@ Public Class frmSettings
             ElseIf cbxDesign.SelectedItem = "Dark" Then
                 My.Settings.Design = "Dark"
             End If
-            SettingsArray(5) = "Design=" + My.Settings.Design.ToString
+            SettingsArray(5) = "Design=" + My.Settings.Design
             frmMain.WriteToLog("Saved setting " + SettingsArray(5), "Info")
 
             If cbShowNotifications.Checked Then
@@ -123,6 +124,14 @@ Public Class frmSettings
             End If
             SettingsArray(6) = "ShowNotifications=" + My.Settings.ShowNotifications.ToString
             frmMain.WriteToLog("Saved setting " + SettingsArray(6), "Info")
+
+            If cbShowCloseWarning.Checked Then
+                My.Settings.ShowCloseWarning = True
+            Else
+                My.Settings.ShowCloseWarning = False
+            End If
+            SettingsArray(7) = "ShowCloseWarning=" + My.Settings.ShowCloseWarning.ToString
+            frmMain.WriteToLog("Saved setting " + SettingsArray(7), "Info")
 
             'Save Action History settings
             If cbEnableActionHistory.Checked Then
@@ -135,8 +144,8 @@ Public Class frmSettings
                     frmMain.WriteToLog("Cleared Action History", "Info")
                 End If
             End If
-            SettingsArray(9) = "EnableActionHistory=" + My.Settings.EnableActionHistory.ToString
-            frmMain.WriteToLog("Saved setting " + SettingsArray(9), "Info")
+            SettingsArray(10) = "EnableActionHistory=" + My.Settings.EnableActionHistory.ToString
+            frmMain.WriteToLog("Saved setting " + SettingsArray(10), "Info")
 
             'Save Default Profile settings
             If cbLoadProfileByDefault.Checked Then
@@ -144,12 +153,12 @@ Public Class frmSettings
             Else
                 My.Settings.LoadProfileByDefault = False
             End If
-            SettingsArray(12) = "LoadProfileByDefault=" + My.Settings.LoadProfileByDefault.ToString
-            frmMain.WriteToLog("Saved setting " + SettingsArray(12), "Info")
+            SettingsArray(13) = "LoadProfileByDefault=" + My.Settings.LoadProfileByDefault.ToString
+            frmMain.WriteToLog("Saved setting " + SettingsArray(13), "Info")
 
             My.Settings.DefaultProfile = cbxDefaultProfile.SelectedItem
-            SettingsArray(13) = "DefaultProfile=" + My.Settings.DefaultProfile.ToString
-            frmMain.WriteToLog("Saved setting " + SettingsArray(13), "Info")
+            SettingsArray(14) = "DefaultProfile=" + My.Settings.DefaultProfile
+            frmMain.WriteToLog("Saved setting " + SettingsArray(14), "Info")
 
             'Save Minimalistic View settings
             If cbEnableMinimalisticViewByDefault.Checked Then
@@ -157,17 +166,20 @@ Public Class frmSettings
             Else
                 My.Settings.EnableMinimalisticView = False
             End If
-            SettingsArray(16) = "EnableMinimalisticView=" + My.Settings.EnableMinimalisticView.ToString
-            frmMain.WriteToLog("Saved setting " + SettingsArray(16), "Info")
+            SettingsArray(17) = "EnableMinimalisticView=" + My.Settings.EnableMinimalisticView.ToString
+            frmMain.WriteToLog("Saved setting " + SettingsArray(17), "Info")
 
             File.WriteAllLines(Path, SettingsArray)
 
             'Show a message that confirms that all settings have been saved
-            If My.Settings.Language = "German" Then
-                frmMain.ShowNotification("Gespeichert! Du musst die Software möglicherweise neustarten.")
-            ElseIf My.Settings.Language = "English" Then
-                frmMain.ShowNotification("Saved! You may need to restart the software.")
+            If ShowMessage = True Then
+                If My.Settings.Language = "German" Then
+                    frmMain.ShowNotification("Gespeichert! Du musst die Software möglicherweise neustarten.")
+                ElseIf My.Settings.Language = "English" Then
+                    frmMain.ShowNotification("Saved! You may need to restart the software.")
+                End If
             End If
+            ShowMessage = True
 
             Close()
         Catch ex As Exception
@@ -214,6 +226,7 @@ Public Class frmSettings
             gbProfiles.Text = "Profile"
             btnOpenProfileEditor.Text = "Profil-Editor öffnen"
             cbLoadProfileByDefault.Text = "Profil standartmäßig laden"
+            cbShowCloseWarning.Text = "Warnung anzeigen, wenn App bei laufender Aktion " + vbNewLine + "geschlossen wird"
 
         ElseIf My.Settings.Language = "English" Then
             cbxLanguage.SelectedItem = "English (English)"
@@ -257,6 +270,7 @@ Public Class frmSettings
             cbxDesign.BackColor = Color.Gray
             cbxDefaultProfile.ForeColor = Color.White
             cbxDefaultProfile.BackColor = Color.Gray
+            cbShowCloseWarning.ForeColor = Color.White
         End If
 
         'Load Notifications
@@ -264,6 +278,13 @@ Public Class frmSettings
             cbShowNotifications.Checked = True
         Else
             cbShowNotifications.Checked = False
+        End If
+
+        'Load Close Warning
+        If My.Settings.ShowCloseWarning = True Then
+            cbShowCloseWarning.Checked = True
+        Else
+            cbShowCloseWarning.Checked = False
         End If
 
         'Load Action History

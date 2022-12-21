@@ -42,6 +42,7 @@ Partial Class frmSettings
         Me.cbxDefaultProfile = New System.Windows.Forms.ComboBox()
         Me.cbLoadProfileByDefault = New System.Windows.Forms.CheckBox()
         Me.btnOpenProfileEditor = New System.Windows.Forms.Button()
+        Me.cbShowCloseWarning = New System.Windows.Forms.CheckBox()
         Me.gbAppSettings.SuspendLayout()
         Me.gbMinimalisticView.SuspendLayout()
         Me.gbActionHistory.SuspendLayout()
@@ -68,7 +69,7 @@ Partial Class frmSettings
         Me.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnClose.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnClose.ForeColor = System.Drawing.Color.White
-        Me.btnClose.Location = New System.Drawing.Point(296, 504)
+        Me.btnClose.Location = New System.Drawing.Point(296, 545)
         Me.btnClose.Name = "btnClose"
         Me.btnClose.Size = New System.Drawing.Size(128, 27)
         Me.btnClose.TabIndex = 4
@@ -77,6 +78,7 @@ Partial Class frmSettings
         '
         'gbAppSettings
         '
+        Me.gbAppSettings.Controls.Add(Me.cbShowCloseWarning)
         Me.gbAppSettings.Controls.Add(Me.cbShowNotifications)
         Me.gbAppSettings.Controls.Add(Me.cbxDesign)
         Me.gbAppSettings.Controls.Add(Me.cbxLanguage)
@@ -86,7 +88,7 @@ Partial Class frmSettings
         Me.gbAppSettings.ForeColor = System.Drawing.SystemColors.ControlDarkDark
         Me.gbAppSettings.Location = New System.Drawing.Point(18, 57)
         Me.gbAppSettings.Name = "gbAppSettings"
-        Me.gbAppSettings.Size = New System.Drawing.Size(406, 113)
+        Me.gbAppSettings.Size = New System.Drawing.Size(406, 154)
         Me.gbAppSettings.TabIndex = 5
         Me.gbAppSettings.TabStop = False
         Me.gbAppSettings.Text = "App settings"
@@ -96,7 +98,7 @@ Partial Class frmSettings
         Me.cbShowNotifications.AutoSize = True
         Me.cbShowNotifications.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbShowNotifications.ForeColor = System.Drawing.Color.Black
-        Me.cbShowNotifications.Location = New System.Drawing.Point(15, 77)
+        Me.cbShowNotifications.Location = New System.Drawing.Point(15, 80)
         Me.cbShowNotifications.Name = "cbShowNotifications"
         Me.cbShowNotifications.Size = New System.Drawing.Size(148, 22)
         Me.cbShowNotifications.TabIndex = 8
@@ -155,7 +157,7 @@ Partial Class frmSettings
         Me.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSave.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSave.ForeColor = System.Drawing.Color.White
-        Me.btnSave.Location = New System.Drawing.Point(18, 504)
+        Me.btnSave.Location = New System.Drawing.Point(18, 545)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(128, 27)
         Me.btnSave.TabIndex = 3
@@ -172,7 +174,7 @@ Partial Class frmSettings
         Me.btnLog.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnLog.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnLog.ForeColor = System.Drawing.Color.White
-        Me.btnLog.Location = New System.Drawing.Point(158, 504)
+        Me.btnLog.Location = New System.Drawing.Point(158, 545)
         Me.btnLog.Name = "btnLog"
         Me.btnLog.Size = New System.Drawing.Size(128, 27)
         Me.btnLog.TabIndex = 6
@@ -184,7 +186,7 @@ Partial Class frmSettings
         Me.gbMinimalisticView.Controls.Add(Me.cbEnableMinimalisticViewByDefault)
         Me.gbMinimalisticView.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gbMinimalisticView.ForeColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.gbMinimalisticView.Location = New System.Drawing.Point(18, 410)
+        Me.gbMinimalisticView.Location = New System.Drawing.Point(18, 451)
         Me.gbMinimalisticView.Name = "gbMinimalisticView"
         Me.gbMinimalisticView.Size = New System.Drawing.Size(406, 79)
         Me.gbMinimalisticView.TabIndex = 7
@@ -209,7 +211,7 @@ Partial Class frmSettings
         Me.gbActionHistory.Controls.Add(Me.btnClearActionHistory)
         Me.gbActionHistory.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gbActionHistory.ForeColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.gbActionHistory.Location = New System.Drawing.Point(18, 177)
+        Me.gbActionHistory.Location = New System.Drawing.Point(18, 218)
         Me.gbActionHistory.Name = "gbActionHistory"
         Me.gbActionHistory.Size = New System.Drawing.Size(406, 86)
         Me.gbActionHistory.TabIndex = 8
@@ -252,7 +254,7 @@ Partial Class frmSettings
         Me.gbProfiles.Controls.Add(Me.btnOpenProfileEditor)
         Me.gbProfiles.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gbProfiles.ForeColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.gbProfiles.Location = New System.Drawing.Point(18, 269)
+        Me.gbProfiles.Location = New System.Drawing.Point(18, 310)
         Me.gbProfiles.Name = "gbProfiles"
         Me.gbProfiles.Size = New System.Drawing.Size(406, 132)
         Me.gbProfiles.TabIndex = 9
@@ -298,12 +300,24 @@ Partial Class frmSettings
         Me.btnOpenProfileEditor.Text = "Open the Profile Editor"
         Me.btnOpenProfileEditor.UseVisualStyleBackColor = True
         '
+        'cbShowCloseWarning
+        '
+        Me.cbShowCloseWarning.AutoSize = True
+        Me.cbShowCloseWarning.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbShowCloseWarning.ForeColor = System.Drawing.Color.Black
+        Me.cbShowCloseWarning.Location = New System.Drawing.Point(15, 105)
+        Me.cbShowCloseWarning.Name = "cbShowCloseWarning"
+        Me.cbShowCloseWarning.Size = New System.Drawing.Size(379, 40)
+        Me.cbShowCloseWarning.TabIndex = 9
+        Me.cbShowCloseWarning.Text = "Show a warning when closing the app while an action " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "is running"
+        Me.cbShowCloseWarning.UseVisualStyleBackColor = True
+        '
         'frmSettings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(448, 549)
+        Me.ClientSize = New System.Drawing.Size(443, 591)
         Me.Controls.Add(Me.gbProfiles)
         Me.Controls.Add(Me.gbActionHistory)
         Me.Controls.Add(Me.gbMinimalisticView)
@@ -351,4 +365,5 @@ Partial Class frmSettings
     Friend WithEvents btnClearActionHistory As Button
     Friend WithEvents cbxDefaultProfile As ComboBox
     Friend WithEvents cbLoadProfileByDefault As CheckBox
+    Friend WithEvents cbShowCloseWarning As CheckBox
 End Class
