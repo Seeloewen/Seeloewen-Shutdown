@@ -20,7 +20,7 @@
         frmSettings.Visible = False
         frmSettings.Show()
         frmSettings.ShowMessage = False
-        frmSettings.SaveSettings(frmMain.AppData + "/Seeloewen Shutdown/Settings.txt")
+        frmSettings.SaveSettings(frmMain.SettingsFile)
         frmSettings.Close()
         frmMain.ClosingResult = "Close"
         Close()
@@ -36,7 +36,7 @@
         frmSettings.Visible = False
         frmSettings.Show()
         frmSettings.ShowMessage = False
-        frmSettings.SaveSettings(frmMain.AppData + "/Seeloewen Shutdown/Settings.txt")
+        frmSettings.SaveSettings(frmMain.SettingsFile)
         frmSettings.Close()
         frmMain.ClosingResult = "Return"
         Close()

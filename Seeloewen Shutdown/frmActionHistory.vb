@@ -61,13 +61,13 @@ Public Class frmActionHistory
         Select Case MsgBox(ClearMsgBoxText, MsgBoxStyle.YesNo, ClearMsgBoxHeader)
             Case Windows.Forms.DialogResult.Yes
                 lvActionHistory.Clear()
-                My.Computer.FileSystem.WriteAllText(frmMain.AppData + "/Seeloewen Shutdown/ActionHistory.txt", "", False)
+                My.Computer.FileSystem.WriteAllText(frmMain.ActionHistoryFile, "", False)
                 frmMain.WriteToLog("Cleared Action History", "Info")
         End Select
     End Sub
 
     Private Sub LoadActionHistory() 'Adds all lines in the file into the listview
-        For Each line As String In File.ReadAllLines(frmMain.AppData + "/Seeloewen Shutdown/ActionHistory.txt")
+        For Each line As String In File.ReadAllLines(frmMain.ActionHistoryFile)
             Dim items As String() = line.Split(";"c)
             Dim lvItem As ListViewItem
             lvItem = New ListViewItem(items)
