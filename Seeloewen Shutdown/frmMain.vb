@@ -10,13 +10,18 @@ Public Class frmMain
     Dim LoadedSettingsVersion As Integer
     Public LogLoadedOnce As Boolean
     Dim ActionRunning As Boolean = False
-    Public AppData As String = GetFolderPath(SpecialFolder.ApplicationData)
     Public ClosingResult As String = "Close"
 
     'Variables used for settings and profiles
     Dim SettingsArray As String()
     Dim ProfileList As String()
+
+
+    'Variables used for directory and file paths
+    Public AppData As String = GetFolderPath(SpecialFolder.ApplicationData)
     Public ProfileDirectory As String = AppData + "\Seeloewen Shutdown\Profiles\"
+    Public SettingsFile As String = AppData + "\Seeloewen Shutdown\Settings.txt"
+    Public ActionHistoryFile As String = AppData + "\Seeloewen Shutdown\ActionHistory.txt"
 
     'Variables used for animations and designs
     Dim GrayBoxNewY As Integer
@@ -37,7 +42,7 @@ Public Class frmMain
     '-- Event Handlers --
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        CreateFiles()
+        CreateFilesAndFolders()
         InitializeLoadingSettings()
         WriteToLog("Loading Seeloewen Shutdown " + Version + " (" + VerDate + ")", "Info")
         LoadLanguage()
@@ -274,58 +279,109 @@ Public Class frmMain
     '-- Custom methods --
 
     Private Sub InitializeLoadingSettings()
-        If My.Computer.FileSystem.FileExists(AppData + "/Seeloewen Shutdown/Settings.txt") Then
-            'Load settings and determine version
-            SettingsArray = File.ReadAllLines(AppData + "/Seeloewen Shutdown/Settings.txt")
-            LoadedSettingsVersion = SettingsArray(1).Replace("Version=", "")
-            WriteToLog("Found settings version " + LoadedSettingsVersion.ToString, "Info")
+        If My.Computer.FileSystem.FileExists(SettingsFile) Then
+            Try
+                'Try to load settings and determine version
+                SettingsArray = File.ReadAllLines(SettingsFile)
+                LoadedSettingsVersion = SettingsArray(1).Replace("Version=", "")
+                WriteToLog("Found settings version " + LoadedSettingsVersion.ToString, "Info")
 
-            'Check if settings version is outdated or newer (or just right)
-            If LoadedSettingsVersion < SettingsVersion Then
-
-                'Load settings from older version. You can either select to import the settings into the new version or overwrite them.
-                Select Case MsgBox("Your settings from a previous version were found." + vbNewLine + "Do you want to try to import them?" + vbNewLine + " This will overwrite your current settings.", vbQuestion + vbYesNo, "Found older settings")
-                    Case Windows.Forms.DialogResult.Yes
-                        WriteToLog("Importing settings from older version. Please note that due to version differences not everything might be imported.", "Warning")
-                        LoadSettings()
-                        MsgBox("Finished Importing settings. Please note that not everything might have been imported due to the settings file being an older version.", MsgBoxStyle.Information, "Import older settings")
-                        WriteToLog("Finished importing settings from older version.", "Info")
-                    Case Windows.Forms.DialogResult.No
-                        WriteToLog("Ignored settings from previous version. Creating new file, current one will be renamed to settings.old", "Info")
-                        My.Computer.FileSystem.RenameFile(AppData + "/Seeloewen Shutdown/Settings.txt", "settings.old")
-                        My.Computer.FileSystem.WriteAllText(AppData + "/Seeloewen Shutdown/Settings.txt", "", False)
-                        frmSettings.ResetSettings(AppData + "/Seeloewen Shutdown/Settings.txt")
-                End Select
-
-            ElseIf LoadedSettingsVersion > SettingsVersion Then
-
-                'Load settings from newer version. You can either select to import the settings into the new version or overwrite them.
-                Select Case MsgBox("The settings file that was detected belongs to a newer version of the Random Item Giver Updater." + vbNewLine + "Loading it can cause issues. Do you still want to load it?", vbQuestion + vbYesNo, "Found newer settings")
-                    Case Windows.Forms.DialogResult.Yes
-                        WriteToLog("Importing settings from newer version. Please note that due to version differences this can issues.", "Warning")
-                        LoadSettings()
-                        MsgBox("Finished Importing settings. Please note that not everything might work correctly.", MsgBoxStyle.Information, "Imported newer settings")
-                        WriteToLog("Finished importing settings from newer version.", "Info")
-                    Case Windows.Forms.DialogResult.No
-                        WriteToLog("Ignored settings from newer version. Creating new file, current one will be renamed to settings.old", "Info")
-                        My.Computer.FileSystem.RenameFile(AppData + "/Seeloewen Shutdown/Settings.txt", "settings.old")
-                        My.Computer.FileSystem.WriteAllText(AppData + "/Seeloewen Shutdown/Settings.txt", "", False)
-                        frmSettings.ResetSettings(AppData + "/Seeloewen Shutdown/Settings.txt")
-                End Select
-
-            Else
-
-                'Just load settings
-                WriteToLog("Loading settings...", "Info")
-                LoadSettings()
-
-            End If
+                'Check if settings version is outdated or newer (or just right)
+                ReDim Preserve SettingsArray(18)
+                CheckAndConvertSettings(SettingsFile)
+            Catch ex As Exception
+                If My.Settings.Language = "German" Then
+                    MsgBox("Beim Laden der Einstellungen ist ein Fehler aufgetreten: " + ex.Message, MsgBoxStyle.Critical, "Fehler")
+                ElseIf My.Settings.Language = "English" Then
+                    MsgBox("Error when loading settings: " + ex.Message, MsgBoxStyle.Critical, "Error")
+                End If
+                WriteToLog("Error when loading settings: " + ex.Message, "Error")
+            End Try
 
         Else
             'Show error and create new settings file if none exists
             WriteToLog("Could not find settings file. Creating a new one (Version " + SettingsVersion.ToString + ").", "Warning")
-            My.Computer.FileSystem.WriteAllText(AppData + "/Seeloewen Shutdown/Settings.txt", "", False)
-            frmSettings.ResetSettings(AppData + "/Seeloewen Shutdown/Settings.txt")
+            My.Computer.FileSystem.WriteAllText(SettingsFile, "", False)
+            frmSettings.ResetSettings(SettingsFile)
+        End If
+    End Sub
+
+    Public Sub CheckAndConvertSettings(File As String)
+        'This checks if the settings file that was loaded has enough lines, too few lines would mean that settings are missing, meaning the file is either too old or corrupted.
+        'It will check for each required line if it is empty (required lines = the length of a healthy, normal profile file). Make sure that the line amount it checks matches the amount of settings that are being saved.
+        'If a line is empty, it will fill that line with a placeholder in the array so the settings can get loaded without errors. After loading the settings, it gets automatically saved so the corrupted/old settings file gets fixed.
+        'If no required line is empty and the file is fine, it will just load the profile like normal.
+        If (String.IsNullOrEmpty(SettingsArray(0)) OrElse String.IsNullOrEmpty(SettingsArray(1)) OrElse String.IsNullOrEmpty(SettingsArray(2)) OrElse String.IsNullOrEmpty(SettingsArray(3)) OrElse String.IsNullOrEmpty(SettingsArray(4)) OrElse String.IsNullOrEmpty(SettingsArray(5)) OrElse String.IsNullOrEmpty(SettingsArray(6)) OrElse String.IsNullOrEmpty(SettingsArray(7)) OrElse String.IsNullOrEmpty(SettingsArray(8)) OrElse String.IsNullOrEmpty(SettingsArray(9)) OrElse String.IsNullOrEmpty(SettingsArray(10)) OrElse String.IsNullOrEmpty(SettingsArray(11)) OrElse String.IsNullOrEmpty(SettingsArray(12)) OrElse String.IsNullOrEmpty(SettingsArray(13)) OrElse String.IsNullOrEmpty(SettingsArray(14)) OrElse String.IsNullOrEmpty(SettingsArray(15)) OrElse String.IsNullOrEmpty(SettingsArray(16)) OrElse String.IsNullOrEmpty(SettingsArray(17))) Then
+            Select Case MsgBox("You are trying to load settings from an older/newer version or your settings are corrupted. You need to fix them in order to load them. You usually won't lose any settings. Do you want to continue?", vbQuestion + vbYesNo, "Load old or corrupted profile")
+                Case Windows.Forms.DialogResult.Yes
+                    WriteToLog("Converting settings to newer version...", "Info")
+                    'Change version to the newest one to avoid further detections
+                    SettingsArray(0) = SettingsFilePreset.Lines(0)
+                    'Convert settings if necessary
+                    If String.IsNullOrEmpty(SettingsArray(1)) Then
+                        SettingsArray(1) = SettingsFilePreset.Lines(1)
+                    End If
+                    If String.IsNullOrEmpty(SettingsArray(2)) Then
+                        SettingsArray(2) = SettingsFilePreset.Lines(2)
+                    End If
+                    If String.IsNullOrEmpty(SettingsArray(3)) Then
+                        SettingsArray(3) = SettingsFilePreset.Lines(3)
+                    End If
+                    If String.IsNullOrEmpty(SettingsArray(4)) Then
+                        SettingsArray(4) = SettingsFilePreset.Lines(4)
+                    End If
+                    If String.IsNullOrEmpty(SettingsArray(5)) Then
+                        SettingsArray(5) = SettingsFilePreset.Lines(5)
+                    End If
+                    If String.IsNullOrEmpty(SettingsArray(6)) Then
+                        SettingsArray(6) = SettingsFilePreset.Lines(6)
+                    End If
+                    If String.IsNullOrEmpty(SettingsArray(7)) Then
+                        SettingsArray(7) = SettingsFilePreset.Lines(7)
+                    End If
+                    If String.IsNullOrEmpty(SettingsArray(8)) Then
+                        SettingsArray(8) = SettingsFilePreset.Lines(8)
+                    End If
+                    If String.IsNullOrEmpty(SettingsArray(9)) Then
+                        SettingsArray(9) = SettingsFilePreset.Lines(9)
+                    End If
+                    If String.IsNullOrEmpty(SettingsArray(10)) Then
+                        SettingsArray(10) = SettingsFilePreset.Lines(10)
+                    End If
+                    If String.IsNullOrEmpty(SettingsArray(11)) Then
+                        SettingsArray(11) = SettingsFilePreset.Lines(11)
+                    End If
+                    If String.IsNullOrEmpty(SettingsArray(12)) Then
+                        SettingsArray(12) = SettingsFilePreset.Lines(12)
+                    End If
+                    If String.IsNullOrEmpty(SettingsArray(13)) Then
+                        SettingsArray(13) = SettingsFilePreset.Lines(13)
+                    End If
+                    If String.IsNullOrEmpty(SettingsArray(14)) Then
+                        SettingsArray(14) = SettingsFilePreset.Lines(14)
+                    End If
+                    If String.IsNullOrEmpty(SettingsArray(15)) Then
+                        SettingsArray(15) = SettingsFilePreset.Lines(15)
+                    End If
+                    If String.IsNullOrEmpty(SettingsArray(16)) Then
+                        SettingsArray(16) = SettingsFilePreset.Lines(16)
+                    End If
+                    If String.IsNullOrEmpty(SettingsArray(17)) Then
+                        SettingsArray(17) = SettingsFilePreset.Lines(17)
+                    End If
+                    System.IO.File.WriteAllLines(SettingsFile, SettingsArray)
+                    LoadSettings()
+                    MsgBox("Loaded and converted settings. They should now work correctly!", MsgBoxStyle.Information, "Loaded and updated profile")
+                    WriteToLog("Loaded and converted settings.", "Info")
+                Case Windows.Forms.DialogResult.No
+                    WriteToLog("Ignored settings from newer version. Creating new file, current one will be renamed to settings.old", "Info")
+                    My.Computer.FileSystem.RenameFile(SettingsFile, "settings.old")
+                    My.Computer.FileSystem.WriteAllText(SettingsFile, "", False)
+                    frmSettings.ResetSettings(SettingsFile)
+                    LoadSettings()
+            End Select
+        Else
+            LoadSettings()
         End If
     End Sub
 
@@ -339,7 +395,7 @@ Public Class frmMain
             LoadErrorMsgText = "Beim Laden deiner Einstellungen ist ein Fehler aufgetreten. " + vbNewLine + "Möchtest du deine Einstellungen zurücksetzen? Das behebt vermutlich das Problem."
         End If
         Try
-
+            WriteToLog("Loading settings...", "Info")
             'Load App settings
             My.Settings.Language = SettingsArray(4).Replace("Language=", "")
             WriteToLog("Loaded setting " + SettingsArray(4), "Info")
@@ -372,8 +428,8 @@ Public Class frmMain
             'If loading settings failed, show an option to reset settings
             Select Case MsgBox(LoadErrorMsgText, vbCritical + vbYesNo, LoadErrorMsgHeader)
                 Case Windows.Forms.DialogResult.Yes
-                    My.Computer.FileSystem.WriteAllText(AppData + "/Seeloewen Shutdown/Settings.txt", "", False)
-                    frmSettings.ResetSettings(AppData + "/Seeloewen Shutdown/Settings.txt")
+                    My.Computer.FileSystem.WriteAllText(SettingsFile, "", False)
+                    frmSettings.ResetSettings(SettingsFile)
                     If My.Settings.Language = "English" Then
                         MsgBox("Successfully reset your settings!" + vbNewLine + "The application needs to be restarted to apply changes.", MsgBoxStyle.Information, "Reset settings")
                     ElseIf My.Settings.Language = "German" Then
@@ -564,25 +620,32 @@ Public Class frmMain
         WriteToLog("Loaded LastDateDisplay from settings: " + My.Settings.LastDateDisplay, "Info")
     End Sub
 
-    Private Sub CreateFiles()
-        'Create Profile Directory in Appdata folder
-        If My.Computer.FileSystem.DirectoryExists(AppData + "/Seeloewen Shutdown") = False Then
-            My.Computer.FileSystem.CreateDirectory(AppData + "/Seeloewen Shutdown")
-            WriteToLog("Created directory " + "'" + AppData + "/Seeloewen Shutdown" + "'", "Info")
+    Private Sub CreateFilesAndFolders()
+        'Create Profile directory in Appdata folder
+        If My.Computer.FileSystem.DirectoryExists(AppData + "\Seeloewen Shutdown\") = False Then
+            My.Computer.FileSystem.CreateDirectory(AppData + "\Seeloewen Shutdown\")
+            WriteToLog("Created directory " + "'" + AppData + "\Seeloewen Shutdown\" + "'", "Info")
         End If
 
         'Create ActionHistory file (if enabled)
         If My.Settings.EnableActionHistory = True Then
-            If My.Computer.FileSystem.FileExists(AppData + "/Seeloewen Shutdown/ActionHistory.txt") = False Then
-                My.Computer.FileSystem.WriteAllText(AppData + "/Seeloewen Shutdown/ActionHistory.txt", "", False)
-                WriteToLog("Created directory " + "'" + AppData + "/Seeloewen Shutdown/ActionHistory.txt" + "'", "Info")
+            If My.Computer.FileSystem.FileExists(ActionHistoryFile) = False Then
+                My.Computer.FileSystem.WriteAllText(ActionHistoryFile, "", False)
+                WriteToLog("Created directory " + "'" + ActionHistoryFile + "'", "Info")
             End If
         End If
 
-        'Create Profile Directory
-        If My.Computer.FileSystem.DirectoryExists(AppData + "/Seeloewen Shutdown/Profiles") = False Then
-            My.Computer.FileSystem.CreateDirectory(AppData + "/Seeloewen Shutdown/Profiles")
-            WriteToLog("Created directory " + "'" + AppData + "/Seeloewen Shutdown/Profiles" + "'", "Info")
+        'Create Profile directory
+        If My.Computer.FileSystem.DirectoryExists(ProfileDirectory) = False Then
+            My.Computer.FileSystem.CreateDirectory(ProfileDirectory)
+            WriteToLog("Created directory " + "'" + ProfileDirectory + "'", "Info")
+        End If
+
+        'Create Settings file
+        If My.Computer.FileSystem.FileExists(SettingsFile) = False Then
+            My.Computer.FileSystem.WriteAllText(SettingsFile, "", False)
+            frmSettings.ResetSettings(SettingsFile)
+            WriteToLog("Created file " + "'" + SettingsFile + "'", "Info")
         End If
     End Sub
 
@@ -611,7 +674,7 @@ Public Class frmMain
 
         'Remove last line from Action History file (basically remove last action)
         If My.Settings.EnableActionHistory Then
-            Dim file As String = AppData + "/Seeloewen Shutdown/ActionHistory.txt"
+            Dim file As String = ActionHistoryFile
             Dim lines() As String = IO.File.ReadAllLines(file)
             Dim length As String = lines.Last.Length.ToString
             Dim fs As New FileStream(file, FileMode.Open, FileAccess.ReadWrite)
@@ -635,7 +698,7 @@ Public Class frmMain
         'Add action to Action History file
         If My.Settings.EnableActionHistory Then
             Try
-                My.Computer.FileSystem.WriteAllText(AppData + "/Seeloewen Shutdown/ActionHistory.txt", _RunningAction.Text + ";" + dtpSelectedTime.Value + ";" + DateTime.Now.ToString + vbNewLine, True)
+                My.Computer.FileSystem.WriteAllText(ActionHistoryFile, _RunningAction.Text + ";" + dtpSelectedTime.Value + ";" + DateTime.Now.ToString + vbNewLine, True)
             Catch ex As Exception
                 WriteToLog("Couldn't add last action to Action History. " + ex.Message, "Error")
             End Try

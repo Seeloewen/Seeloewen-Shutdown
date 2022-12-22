@@ -29,11 +29,11 @@ Public Class frmSettings
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         'Check if settings file exists. If not, create one.
-        If My.Computer.FileSystem.FileExists(frmMain.AppData + "/Seeloewen Shutdown/Settings.txt") Then
-            SaveSettings(frmMain.AppData + "/Seeloewen Shutdown/Settings.txt")
+        If My.Computer.FileSystem.FileExists(frmMain.SettingsFile) Then
+            SaveSettings(frmMain.SettingsFile)
         Else
-            My.Computer.FileSystem.WriteAllText(frmMain.AppData + "/Seeloewen Shutdown/Settings.txt", "", False)
-            SaveSettings(frmMain.AppData + "/Seeloewen Shutdown/Settings.txt")
+            My.Computer.FileSystem.WriteAllText(frmMain.SettingsFile, "", False)
+            SaveSettings(frmMain.SettingsFile)
         End If
     End Sub
 
@@ -138,8 +138,8 @@ Public Class frmSettings
                 My.Settings.EnableActionHistory = True
             Else
                 My.Settings.EnableActionHistory = False
-                If My.Computer.FileSystem.FileExists(AppData + "/Seeloewen Shutdown/ActionHistory.txt") = False Then
-                    My.Computer.FileSystem.WriteAllText(AppData + "/Seeloewen Shutdown/ActionHistory.txt", "", False)
+                If My.Computer.FileSystem.FileExists(frmMain.ActionHistoryFile) = False Then
+                    My.Computer.FileSystem.WriteAllText(frmMain.ActionHistoryFile, "", False)
                     frmActionHistory.lvActionHistory.Clear()
                     frmMain.WriteToLog("Cleared Action History", "Info")
                 End If
@@ -336,7 +336,7 @@ Public Class frmSettings
         Select Case MsgBox(ClearMsgBoxText, MsgBoxStyle.YesNo, ClearMsgBoxHeader)
             Case Windows.Forms.DialogResult.Yes
                 frmActionHistory.lvActionHistory.Clear()
-                My.Computer.FileSystem.WriteAllText(frmMain.AppData + "/Seeloewen Shutdown/ActionHistory.txt", "", False)
+                My.Computer.FileSystem.WriteAllText(frmMain.ActionHistoryFile, "", False)
                 frmMain.WriteToLog("Cleared Action History", "Info")
         End Select
     End Sub
