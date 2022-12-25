@@ -287,7 +287,7 @@ Public Class frmMain
                 WriteToLog("Found settings version " + LoadedSettingsVersion.ToString, "Info")
 
                 'Check if settings version is outdated or newer (or just right)
-                ReDim Preserve SettingsArray(19)
+                ReDim Preserve SettingsArray(18)
                 CheckAndConvertSettings(SettingsFile)
             Catch ex As Exception
                 If My.Settings.Language = "German" Then
@@ -311,7 +311,7 @@ Public Class frmMain
         'It will check for each required line if it is empty (required lines = the length of a healthy, normal profile file). Make sure that the line amount it checks matches the amount of settings that are being saved.
         'If a line is empty, it will fill that line with a placeholder in the array so the settings can get loaded without errors. After loading the settings, it gets automatically saved so the corrupted/old settings file gets fixed.
         'If no required line is empty and the file is fine, it will just load the profile like normal.
-        If (String.IsNullOrEmpty(SettingsArray(0)) OrElse String.IsNullOrEmpty(SettingsArray(1)) OrElse String.IsNullOrEmpty(SettingsArray(2)) OrElse String.IsNullOrEmpty(SettingsArray(3)) OrElse String.IsNullOrEmpty(SettingsArray(4)) OrElse String.IsNullOrEmpty(SettingsArray(5)) OrElse String.IsNullOrEmpty(SettingsArray(6)) OrElse String.IsNullOrEmpty(SettingsArray(7)) OrElse String.IsNullOrEmpty(SettingsArray(8)) OrElse String.IsNullOrEmpty(SettingsArray(9)) OrElse String.IsNullOrEmpty(SettingsArray(10)) OrElse String.IsNullOrEmpty(SettingsArray(11)) OrElse String.IsNullOrEmpty(SettingsArray(12)) OrElse String.IsNullOrEmpty(SettingsArray(13)) OrElse String.IsNullOrEmpty(SettingsArray(14)) OrElse String.IsNullOrEmpty(SettingsArray(15)) OrElse String.IsNullOrEmpty(SettingsArray(16)) OrElse String.IsNullOrEmpty(SettingsArray(17)) OrElse String.IsNullOrEmpty(SettingsArray(18))) Then
+        If (String.IsNullOrEmpty(SettingsArray(0)) OrElse String.IsNullOrEmpty(SettingsArray(1)) OrElse String.IsNullOrEmpty(SettingsArray(2)) OrElse String.IsNullOrEmpty(SettingsArray(3)) OrElse String.IsNullOrEmpty(SettingsArray(4)) OrElse String.IsNullOrEmpty(SettingsArray(5)) OrElse String.IsNullOrEmpty(SettingsArray(6)) OrElse String.IsNullOrEmpty(SettingsArray(7)) OrElse String.IsNullOrEmpty(SettingsArray(8)) OrElse String.IsNullOrEmpty(SettingsArray(9)) OrElse String.IsNullOrEmpty(SettingsArray(10)) OrElse String.IsNullOrEmpty(SettingsArray(11)) OrElse String.IsNullOrEmpty(SettingsArray(12)) OrElse String.IsNullOrEmpty(SettingsArray(13)) OrElse String.IsNullOrEmpty(SettingsArray(14)) OrElse String.IsNullOrEmpty(SettingsArray(15)) OrElse String.IsNullOrEmpty(SettingsArray(16)) OrElse String.IsNullOrEmpty(SettingsArray(17))) Then
             Select Case MsgBox("You are trying to load settings from an older/newer version or your settings are corrupted. You need to fix them in order to load them. You usually won't lose any settings. Do you want to continue?", vbQuestion + vbYesNo, "Load old or corrupted profile")
                 Case Windows.Forms.DialogResult.Yes
                     WriteToLog("Converting settings to newer version...", "Info")
@@ -369,9 +369,6 @@ Public Class frmMain
                     If String.IsNullOrEmpty(SettingsArray(17)) Then
                         SettingsArray(17) = SettingsFilePreset.Lines(17)
                     End If
-                    If String.IsNullOrEmpty(SettingsArray(18)) Then
-                        SettingsArray(18) = SettingsFilePreset.Lines(18)
-                    End If
                     System.IO.File.WriteAllLines(SettingsFile, SettingsArray)
                     LoadSettings()
                     MsgBox("Loaded and converted settings. They should now work correctly!", MsgBoxStyle.Information, "Loaded and updated profile")
@@ -408,21 +405,20 @@ Public Class frmMain
             WriteToLog("Loaded setting " + SettingsArray(6), "Info")
             My.Settings.ShowCloseWarning = Convert.ToBoolean(SettingsArray(7).Replace("ShowCloseWarning=", ""))
             WriteToLog("Loaded setting " + SettingsArray(7), "Info")
-            My.Settings.EnableAnimations = Convert.ToBoolean(SettingsArray(8).Replace("EnableAnimations=", ""))
-            WriteToLog("Loaded setting " + SettingsArray(8), "Info")
+
             'Load Action History settings
-            My.Settings.EnableActionHistory = Convert.ToBoolean(SettingsArray(11).Replace("EnableActionHistory=", ""))
-            WriteToLog("Loaded setting " + SettingsArray(11), "Info")
+            My.Settings.EnableActionHistory = Convert.ToBoolean(SettingsArray(10).Replace("EnableActionHistory=", ""))
+            WriteToLog("Loaded setting " + SettingsArray(10), "Info")
 
             'Load Profile settings
-            My.Settings.LoadProfileByDefault = Convert.ToBoolean(SettingsArray(14).Replace("LoadProfileByDefault=", ""))
+            My.Settings.LoadProfileByDefault = Convert.ToBoolean(SettingsArray(13).Replace("LoadProfileByDefault=", ""))
+            WriteToLog("Loaded setting " + SettingsArray(13), "Info")
+            My.Settings.DefaultProfile = SettingsArray(14).Replace("DefaultProfile=", "")
             WriteToLog("Loaded setting " + SettingsArray(14), "Info")
-            My.Settings.DefaultProfile = SettingsArray(15).Replace("DefaultProfile=", "")
-            WriteToLog("Loaded setting " + SettingsArray(15), "Info")
 
             'Load Minimalistic View settings
-            My.Settings.EnableMinimalisticView = Convert.ToBoolean(SettingsArray(18).Replace("EnableMinimalisticView=", ""))
-            WriteToLog("Loaded setting " + SettingsArray(18), "Info")
+            My.Settings.EnableMinimalisticView = Convert.ToBoolean(SettingsArray(17).Replace("EnableMinimalisticView=", ""))
+            WriteToLog("Loaded setting " + SettingsArray(17), "Info")
 
         Catch ex As Exception
 
@@ -604,13 +600,8 @@ Public Class frmMain
             pnlActionRunning.Top = 550
             PnlActionRunningNewY = 550
             pbGrayBox.Show()
-            If My.Settings.EnableAnimations = True Then
-                tmrGrayBoxAnimationUp.Enabled = True
-                tmrPnlActionRunningAnimationUp.Enabled = True
-            Else
-                pbGrayBox.Top = 353
-                pnlActionRunning.Top = 366
-            End If
+            tmrGrayBoxAnimationUp.Enabled = True
+            tmrPnlActionRunningAnimationUp.Enabled = True
             ActionRunning = True
             If My.Settings.Design = "Dark" Then
                 btnStartAction.BackColor = Color.FromArgb(25, 25, 25)
@@ -884,13 +875,8 @@ Public Class frmMain
                     pnlActionRunning.Top = 550
                     PnlActionRunningNewY = 550
                     pbGrayBox.Show()
-                    If My.Settings.EnableAnimations = True Then
-                        tmrGrayBoxAnimationUp.Enabled = True
-                        tmrPnlActionRunningAnimationUp.Enabled = True
-                    Else
-                        pbGrayBox.Top = 353
-                        pnlActionRunning.Top = 366
-                    End If
+                    tmrGrayBoxAnimationUp.Enabled = True
+                    tmrPnlActionRunningAnimationUp.Enabled = True
                     ActionRunning = True
 
                     If My.Settings.EnableMinimalisticView = True Then
@@ -992,13 +978,8 @@ Public Class frmMain
         GrayBoxNewY = 347
         pnlActionRunning.Top = 350
         PnlActionRunningNewY = 350
-        If My.Settings.EnableAnimations = True Then
-            tmrGrayBoxAnimationDown.Enabled = True
-            tmrPnlActionRunningAnimationDown.Enabled = True
-        Else
-            pbGrayBox.Top = 500
-            pnlActionRunning.Top = 500
-        End If
+        tmrGrayBoxAnimationDown.Enabled = True
+        tmrPnlActionRunningAnimationDown.Enabled = True
         ActionRunning = False
 
         WriteToLog("Stopped action.", "Info")
@@ -1011,15 +992,7 @@ Public Class frmMain
             lblNotification.Text = Text
             pnlNotification.Top = 20
             PnlNotificationNewY = 20
-            If My.Settings.EnableAnimations = True Then
-                tmrPnlNotificationAnimationDown.Enabled = True
-            Else
-                pnlNotification.Top = 66
-                PnlNotificationNewY = 66
-                Sleep(2500)
-                pnlNotification.Top = 20
-                PnlNotificationNewY = 20
-            End If
+            tmrPnlNotificationAnimationDown.Enabled = True
         End If
     End Sub
 

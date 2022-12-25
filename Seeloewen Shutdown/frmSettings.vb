@@ -133,14 +133,6 @@ Public Class frmSettings
             SettingsArray(7) = "ShowCloseWarning=" + My.Settings.ShowCloseWarning.ToString
             frmMain.WriteToLog("Saved setting " + SettingsArray(7), "Info")
 
-            If cbEnableAnimations.Checked Then
-                My.Settings.EnableAnimations = True
-            Else
-                My.Settings.EnableAnimations = False
-            End If
-            SettingsArray(8) = "EnableAnimations=" + My.Settings.EnableAnimations.ToString
-            frmMain.WriteToLog("Saved setting " + SettingsArray(8), "Info")
-
             'Save Action History settings
             If cbEnableActionHistory.Checked Then
                 My.Settings.EnableActionHistory = True
@@ -152,8 +144,8 @@ Public Class frmSettings
                     frmMain.WriteToLog("Cleared Action History", "Info")
                 End If
             End If
-            SettingsArray(11) = "EnableActionHistory=" + My.Settings.EnableActionHistory.ToString
-            frmMain.WriteToLog("Saved setting " + SettingsArray(11), "Info")
+            SettingsArray(10) = "EnableActionHistory=" + My.Settings.EnableActionHistory.ToString
+            frmMain.WriteToLog("Saved setting " + SettingsArray(10), "Info")
 
             'Save Default Profile settings
             If cbLoadProfileByDefault.Checked Then
@@ -161,12 +153,12 @@ Public Class frmSettings
             Else
                 My.Settings.LoadProfileByDefault = False
             End If
-            SettingsArray(14) = "LoadProfileByDefault=" + My.Settings.LoadProfileByDefault.ToString
-            frmMain.WriteToLog("Saved setting " + SettingsArray(14), "Info")
+            SettingsArray(13) = "LoadProfileByDefault=" + My.Settings.LoadProfileByDefault.ToString
+            frmMain.WriteToLog("Saved setting " + SettingsArray(13), "Info")
 
             My.Settings.DefaultProfile = cbxDefaultProfile.SelectedItem
-            SettingsArray(15) = "DefaultProfile=" + My.Settings.DefaultProfile
-            frmMain.WriteToLog("Saved setting " + SettingsArray(15), "Info")
+            SettingsArray(14) = "DefaultProfile=" + My.Settings.DefaultProfile
+            frmMain.WriteToLog("Saved setting " + SettingsArray(14), "Info")
 
             'Save Minimalistic View settings
             If cbEnableMinimalisticViewByDefault.Checked Then
@@ -174,8 +166,8 @@ Public Class frmSettings
             Else
                 My.Settings.EnableMinimalisticView = False
             End If
-            SettingsArray(18) = "EnableMinimalisticView=" + My.Settings.EnableMinimalisticView.ToString
-            frmMain.WriteToLog("Saved setting " + SettingsArray(18), "Info")
+            SettingsArray(17) = "EnableMinimalisticView=" + My.Settings.EnableMinimalisticView.ToString
+            frmMain.WriteToLog("Saved setting " + SettingsArray(17), "Info")
 
             File.WriteAllLines(Path, SettingsArray)
 
@@ -235,7 +227,7 @@ Public Class frmSettings
             btnOpenProfileEditor.Text = "Profil-Editor öffnen"
             cbLoadProfileByDefault.Text = "Profil standartmäßig laden"
             cbShowCloseWarning.Text = "Warnung anzeigen, wenn App bei laufender Aktion " + vbNewLine + "geschlossen wird"
-            cbEnableAnimations.Text = "Animationen aktivieren"
+
         ElseIf My.Settings.Language = "English" Then
             cbxLanguage.SelectedItem = "English (English)"
         End If
@@ -279,7 +271,6 @@ Public Class frmSettings
             cbxDefaultProfile.ForeColor = Color.White
             cbxDefaultProfile.BackColor = Color.Gray
             cbShowCloseWarning.ForeColor = Color.White
-            cbEnableAnimations.ForeColor = Color.White
         End If
 
         'Load Notifications
@@ -294,13 +285,6 @@ Public Class frmSettings
             cbShowCloseWarning.Checked = True
         Else
             cbShowCloseWarning.Checked = False
-        End If
-
-        'Load Animations
-        If My.Settings.EnableAnimations = True Then
-            cbEnableAnimations.Checked = true
-        Else
-            cbEnableAnimations.Checked = False
         End If
 
         'Load Action History
