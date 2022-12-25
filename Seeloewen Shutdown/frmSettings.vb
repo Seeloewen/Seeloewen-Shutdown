@@ -298,7 +298,7 @@ Public Class frmSettings
 
         'Load Animations
         If My.Settings.EnableAnimations = True Then
-            cbEnableAnimations.Checked = true
+            cbEnableAnimations.Checked = True
         Else
             cbEnableAnimations.Checked = False
         End If
