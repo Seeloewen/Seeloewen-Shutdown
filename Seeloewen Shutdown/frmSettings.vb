@@ -66,7 +66,7 @@ Public Class frmSettings
         If cbEnableActionHistory.Checked = False Then
             Select Case MsgBox(DisableMsgBoxText, MsgBoxStyle.YesNo, DisableMsgBoxHeader)
                 Case Windows.Forms.DialogResult.No
-                    cbEnableActionHistory.Checked = False
+                    cbEnableActionHistory.Checked = True
             End Select
         End If
     End Sub
