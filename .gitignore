@@ -350,6 +350,8 @@ MigrationBackup/
 .ionide/
 /.vs/Seeloewen-Shutdown/v17/.suo
 /.vs/slnx.sqlite
+
+# Custom
 /Seeloewen Shutdown/.vs/Seeloewen Shutdown/v17/.suo
 /Seeloewen Shutdown/bin/Release/Seeloewen Shutdown.exe.config
 /Seeloewen Shutdown/bin/Release/Seeloewen Shutdown.pdb
