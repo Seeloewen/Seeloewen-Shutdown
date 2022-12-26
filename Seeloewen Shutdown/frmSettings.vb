@@ -64,7 +64,7 @@ Public Class frmSettings
 
         'Show messagebox to warn user that disabling action history deletes the file
         If cbEnableActionHistory.Checked = False Then
-            Select Case MsgBox(DisableMsgBoxText, MsgBoxStyle.YesNo, DisableMsgBoxHeader)
+            Select Case MsgBox(DisableMsgBoxText, vbQuestion + vbYesNo, DisableMsgBoxHeader)
                 Case Windows.Forms.DialogResult.No
                     cbEnableActionHistory.Checked = True
             End Select
@@ -349,7 +349,7 @@ Public Class frmSettings
     End Sub
 
     Private Sub ShowClearHistoryMsgBox() 'Show messagebox, clicking "yes" will result in the Action History file being cleared
-        Select Case MsgBox(ClearMsgBoxText, MsgBoxStyle.YesNo, ClearMsgBoxHeader)
+        Select Case MsgBox(ClearMsgBoxText, vbQuestion + vbYesNo, ClearMsgBoxHeader)
             Case Windows.Forms.DialogResult.Yes
                 frmActionHistory.lvActionHistory.Clear()
                 My.Computer.FileSystem.WriteAllText(frmMain.ActionHistoryFile, "", False)
