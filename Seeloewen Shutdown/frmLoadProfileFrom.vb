@@ -3,10 +3,14 @@
 Public Class frmLoadProfileFrom
 
     Dim ProfileList As String()
+    Dim ProfileContent As String()
     Dim LoadFromProfile As String
     Dim rbtnAction As String
     Dim tbTime As String
     Dim cbxIn As String
+
+    Dim MsgBoxTextCorruptedProfile As String
+    Dim MsgBoxHeaderCorruptedProfile As String
 
     '-- Event handlers --
 
@@ -31,65 +35,122 @@ Public Class frmLoadProfileFrom
     End Sub
 
     Private Sub btnLoad_Click(sender As Object, e As EventArgs) Handles btnLoad.Click
-        LoadProfile(cbxProfiles.SelectedItem, True)
+        InitializeLoadingProfile(cbxProfiles.SelectedItem, True)
     End Sub
 
     '-- Custom methods --
+    Public Sub LoadProfile(Profile As String, ShowMessage As Boolean)
+        'Load settings from profile
+        rbtnAction = ProfileContent(0)
+        If rbtnAction = "Shutdown" Then
+            frmMain.rbtnShutdown.Checked = True
+        ElseIf rbtnAction = "Restart" Then
+            frmMain.rbtnRestart.Checked = True
+        End If
 
-    Public Sub LoadProfile(Profile, ShowMessage)
-        If String.IsNullOrEmpty(Profile) = False Then
-            LoadFromProfile = frmMain.AppData + "\Seeloewen Shutdown\Profiles\" + Profile + ".txt"
-            settings.Text = My.Computer.FileSystem.ReadAllText(LoadFromProfile)
+        '
+        frmMain.tbTime.Text = ProfileContent(1)
 
-            rbtnAction = settings.Lines(0)
-            If rbtnAction = "Shutdown" Then
-                frmMain.rbtnShutdown.Checked = True
-            ElseIf rbtnAction = "Restart" Then
-                frmMain.rbtnRestart.Checked = True
+        'Convert combobox selection to current language
+        cbxIn = ProfileContent(2)
+        If My.Settings.Language = "German" Then
+            If cbxIn = "Second(s)" Then
+                cbxIn = "Sekunde(n)"
+            ElseIf cbxIn = "Minute(s)" Then
+                cbxIn = "Minute(n)"
+            ElseIf cbxIn = "Hour(s)" Then
+                cbxIn = "Stunde(n)"
             End If
-
-            frmMain.tbTime.Text = settings.Lines(1)
-            cbxIn = settings.Lines(2)
-
-            'Convert combobox selection to current language
-            If My.Settings.Language = "German" Then
-                If cbxIn = "Second(s)" Then
-                    cbxIn = "Sekunde(n)"
-                ElseIf cbxIn = "Minute(s)" Then
-                    cbxIn = "Minute(n)"
-                ElseIf cbxIn = "Hour(s)" Then
-                    cbxIn = "Stunde(n)"
-                End If
-            ElseIf My.Settings.Language = "English" Then
-                If cbxIn = "Sekunde(n)" Then
-                    cbxIn = "Second(s)"
-                ElseIf cbxIn = "Minute(n)" Then
-                    cbxIn = "Minute(s)"
-                ElseIf cbxIn = "Stunde(n)" Then
-                    cbxIn = "Hour(s)"
-                End If
-            End If
-
-            frmMain.cbxIn.SelectedItem = cbxIn
-
-            If ShowMessage Then
-                If My.Settings.Language = "English" Then
-                    MsgBox("Loaded profile " + Profile + ".", MsgBoxStyle.Information, "Loaded profile")
-                ElseIf My.Settings.Language = "German" Then
-                    MsgBox("Profil " + Profile + " geladen.", MsgBoxStyle.Information, "Profil geladen")
-                End If
-            End If
-
-            frmMain.WriteToLog("Loaded profile " + Profile, "Info")
-            Close()
-        Else
-            If My.Settings.Language = "English" Then
-                MsgBox("Error: No profile selected. Please select a profile to load from.", MsgBoxStyle.Critical, "Error")
-            ElseIf My.Settings.Language = "German" Then
-                MsgBox("Fehler: Kein Profil ausgewählt. Bitte wähle ein Profil aus, das geladen werden soll.", MsgBoxStyle.Critical, "Fehler")
+        ElseIf My.Settings.Language = "English" Then
+            If cbxIn = "Sekunde(n)" Then
+                cbxIn = "Second(s)"
+            ElseIf cbxIn = "Minute(n)" Then
+                cbxIn = "Minute(s)"
+            ElseIf cbxIn = "Stunde(n)" Then
+                cbxIn = "Hour(s)"
             End If
         End If
+
+        'Load combobox selection
+        frmMain.cbxIn.SelectedItem = cbxIn
+
+        'If ShowMessage is enabled, it will show a messagebox when loading completes.
+        If ShowMessage Then
+            If My.Settings.Language = "English" Then
+                MsgBox("Loaded profile " + Profile + ".", MsgBoxStyle.Information, "Loaded profile")
+            ElseIf My.Settings.Language = "German" Then
+                MsgBox("Profil " + Profile + " geladen.", MsgBoxStyle.Information, "Profil geladen")
+            End If
+
+        End If
     End Sub
+
+    Public Sub InitializeLoadingProfile(Profile As String, ShowMessage As Boolean)
+        'Checks if a profile is selected. It then reads the content of the profile file into the array. To avoid errors with the array being too small, it gets resized. The number represents the amount of settings.
+        'It then starts to convert and load the profile, see the the method below.
+        If String.IsNullOrEmpty(Profile) = False Then
+            LoadFromProfile = frmMain.ProfileDirectory + Profile + ".txt"
+            ProfileContent = File.ReadAllLines(LoadFromProfile)
+            ReDim Preserve ProfileContent(3)
+            CheckAndConvertProfile(Profile, ShowMessage)
+            Close()
+        Else
+            If My.Settings.Language = "German" Then
+                MsgBox("Fehler: Kein Profil ausgewählt. Bitte wähle ein Profil, das geladen werden soll.", MsgBoxStyle.Critical, "Error")
+            ElseIf My.Settings.Language = "English" Then
+                MsgBox("Error: No profile selected. Please select a profile to load from.", MsgBoxStyle.Critical, "Error")
+            End If
+
+        End If
+    End Sub
+
+    Public Sub CheckAndConvertProfile(Profile As String, ShowMessage As Boolean)
+        If My.Settings.Language = "German" Then
+            MsgBoxTextCorruptedProfile = "Du versucht ein beschädigtes Profil oder ein Profil von einer älteren Version zu laden. Du musst es aktualisieren, um es zu laden. Normalerweise verlierst du keine Einstellungen. Möchtest du fortfahren?"
+            MsgBoxHeaderCorruptedProfile = "Altes oder beschädigtes Profil laden"
+        ElseIf My.Settings.Language = "English" Then
+            MsgBoxTextCorruptedProfile = "You are trying to load a profile from an older version or a corrupted profile. You need to update it in order to load it. You usually won't lose any settings. Do you want to continue?"
+            MsgBoxHeaderCorruptedProfile = "Load old or corrupted profile"
+        End If
+
+        'This checks if the profile file that was loaded has enough lines, too few lines would mean that settings are missing, meaning the file is either too old or corrupted.
+        'It will check for each required line if it is empty (required lines = the length of a healthy, normal profile file). Make sure that the line amount it checks matches the amount of settings that are being saved.
+        'If a line is empty, it will fill that line with a placeholder in the array so the profile can get loaded without errors. After loading the profile, it gets automatically saved so the corrupted/old profile file gets fixed.
+        'If no required line is empty and the file is fine, it will just load the profile like normal.
+        If (String.IsNullOrEmpty(ProfileContent(0)) OrElse String.IsNullOrEmpty(ProfileContent(1)) OrElse String.IsNullOrEmpty(ProfileContent(2))) Then
+            Select Case MsgBox(MsgBoxTextCorruptedProfile, vbQuestion + vbYesNo, MsgBoxHeaderCorruptedProfile)
+                Case Windows.Forms.DialogResult.Yes
+                    If String.IsNullOrEmpty(ProfileContent(0)) Then
+                        ProfileContent(0) = "Shutdown"
+                    End If
+                    If String.IsNullOrEmpty(ProfileContent(1)) Then
+                        ProfileContent(1) = "10"
+                    End If
+                    If String.IsNullOrEmpty(ProfileContent(2)) Then
+                        ProfileContent(1) = "Minute(s)"
+                    End If
+                    LoadProfile(Profile, False)
+                    frmSaveProfileAs.UpdateProfile(Profile)
+                    If My.Settings.Language = "English" Then
+                        MsgBox("Loaded and updated profile. It should now work correctly!", MsgBoxStyle.Information, "Loaded and updated profile")
+                    ElseIf My.Settings.Language = "German" Then
+                        MsgBox("Profil wurde geladen und aktualisiert. Es sollte nun korrekt funktionieren!", MsgBoxStyle.Information, "Profil geladen und aktualisiert")
+                    End If
+                    frmMain.WriteToLog("Loaded and updated profile " + Profile, "Info")
+                Case Windows.Forms.DialogResult.No
+                    If My.Settings.Language = "English" Then
+                        MsgBox("Cancelled loading profile.", MsgBoxStyle.Exclamation, "Warning")
+                    ElseIf My.Settings.Language = "German" Then
+                        MsgBox("Laden des Profils abgebrochen.", MsgBoxStyle.Exclamation, "Warning")
+                    End If
+
+            End Select
+        Else
+            LoadProfile(Profile, ShowMessage)
+            frmMain.WriteToLog("Loaded profile " + Profile, "Info")
+        End If
+    End Sub
+
 
     Sub GetFiles(Path As String)
         frmMain.WriteToLog("Getting profiles for frmLoadProfileFrom...", "Info")

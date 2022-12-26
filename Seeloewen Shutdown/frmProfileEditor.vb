@@ -4,10 +4,15 @@ Public Class frmProfileEditor
 
     Dim ProfileDirectory As String = frmMain.ProfileDirectory
     Dim ProfileList As String()
+    Dim ProfileContent As String()
     Dim LoadFromProfile As String
     Dim cbxIn As String
     Dim tbTime As String
     Dim rbtnAction As String
+
+    Dim MsgBoxTextCorruptedProfile As String
+    Dim MsgBoxHeaderCorruptedProfile As String
+
 
     '-- Event handlers --
 
@@ -22,6 +27,10 @@ Public Class frmProfileEditor
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+        SaveProfile(cbxProfile.SelectedItem)
+    End Sub
+
+    Private Sub SaveProfile(Profile As String)
         If rbtnShutdown.Checked Then
             rbtnAction = "Shutdown"
         ElseIf rbtnRestart.Checked Then
@@ -31,16 +40,16 @@ Public Class frmProfileEditor
         tbTime = tbTimeIn.Text
         cbxIn = cbxInTime.Text
 
-        If String.IsNullOrEmpty(cbxProfile.SelectedItem) = False Then
+        If String.IsNullOrEmpty(Profile) = False Then
             My.Computer.FileSystem.DirectoryExists(frmMain.ProfileDirectory)
-            My.Computer.FileSystem.WriteAllText(frmMain.AppData + "\Seeloewen Shutdown\Profiles\" + cbxProfile.Text + ".txt", rbtnAction + vbNewLine + tbTime + vbNewLine + cbxIn, False)
+            My.Computer.FileSystem.WriteAllText(frmMain.AppData + "\Seeloewen Shutdown\Profiles\" + Profile + ".txt", rbtnAction + vbNewLine + tbTime + vbNewLine + cbxIn, False)
 
             If My.Settings.Language = "English" Then
                 MsgBox("Profile was overwritten and saved.", MsgBoxStyle.Information, "Overwritten and saved")
             ElseIf My.Settings.Language = "German" Then
                 MsgBox("Profil wurde überschrieben und gespeichert.", MsgBoxStyle.Information, "Überschrieben und gespeichert.")
             End If
-            frmMain.WriteToLog("Saved and overwrote profile " + cbxProfile.Text, "Info")
+            frmMain.WriteToLog("Saved and overwrote profile " + Profile, "Info")
         Else
 
             If My.Settings.Language = "English" Then
@@ -75,51 +84,114 @@ Public Class frmProfileEditor
     End Sub
 
     Private Sub cbxProfile_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbxProfile.SelectedIndexChanged
-        LoadProfile(cbxProfile.SelectedItem)
+        InitializeLoadingProfile(cbxProfile.SelectedItem, False)
     End Sub
 
     '-- Custom methods --
 
-    Private Sub LoadProfile(Profile)
+    Public Sub InitializeLoadingProfile(Profile As String, ShowMessage As Boolean)
+        'Checks if a profile is selected. It then reads the content of the profile file into the array. To avoid errors with the array being too small, it gets resized. The number represents the amount of settings.
+        'It then starts to convert and load the profile, see the the method below.
         If String.IsNullOrEmpty(Profile) = False Then
-            LoadFromProfile = frmMain.AppData + "\Seeloewen Shutdown\Profiles\" + Profile + ".txt"
-            settings.Text = My.Computer.FileSystem.ReadAllText(LoadFromProfile)
-
-            rbtnAction = settings.Lines(0)
-            If rbtnAction = "Shutdown" Then
-                rbtnShutdown.Checked = True
-            ElseIf rbtnAction = "Restart" Then
-                rbtnRestart.Checked = True
-            End If
-
-            tbTimeIn.Text = settings.Lines(1)
-            cbxIn = settings.Lines(2)
-
-            'Convert combobox selection to current language
-            If My.Settings.Language = "German" Then
-                If cbxIn = "Second(s)" Then
-                    cbxIn = "Sekunde(n)"
-                ElseIf cbxIn = "Minute(s)" Then
-                    cbxIn = "Minute(n)"
-                ElseIf cbxIn = "Hour(s)" Then
-                    cbxIn = "Stunde(n)"
-                End If
-            ElseIf My.Settings.Language = "English" Then
-                If cbxIn = "Sekunde(n)" Then
-                    cbxIn = "Second(s)"
-                ElseIf cbxIn = "Minute(n)" Then
-                    cbxIn = "Minute(s)"
-                ElseIf cbxIn = "Stunde(n)" Then
-                    cbxIn = "Hour(s)"
-                End If
-            End If
-
-            cbxInTime.SelectedItem = cbxIn
+            LoadFromProfile = frmMain.ProfileDirectory + Profile + ".txt"
+            ProfileContent = File.ReadAllLines(LoadFromProfile)
+            ReDim Preserve ProfileContent(3)
+            CheckAndConvertProfile(Profile, ShowMessage)
         Else
-            If My.Settings.Language = "English" Then
+            If My.Settings.Language = "German" Then
+                MsgBox("Fehler: Kein Profil ausgewählt. Bitte wähle ein Profil, das geladen werden soll.", MsgBoxStyle.Critical, "Fehler")
+            ElseIf My.Settings.Language = "English" Then
                 MsgBox("Error: No profile selected. Please select a profile to load from.", MsgBoxStyle.Critical, "Error")
-            ElseIf My.Settings.Language = "German" Then
-                MsgBox("Fehler: Kein Profil ausgewählt. Bitte wähle ein Profil aus, das geladen werden soll.", MsgBoxStyle.Critical, "Fehler")
+            End If
+        End If
+    End Sub
+
+    Public Sub CheckAndConvertProfile(Profile As String, ShowMessage As Boolean)
+        If My.Settings.Language = "German" Then
+            MsgBoxTextCorruptedProfile = "Du versucht ein beschädigtes Profil oder ein Profil von einer älteren Version zu laden. Du musst es aktualisieren, um es zu laden. Normalerweise verlierst du keine Einstellungen. Möchtest du fortfahren?"
+            MsgBoxHeaderCorruptedProfile = "Altes oder beschädigtes Profil laden"
+        ElseIf My.Settings.Language = "English" Then
+            MsgBoxTextCorruptedProfile = "You are trying to load a profile from an older version or a corrupted profile. You need to update it in order to load it. You usually won't lose any settings. Do you want to continue?"
+            MsgBoxHeaderCorruptedProfile = "Load old or corrupted profile"
+        End If
+
+
+        'This checks if the profile file that was loaded has enough lines, too few lines would mean that settings are missing, meaning the file is either too old or corrupted.
+        'It will check for each required line if it is empty (required lines = the length of a healthy, normal profile file). Make sure that the line amount it checks matches the amount of settings that are being saved.
+        'If a line is empty, it will fill that line with a placeholder in the array so the profile can get loaded without errors. After loading the profile, it gets automatically saved so the corrupted/old settings file gets fixed.
+        'If no required line is empty and the file is fine, it will just load the profile like normal.
+        If (String.IsNullOrEmpty(ProfileContent(0)) OrElse String.IsNullOrEmpty(ProfileContent(1)) OrElse String.IsNullOrEmpty(ProfileContent(2))) Then
+            Select Case MsgBox(MsgBoxTextCorruptedProfile, vbQuestion + vbYesNo, MsgBoxHeaderCorruptedProfile)
+                Case Windows.Forms.DialogResult.Yes
+                    If String.IsNullOrEmpty(ProfileContent(0)) Then
+                        ProfileContent(0) = "Shutdown"
+                    End If
+                    If String.IsNullOrEmpty(ProfileContent(1)) Then
+                        ProfileContent(1) = "10"
+                    End If
+                    If String.IsNullOrEmpty(ProfileContent(2)) Then
+                        ProfileContent(2) = "Minute(s)"
+                    End If
+                    LoadProfile(Profile, False)
+                    SaveProfile(Profile)
+                    If My.Settings.Language = "English" Then
+                        MsgBox("Loaded and updated profile. It should now work correctly!", MsgBoxStyle.Information, "Loaded and updated profile")
+                    ElseIf My.Settings.Language = "German" Then
+                        MsgBox("Profil wurde geladen und aktualisiert. Es sollte nun korrekt funktionieren!", MsgBoxStyle.Information, "Profil geladen und aktualisiert")
+                    End If
+
+                Case Windows.Forms.DialogResult.No
+                    If My.Settings.Language = "English" Then
+                        MsgBox("Cancelled loading profile.", MsgBoxStyle.Exclamation, "Warning")
+                    ElseIf My.Settings.Language = "German" Then
+                        MsgBox("Laden des Profils abgebrochen.", MsgBoxStyle.Exclamation, "Warnung")
+                    End If
+
+            End Select
+        Else
+            LoadProfile(Profile, ShowMessage)
+        End If
+    End Sub
+
+    Public Sub LoadProfile(Profile As String, ShowMessage As Boolean)
+        'Load settings from profile
+        rbtnAction = profilecontent(0)
+        If rbtnAction = "Shutdown" Then
+            rbtnShutdown.Checked = True
+        ElseIf rbtnAction = "Restart" Then
+            rbtnRestart.Checked = True
+        End If
+
+        tbTimeIn.Text = ProfileContent(1)
+        cbxIn = ProfileContent(2)
+
+        'Convert combobox selection to current language
+        If My.Settings.Language = "German" Then
+            If cbxIn = "Second(s)" Then
+                cbxIn = "Sekunde(n)"
+            ElseIf cbxIn = "Minute(s)" Then
+                cbxIn = "Minute(n)"
+            ElseIf cbxIn = "Hour(s)" Then
+                cbxIn = "Stunde(n)"
+            End If
+        ElseIf My.Settings.Language = "English" Then
+            If cbxIn = "Sekunde(n)" Then
+                cbxIn = "Second(s)"
+            ElseIf cbxIn = "Minute(n)" Then
+                cbxIn = "Minute(s)"
+            ElseIf cbxIn = "Stunde(n)" Then
+                cbxIn = "Hour(s)"
+            End If
+        End If
+
+        cbxInTime.SelectedItem = cbxIn
+
+        'If ShowMessage is enabled, it will show a messagebox when loading completes.
+        If ShowMessage Then
+            If My.Settings.Language = "German" Then
+                MsgBox("Profil " + Profile + " geladen.", MsgBoxStyle.Information, "Profil geladen")
+            ElseIf My.Settings.Language = "Englisch" Then
+                MsgBox("Loaded profile " + Profile + ".", MsgBoxStyle.Information, "Loaded profile")
             End If
         End If
     End Sub

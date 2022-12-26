@@ -102,6 +102,45 @@
         End If
     End Sub
 
+    Public Sub UpdateProfile(ProfileName)
+        'Save profile settings into variables. If no text is given, a placeholder will be inserted
+        If frmMain.rbtnShutdown.Checked Then
+            rbtnAction = "Shutdown"
+        ElseIf frmMain.rbtnRestart.Checked Then
+            rbtnAction = "Restart"
+        End If
+        If String.IsNullOrEmpty(frmMain.tbTime.Text) = False Then
+            tbTime = frmMain.tbTime.Text
+        Else
+            tbTime = "10"
+        End If
+        If String.IsNullOrEmpty(frmMain.cbxIn.Text) = False Then
+            cbxIn = frmMain.cbxIn.Text
+        Else
+            cbxIn = "Minute(s)"
+        End If
+
+        'Update the selected profile. This will save and overwrite the selected profile without showing any warning or message. Used if a profile is old or corrupted.
+        If String.IsNullOrEmpty(ProfileName) = False Then
+            If My.Computer.FileSystem.DirectoryExists(frmMain.ProfileDirectory) Then
+                My.Computer.FileSystem.WriteAllText(frmMain.ProfileDirectory + ProfileName + ".txt", rbtnAction + vbNewLine + tbTime + vbNewLine + cbxIn, False)
+            Else
+                If My.Settings.Language = "German" Then
+                    MsgBox("Fehler: Profil konnte nicht aktualisiert werden. Profilverzeichnis existiert nicht. Bitte starte die App neu.", MsgBoxStyle.Critical, "Fehler")
+                ElseIf My.Settings.Language = "English" Then
+                    MsgBox("Error: Couldn't update profile. Profile directory does not exist. Please restart the application.", MsgBoxStyle.Critical, "Error")
+                End If
+            End If
+        Else
+            If My.Settings.Language = "German" Then
+                MsgBox("Fehler: Profil konnte nicht aktualisiert werden, da der Name leer ist.", MsgBoxStyle.Critical, "Fehler")
+            ElseIf My.Settings.Language = "English" Then
+                MsgBox("Error: Couldn't update profile as the name is empty.", MsgBoxStyle.Critical, "Error")
+            End If
+
+        End If
+    End Sub
+
     '-- Button designs --
 
     Private Sub btnSave_MouseDown(sender As Object, e As MouseEventArgs) Handles btnSave.MouseDown
