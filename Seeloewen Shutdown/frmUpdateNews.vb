@@ -3,21 +3,25 @@
     '-- Event handlers --
 
     Private Sub frmUpdateNews_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'Load user preferences
         LoadLanguage()
         LoadDesign()
     End Sub
 
     Private Sub llblChangelog_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles llblChangelog.LinkClicked
+        'Show changelog
         frmChangelog.Show()
     End Sub
 
     Private Sub btnOK_Click(sender As Object, e As EventArgs) Handles btnOK.Click
+        'Close
         Close()
     End Sub
 
     '-- Custom methods --
 
-    Private Sub LoadLanguage() 'Translate strings if language german is selected
+    Private Sub LoadLanguage()
+        'Translate strings if language german is selected
         If My.Settings.Language = "German" Then
             lblHeader.Text = "Version 1.8.1 - Was ist neu?"
             Text = "Seeloewen Shutdown wurde installiert!"
@@ -30,7 +34,8 @@
         End If
     End Sub
 
-    Private Sub LoadDesign() 'Set to darkmode if design dark is selected
+    Private Sub LoadDesign()
+        'Set to darkmode if design dark is selected
         If My.Settings.Design = "Dark" Then
             lblHeader.ForeColor = Color.White
             lblNewsHeader.ForeColor = Color.White

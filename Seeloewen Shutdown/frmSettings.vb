@@ -15,16 +15,9 @@ Public Class frmSettings
 
     '-- Event handlers --
     Private Sub frmSettings_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'Get profiles and load user preferences
         GetProfiles(ProfileDirectory)
         LoadSettings()
-    End Sub
-
-    Private Sub tbDefaultTime_KeyPress(sender As Object, e As KeyPressEventArgs)
-        Select Case Asc(e.KeyChar)
-            Case 48 To 57, 8
-            Case Else
-                e.Handled = True
-        End Select
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
@@ -38,18 +31,22 @@ Public Class frmSettings
     End Sub
 
     Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
+        'Close current window
         Close()
     End Sub
     Private Sub btnClearActionHistory_Click(sender As Object, e As EventArgs) Handles btnClearActionHistory.Click
+        'Clear the action history
         SetMessageboxLanguage()
         ShowClearHistoryMsgBox()
     End Sub
 
     Private Sub btnLog_Click(sender As Object, e As EventArgs) Handles btnLog.Click
+        'Show the log
         frmLog.Show()
     End Sub
 
     Private Sub btnOpenProfileManager_Click(sender As Object, e As EventArgs) Handles btnOpenProfileEditor.Click
+        'Show the profile editor
         frmProfileEditor.ShowDialog()
     End Sub
     Private Sub cbEnableActionHistory_CheckedChanged(sender As Object, e As EventArgs) Handles cbEnableActionHistory.CheckedChanged
@@ -72,6 +69,7 @@ Public Class frmSettings
     End Sub
 
     Private Sub cbLoadProfileByDefault_CheckedChanged(sender As Object, e As EventArgs) Handles cbLoadProfileByDefault.CheckedChanged
+        'Toggle default profile combobox
         If cbLoadProfileByDefault.Checked Then
             cbxDefaultProfile.Enabled = True
         Else
@@ -327,6 +325,7 @@ Public Class frmSettings
     End Sub
 
     Sub Sleep(ByVal sleeptime As Integer)
+        'Pauses the thread for a specific amount of time (sleeptime). Note that this could freeze the thread
         Dim Stopw As New Stopwatch
 
         Stopw.Start()
@@ -338,7 +337,8 @@ Public Class frmSettings
         Stopw.Reset()
     End Sub
 
-    Private Sub SetMessageboxLanguage() 'Change text of the messagebox based on the language
+    Private Sub SetMessageboxLanguage()
+        'Change text of the messagebox based on the language
         If My.Settings.Language = "German" Then
             ClearMsgBoxHeader = "Liste leeren"
             ClearMsgBoxText = "Bist du dir sicher, dass du die Liste leeren möchtest?"
@@ -348,7 +348,8 @@ Public Class frmSettings
         End If
     End Sub
 
-    Private Sub ShowClearHistoryMsgBox() 'Show messagebox, clicking "yes" will result in the Action History file being cleared
+    Private Sub ShowClearHistoryMsgBox()
+        'Show messagebox, clicking "yes" will result in the Action History file being cleared
         Select Case MsgBox(ClearMsgBoxText, vbQuestion + vbYesNo, ClearMsgBoxHeader)
             Case Windows.Forms.DialogResult.Yes
                 frmActionHistory.lvActionHistory.Clear()
@@ -358,6 +359,7 @@ Public Class frmSettings
     End Sub
 
     Private Sub GetProfiles(Path As String)
+        'Get all profile files in the profile directory and load them into the combobox
         If Path.Trim().Length = 0 Then
             Return
         End If

@@ -16,7 +16,6 @@ Public Class frmMain
     Dim SettingsArray As String()
     Dim ProfileList As String()
 
-
     'Variables used for directory and file paths
     Public AppData As String = GetFolderPath(SpecialFolder.ApplicationData)
     Public ProfileDirectory As String = AppData + "\Seeloewen Shutdown\Profiles\"
@@ -42,6 +41,7 @@ Public Class frmMain
     '-- Event Handlers --
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'Do all main tasks before actually showing the window
         CreateFilesAndFolders()
         InitializeLoadingSettings()
         WriteToLog("Loading Seeloewen Shutdown " + Version + " (" + VerDate + ")", "Info")
@@ -64,6 +64,7 @@ Public Class frmMain
     End Sub
 
     Private Sub btnStartAction_Click(sender As Object, e As EventArgs) Handles btnStartAction.Click
+        'Start or stop action, depending on whether one is already running
         If ActionRunning = False Then
             StartAction()
         ElseIf ActionRunning = True Then
@@ -71,7 +72,8 @@ Public Class frmMain
         End If
     End Sub
 
-    Private Sub btnHamburger_Click(sender As Object, e As EventArgs) Handles btnHamburger.Click 'Shows menu with different options
+    Private Sub btnHamburger_Click(sender As Object, e As EventArgs) Handles btnHamburger.Click
+        'Show menu with different options
         If cmsHamburgerButton.Visible = True Then
             cmsHamburgerButton.Hide()
         Else
@@ -80,18 +82,58 @@ Public Class frmMain
     End Sub
 
     Private Sub ToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles SettingsToolStripMenuItem.Click
+        'Show settings window
         frmSettings.Show()
     End Sub
 
     Private Sub ToolStripMenuItem3_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
+        'Show about window
         frmAbout.Show()
     End Sub
 
     Private Sub ToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles ChangelogToolStripMenuItem.Click
+        'Show changelog window
         frmChangelog.Show()
     End Sub
 
-    Private Sub tmrShutdown_Tick(sender As Object, e As EventArgs) Handles tmrShutdown.Tick 'Timer for shutdown (Only for reference, not the actual timer)
+    Private Sub btnShowActionHistory_Click(sender As Object, e As EventArgs) Handles btnShowActionHistory.Click
+        'Show action history, if enabled
+        If My.Settings.EnableActionHistory = True Then
+            frmActionHistory.Show()
+        Else
+            If My.Settings.Language = "English" Then
+                MsgBox("Action History is currently disabled. Head to the settings to enable it.", MsgBoxStyle.Critical, "Error")
+            ElseIf My.Settings.Language = "German" Then
+                MsgBox("Der Aktionsverlauf ist aktuell deaktiviert. Gehe in die Einstellungen um ihn zu aktivieren.", MsgBoxStyle.Critical, "Fehler")
+            End If
+        End If
+    End Sub
+
+    Private Sub MinimalisticViewToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MinimalisticViewToolStripMenuItem.Click
+        'Enable the Minimalistic View and show Minimalistic View window
+        EnableMinimalisticView()
+    End Sub
+    Private Sub btnSaveProfile_Click(sender As Object, e As EventArgs) Handles btnSaveProfile.Click
+        'Open profile save dialog, if option "In..." is selected
+        If rbtnIn.Checked Then
+            frmSaveProfileAs.ShowDialog()
+        Else
+            If My.Settings.Language = "English" Then
+                MsgBox("Please choose option 'In...' to save a profile.", MsgBoxStyle.Critical, "Error")
+            ElseIf My.Settings.Language = "German" Then
+                MsgBox("Bitte wähle die Option 'In...' um ein Profil zu speichern.", MsgBoxStyle.Critical, "Fehler")
+            End If
+        End If
+    End Sub
+
+    Private Sub btnLoadProfile_Click(sender As Object, e As EventArgs) Handles btnLoadProfile.Click
+        'Show load profile dialog
+        frmLoadProfileFrom.ShowDialog()
+    End Sub
+
+
+    Private Sub tmrShutdown_Tick(sender As Object, e As EventArgs) Handles tmrShutdown.Tick
+        'Update timer that gets displayed. This is not the actual timer for the action, only a reference.
         ts = TargetDT.Subtract(DateTime.Now)
         If ts.TotalMilliseconds > 0 Then
             If ts.TotalHours > 24 Then
@@ -99,11 +141,11 @@ Public Class frmMain
             Else _TimeRemaining.Text = ts.ToString("hh\:mm\:ss")
             End If
         End If
-
     End Sub
 
     Private Sub tbTime_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tbTime.KeyPress
-        Select Case Asc(e.KeyChar) 'Only accepts numbers
+        'Makes the textbox only accept numbers
+        Select Case Asc(e.KeyChar)
             Case 48 To 57, 8
             Case Else
                 e.Handled = True
@@ -111,11 +153,13 @@ Public Class frmMain
     End Sub
 
     Private Sub rbtnZeitpunkt_CheckedChanged(sender As Object, e As EventArgs) Handles rbtnPointInTime.CheckedChanged
+        'Enable controls for option "Exact time" and disable controls for option "In..."
         tbTime.Enabled = False
         cbxIn.Enabled = False
         dtpDate.Enabled = True
         currentDateTime.Enabled = True
 
+        'Display currently selected time down in the graybox
         If rbtnIn.Checked = True Then
             If String.IsNullOrEmpty(tbTime.Text) = False Then
                 _SelectedTime.Text = "In " + tbTime.Text + " " + cbxIn.Text
@@ -132,11 +176,13 @@ Public Class frmMain
     End Sub
 
     Private Sub rbtnIn_CheckedChanged(sender As Object, e As EventArgs) Handles rbtnIn.CheckedChanged
+        'Disable controls for option "Exact time" and enable controls for option "In..."
         dtpDate.Enabled = False
         currentDateTime.Enabled = False
         tbTime.Enabled = True
         cbxIn.Enabled = True
 
+        'Display currently selected time down in the graybox
         If rbtnIn.Checked = True Then
             If String.IsNullOrEmpty(tbTime.Text) = False Then
                 _SelectedTime.Text = "In " + tbTime.Text + " " + cbxIn.Text
@@ -153,14 +199,24 @@ Public Class frmMain
     End Sub
 
     Private Sub rbtnShutdown_CheckedChanged(sender As Object, e As EventArgs) Handles rbtnShutdown.CheckedChanged
+        'Change displayed action depending on the selected option and language
         If rbtnShutdown.Checked = True Then
-            _SelectedAction.Text = "Shutdown"
+            If My.Settings.Language = "English" Then
+                _SelectedAction.Text = "Shutdown"
+            ElseIf My.Settings.Language = "German" Then
+                _SelectedAction.Text = "Herunterfahren"
+            End If
         ElseIf rbtnRestart.Checked = True Then
-            _SelectedAction.Text = "Restart"
+            If My.Settings.Language = "English" Then
+                _SelectedAction.Text = "Restart"
+            ElseIf My.Settings.Language = "German" Then
+                _SelectedAction.Text = "Neustarten"
+            End If
         End If
     End Sub
 
     Private Sub rbtnRestart_CheckedChanged(sender As Object, e As EventArgs) Handles rbtnRestart.CheckedChanged
+        'Change displayed action depending on the selected option and language
         If rbtnShutdown.Checked = True Then
             If My.Settings.Language = "English" Then
                 _SelectedAction.Text = "Shutdown"
@@ -177,6 +233,7 @@ Public Class frmMain
     End Sub
 
     Private Sub tbTime_TextChanged(sender As Object, e As EventArgs) Handles tbTime.TextChanged
+        'Update displayed time if text in textbox "In..." gets changed or point in time gets changed or selection for combobox for "In..." gets changed
         If rbtnIn.Checked = True Then
             If String.IsNullOrEmpty(cbxIn.Text) Then
                 cbxIn.SelectedIndex = 1
@@ -196,6 +253,7 @@ Public Class frmMain
     End Sub
 
     Private Sub cbxIn_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbxIn.SelectedIndexChanged
+        'Update displayed time if text in textbox "In..." gets changed or point in time gets changed or selection for combobox for "In..." gets changed
         If rbtnIn.Checked = True Then
             If String.IsNullOrEmpty(tbTime.Text) = False Then
                 _SelectedTime.Text = "In " + tbTime.Text + " " + cbxIn.Text
@@ -212,6 +270,7 @@ Public Class frmMain
     End Sub
 
     Private Sub dtpDate_ValueChanged(sender As Object, e As EventArgs) Handles dtpDate.ValueChanged
+        'Update displayed time if text in textbox "In..." gets changed or point in time gets changed or selection for combobox for "In..." gets changed
         If rbtnIn.Checked = True Then
             If String.IsNullOrEmpty(tbTime.Text) = False Then
                 _SelectedTime.Text = "In " + tbTime.Text + " " + cbxIn.Text
@@ -228,52 +287,14 @@ Public Class frmMain
     End Sub
 
     Private Sub rtbLog_TextChanged(sender As Object, e As EventArgs) Handles rtbLog.TextChanged
+        'Update log file when log gets changed, and load changed file into log window
         rtbLog.SaveFile(AppData + "/Seeloewen Shutdown/DebugLogTemp")
         frmLog.rtbLog.LoadFile(AppData + "/Seeloewen Shutdown/DebugLogTemp")
     End Sub
 
-    Private Sub btnOpenHelp_Click(sender As Object, e As EventArgs)
-        frmAbout.Show()
-    End Sub
-
-    Private Sub MinimalisticViewToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MinimalisticViewToolStripMenuItem.Click
-        EnableMinimalisticView()
-    End Sub
-
     Private Sub _TimeRemaining_TextChanged(sender As Object, e As EventArgs) Handles _TimeRemaining.TextChanged
+        'Change text in Minimalistic View if time remaining text in main window gets updated
         frmMinimalisticView.lblTimerShutdown.Text = _TimeRemaining.Text
-    End Sub
-
-    Private Sub btnShowActionHistory_Click(sender As Object, e As EventArgs) Handles btnShowActionHistory.Click
-        If My.Settings.EnableActionHistory = True Then
-            frmActionHistory.Show()
-        Else
-            If My.Settings.Language = "English" Then
-                MsgBox("Action History is currently disabled. Head to the settings to enable it.", MsgBoxStyle.Critical, "Error")
-            ElseIf My.Settings.Language = "German" Then
-                MsgBox("Der Aktionsverlauf ist aktuell deaktiviert. Gehe in die Einstellungen um ihn zu aktivieren.", MsgBoxStyle.Critical, "Fehler")
-            End If
-        End If
-    End Sub
-
-    Private Sub btnOpenSettings_Click(sender As Object, e As EventArgs)
-        frmSettings.Show()
-    End Sub
-
-    Private Sub btnSaveProfile_Click(sender As Object, e As EventArgs) Handles btnSaveProfile.Click
-        If rbtnIn.Checked Then
-            frmSaveProfileAs.ShowDialog()
-        Else
-            If My.Settings.Language = "English" Then
-                MsgBox("Please choose option 'In...' to save a profile.", MsgBoxStyle.Critical, "Error")
-            ElseIf My.Settings.Language = "German" Then
-                MsgBox("Bitte wähle die Option 'In...' um ein Profil zu speichern.", MsgBoxStyle.Critical, "Fehler")
-            End If
-        End If
-    End Sub
-
-    Private Sub btnLoadProfile_Click(sender As Object, e As EventArgs) Handles btnLoadProfile.Click
-        frmLoadProfileFrom.ShowDialog()
     End Sub
 
     '-- Custom methods --
@@ -389,14 +410,6 @@ Public Class frmMain
     End Sub
 
     Private Sub LoadSettings()
-
-        If My.Settings.Language = "English" Then
-            LoadErrorMsgHeader = "Error"
-            LoadErrorMsgText = "An error occured while loading your settings. " + vbNewLine + "Do you want to reset your settings? This probably fixes the problem."
-        ElseIf My.Settings.Language = "German" Then
-            LoadErrorMsgHeader = "Fehler"
-            LoadErrorMsgText = "Beim Laden deiner Einstellungen ist ein Fehler aufgetreten. " + vbNewLine + "Möchtest du deine Einstellungen zurücksetzen? Das behebt vermutlich das Problem."
-        End If
         Try
             WriteToLog("Loading settings...", "Info")
             'Load App settings
@@ -447,6 +460,7 @@ Public Class frmMain
     End Sub
 
     Private Sub ResetUIElements()
+        'Reset controls to their default state
         rbtnIn.Checked = True
         dtpDate.Enabled = False
         currentDateTime.Enabled = False
@@ -509,6 +523,8 @@ Public Class frmMain
             _SelectedAction.Text = "Keine Aktion gewählt"
             _SelectedTime.Text = "Keine Zeit gewählt"
 
+            LoadErrorMsgHeader = "Fehler"
+            LoadErrorMsgText = "Beim Laden deiner Einstellungen ist ein Fehler aufgetreten. " + vbNewLine + "Möchtest du deine Einstellungen zurücksetzen? Das behebt vermutlich das Problem."
         ElseIf My.Settings.Language = "English" Then
             If My.Settings.LastActionDisplay = "Neustarten" Then
                 My.Settings.LastActionDisplay = "Restart"
@@ -518,12 +534,15 @@ Public Class frmMain
 
             _SelectedAction.Text = "No action selected"
             _SelectedTime.Text = "No time selected"
-        End If
 
+            LoadErrorMsgHeader = "Error"
+            LoadErrorMsgText = "An error occured while loading your settings. " + vbNewLine + "Do you want to reset your settings? This probably fixes the problem."
+        End If
         WriteToLog("Loaded Language from settings: " + My.Settings.Language, "Info")
     End Sub
 
-    Private Sub LoadDesign() 'Change design to darkmode if setting is set to dark
+    Private Sub LoadDesign()
+        'Change design to darkmode if setting is set to dark
         If My.Settings.Design = "Dark" Then
             BackColor = Color.FromArgb(41, 41, 41)
             lblHeader.ForeColor = Color.White
@@ -599,6 +618,7 @@ Public Class frmMain
                 btnStartAction.Text = "Aktion stoppen"
             End If
 
+            'Animate graybox
             pbGrayBox.Top = 550
             GrayBoxNewY = 550
             pnlActionRunning.Top = 550
@@ -611,6 +631,7 @@ Public Class frmMain
                 pbGrayBox.Top = 353
                 pnlActionRunning.Top = 366
             End If
+
             ActionRunning = True
             If My.Settings.Design = "Dark" Then
                 btnStartAction.BackColor = Color.FromArgb(25, 25, 25)
@@ -658,7 +679,8 @@ Public Class frmMain
         End If
     End Sub
 
-    Public Sub WriteToLog(Message As String, Type As String) 'Writes message into log, possible types are "Info", "Warning" and "Error"
+    Public Sub WriteToLog(Message As String, Type As String)
+        'Writes message into log, possible types are "Info", "Warning" and "Error"
         If Type = "Error" Then
             rtbLog.SelectionColor = Color.Red
             rtbLog.AppendText("[" + DateTime.Now + "] " + "[ERROR] " + Message + vbNewLine)
@@ -714,7 +736,8 @@ Public Class frmMain
         End If
     End Sub
 
-    Private Sub CallLastAction() 'If an action is currently running, it will pull infos from settings to display the last known action
+    Private Sub CallLastAction()
+        'If an action is currently running, it will pull infos from settings to display the last known action
         currentDateTime.Value = DateTime.Now
         Dim value As DateTime = currentDateTime.Value
         dtpSelectedTime.Format = DateTimePickerFormat.Long
@@ -784,7 +807,8 @@ Public Class frmMain
         WriteToLog("Set gray box up (CountDownFrom: " + CountDownFrom.ToString + ", Shutdowntime.Text: " + Shutdowntime.Text + ", _RunningTime.Text: " + _RunningTime.Text + ")", "Info")
     End Sub
 
-    Sub Sleep(sleeptime As Integer) 'Pauses the thread for x milliseconds, sleeptime is the amount of milliseconds - Warning: Causes App to freeze!
+    Sub Sleep(sleeptime As Integer)
+        'Pauses the thread for x milliseconds, sleeptime is the amount of milliseconds - Warning: Can cause App to freeze!
         Dim Stopwatch As New Stopwatch
 
         Stopwatch.Start()
@@ -1004,7 +1028,8 @@ Public Class frmMain
         WriteToLog("Stopped action.", "Info")
     End Sub
 
-    Public Sub ShowNotification(Text As String) 'Shows notification box at the top, String will be the displayed message
+    Public Sub ShowNotification(Text As String)
+        'Shows notification box at the top, String will be the displayed message
         If My.Settings.ShowNotifications = True Then
             tmrPnlNotificationAnimationDown.Enabled = False
             tmrPnlNotificationAnimationUp.Enabled = False
@@ -1023,7 +1048,8 @@ Public Class frmMain
         End If
     End Sub
 
-    Private Sub EnableMinimalisticView() 'Shows Minimalistic View window and hides main window
+    Private Sub EnableMinimalisticView()
+        'Shows Minimalistic View window and hides main window
         If ActionRunning Then
             frmMinimalisticView.Show()
             Hide()
@@ -1037,6 +1063,7 @@ Public Class frmMain
     End Sub
 
     Private Sub InitializeProfiles()
+        'Begin initialisation of profiles and load default profile
         If My.Computer.FileSystem.DirectoryExists(ProfileDirectory) = False Then
             My.Computer.FileSystem.CreateDirectory(ProfileDirectory)
         End If
@@ -1074,6 +1101,7 @@ Public Class frmMain
     End Sub
 
     Sub GetFiles(Path As String)
+        'Get all profile files in the profile directory and put them into the combobox. Please note that this combobox is not visible
         WriteToLog("Getting profiles for frmMain...", "Info")
         If Path.Trim().Length = 0 Then
             Return
@@ -1249,9 +1277,5 @@ Public Class frmMain
 
     Private Sub btnLoadProfile_MouseUp(sender As Object, e As MouseEventArgs) Handles btnLoadProfile.MouseUp
         btnLoadProfile.BackgroundImage = My.Resources.button
-    End Sub
-
-    Private Sub Button1_Click(sender As Object, e As EventArgs)
-        cmsHamburgerButton.Dispose()
     End Sub
 End Class

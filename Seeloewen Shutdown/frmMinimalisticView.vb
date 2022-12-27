@@ -30,12 +30,14 @@
     End Sub
 
     Private Sub btnSwitchToNormalView_Click(sender As Object, e As EventArgs) Handles btnSwitchToNormalView.Click
+        'Close window
         Close()
     End Sub
 
     '-- Custom methods --
 
-    Private Sub LoadDesign() 'Set to darkmode if design dark is selected
+    Private Sub LoadDesign()
+        'Set to darkmode if design dark is selected
         If My.Settings.Design = "Dark" Then
             lblAction.ForeColor = Color.White
             lblScheduledTime.ForeColor = Color.White
@@ -46,7 +48,8 @@
         End If
     End Sub
 
-    Private Sub LoadLanguage() 'Translate string if language is set to German
+    Private Sub LoadLanguage()
+        'Translate string if language is set to German
         If My.Settings.Language = "German" Then
             lblScheduledTime.Text = "Geplante Zeit:"
             lblTimeRemaining.Text = "Verbleibende Zeit:"

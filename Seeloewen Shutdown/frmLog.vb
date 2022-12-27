@@ -3,31 +3,39 @@
     '-- Event handlers --
 
     Private Sub frmLog_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'Load user preferences
         LoadDesign()
         LoadLanguage()
-        rtbLog.LoadFile(frmMain.AppData + "/Seeloewen Shutdown/DebugLogTemp") 'Loads log from file
+
+        'Loads log from file
+        rtbLog.LoadFile(frmMain.AppData + "/Seeloewen Shutdown/DebugLogTemp")
     End Sub
 
     Private Sub btnSaveAsFile_Click(sender As Object, e As EventArgs) Handles btnSaveAsFile.Click
+        'Show dialog for saving the log
         sfdLog.ShowDialog()
     End Sub
 
     Private Sub sfdLog_FileOk(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles sfdLog.FileOk
+        'Write log to selected file
         My.Computer.FileSystem.WriteAllText(sfdLog.FileName, rtbLog.Text, False)
     End Sub
 
     Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click 'Clears log in both this window and main window
+        'Clear log in both windows
         rtbLog.Clear()
         frmMain.rtbLog.Clear()
     End Sub
 
     Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
+        'Close current window
         Close()
     End Sub
 
     '-- Custom methods --
 
     Private Sub LoadDesign()
+        'Set design to darkmode if setting is set to dark
         If My.Settings.Design = "Dark" Then
             BackColor = Color.FromArgb(41, 41, 41)
             lblHeader.ForeColor = Color.White
@@ -36,6 +44,7 @@
     End Sub
 
     Private Sub LoadLanguage()
+        'Translate elements if language is set to German
         If My.Settings.Language = "German" Then
             sfdLog.Title = "Speichere Log als Datei..."
             btnSaveAsFile.Text = "Als Datei speichern"

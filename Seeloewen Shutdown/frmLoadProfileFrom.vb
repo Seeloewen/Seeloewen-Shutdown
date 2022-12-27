@@ -15,6 +15,7 @@ Public Class frmLoadProfileFrom
     '-- Event handlers --
 
     Private Sub frmLoadProfileFrom_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'If profile directory exists, get all available profiles and delete existing entries
         If My.Computer.FileSystem.DirectoryExists(frmMain.ProfileDirectory) Then
             cbxProfiles.Items.Clear()
             GetFiles(frmMain.ProfileDirectory)
@@ -26,21 +27,24 @@ Public Class frmLoadProfileFrom
             End If
         End If
 
+        'Load user preferences
         LoadLanguage()
         LoadDesign()
     End Sub
 
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
+        'Close current window
         Close()
     End Sub
 
     Private Sub btnLoad_Click(sender As Object, e As EventArgs) Handles btnLoad.Click
+        'Beginn loading the profile
         InitializeLoadingProfile(cbxProfiles.SelectedItem, True)
     End Sub
 
     '-- Custom methods --
     Public Sub LoadProfile(Profile As String, ShowMessage As Boolean)
-        'Load settings from profile
+        'Load radiobutton selection
         rbtnAction = ProfileContent(0)
         If rbtnAction = "Shutdown" Then
             frmMain.rbtnShutdown.Checked = True
@@ -48,7 +52,7 @@ Public Class frmLoadProfileFrom
             frmMain.rbtnRestart.Checked = True
         End If
 
-        '
+        'Loadd text for textbox
         frmMain.tbTime.Text = ProfileContent(1)
 
         'Convert combobox selection to current language
@@ -81,7 +85,6 @@ Public Class frmLoadProfileFrom
             ElseIf My.Settings.Language = "German" Then
                 MsgBox("Profil " + Profile + " geladen.", MsgBoxStyle.Information, "Profil geladen")
             End If
-
         End If
     End Sub
 
@@ -100,19 +103,10 @@ Public Class frmLoadProfileFrom
             ElseIf My.Settings.Language = "English" Then
                 MsgBox("Error: No profile selected. Please select a profile to load from.", MsgBoxStyle.Critical, "Error")
             End If
-
         End If
     End Sub
 
     Public Sub CheckAndConvertProfile(Profile As String, ShowMessage As Boolean)
-        If My.Settings.Language = "German" Then
-            MsgBoxTextCorruptedProfile = "Du versucht ein beschädigtes Profil oder ein Profil von einer älteren Version zu laden. Du musst es aktualisieren, um es zu laden. Normalerweise verlierst du keine Einstellungen. Möchtest du fortfahren?"
-            MsgBoxHeaderCorruptedProfile = "Altes oder beschädigtes Profil laden"
-        ElseIf My.Settings.Language = "English" Then
-            MsgBoxTextCorruptedProfile = "You are trying to load a profile from an older version or a corrupted profile. You need to update it in order to load it. You usually won't lose any settings. Do you want to continue?"
-            MsgBoxHeaderCorruptedProfile = "Load old or corrupted profile"
-        End If
-
         'This checks if the profile file that was loaded has enough lines, too few lines would mean that settings are missing, meaning the file is either too old or corrupted.
         'It will check for each required line if it is empty (required lines = the length of a healthy, normal profile file). Make sure that the line amount it checks matches the amount of settings that are being saved.
         'If a line is empty, it will fill that line with a placeholder in the array so the profile can get loaded without errors. After loading the profile, it gets automatically saved so the corrupted/old profile file gets fixed.
@@ -143,7 +137,6 @@ Public Class frmLoadProfileFrom
                     ElseIf My.Settings.Language = "German" Then
                         MsgBox("Laden des Profils abgebrochen.", MsgBoxStyle.Exclamation, "Warning")
                     End If
-
             End Select
         Else
             LoadProfile(Profile, ShowMessage)
@@ -153,6 +146,7 @@ Public Class frmLoadProfileFrom
 
 
     Sub GetFiles(Path As String)
+        'Get all profiles that exist in the folder and add them to the combobox
         frmMain.WriteToLog("Getting profiles for frmLoadProfileFrom...", "Info")
 
         If Path.Trim().Length = 0 Then
@@ -182,6 +176,7 @@ Public Class frmLoadProfileFrom
     End Sub
 
     Private Sub LoadDesign()
+        'Set design to darkmode if setting is set to dark
         If My.Settings.Design = "Dark" Then
             BackColor = Color.FromArgb(41, 41, 41)
             lblLoadProfileFrom.ForeColor = Color.White
@@ -191,11 +186,17 @@ Public Class frmLoadProfileFrom
     End Sub
 
     Private Sub LoadLanguage()
+        'Translate elements to the selected language
         If My.Settings.Language = "German" Then
             Text = "Profil laden von..."
             lblLoadProfileFrom.Text = "Profil laden von..."
             btnLoad.Text = "Laden"
             btnCancel.Text = "Abbrechen"
+            MsgBoxTextCorruptedProfile = "Du versucht ein beschädigtes Profil oder ein Profil von einer älteren Version zu laden. Du musst es aktualisieren, um es zu laden. Normalerweise verlierst du keine Einstellungen. Möchtest du fortfahren?"
+            MsgBoxHeaderCorruptedProfile = "Altes oder beschädigtes Profil laden"
+        ElseIf My.Settings.Language = "English" Then
+            MsgBoxTextCorruptedProfile = "You are trying to load a profile from an older version or a corrupted profile. You need to update it in order to load it. You usually won't lose any settings. Do you want to continue?"
+            MsgBoxHeaderCorruptedProfile = "Load old or corrupted profile"
         End If
     End Sub
 

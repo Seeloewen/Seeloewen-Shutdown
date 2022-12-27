@@ -1,6 +1,7 @@
 ﻿Public Class frmClosing
 
     '-- Event handlers --
+
     Private Sub frmClosing_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'If no action gets chosen, it will default to "close"
         frmMain.ClosingResult = "Close"
@@ -11,7 +12,7 @@
     End Sub
 
     Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
-        'Close the main window and exit the application
+        'If checkbox to not show warning again is selected, apply and save settings
         If cbDontShowAgain.Checked = True Then
             My.Settings.ShowCloseWarning = False
         Else
@@ -22,6 +23,8 @@
         frmSettings.ShowMessage = False
         frmSettings.SaveSettings(frmMain.SettingsFile)
         frmSettings.Close()
+
+        'Close the main window and exit the application
         frmMain.ClosingResult = "Close"
         Close()
     End Sub
@@ -45,6 +48,7 @@
     '-- Custom methods --
 
     Private Sub LoadLanguage()
+        'Translate elements if language is set to German
         If My.Settings.Language = "German" Then
             lblHeader.Text = "Bitte beachte..."
             lblDescription.Text = "Die aktuell ausgeführte Aktion läuft weiter, wenn du" + vbNewLine + "die App schließt. Um die Aktion abzubrechen," + vbNewLine + "kehre ins Hauptmenü zurück und klicke auf 'Aktion stoppen'"
@@ -55,6 +59,7 @@
     End Sub
 
     Private Sub LoadDesign()
+        'Switch to darkmode if setting is set to dark
         If My.Settings.Design = "Dark" Then
             lblHeader.ForeColor = Color.White
             lblDescription.ForeColor = Color.White

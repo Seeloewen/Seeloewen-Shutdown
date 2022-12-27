@@ -3,25 +3,30 @@
     '-- Event handlers --
 
     Private Sub frmAbout_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'Load the user preferences
         LoadDesign()
         LoadLanguage()
     End Sub
 
     Private Sub llblSeeloewenShutdownGithub_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles llblSeeloewenShutdownGithub.LinkClicked
-        Process.Start("https://github.com/Seeloewen/Seeloewen-Shutdown") 'Open Seeloewen Shutdown Github page in default Webbrowser
+        'Open Seeloewen Shutdown Github page in default Webbrowser
+        Process.Start("https://github.com/Seeloewen/Seeloewen-Shutdown")
     End Sub
 
     Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
+        'Close the current window
         Close()
     End Sub
 
     Private Sub btnChangelog_Click(sender As Object, e As EventArgs) Handles btnChangelog.Click
+        'Open changelog
         frmChangelog.Show()
     End Sub
 
     '-- Custom methods --
 
-    Private Sub LoadDesign() 'Load darkmode if design dark is selected
+    Private Sub LoadDesign()
+        'Load darkmode if design dark is selected
         If My.Settings.Design = "Dark" Then
             BackColor = Color.FromArgb(41, 41, 41)
             rtbInfo.BackColor = Color.FromArgb(41, 41, 41)
@@ -34,7 +39,8 @@
         End If
     End Sub
 
-    Private Sub LoadLanguage() 'Translate strings if language is set to German
+    Private Sub LoadLanguage()
+        'Translate strings if language is set to German
         If My.Settings.Language = "German" Then
             Text = "Über"
             btnClose.Text = "Schließen"

@@ -9,29 +9,27 @@
     '-- Method handlers --
 
     Private Sub frmSaveProfileAs_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'Clear already existing text
         tbSaveProfileAs.Clear()
+
+        'Load user preferences
         LoadLanguage()
         LoadDesign()
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+        'Load selected radiobutton into variable
         If frmMain.rbtnShutdown.Checked Then
             rbtnAction = "Shutdown"
         ElseIf frmMain.rbtnRestart.Checked Then
             rbtnAction = "Restart"
         End If
 
+        'Load textbox and combobox text into variable
         tbTime = frmMain.tbTime.Text
         cbxIn = frmMain.cbxIn.Text
 
-        If My.Settings.Language = "English" Then
-            SaveMsgBoxHeader = "Profile already exists"
-            SaveMsgBoxText = "A profile with this name already exists. Do you want to overwrite it?"
-        ElseIf My.Settings.Language = "German" Then
-            SaveMsgBoxHeader = "Profil existiert bereits"
-            SaveMsgBoxText = "Ein Profil mit diesem Namen existiert bereits. Möchtest du es überschreiben?"
-        End If
-
+        'Save profile if the profile directory exists. If the profile already exists, give user option to overwrite it.
         If String.IsNullOrEmpty(tbSaveProfileAs.Text) = False Then
             If My.Computer.FileSystem.DirectoryExists(frmMain.ProfileDirectory) Then
                 If My.Computer.FileSystem.FileExists(frmMain.AppData + "\Seeloewen Shutdown\Profiles\" + tbSaveProfileAs.Text + ".txt") Then
@@ -69,7 +67,7 @@
                     MsgBox("Fehler: Profil Verzeichnis existiert nicht. Bitte starte die App neu.", MsgBoxStyle.Critical, "Fehler")
                 End If
             End If
-                Else
+        Else
             If My.Settings.Language = "English" Then
                 MsgBox("Error: Profile name is empty. Please enter a profile name.", MsgBoxStyle.Critical, "Error")
             ElseIf My.Settings.Language = "German" Then
@@ -79,12 +77,14 @@
     End Sub
 
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
+        'Close the current window
         Close()
     End Sub
 
     '-- Custom methods --
 
     Private Sub LoadDesign()
+        'Set design to darkmode if setting is set to dark
         If My.Settings.Design = "Dark" Then
             BackColor = Color.FromArgb(41, 41, 41)
             lblSaveProfileAs.ForeColor = Color.White
@@ -94,11 +94,17 @@
     End Sub
 
     Private Sub LoadLanguage()
+        'Translate elements if language is set to German
         If My.Settings.Language = "German" Then
             Text = "Profil speichern als..."
             lblSaveProfileAs.Text = "Profil speichern als..."
             btnSave.Text = "Speichern"
             btnCancel.Text = "Abbrechen"
+            SaveMsgBoxHeader = "Profil existiert bereits"
+            SaveMsgBoxText = "Ein Profil mit diesem Namen existiert bereits. Möchtest du es überschreiben?"
+        ElseIf My.Settings.Language = "English" Then
+            SaveMsgBoxHeader = "Profile already exists"
+            SaveMsgBoxText = "A profile with this name already exists. Do you want to overwrite it?"
         End If
     End Sub
 

@@ -9,7 +9,6 @@ Public Class frmProfileEditor
     Dim cbxIn As String
     Dim tbTime As String
     Dim rbtnAction As String
-
     Dim MsgBoxTextCorruptedProfile As String
     Dim MsgBoxHeaderCorruptedProfile As String
 
@@ -17,29 +16,36 @@ Public Class frmProfileEditor
     '-- Event handlers --
 
     Private Sub frmProfileEditor_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'Reset controls back to default state
         cbxProfile.Items.Clear()
         rbtnShutdown.Checked = True
         tbTimeIn.Text = ""
         cbxInTime.SelectedIndex = 0
+
+        'Get profiles and load user settings
         GetFiles(ProfileDirectory)
         LoadDesign()
         LoadLanguage()
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+        'Save currently loaded profile
         SaveProfile(cbxProfile.SelectedItem)
     End Sub
 
     Private Sub SaveProfile(Profile As String)
+        'Load selected radiobutton into variable
         If rbtnShutdown.Checked Then
             rbtnAction = "Shutdown"
         ElseIf rbtnRestart.Checked Then
             rbtnAction = "Restart"
         End If
 
+        'Load textbox and combobox text into variable
         tbTime = tbTimeIn.Text
         cbxIn = cbxInTime.Text
 
+        'Check if a valid profile is selected and if a profile directory exists. If yes, save and overwrite the profile
         If String.IsNullOrEmpty(Profile) = False Then
             My.Computer.FileSystem.DirectoryExists(frmMain.ProfileDirectory)
             My.Computer.FileSystem.WriteAllText(frmMain.AppData + "\Seeloewen Shutdown\Profiles\" + Profile + ".txt", rbtnAction + vbNewLine + tbTime + vbNewLine + cbxIn, False)
@@ -61,10 +67,12 @@ Public Class frmProfileEditor
     End Sub
 
     Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
+        'Close the current window
         Close()
     End Sub
 
     Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
+        'Delete the currently selected profile (Deletes the profile file and combobox entry
         If String.IsNullOrEmpty(cbxProfile.SelectedItem) = False Then
             My.Computer.FileSystem.DeleteFile(frmMain.AppData + "\Seeloewen Shutdown\Profiles\" + cbxProfile.SelectedItem + ".txt")
             If My.Settings.Language = "English" Then
@@ -84,6 +92,7 @@ Public Class frmProfileEditor
     End Sub
 
     Private Sub cbxProfile_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbxProfile.SelectedIndexChanged
+        'Begin loading the profile
         InitializeLoadingProfile(cbxProfile.SelectedItem, False)
     End Sub
 
@@ -107,15 +116,6 @@ Public Class frmProfileEditor
     End Sub
 
     Public Sub CheckAndConvertProfile(Profile As String, ShowMessage As Boolean)
-        If My.Settings.Language = "German" Then
-            MsgBoxTextCorruptedProfile = "Du versucht ein beschädigtes Profil oder ein Profil von einer älteren Version zu laden. Du musst es aktualisieren, um es zu laden. Normalerweise verlierst du keine Einstellungen. Möchtest du fortfahren?"
-            MsgBoxHeaderCorruptedProfile = "Altes oder beschädigtes Profil laden"
-        ElseIf My.Settings.Language = "English" Then
-            MsgBoxTextCorruptedProfile = "You are trying to load a profile from an older version or a corrupted profile. You need to update it in order to load it. You usually won't lose any settings. Do you want to continue?"
-            MsgBoxHeaderCorruptedProfile = "Load old or corrupted profile"
-        End If
-
-
         'This checks if the profile file that was loaded has enough lines, too few lines would mean that settings are missing, meaning the file is either too old or corrupted.
         'It will check for each required line if it is empty (required lines = the length of a healthy, normal profile file). Make sure that the line amount it checks matches the amount of settings that are being saved.
         'If a line is empty, it will fill that line with a placeholder in the array so the profile can get loaded without errors. After loading the profile, it gets automatically saved so the corrupted/old settings file gets fixed.
@@ -197,6 +197,7 @@ Public Class frmProfileEditor
     End Sub
 
     Private Sub LoadDesign()
+        'Set design to darkmode if setting is set to dark
         If My.Settings.Design = "Dark" Then
             BackColor = Color.FromArgb(41, 41, 41)
             lblHeader.ForeColor = Color.White
@@ -215,6 +216,7 @@ Public Class frmProfileEditor
     End Sub
 
     Private Sub LoadLanguage()
+        'Translate elements if language is set to German
         If My.Settings.Language = "German" Then
             cbxInTime.Items.Remove("Second(s)")
             cbxInTime.Items.Remove("Minute(s)")
@@ -231,10 +233,16 @@ Public Class frmProfileEditor
             btnSave.Text = "Speichern"
             btnDelete.Text = "Profil löschen"
             btnClose.Text = "Schließen"
+            MsgBoxTextCorruptedProfile = "Du versucht ein beschädigtes Profil oder ein Profil von einer älteren Version zu laden. Du musst es aktualisieren, um es zu laden. Normalerweise verlierst du keine Einstellungen. Möchtest du fortfahren?"
+            MsgBoxHeaderCorruptedProfile = "Altes oder beschädigtes Profil laden"
+        ElseIf My.Settings.Language = "English" Then
+            MsgBoxTextCorruptedProfile = "You are trying to load a profile from an older version or a corrupted profile. You need to update it in order to load it. You usually won't lose any settings. Do you want to continue?"
+            MsgBoxHeaderCorruptedProfile = "Load old or corrupted profile"
         End If
     End Sub
 
     Sub GetFiles(Path As String)
+        'Get profile files in profile directory and load them into combobox
         frmMain.WriteToLog("Getting profiles for frmProfileEditor...", "Info")
 
         If Path.Trim().Length = 0 Then

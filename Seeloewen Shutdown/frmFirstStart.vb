@@ -2,11 +2,13 @@
 
     '-- Event handlers --
 
-    Private Sub frmFirstStart_Load(sender As Object, e As EventArgs) Handles MyBase.Load 'Selects English by default
+    Private Sub frmFirstStart_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'Selects English by default
         cbxLanguage.SelectedItem = "English (English)"
     End Sub
 
-    Private Sub btnOK_Click(sender As Object, e As EventArgs) Handles btnOK.Click 'Saves settings and closes this window
+    Private Sub btnOK_Click(sender As Object, e As EventArgs) Handles btnOK.Click
+        'Saves settings and closes this window
         If cbxLanguage.SelectedItem = "English (English)" Then
             My.Settings.Language = "English"
             Close()

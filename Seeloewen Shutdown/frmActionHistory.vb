@@ -8,23 +8,26 @@ Public Class frmActionHistory
     '-- Event handlers --
 
     Private Sub frmActionHistory_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'Load user preferences and action history
         LoadActionHistory()
         LoadDesign()
         LoadLanguage()
     End Sub
 
     Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
-        SetMessageboxLanguage()
+        'Show messagebox that allows user to confirm clear
         ShowClearHistoryMsgBox()
     End Sub
 
     Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
+        'Close current window
         Close()
     End Sub
 
     '-- Custom methods --
 
-    Private Sub LoadDesign() 'Change to darkmode if design is set to dark
+    Private Sub LoadDesign()
+        'Change to darkmode if design is set to dark
         If My.Settings.Design = "Dark" Then
             BackColor = Color.FromArgb(41, 41, 41)
             lblPastActionsDesc.ForeColor = Color.White
@@ -34,7 +37,8 @@ Public Class frmActionHistory
         End If
     End Sub
 
-    Private Sub LoadLanguage() 'Translate elements to german if language is set to german
+    Private Sub LoadLanguage()
+        'Translate elements to selected language
         If My.Settings.Language = "German" Then
             lblPastActionsHeader.Text = "Aktionsverlauf"
             lblPastActionsDesc.Text = "Betrachte deine vergangenen Aktionen."
@@ -44,11 +48,6 @@ Public Class frmActionHistory
             btnClear.Text = "Aktionsverlauf leeren"
             btnClose.Text = "Schließen"
             Text = "Aktionsverlauf"
-        End If
-    End Sub
-
-    Private Sub SetMessageboxLanguage() 'Change text of the messagebox based on the language
-        If My.Settings.Language = "German" Then
             ClearMsgBoxHeader = "Liste leeren"
             ClearMsgBoxText = "Bist du dir sicher, dass du die Liste leeren möchtest?"
         ElseIf My.Settings.Language = "English" Then
@@ -57,7 +56,8 @@ Public Class frmActionHistory
         End If
     End Sub
 
-    Private Sub ShowClearHistoryMsgBox() 'Show messagebox, clicking "yes" will result in the Action History file being cleared
+    Private Sub ShowClearHistoryMsgBox()
+        'Show messagebox, clicking "yes" will result in the Action History file being cleared
         Select Case MsgBox(ClearMsgBoxText, MsgBoxStyle.YesNo, ClearMsgBoxHeader)
             Case Windows.Forms.DialogResult.Yes
                 lvActionHistory.Clear()
@@ -66,7 +66,8 @@ Public Class frmActionHistory
         End Select
     End Sub
 
-    Private Sub LoadActionHistory() 'Adds all lines in the file into the listview
+    Private Sub LoadActionHistory()
+        'Adds all lines in the file into the listview
         For Each line As String In File.ReadAllLines(frmMain.ActionHistoryFile)
             Dim items As String() = line.Split(";"c)
             Dim lvItem As ListViewItem
