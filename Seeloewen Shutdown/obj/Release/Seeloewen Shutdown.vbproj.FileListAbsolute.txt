@@ -80,3 +80,4 @@ C:\Users\Herbert 2\OneDrive\Dokumente\Programmieren\Visual Studio Projekte\Seelo
 C:\Users\Louis\OneDrive\Dokumente\Programmieren\Visual Studio Projekte\Seeloewen Shutdown\Github Repository\Seeloewen-Shutdown\Seeloewen Shutdown\obj\Release\Seeloewen_Shutdown.frmLoadProfileFrom.resources
 C:\Users\Louis\OneDrive\Dokumente\Programmieren\Visual Studio Projekte\Seeloewen Shutdown\Github Repository\Seeloewen-Shutdown\Seeloewen Shutdown\obj\Release\Seeloewen_Shutdown.frmProfileEditor.resources
 C:\Users\Louis\OneDrive\Dokumente\Programmieren\Visual Studio Projekte\Seeloewen Shutdown\Github Repository\Seeloewen-Shutdown\Seeloewen Shutdown\obj\Release\Seeloewen_Shutdown.frmSaveProfileAs.resources
+C:\Users\Louis\OneDrive\Dokumente\Programmieren\Visual Studio Projekte\Seeloewen Shutdown\Github Repository\Seeloewen-Shutdown\Seeloewen Shutdown\obj\Release\Seeloewen_Shutdown.frmClosing.resources
