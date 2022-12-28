@@ -118,7 +118,17 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="rtbChangelog.Text" xml:space="preserve">
-    <value>Version 1.8.1 (06.09.2022)
+    <value>Version 1.8.2 (28.12.2022)
++ Option, um die Animationen zu deaktivieren, hinzugefügt
++ Warnung beim Schließen der App, während eine Aktion läuft, hinzugefügt
+* Profilsystem wurde überarbeitet, um das reparieren von alten/beschädigten Profilen zu verbessern
+* Das Laden von alten/beschädigten Einstellungsdateien wurde verbessert
+* Nachrichtenboxen wurden verbessert
+* Der Code wurde besser strukturiert und optimiert
+* Fehler behoben, dass Einstellungen beim Neuinstallieren oder Aktualisieren der App zurückgesetzt wurden
+* Fehler behoben, dass die "Aktionsverlauf aktivieren" Box nicht angekreuzt war, auch wenn man es aktiviert lassen wollte
+
+Version 1.8.1 (06.09.2022)
 * Fehler behoben, durch den die Minimalistische Ansicht nicht automatisch geöffnet wurde
 * .NET Framework Version auf 4.8.1 aktualisiert 
 
@@ -254,7 +264,17 @@ Version 0.1 (27.10.2020)
 * Inoffizieller Release</value>
   </data>
   <data name="rtbchangelogEnglish.Text" xml:space="preserve">
-    <value>Version 1.8.1 (06.09.2022)
+    <value>Version 1.8.2 (28.12.2022)
++ Added option to disable animations
++ Added warning when closing the app while an action is running
+* Rebuilt profile system to allow fix of old/corrupted profiles
+* Improved Loading of old/corrupted settings files
+* Improved message boxes
+* Improved comments and code structure
+* Fixed settings being reset everytime when reinstalling or updating the app
+* Fixed "Enable Action History" getting unchecked even when pressing not to do it
+
+Version 1.8.1 (06.09.2022)
 * Fixed a bug which caused the Minimalistic View to not open automatically
 * Updated the .NET Framework Version to 4.8.1
 

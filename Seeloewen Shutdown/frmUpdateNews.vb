@@ -23,12 +23,12 @@
     Private Sub LoadLanguage()
         'Translate strings if language german is selected
         If My.Settings.Language = "German" Then
-            lblHeader.Text = "Version 1.8.1 - Was ist neu?"
+            lblHeader.Text = "Version 1.8.2 - Was ist neu?"
             Text = "Seeloewen Shutdown wurde installiert!"
-            lblNewsHeader.Text = "Profile und Aktionsverlauf"
-            lblNews.Text = "Die Software unterstützt nun das erstellen von Profilen, sodass du einfach" + vbNewLine + "Voreinstellungen speichern und laden kannst. Zusätzlich wurde der" + vbNewLine + "Aktionsverlauf hinzugefügt, damit du deine vergangenen Aktionen im" + vbNewLine + "Auge behalten kannst."
-            lblImprovementsHeader.Text = "Ein paar Verbesserungen und Fehlerbehebungen"
-            lblImprovements.Text = "Ein Bug, durch den die Minimalistische Ansicht nicht richtig" + vbNewLine + "funktioniert hat, wurde behoben. Zusätzlich wurde die .NET Framework" + vbNewLine + "Version auf 4.8.1 aktualisiert, was eine bessere Performance bietet."
+            lblNewsHeader.Text = "Allgemeine Verbesserungen"
+            lblNews.Text = "Viele Teile der Software, wie das Profilsystem, die Einstellungen und" + vbNewLine + "ein paar Designelemente, wurden überarbeitet oder verbessert, um eine" + vbNewLine + "bessere Benutzererfahrung zu garantieren"
+            lblImprovementsHeader.Text = "Ein paar Fehlerbehebungen"
+            lblImprovements.Text = "Zusätzlich wurden ein paar Fehler behoben, um sicherzustellen," + vbNewLine + "dass die Software so reibungslos wie möglich läuft." + vbNewLine + "Deine Einstellungen werden beispielsweise nun nicht mehr zurückgesetzt," + vbNewLine + "wenn du die App aktualisierst oder neu installierst."
             lblChangelog.Text = "Eine genaue Änderungsliste kann im                           gefunden werden"
             btnOK.Text = "Alles klar!"
         End If

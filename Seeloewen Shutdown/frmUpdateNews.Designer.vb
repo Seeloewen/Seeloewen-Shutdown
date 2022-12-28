@@ -44,13 +44,13 @@ Partial Class frmUpdateNews
         Me.lblHeader.Name = "lblHeader"
         Me.lblHeader.Size = New System.Drawing.Size(332, 29)
         Me.lblHeader.TabIndex = 0
-        Me.lblHeader.Text = "Version 1.8.1 - What's new?"
+        Me.lblHeader.Text = "Version 1.8.2 - What's new?"
         '
         'pbImprovements
         '
         Me.pbImprovements.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.Update
         Me.pbImprovements.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.pbImprovements.Location = New System.Drawing.Point(18, 70)
+        Me.pbImprovements.Location = New System.Drawing.Point(18, 172)
         Me.pbImprovements.Name = "pbImprovements"
         Me.pbImprovements.Size = New System.Drawing.Size(53, 54)
         Me.pbImprovements.TabIndex = 1
@@ -60,29 +60,28 @@ Partial Class frmUpdateNews
         '
         Me.lblNewsHeader.AutoSize = True
         Me.lblNewsHeader.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblNewsHeader.Location = New System.Drawing.Point(100, 412)
+        Me.lblNewsHeader.Location = New System.Drawing.Point(80, 56)
         Me.lblNewsHeader.Name = "lblNewsHeader"
-        Me.lblNewsHeader.Size = New System.Drawing.Size(265, 25)
+        Me.lblNewsHeader.Size = New System.Drawing.Size(228, 25)
         Me.lblNewsHeader.TabIndex = 2
-        Me.lblNewsHeader.Text = "Profiles and Action History"
+        Me.lblNewsHeader.Text = "General improvements"
         '
         'lblNews
         '
         Me.lblNews.AutoSize = True
         Me.lblNews.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblNews.Location = New System.Drawing.Point(101, 437)
+        Me.lblNews.Location = New System.Drawing.Point(81, 81)
         Me.lblNews.Name = "lblNews"
-        Me.lblNews.Size = New System.Drawing.Size(512, 60)
+        Me.lblNews.Size = New System.Drawing.Size(490, 60)
         Me.lblNews.TabIndex = 3
-        Me.lblNews.Text = "The software now supports making profiles so you can easily save and " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "load prese" &
-    "ts! There is also now an Action History, so you can keep track" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "of your past act" &
-    "ions." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        Me.lblNews.Text = "Many parts of the software like the profile system, settings and some" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "design com" &
+    "ponents have been reworked or improved for a better" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "user experience." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         '
         'lblChangelog
         '
         Me.lblChangelog.AutoSize = True
         Me.lblChangelog.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblChangelog.Location = New System.Drawing.Point(15, 168)
+        Me.lblChangelog.Location = New System.Drawing.Point(15, 283)
         Me.lblChangelog.Name = "lblChangelog"
         Me.lblChangelog.Size = New System.Drawing.Size(218, 16)
         Me.lblChangelog.TabIndex = 7
@@ -93,7 +92,7 @@ Partial Class frmUpdateNews
         Me.llblChangelog.AutoSize = True
         Me.llblChangelog.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.llblChangelog.LinkColor = System.Drawing.Color.Cyan
-        Me.llblChangelog.Location = New System.Drawing.Point(240, 168)
+        Me.llblChangelog.Location = New System.Drawing.Point(240, 283)
         Me.llblChangelog.Name = "llblChangelog"
         Me.llblChangelog.Size = New System.Drawing.Size(73, 16)
         Me.llblChangelog.TabIndex = 8
@@ -110,7 +109,7 @@ Partial Class frmUpdateNews
         Me.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnOK.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnOK.ForeColor = System.Drawing.Color.White
-        Me.btnOK.Location = New System.Drawing.Point(488, 162)
+        Me.btnOK.Location = New System.Drawing.Point(476, 275)
         Me.btnOK.Name = "btnOK"
         Me.btnOK.Size = New System.Drawing.Size(117, 28)
         Me.btnOK.TabIndex = 9
@@ -122,30 +121,30 @@ Partial Class frmUpdateNews
         '
         Me.lblImprovements.AutoSize = True
         Me.lblImprovements.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblImprovements.Location = New System.Drawing.Point(78, 85)
+        Me.lblImprovements.Location = New System.Drawing.Point(81, 184)
         Me.lblImprovements.Name = "lblImprovements"
-        Me.lblImprovements.Size = New System.Drawing.Size(518, 60)
+        Me.lblImprovements.Size = New System.Drawing.Size(515, 60)
         Me.lblImprovements.TabIndex = 12
-        Me.lblImprovements.Text = "A bug which caused the Minimalistic View to not work correctly has" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "been fixed. A" &
-    "dditionally, the .NET Framework Version has been updated " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "to 4.8.1 which grants" &
-    " a better performance overall."
+        Me.lblImprovements.Text = "Additionally, a few bugs have been stomped to make sure the software" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "runs as smo" &
+    "oth as possible. For example, your settings will no longer get" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "reset when reins" &
+    "talling or updating the application!"
         '
         'lblImprovementsHeader
         '
         Me.lblImprovementsHeader.AutoSize = True
         Me.lblImprovementsHeader.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblImprovementsHeader.Location = New System.Drawing.Point(77, 57)
+        Me.lblImprovementsHeader.Location = New System.Drawing.Point(80, 159)
         Me.lblImprovementsHeader.Name = "lblImprovementsHeader"
-        Me.lblImprovementsHeader.Size = New System.Drawing.Size(298, 25)
+        Me.lblImprovementsHeader.Size = New System.Drawing.Size(158, 25)
         Me.lblImprovementsHeader.TabIndex = 11
-        Me.lblImprovementsHeader.Text = "A few improvements and fixes"
+        Me.lblImprovementsHeader.Text = "A few bug fixes"
         '
         'lblStar
         '
         Me.lblStar.AutoSize = True
         Me.lblStar.Font = New System.Drawing.Font("Microsoft Sans Serif", 99.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblStar.ForeColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.lblStar.Location = New System.Drawing.Point(12, 403)
+        Me.lblStar.Location = New System.Drawing.Point(-8, 56)
         Me.lblStar.Name = "lblStar"
         Me.lblStar.Size = New System.Drawing.Size(116, 152)
         Me.lblStar.TabIndex = 10
@@ -156,7 +155,7 @@ Partial Class frmUpdateNews
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(617, 203)
+        Me.ClientSize = New System.Drawing.Size(613, 319)
         Me.Controls.Add(Me.lblImprovements)
         Me.Controls.Add(Me.lblImprovementsHeader)
         Me.Controls.Add(Me.btnOK)
