@@ -163,6 +163,12 @@
     <Compile Include="frmSaveProfileAs.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmTimeHelper.Designer.vb">
+      <DependentUpon>frmTimeHelper.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmTimeHelper.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmUpdateNews.Designer.vb">
       <DependentUpon>frmUpdateNews.vb</DependentUpon>
     </Compile>
@@ -227,6 +233,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmSaveProfileAs.resx">
       <DependentUpon>frmSaveProfileAs.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTimeHelper.resx">
+      <DependentUpon>frmTimeHelper.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmUpdateNews.resx">
       <DependentUpon>frmUpdateNews.vb</DependentUpon>

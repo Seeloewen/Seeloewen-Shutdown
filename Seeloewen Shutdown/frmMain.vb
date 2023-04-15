@@ -297,6 +297,10 @@ Public Class frmMain
         frmMinimalisticView.lblTimerShutdown.Text = _TimeRemaining.Text
     End Sub
 
+    Private Sub llblTimeHelper_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles llblTimeHelper.LinkClicked
+        frmTimeHelper.ShowDialog()
+    End Sub
+
     '-- Custom methods --
 
     Private Sub InitializeLoadingSettings()
@@ -513,6 +517,7 @@ Public Class frmMain
             lblLastAction.Text = "Aktion:"
             lblLastTime.Text = "Zeit:"
             lblStartedOn.Text = "Gestartet am:"
+            llblTimeHelper.Text = "Welche Zeit sollte ich nutzen?"
             cbxIn.Items.Remove("Second(s)")
             cbxIn.Items.Remove("Minute(s)")
             cbxIn.Items.Remove("Hour(s)")
@@ -592,6 +597,7 @@ Public Class frmMain
             pbIcon.BackgroundImage = My.Resources.Icon_Dark
             pbLine2.BackgroundImage = My.Resources.Line_Dark
             pnlActionRunning.BackColor = Color.FromArgb(25, 25, 25)
+            llblTimeHelper.LinkColor = Color.Cyan
         End If
 
         WriteToLog("Loaded Design from settings: " + My.Settings.Design, "Info")
