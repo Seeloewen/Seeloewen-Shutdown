@@ -170,7 +170,9 @@ Partial Class frmMain
 		'
 		'cbxIn
 		'
+		Me.cbxIn.BackColor = System.Drawing.Color.Gainsboro
 		Me.cbxIn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+		Me.cbxIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
 		Me.cbxIn.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.cbxIn.FormattingEnabled = True
 		Me.cbxIn.Items.AddRange(New Object() {"Second(s)", "Minute(s)", "Hour(s)"})

@@ -22,71 +22,73 @@ Partial Class frmFirstStart
     'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmFirstStart))
-        Me.lblSelectLanguage = New System.Windows.Forms.Label()
-        Me.cbxLanguage = New System.Windows.Forms.ComboBox()
-        Me.btnOK = New System.Windows.Forms.Button()
-        Me.SuspendLayout()
-        '
-        'lblSelectLanguage
-        '
-        Me.lblSelectLanguage.AutoSize = True
-        Me.lblSelectLanguage.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblSelectLanguage.Location = New System.Drawing.Point(13, 13)
-        Me.lblSelectLanguage.Name = "lblSelectLanguage"
-        Me.lblSelectLanguage.Size = New System.Drawing.Size(284, 16)
-        Me.lblSelectLanguage.TabIndex = 0
-        Me.lblSelectLanguage.Text = "Please select a language before you continue."
-        '
-        'cbxLanguage
-        '
-        Me.cbxLanguage.AutoCompleteCustomSource.AddRange(New String() {"Deutsch (German)", "English (English)"})
-        Me.cbxLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbxLanguage.FormattingEnabled = True
-        Me.cbxLanguage.Items.AddRange(New Object() {"Deutsch (German)", "English (English)"})
-        Me.cbxLanguage.Location = New System.Drawing.Point(16, 33)
-        Me.cbxLanguage.Name = "cbxLanguage"
-        Me.cbxLanguage.Size = New System.Drawing.Size(281, 21)
-        Me.cbxLanguage.TabIndex = 1
-        '
-        'btnOK
-        '
-        Me.btnOK.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
-        Me.btnOK.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnOK.FlatAppearance.BorderSize = 0
-        Me.btnOK.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
-        Me.btnOK.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
-        Me.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnOK.ForeColor = System.Drawing.Color.White
-        Me.btnOK.Location = New System.Drawing.Point(73, 71)
-        Me.btnOK.Name = "btnOK"
-        Me.btnOK.Size = New System.Drawing.Size(167, 21)
-        Me.btnOK.TabIndex = 2
-        Me.btnOK.Text = "OK"
-        Me.btnOK.UseVisualStyleBackColor = True
-        '
-        'frmFirstStart
-        '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(310, 104)
-        Me.Controls.Add(Me.btnOK)
-        Me.Controls.Add(Me.cbxLanguage)
-        Me.Controls.Add(Me.lblSelectLanguage)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
-        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.MaximizeBox = False
-        Me.MinimizeBox = False
-        Me.Name = "frmFirstStart"
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Seeloewen Shutdown"
-        Me.ResumeLayout(False)
-        Me.PerformLayout()
+		Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmFirstStart))
+		Me.lblSelectLanguage = New System.Windows.Forms.Label()
+		Me.cbxLanguage = New System.Windows.Forms.ComboBox()
+		Me.btnOK = New System.Windows.Forms.Button()
+		Me.SuspendLayout()
+		'
+		'lblSelectLanguage
+		'
+		Me.lblSelectLanguage.AutoSize = True
+		Me.lblSelectLanguage.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.lblSelectLanguage.Location = New System.Drawing.Point(13, 13)
+		Me.lblSelectLanguage.Name = "lblSelectLanguage"
+		Me.lblSelectLanguage.Size = New System.Drawing.Size(283, 16)
+		Me.lblSelectLanguage.TabIndex = 0
+		Me.lblSelectLanguage.Text = "Please select a language before you continue."
+		'
+		'cbxLanguage
+		'
+		Me.cbxLanguage.AutoCompleteCustomSource.AddRange(New String() {"Deutsch (German)", "English (English)"})
+		Me.cbxLanguage.BackColor = System.Drawing.Color.Gainsboro
+		Me.cbxLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+		Me.cbxLanguage.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+		Me.cbxLanguage.FormattingEnabled = True
+		Me.cbxLanguage.Items.AddRange(New Object() {"Deutsch (German)", "English (English)"})
+		Me.cbxLanguage.Location = New System.Drawing.Point(16, 33)
+		Me.cbxLanguage.Name = "cbxLanguage"
+		Me.cbxLanguage.Size = New System.Drawing.Size(281, 21)
+		Me.cbxLanguage.TabIndex = 1
+		'
+		'btnOK
+		'
+		Me.btnOK.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
+		Me.btnOK.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+		Me.btnOK.FlatAppearance.BorderSize = 0
+		Me.btnOK.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+		Me.btnOK.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+		Me.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+		Me.btnOK.ForeColor = System.Drawing.Color.White
+		Me.btnOK.Location = New System.Drawing.Point(73, 71)
+		Me.btnOK.Name = "btnOK"
+		Me.btnOK.Size = New System.Drawing.Size(167, 21)
+		Me.btnOK.TabIndex = 2
+		Me.btnOK.Text = "OK"
+		Me.btnOK.UseVisualStyleBackColor = True
+		'
+		'frmFirstStart
+		'
+		Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+		Me.BackColor = System.Drawing.Color.White
+		Me.ClientSize = New System.Drawing.Size(310, 104)
+		Me.Controls.Add(Me.btnOK)
+		Me.Controls.Add(Me.cbxLanguage)
+		Me.Controls.Add(Me.lblSelectLanguage)
+		Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+		Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+		Me.MaximizeBox = False
+		Me.MinimizeBox = False
+		Me.Name = "frmFirstStart"
+		Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+		Me.Text = "Seeloewen Shutdown"
+		Me.ResumeLayout(False)
+		Me.PerformLayout()
 
-    End Sub
+	End Sub
 
-    Friend WithEvents lblSelectLanguage As Label
+	Friend WithEvents lblSelectLanguage As Label
     Friend WithEvents cbxLanguage As ComboBox
     Friend WithEvents btnOK As Button
 End Class

@@ -224,7 +224,9 @@ Partial Class frmTimeHelper
 		'
 		'cbxYourInternetSpeed
 		'
+		Me.cbxYourInternetSpeed.BackColor = System.Drawing.Color.Gainsboro
 		Me.cbxYourInternetSpeed.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+		Me.cbxYourInternetSpeed.FlatStyle = System.Windows.Forms.FlatStyle.Flat
 		Me.cbxYourInternetSpeed.FormattingEnabled = True
 		Me.cbxYourInternetSpeed.Items.AddRange(New Object() {"KB/s", "MB/s", "GB/s", "TB/s"})
 		Me.cbxYourInternetSpeed.Location = New System.Drawing.Point(283, 140)
@@ -234,7 +236,9 @@ Partial Class frmTimeHelper
 		'
 		'cbxSizeOfDownload
 		'
+		Me.cbxSizeOfDownload.BackColor = System.Drawing.Color.Gainsboro
 		Me.cbxSizeOfDownload.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+		Me.cbxSizeOfDownload.FlatStyle = System.Windows.Forms.FlatStyle.Flat
 		Me.cbxSizeOfDownload.FormattingEnabled = True
 		Me.cbxSizeOfDownload.Items.AddRange(New Object() {"KB", "MB", "GB", "TB", "PB"})
 		Me.cbxSizeOfDownload.Location = New System.Drawing.Point(283, 109)
@@ -352,7 +356,9 @@ Partial Class frmTimeHelper
 		'
 		'cbxDriveSpeed
 		'
+		Me.cbxDriveSpeed.BackColor = System.Drawing.Color.Gainsboro
 		Me.cbxDriveSpeed.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+		Me.cbxDriveSpeed.FlatStyle = System.Windows.Forms.FlatStyle.Flat
 		Me.cbxDriveSpeed.FormattingEnabled = True
 		Me.cbxDriveSpeed.Items.AddRange(New Object() {"KB/s", "MB/s", "GB/s", "TB/s"})
 		Me.cbxDriveSpeed.Location = New System.Drawing.Point(239, 127)
@@ -362,7 +368,9 @@ Partial Class frmTimeHelper
 		'
 		'cbxTotalSize
 		'
+		Me.cbxTotalSize.BackColor = System.Drawing.Color.Gainsboro
 		Me.cbxTotalSize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+		Me.cbxTotalSize.FlatStyle = System.Windows.Forms.FlatStyle.Flat
 		Me.cbxTotalSize.FormattingEnabled = True
 		Me.cbxTotalSize.Items.AddRange(New Object() {"KB", "MB", "GB", "TB", "PB"})
 		Me.cbxTotalSize.Location = New System.Drawing.Point(239, 98)

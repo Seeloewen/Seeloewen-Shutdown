@@ -133,7 +133,9 @@ Partial Class frmSettings
 		'
 		'cbxDesign
 		'
+		Me.cbxDesign.BackColor = System.Drawing.Color.Gainsboro
 		Me.cbxDesign.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+		Me.cbxDesign.FlatStyle = System.Windows.Forms.FlatStyle.Flat
 		Me.cbxDesign.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.cbxDesign.FormattingEnabled = True
 		Me.cbxDesign.Items.AddRange(New Object() {"Light", "Dark"})
@@ -144,7 +146,9 @@ Partial Class frmSettings
 		'
 		'cbxLanguage
 		'
+		Me.cbxLanguage.BackColor = System.Drawing.Color.Gainsboro
 		Me.cbxLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+		Me.cbxLanguage.FlatStyle = System.Windows.Forms.FlatStyle.Flat
 		Me.cbxLanguage.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.cbxLanguage.FormattingEnabled = True
 		Me.cbxLanguage.Items.AddRange(New Object() {"Deutsch (German)", "English (English)"})
@@ -289,7 +293,9 @@ Partial Class frmSettings
 		'
 		'cbxDefaultProfile
 		'
+		Me.cbxDefaultProfile.BackColor = System.Drawing.Color.Gainsboro
 		Me.cbxDefaultProfile.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+		Me.cbxDefaultProfile.FlatStyle = System.Windows.Forms.FlatStyle.Flat
 		Me.cbxDefaultProfile.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.cbxDefaultProfile.FormattingEnabled = True
 		Me.cbxDefaultProfile.Location = New System.Drawing.Point(16, 90)
