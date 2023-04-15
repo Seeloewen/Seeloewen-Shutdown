@@ -75,10 +75,10 @@
 			gbStep2Drive.Hide()
 			gbStep2Nothing.Hide()
 			gbStep3.Hide()
-			If My.Settings.Language = "English" Then
+			If frmMain.Language = "English" Then
 				btnContinue.Text = "Continue"
 				btnBack.Text = "Close"
-			ElseIf My.Settings.Language = "German" Then
+			ElseIf frmMain.Language = "German" Then
 				btnContinue.Text = "Weiter"
 				btnBack.Text = "Schließen"
 			End If
@@ -90,10 +90,10 @@
 			gbStep2Drive.Hide()
 			gbStep2Nothing.Hide()
 			gbStep3.Hide()
-			If My.Settings.Language = "English" Then
+			If frmMain.Language = "English" Then
 				btnContinue.Text = "Continue"
 				btnBack.Text = "Close"
-			ElseIf My.Settings.Language = "German" Then
+			ElseIf frmMain.Language = "German" Then
 				btnContinue.Text = "Weiter"
 				btnBack.Text = "Schließen"
 			End If
@@ -105,10 +105,10 @@
 			gbStep2Drive.Hide()
 			gbStep2Nothing.Hide()
 			gbStep3.Hide()
-			If My.Settings.Language = "English" Then
+			If frmMain.Language = "English" Then
 				btnContinue.Text = "Continue"
 				btnBack.Text = "Close"
-			ElseIf My.Settings.Language = "German" Then
+			ElseIf frmMain.Language = "German" Then
 				btnContinue.Text = "Weiter"
 				btnBack.Text = "Schließen"
 			End If
@@ -120,10 +120,10 @@
 			gbStep2Drive.Hide()
 			gbStep2Nothing.Hide()
 			gbStep3.Hide()
-			If My.Settings.Language = "English" Then
+			If frmMain.Language = "English" Then
 				btnContinue.Text = "Continue"
 				btnBack.Text = "Close"
-			ElseIf My.Settings.Language = "German" Then
+			ElseIf frmMain.Language = "German" Then
 				btnContinue.Text = "Weiter"
 				btnBack.Text = "Schließen"
 			End If
@@ -136,10 +136,10 @@
 				gbStep2Drive.Hide()
 				gbStep2Nothing.Hide()
 				gbStep3.Hide()
-				If My.Settings.Language = "English" Then
+				If frmMain.Language = "English" Then
 					btnContinue.Text = "Continue"
 					btnBack.Text = "Back"
-				ElseIf My.Settings.Language = "German" Then
+				ElseIf frmMain.Language = "German" Then
 					btnContinue.Text = "Weiter"
 					btnBack.Text = "Zurück"
 				End If
@@ -151,10 +151,10 @@
 				gbStep2Drive.Show()
 				gbStep2Nothing.Hide()
 				gbStep3.Hide()
-				If My.Settings.Language = "English" Then
+				If frmMain.Language = "English" Then
 					btnContinue.Text = "Continue"
 					btnBack.Text = "Back"
-				ElseIf My.Settings.Language = "German" Then
+				ElseIf frmMain.Language = "German" Then
 					btnContinue.Text = "Weiter"
 					btnBack.Text = "Zurück"
 				End If
@@ -166,10 +166,10 @@
 				gbStep2Drive.Hide()
 				gbStep2Nothing.Hide()
 				gbStep3.Hide()
-				If My.Settings.Language = "English" Then
+				If frmMain.Language = "English" Then
 					btnContinue.Text = "Continue"
 					btnBack.Text = "Back"
-				ElseIf My.Settings.Language = "German" Then
+				ElseIf frmMain.Language = "German" Then
 					btnContinue.Text = "Weiter"
 					btnBack.Text = "Zurück"
 				End If
@@ -181,10 +181,10 @@
 				gbStep2Drive.Hide()
 				gbStep2Nothing.Show()
 				gbStep3.Hide()
-				If My.Settings.Language = "English" Then
+				If frmMain.Language = "English" Then
 					btnContinue.Text = "Continue"
 					btnBack.Text = "Back"
-				ElseIf My.Settings.Language = "German" Then
+				ElseIf frmMain.Language = "German" Then
 					btnContinue.Text = "Weiter"
 					btnBack.Text = "Zurück"
 				End If
@@ -202,10 +202,10 @@
 				gbStep2Drive.Hide()
 				gbStep2Nothing.Hide()
 				gbStep3.Hide()
-				If My.Settings.Language = "English" Then
+				If frmMain.Language = "English" Then
 					btnContinue.Text = "Continue"
 					btnBack.Text = "Back"
-				ElseIf My.Settings.Language = "German" Then
+				ElseIf frmMain.Language = "German" Then
 					btnContinue.Text = "Weiter"
 					btnBack.Text = "Zurück"
 				End If
@@ -217,10 +217,10 @@
 				gbStep2Drive.Show()
 				gbStep2Nothing.Hide()
 				gbStep3.Hide()
-				If My.Settings.Language = "English" Then
+				If frmMain.Language = "English" Then
 					btnContinue.Text = "Continue"
 					btnBack.Text = "Back"
-				ElseIf My.Settings.Language = "German" Then
+				ElseIf frmMain.Language = "German" Then
 					btnContinue.Text = "Weiter"
 					btnBack.Text = "Zurück"
 				End If
@@ -232,10 +232,10 @@
 				gbStep2Drive.Hide()
 				gbStep2Nothing.Hide()
 				gbStep3.Hide()
-				If My.Settings.Language = "English" Then
+				If frmMain.Language = "English" Then
 					btnContinue.Text = "Continue"
 					btnBack.Text = "Back"
-				ElseIf My.Settings.Language = "German" Then
+				ElseIf frmMain.Language = "German" Then
 					btnContinue.Text = "Weiter"
 					btnBack.Text = "Zurück"
 				End If
@@ -246,10 +246,10 @@
 				gbStep2Download.Hide()
 				gbStep2Drive.Hide()
 				gbStep2Nothing.Show()
-				If My.Settings.Language = "English" Then
+				If frmMain.Language = "English" Then
 					btnContinue.Text = "Continue"
 					btnBack.Text = "Back"
-				ElseIf My.Settings.Language = "German" Then
+				ElseIf frmMain.Language = "German" Then
 					btnContinue.Text = "Weiter"
 					btnBack.Text = "Zurück"
 				End If
@@ -264,19 +264,19 @@
 				gbStep2Drive.Hide()
 				gbStep2Nothing.Hide()
 				gbStep3.Show()
-				If My.Settings.Language = "English" Then
+				If frmMain.Language = "English" Then
 					btnContinue.Text = "Finish"
 					btnBack.Text = "Back"
-				ElseIf My.Settings.Language = "German" Then
+				ElseIf frmMain.Language = "German" Then
 					btnContinue.Text = "Beenden"
 					btnBack.Text = "Zurück"
 				End If
 				currentPage = 3
 				CalculateTime()
 			Else
-				If My.Settings.Language = "German" Then
+				If frmMain.Language = "German" Then
 					MsgBox("Du musst die Items pro Minute und benötigten Items angeben!", MsgBoxStyle.Critical, "Fehler")
-				ElseIf My.Settings.Language = "English" Then
+				ElseIf frmMain.Language = "English" Then
 					MsgBox("You need to specify the items per minute and needed items!", MsgBoxStyle.Critical, "Error")
 				End If
 			End If
@@ -288,19 +288,19 @@
 				gbStep2Drive.Hide()
 				gbStep2Nothing.Hide()
 				gbStep3.Show()
-				If My.Settings.Language = "English" Then
+				If frmMain.Language = "English" Then
 					btnContinue.Text = "Finish"
 					btnBack.Text = "Back"
-				ElseIf My.Settings.Language = "German" Then
+				ElseIf frmMain.Language = "German" Then
 					btnContinue.Text = "Beenden"
 					btnBack.Text = "Zurück"
 				End If
 				currentPage = 3
 				CalculateTime()
 			Else
-				If My.Settings.Language = "German" Then
+				If frmMain.Language = "German" Then
 					MsgBox("Du musst die Gesamtgröße der Dateien und Geschwindigkeit des Speichermediums angeben!", MsgBoxStyle.Critical, "Fehler")
-				ElseIf My.Settings.Language = "English" Then
+				ElseIf frmMain.Language = "English" Then
 					MsgBox("You need to specify the total size and drive speed!", MsgBoxStyle.Critical, "Error")
 				End If
 			End If
@@ -312,19 +312,19 @@
 				gbStep2Drive.Hide()
 				gbStep2Nothing.Hide()
 				gbStep3.Show()
-				If My.Settings.Language = "English" Then
+				If frmMain.Language = "English" Then
 					btnContinue.Text = "Finish"
 					btnBack.Text = "Back"
-				ElseIf My.Settings.Language = "German" Then
+				ElseIf frmMain.Language = "German" Then
 					btnContinue.Text = "Beenden"
 					btnBack.Text = "Zurück"
 				End If
 				currentPage = 3
 				CalculateTime()
 			Else
-				If My.Settings.Language = "German" Then
+				If frmMain.Language = "German" Then
 					MsgBox("Du musst die Downloadgröße und Internetgeschwindigkeit angeben!", MsgBoxStyle.Critical, "Fehler")
-				ElseIf My.Settings.Language = "English" Then
+				ElseIf frmMain.Language = "English" Then
 					MsgBox("You need to specify the download size and internet speed!", MsgBoxStyle.Critical, "Error")
 				End If
 			End If
@@ -335,10 +335,10 @@
 			gbStep2Drive.Hide()
 			gbStep2Nothing.Hide()
 			gbStep3.Show()
-			If My.Settings.Language = "English" Then
+			If frmMain.Language = "English" Then
 				btnContinue.Text = "Finish"
 				btnBack.Text = "Back"
-			ElseIf My.Settings.Language = "German" Then
+			ElseIf frmMain.Language = "German" Then
 				btnContinue.Text = "Beenden"
 				btnBack.Text = "Zurück"
 			End If
@@ -463,9 +463,9 @@
 		Select Case determinedTime
 			Case 0
 				determinedTime = Math.Round(determinedTime)
-				If My.Settings.Language = "German" Then
+				If frmMain.Language = "German" Then
 					lblDeterminedTime.Text = "Es konnte keine Zeit bestimmt werden."
-				ElseIf My.Settings.Language = "English" Then
+				ElseIf frmMain.Language = "English" Then
 					lblDeterminedTime.Text = "No time could be determined."
 				End If
 				cbUseTime.Hide()
@@ -473,10 +473,10 @@
 				timeUnit = "Seconds"
 			Case 1 To 59
 				determinedTime = Math.Round(determinedTime)
-				If My.Settings.Language = "German" Then
+				If frmMain.Language = "German" Then
 					lblDeterminedTime.Text = "Die folgende Zeit wurde bestimmt: " + determinedTime.ToString + " Sekunde(n)"
 
-				ElseIf My.Settings.Language = "English" Then
+				ElseIf frmMain.Language = "English" Then
 					lblDeterminedTime.Text = "The following time was determined: " + determinedTime.ToString + " second(s)"
 				End If
 				cbUseTime.Show()
@@ -484,9 +484,9 @@
 				timeUnit = "Seconds"
 			Case 60 To 3599
 				determinedTime = Math.Round(determinedTime / 60)
-				If My.Settings.Language = "German" Then
+				If frmMain.Language = "German" Then
 					lblDeterminedTime.Text = "Die folgende Zeit wurde bestimmt: " + determinedTime.ToString + " Minute(n)"
-				ElseIf My.Settings.Language = "English" Then
+				ElseIf frmMain.Language = "English" Then
 					lblDeterminedTime.Text = "The following time was determined: " + determinedTime.ToString + " minute(s)"
 				End If
 				cbUseTime.Show()
@@ -494,9 +494,9 @@
 				timeUnit = "Minutes"
 			Case Else
 				determinedTime = Math.Round(determinedTime / 3600)
-				If My.Settings.Language = "German" Then
+				If frmMain.Language = "German" Then
 					lblDeterminedTime.Text = "Die folgende Zeit wurde bestimmt: " + determinedTime.ToString + " Stunde(n)"
-				ElseIf My.Settings.Language = "English" Then
+				ElseIf frmMain.Language = "English" Then
 					lblDeterminedTime.Text = "The following time was determined: " + determinedTime.ToString + " hour(s)"
 				End If
 				cbUseTime.Show()
@@ -506,7 +506,7 @@
 	End Sub
 
 	Private Sub LoadTranslations()
-		If My.Settings.Language = "German" Then
+		If frmMain.Language = "German" Then
 			Text = "Zeit-Helfer"
 			lblHeader.Text = "Welche Zeit sollte ich nutzen?"
 			gbStep1.Text = "Schritt 1"
@@ -540,7 +540,7 @@
 	End Sub
 
 	Private Sub LoadDesign()
-		If My.Settings.Design = "Dark" Then
+		If frmMain.Design = "Dark" Then
 			BackColor = Color.FromArgb(41, 41, 41)
 			lblHeader.ForeColor = Color.White
 			gbStep1.ForeColor = Color.White

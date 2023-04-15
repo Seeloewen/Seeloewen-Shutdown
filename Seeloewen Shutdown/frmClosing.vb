@@ -49,7 +49,7 @@
 
     Private Sub LoadLanguage()
         'Translate elements if language is set to German
-        If My.Settings.Language = "German" Then
+        If frmMain.Language = "German" Then
             lblHeader.Text = "Bitte beachte..."
             lblDescription.Text = "Die aktuell ausgeführte Aktion läuft weiter, wenn du" + vbNewLine + "die App schließt. Um die Aktion abzubrechen," + vbNewLine + "kehre ins Hauptmenü zurück und klicke auf 'Aktion stoppen'"
             btnReturn.Text = "Zurück"
@@ -60,7 +60,7 @@
 
     Private Sub LoadDesign()
         'Switch to darkmode if setting is set to dark
-        If My.Settings.Design = "Dark" Then
+        If frmMain.Design = "Dark" Then
             lblHeader.ForeColor = Color.White
             lblDescription.ForeColor = Color.White
             cbDontShowAgain.ForeColor = Color.White

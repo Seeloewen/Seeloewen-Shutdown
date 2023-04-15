@@ -20,9 +20,9 @@ Public Class frmLoadProfileFrom
             cbxProfiles.Items.Clear()
             GetFiles(frmMain.ProfileDirectory)
         Else
-            If My.Settings.Language = "English" Then
+            if frmmain.Language = "English" Then
                 MsgBox("Error: Profile directory does not exist. Please restart the application.", MsgBoxStyle.Critical, "Error")
-            ElseIf My.Settings.Language = "German" Then
+            Elseif frmmain.Language = "German" Then
                 MsgBox("Fehler: Profil Verzeichnis existiert nicht. Bitte starte die App neu.", MsgBoxStyle.Critical, "Fehler")
             End If
         End If
@@ -57,7 +57,7 @@ Public Class frmLoadProfileFrom
 
         'Convert combobox selection to current language
         cbxIn = ProfileContent(2)
-        If My.Settings.Language = "German" Then
+        if frmmain.Language = "German" Then
             If cbxIn = "Second(s)" Then
                 cbxIn = "Sekunde(n)"
             ElseIf cbxIn = "Minute(s)" Then
@@ -65,7 +65,7 @@ Public Class frmLoadProfileFrom
             ElseIf cbxIn = "Hour(s)" Then
                 cbxIn = "Stunde(n)"
             End If
-        ElseIf My.Settings.Language = "English" Then
+        Elseif frmmain.Language = "English" Then
             If cbxIn = "Sekunde(n)" Then
                 cbxIn = "Second(s)"
             ElseIf cbxIn = "Minute(n)" Then
@@ -80,9 +80,9 @@ Public Class frmLoadProfileFrom
 
         'If ShowMessage is enabled, it will show a messagebox when loading completes.
         If ShowMessage Then
-            If My.Settings.Language = "English" Then
+            if frmmain.Language = "English" Then
                 MsgBox("Loaded profile " + Profile + ".", MsgBoxStyle.Information, "Loaded profile")
-            ElseIf My.Settings.Language = "German" Then
+            Elseif frmmain.Language = "German" Then
                 MsgBox("Profil " + Profile + " geladen.", MsgBoxStyle.Information, "Profil geladen")
             End If
         End If
@@ -98,9 +98,9 @@ Public Class frmLoadProfileFrom
             CheckAndConvertProfile(Profile, ShowMessage)
             Close()
         Else
-            If My.Settings.Language = "German" Then
+            if frmmain.Language = "German" Then
                 MsgBox("Fehler: Kein Profil ausgewählt. Bitte wähle ein Profil, das geladen werden soll.", MsgBoxStyle.Critical, "Error")
-            ElseIf My.Settings.Language = "English" Then
+            Elseif frmmain.Language = "English" Then
                 MsgBox("Error: No profile selected. Please select a profile to load from.", MsgBoxStyle.Critical, "Error")
             End If
         End If
@@ -125,16 +125,16 @@ Public Class frmLoadProfileFrom
                     End If
                     LoadProfile(Profile, False)
                     frmSaveProfileAs.UpdateProfile(Profile)
-                    If My.Settings.Language = "English" Then
+                    if frmmain.Language = "English" Then
                         MsgBox("Loaded and updated profile. It should now work correctly!", MsgBoxStyle.Information, "Loaded and updated profile")
-                    ElseIf My.Settings.Language = "German" Then
+                    Elseif frmmain.Language = "German" Then
                         MsgBox("Profil wurde geladen und aktualisiert. Es sollte nun korrekt funktionieren!", MsgBoxStyle.Information, "Profil geladen und aktualisiert")
                     End If
                     frmMain.WriteToLog("Loaded and updated profile " + Profile, "Info")
                 Case Windows.Forms.DialogResult.No
-                    If My.Settings.Language = "English" Then
+                    if frmmain.Language = "English" Then
                         MsgBox("Cancelled loading profile.", MsgBoxStyle.Exclamation, "Warning")
-                    ElseIf My.Settings.Language = "German" Then
+                    Elseif frmmain.Language = "German" Then
                         MsgBox("Laden des Profils abgebrochen.", MsgBoxStyle.Exclamation, "Warning")
                     End If
             End Select
@@ -166,9 +166,9 @@ Public Class frmLoadProfileFrom
                 End If
             Next
         Catch ex As Exception
-            If My.Settings.Language = "English" Then
+            if frmmain.Language = "English" Then
                 MsgBox("Error: Could not load profiles. Please restart the application and try again." + vbNewLine + "Exception: " + ex.Message, MsgBoxStyle.Critical, "Error")
-            ElseIf My.Settings.Language = "German" Then
+            Elseif frmmain.Language = "German" Then
                 MsgBox("Fehler: Konnte Profile nicht laden. Bitte starte die App neu und versuche es erneut." + vbNewLine + "Ausnahme: " + ex.Message, MsgBoxStyle.Critical, "Fehler")
             End If
             frmMain.WriteToLog("Error: Could not load profiles for frmLoadProfileFrom. " + ex.Message, "Error")
@@ -177,7 +177,7 @@ Public Class frmLoadProfileFrom
 
     Private Sub LoadDesign()
         'Set design to darkmode if setting is set to dark
-        If My.Settings.Design = "Dark" Then
+        if frmmain.Design = "Dark" Then
             BackColor = Color.FromArgb(41, 41, 41)
             lblLoadProfileFrom.ForeColor = Color.White
             cbxProfiles.BackColor = Color.Gray
@@ -187,14 +187,14 @@ Public Class frmLoadProfileFrom
 
     Private Sub LoadLanguage()
         'Translate elements to the selected language
-        If My.Settings.Language = "German" Then
+        if frmmain.Language = "German" Then
             Text = "Profil laden von..."
             lblLoadProfileFrom.Text = "Profil laden von..."
             btnLoad.Text = "Laden"
             btnCancel.Text = "Abbrechen"
             MsgBoxTextCorruptedProfile = "Du versucht ein beschädigtes Profil oder ein Profil von einer älteren Version zu laden. Du musst es aktualisieren, um es zu laden. Normalerweise verlierst du keine Einstellungen. Möchtest du fortfahren?"
             MsgBoxHeaderCorruptedProfile = "Altes oder beschädigtes Profil laden"
-        ElseIf My.Settings.Language = "English" Then
+        Elseif frmmain.Language = "English" Then
             MsgBoxTextCorruptedProfile = "You are trying to load a profile from an older version or a corrupted profile. You need to update it in order to load it. You usually won't lose any settings. Do you want to continue?"
             MsgBoxHeaderCorruptedProfile = "Load old or corrupted profile"
         End If

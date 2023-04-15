@@ -28,7 +28,7 @@ Public Class frmActionHistory
 
     Private Sub LoadDesign()
         'Change to darkmode if design is set to dark
-        If My.Settings.Design = "Dark" Then
+        If frmMain.Design = "Dark" Then
             BackColor = Color.FromArgb(41, 41, 41)
             lblPastActionsDesc.ForeColor = Color.White
             lblPastActionsHeader.ForeColor = Color.White
@@ -39,7 +39,7 @@ Public Class frmActionHistory
 
     Private Sub LoadLanguage()
         'Translate elements to selected language
-        If My.Settings.Language = "German" Then
+        If frmMain.Language = "German" Then
             lblPastActionsHeader.Text = "Aktionsverlauf"
             lblPastActionsDesc.Text = "Betrachte deine vergangenen Aktionen."
             lvActionHistory.Columns(0).Text = "Aktion"
@@ -50,7 +50,7 @@ Public Class frmActionHistory
             Text = "Aktionsverlauf"
             ClearMsgBoxHeader = "Liste leeren"
             ClearMsgBoxText = "Bist du dir sicher, dass du die Liste leeren möchtest?"
-        ElseIf My.Settings.Language = "English" Then
+        ElseIf frmMain.Language = "English" Then
             ClearMsgBoxHeader = "Clear list"
             ClearMsgBoxText = "Are you sure that you want to clear the list?"
         End If

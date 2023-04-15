@@ -36,41 +36,41 @@
                     Select Case MessageBox.Show(SaveMsgBoxText, SaveMsgBoxHeader, MessageBoxButtons.YesNo)
                         Case Windows.Forms.DialogResult.Yes
                             My.Computer.FileSystem.WriteAllText(frmMain.AppData + "\Seeloewen Shutdown\Profiles\" + tbSaveProfileAs.Text + ".txt", rbtnAction + vbNewLine + tbTime + vbNewLine + cbxIn, False)
-                            If My.Settings.Language = "English" Then
+                            if frmmain.Language = "English" Then
                                 MsgBox("Profile was overwritten and saved.", MsgBoxStyle.Information, "Overwritten and saved")
-                            ElseIf My.Settings.Language = "German" Then
+                            Elseif frmmain.Language = "German" Then
                                 MsgBox("Profil wurde übershrieben und gespeichert.", MsgBoxStyle.Information, "Überschrieben und gespeichert")
                             End If
                             frmMain.WriteToLog("Saved and overwrote profile " + tbSaveProfileAs.Text, "Info")
                             Close()
                         Case Windows.Forms.DialogResult.No
-                            If My.Settings.Language = "English" Then
+                            if frmmain.Language = "English" Then
                                 MsgBox("Profile was not overwritten. Please select a different profile name.", MsgBoxStyle.Exclamation, "Profile not overwritten.")
-                            ElseIf My.Settings.Language = "German" Then
+                            Elseif frmmain.Language = "German" Then
                                 MsgBox("Profil wurde nicht überschrieben. Bitte wähle einen anderen Profilnamen.", MsgBoxStyle.Exclamation, "Profil nicht überschrieben.")
                             End If
                     End Select
                 Else
                     My.Computer.FileSystem.WriteAllText(frmMain.AppData + "\Seeloewen Shutdown\Profiles\" + tbSaveProfileAs.Text + ".txt", rbtnAction + vbNewLine + tbTime + vbNewLine + cbxIn, False)
-                    If My.Settings.Language = "English" Then
+                    if frmmain.Language = "English" Then
                         MsgBox("Profile was saved.", MsgBoxStyle.Information, "Saved")
-                    ElseIf My.Settings.Language = "German" Then
+                    Elseif frmmain.Language = "German" Then
                         MsgBox("Profil wurde gespeichert.", MsgBoxStyle.Information, "Gespeichert")
                     End If
                     frmMain.WriteToLog("Saved new profile " + tbSaveProfileAs.Text, "Info")
                     Close()
                 End If
             Else
-                If My.Settings.Language = "English" Then
+                if frmmain.Language = "English" Then
                     MsgBox("Error: Profile directory does not exist. Please restart the application.", MsgBoxStyle.Critical, "Error")
-                ElseIf My.Settings.Language = "German" Then
+                Elseif frmmain.Language = "German" Then
                     MsgBox("Fehler: Profil Verzeichnis existiert nicht. Bitte starte die App neu.", MsgBoxStyle.Critical, "Fehler")
                 End If
             End If
         Else
-            If My.Settings.Language = "English" Then
+            if frmmain.Language = "English" Then
                 MsgBox("Error: Profile name is empty. Please enter a profile name.", MsgBoxStyle.Critical, "Error")
-            ElseIf My.Settings.Language = "German" Then
+            Elseif frmmain.Language = "German" Then
                 MsgBox("Fehler: Profilname ist leer. Bitte gib einen Profilnamen ein.", MsgBoxStyle.Critical, "Fehler")
             End If
         End If
@@ -85,7 +85,7 @@
 
     Private Sub LoadDesign()
         'Set design to darkmode if setting is set to dark
-        If My.Settings.Design = "Dark" Then
+        if frmmain.Design = "Dark" Then
             BackColor = Color.FromArgb(41, 41, 41)
             lblSaveProfileAs.ForeColor = Color.White
             tbSaveProfileAs.BackColor = Color.Gray
@@ -95,14 +95,14 @@
 
     Private Sub LoadLanguage()
         'Translate elements if language is set to German
-        If My.Settings.Language = "German" Then
+        if frmmain.Language = "German" Then
             Text = "Profil speichern als..."
             lblSaveProfileAs.Text = "Profil speichern als..."
             btnSave.Text = "Speichern"
             btnCancel.Text = "Abbrechen"
             SaveMsgBoxHeader = "Profil existiert bereits"
             SaveMsgBoxText = "Ein Profil mit diesem Namen existiert bereits. Möchtest du es überschreiben?"
-        ElseIf My.Settings.Language = "English" Then
+        Elseif frmmain.Language = "English" Then
             SaveMsgBoxHeader = "Profile already exists"
             SaveMsgBoxText = "A profile with this name already exists. Do you want to overwrite it?"
         End If
@@ -131,16 +131,16 @@
             If My.Computer.FileSystem.DirectoryExists(frmMain.ProfileDirectory) Then
                 My.Computer.FileSystem.WriteAllText(frmMain.ProfileDirectory + ProfileName + ".txt", rbtnAction + vbNewLine + tbTime + vbNewLine + cbxIn, False)
             Else
-                If My.Settings.Language = "German" Then
+                if frmmain.Language = "German" Then
                     MsgBox("Fehler: Profil konnte nicht aktualisiert werden. Profilverzeichnis existiert nicht. Bitte starte die App neu.", MsgBoxStyle.Critical, "Fehler")
-                ElseIf My.Settings.Language = "English" Then
+                Elseif frmmain.Language = "English" Then
                     MsgBox("Error: Couldn't update profile. Profile directory does not exist. Please restart the application.", MsgBoxStyle.Critical, "Error")
                 End If
             End If
         Else
-            If My.Settings.Language = "German" Then
+            if frmmain.Language = "German" Then
                 MsgBox("Fehler: Profil konnte nicht aktualisiert werden, da der Name leer ist.", MsgBoxStyle.Critical, "Fehler")
-            ElseIf My.Settings.Language = "English" Then
+            Elseif frmmain.Language = "English" Then
                 MsgBox("Error: Couldn't update profile as the name is empty.", MsgBoxStyle.Critical, "Error")
             End If
 

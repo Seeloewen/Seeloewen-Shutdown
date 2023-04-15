@@ -36,7 +36,7 @@
 
     Private Sub LoadDesign()
         'Set design to darkmode if setting is set to dark
-        If My.Settings.Design = "Dark" Then
+        if frmmain.Design = "Dark" Then
             BackColor = Color.FromArgb(41, 41, 41)
             lblHeader.ForeColor = Color.White
             rtbLog.BackColor = Color.FromArgb(41, 41, 41)
@@ -45,7 +45,7 @@
 
     Private Sub LoadLanguage()
         'Translate elements if language is set to German
-        If My.Settings.Language = "German" Then
+        if frmmain.Language = "German" Then
             sfdLog.Title = "Speichere Log als Datei..."
             btnSaveAsFile.Text = "Als Datei speichern"
             btnClear.Text = "Leeren"

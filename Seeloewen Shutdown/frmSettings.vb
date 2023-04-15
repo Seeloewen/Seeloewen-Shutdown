@@ -51,10 +51,10 @@ Public Class frmSettings
     End Sub
     Private Sub cbEnableActionHistory_CheckedChanged(sender As Object, e As EventArgs) Handles cbEnableActionHistory.CheckedChanged
         'Set messagebox text depending on language
-        If My.Settings.Language = "German" Then
+        If frmMain.Language = "German" Then
             DisableMsgBoxHeader = "Aktionsverlauf deaktivieren"
             DisableMsgBoxText = "Bist du dir sicher, dass du den Aktionsverlauf deaktivieren möchtest? Dadurch wird der aktuelle Verlauf gelöscht."
-        ElseIf My.Settings.Language = "English" Then
+        ElseIf frmMain.Language = "English" Then
             DisableMsgBoxHeader = "Disble Action History"
             DisableMsgBoxText = "Are you sure that you want to disable the Action History? This will delete your current history."
         End If
@@ -95,13 +95,16 @@ Public Class frmSettings
             'Save App Settings
             If cbxLanguage.SelectedItem = "English (English)" Then
                 My.Settings.Language = "English"
-                Close()
             ElseIf cbxLanguage.SelectedItem = "Deutsch (German)" Then
                 My.Settings.Language = "German"
-                Close()
+            ElseIf cbxLanguage.SelectedItem = "System Default" Then
+                My.Settings.Language = "System Default"
+            ElseIf cbxLanguage.SelectedItem = "Systemstandard" Then
+                My.Settings.Language = "System Default"
             End If
             SettingsArray(4) = "Language=" + My.Settings.Language
             frmMain.WriteToLog("Saved setting " + SettingsArray(4), "Info")
+            frmMain.determineLanguage()
 
             If cbxDesign.SelectedItem = "Light" Then
                 My.Settings.Design = "Light"
@@ -111,9 +114,14 @@ Public Class frmSettings
                 My.Settings.Design = "Dark"
             ElseIf cbxDesign.SelectedItem = "Dark" Then
                 My.Settings.Design = "Dark"
+            ElseIf cbxDesign.SelectedItem = "System Default" Then
+                My.Settings.Design = "System Default"
+            ElseIf cbxDesign.SelectedItem = "Systemstandard" Then
+                My.Settings.Design = "System Default"
             End If
             SettingsArray(5) = "Design=" + My.Settings.Design
             frmMain.WriteToLog("Saved setting " + SettingsArray(5), "Info")
+            frmMain.determinedesign()
 
             If cbShowNotifications.Checked Then
                 My.Settings.ShowNotifications = True
@@ -179,9 +187,9 @@ Public Class frmSettings
 
             'Show a message that confirms that all settings have been saved
             If ShowMessage = True Then
-                If My.Settings.Language = "German" Then
+                If frmMain.Language = "German" Then
                     frmMain.ShowNotification("Gespeichert! Du musst die Software möglicherweise neustarten.")
-                ElseIf My.Settings.Language = "English" Then
+                ElseIf frmMain.Language = "English" Then
                     frmMain.ShowNotification("Saved! You may need to restart the software.")
                 End If
             End If
@@ -189,9 +197,9 @@ Public Class frmSettings
 
             Close()
         Catch ex As Exception
-            If My.Settings.Language = "German" Then
+            If frmMain.Language = "German" Then
                 MsgBox("Speichern der Einstellungen ist fehlgeschlagen. " + ex.Message, MsgBoxStyle.Critical, "Fehler")
-            ElseIf My.Settings.Language = "English" Then
+            ElseIf frmMain.Language = "English" Then
                 MsgBox("Saving settings failed. " + ex.Message, MsgBoxStyle.Critical, "Error")
             End If
 
@@ -207,13 +215,17 @@ Public Class frmSettings
 
     Private Sub LoadSettings()
         'Translations
-        If My.Settings.Language = "German" Then
+        If frmMain.Language = "German" Then
 
             'Initialize comboboxes if language german is selected
             cbxDesign.Items.Add("Hell")
             cbxDesign.Items.Add("Dunkel")
             cbxDesign.Items.Remove("Light")
             cbxDesign.Items.Remove("Dark")
+            cbxDesign.Items.Remove("System Default")
+            cbxDesign.Items.Add("Systemstandard")
+            cbxLanguage.Items.Remove("System Default")
+            cbxLanguage.Items.Add("Systemstandard")
             cbxLanguage.SelectedItem = "Deutsch (German)"
 
             'Change text to german translation
@@ -234,26 +246,34 @@ Public Class frmSettings
             cbLoadProfileByDefault.Text = "Profil standartmäßig laden"
             cbShowCloseWarning.Text = "Warnung anzeigen, wenn App bei laufender Aktion " + vbNewLine + "geschlossen wird"
             cbEnableAnimations.Text = "Animationen aktivieren"
-        ElseIf My.Settings.Language = "English" Then
+        ElseIf frmMain.Language = "English" Then
             cbxLanguage.SelectedItem = "English (English)"
         End If
 
+        If My.Settings.Language = "System Default" Then
+            If frmMain.Language = "German" Then
+                cbxLanguage.SelectedItem = "Systemstandard"
+            ElseIf frmMain.Language = "English" Then
+                cbxLanguage.SelectedItem = "System Default"
+            End If
+        End If
+
         'Design
-        If My.Settings.Design = "Light" Then
+        If frmMain.Design = "Light" Then
 
             'Initialize Design combobox if Darkmode is selected
-            If My.Settings.Language = "German" Then
+            If frmMain.Language = "German" Then
                 cbxDesign.SelectedItem = "Hell"
-            ElseIf My.Settings.Language = "English" Then
+            ElseIf frmMain.Language = "English" Then
                 cbxDesign.SelectedItem = "Light"
             End If
 
-        ElseIf My.Settings.Design = "Dark" Then
+        ElseIf frmMain.Design = "Dark" Then
 
             'Initialize Design combobox if Darkmode is selected
-            If My.Settings.Language = "German" Then
+            If frmMain.Language = "German" Then
                 cbxDesign.SelectedItem = "Dunkel"
-            ElseIf My.Settings.Language = "English" Then
+            ElseIf frmMain.Language = "English" Then
                 cbxDesign.SelectedItem = "Dark"
             End If
 
@@ -278,6 +298,14 @@ Public Class frmSettings
             cbxDefaultProfile.BackColor = Color.Gray
             cbShowCloseWarning.ForeColor = Color.White
             cbEnableAnimations.ForeColor = Color.White
+        End If
+
+        If My.Settings.Design = "System Default" Then
+            If frmMain.Language = "German" Then
+                cbxDesign.SelectedItem = "Systemstandard"
+            ElseIf frmMain.Language = "English" Then
+                cbxDesign.SelectedItem = "System Default"
+            End If
         End If
 
         'Load Notifications
@@ -339,10 +367,10 @@ Public Class frmSettings
 
     Private Sub SetMessageboxLanguage()
         'Change text of the messagebox based on the language
-        If My.Settings.Language = "German" Then
+        If frmMain.Language = "German" Then
             ClearMsgBoxHeader = "Liste leeren"
             ClearMsgBoxText = "Bist du dir sicher, dass du die Liste leeren möchtest?"
-        ElseIf My.Settings.Language = "English" Then
+        ElseIf frmMain.Language = "English" Then
             ClearMsgBoxHeader = "Clear list"
             ClearMsgBoxText = "Are you sure that you want to clear the list?"
         End If

@@ -50,17 +50,17 @@ Public Class frmProfileEditor
             My.Computer.FileSystem.DirectoryExists(frmMain.ProfileDirectory)
             My.Computer.FileSystem.WriteAllText(frmMain.AppData + "\Seeloewen Shutdown\Profiles\" + Profile + ".txt", rbtnAction + vbNewLine + tbTime + vbNewLine + cbxIn, False)
 
-            If My.Settings.Language = "English" Then
+            if frmmain.Language = "English" Then
                 MsgBox("Profile was overwritten and saved.", MsgBoxStyle.Information, "Overwritten and saved")
-            ElseIf My.Settings.Language = "German" Then
+            Elseif frmmain.Language = "German" Then
                 MsgBox("Profil wurde überschrieben und gespeichert.", MsgBoxStyle.Information, "Überschrieben und gespeichert.")
             End If
             frmMain.WriteToLog("Saved and overwrote profile " + Profile, "Info")
         Else
 
-            If My.Settings.Language = "English" Then
+            if frmmain.Language = "English" Then
                 MsgBox("Error: Profile directory does not exist. Please restart the application.", MsgBoxStyle.Critical, "Error")
-            ElseIf My.Settings.Language = "German" Then
+            Elseif frmmain.Language = "German" Then
                 MsgBox("Fehler: Profil Verzeichnis existiert nicht. Bitte starte die App neu.", MsgBoxStyle.Critical, "Fehler")
             End If
         End If
@@ -75,17 +75,17 @@ Public Class frmProfileEditor
         'Delete the currently selected profile (Deletes the profile file and combobox entry
         If String.IsNullOrEmpty(cbxProfile.SelectedItem) = False Then
             My.Computer.FileSystem.DeleteFile(frmMain.AppData + "\Seeloewen Shutdown\Profiles\" + cbxProfile.SelectedItem + ".txt")
-            If My.Settings.Language = "English" Then
+            if frmmain.Language = "English" Then
                 MsgBox("Profile was deleted.", MsgBoxStyle.Information, "Deleted")
-            ElseIf My.Settings.Language = "German" Then
+            Elseif frmmain.Language = "German" Then
                 MsgBox("Profil wurde gelöscht.", MsgBoxStyle.Information, "Gelöscht")
             End If
             frmMain.WriteToLog("Deleted profile " + cbxProfile.SelectedItem, "Info")
             cbxProfile.Items.Remove(cbxProfile.SelectedItem)
         Else
-            If My.Settings.Language = "English" Then
+            if frmmain.Language = "English" Then
                 MsgBox("Error: Profile directory does not exist. Please restart the application.", MsgBoxStyle.Critical, "Error")
-            ElseIf My.Settings.Language = "German" Then
+            Elseif frmmain.Language = "German" Then
                 MsgBox("Fehler: Profil Verzeichnis existiert nicht. Bitte starte die App neu.", MsgBoxStyle.Critical, "Fehler")
             End If
         End If
@@ -107,9 +107,9 @@ Public Class frmProfileEditor
             ReDim Preserve ProfileContent(3)
             CheckAndConvertProfile(Profile, ShowMessage)
         Else
-            If My.Settings.Language = "German" Then
+            if frmmain.Language = "German" Then
                 MsgBox("Fehler: Kein Profil ausgewählt. Bitte wähle ein Profil, das geladen werden soll.", MsgBoxStyle.Critical, "Fehler")
-            ElseIf My.Settings.Language = "English" Then
+            Elseif frmmain.Language = "English" Then
                 MsgBox("Error: No profile selected. Please select a profile to load from.", MsgBoxStyle.Critical, "Error")
             End If
         End If
@@ -134,16 +134,16 @@ Public Class frmProfileEditor
                     End If
                     LoadProfile(Profile, False)
                     SaveProfile(Profile)
-                    If My.Settings.Language = "English" Then
+                    if frmmain.Language = "English" Then
                         MsgBox("Loaded and updated profile. It should now work correctly!", MsgBoxStyle.Information, "Loaded and updated profile")
-                    ElseIf My.Settings.Language = "German" Then
+                    Elseif frmmain.Language = "German" Then
                         MsgBox("Profil wurde geladen und aktualisiert. Es sollte nun korrekt funktionieren!", MsgBoxStyle.Information, "Profil geladen und aktualisiert")
                     End If
 
                 Case Windows.Forms.DialogResult.No
-                    If My.Settings.Language = "English" Then
+                    if frmmain.Language = "English" Then
                         MsgBox("Cancelled loading profile.", MsgBoxStyle.Exclamation, "Warning")
-                    ElseIf My.Settings.Language = "German" Then
+                    Elseif frmmain.Language = "German" Then
                         MsgBox("Laden des Profils abgebrochen.", MsgBoxStyle.Exclamation, "Warnung")
                     End If
 
@@ -166,7 +166,7 @@ Public Class frmProfileEditor
         cbxIn = ProfileContent(2)
 
         'Convert combobox selection to current language
-        If My.Settings.Language = "German" Then
+        if frmmain.Language = "German" Then
             If cbxIn = "Second(s)" Then
                 cbxIn = "Sekunde(n)"
             ElseIf cbxIn = "Minute(s)" Then
@@ -174,7 +174,7 @@ Public Class frmProfileEditor
             ElseIf cbxIn = "Hour(s)" Then
                 cbxIn = "Stunde(n)"
             End If
-        ElseIf My.Settings.Language = "English" Then
+        Elseif frmmain.Language = "English" Then
             If cbxIn = "Sekunde(n)" Then
                 cbxIn = "Second(s)"
             ElseIf cbxIn = "Minute(n)" Then
@@ -188,7 +188,7 @@ Public Class frmProfileEditor
 
         'If ShowMessage is enabled, it will show a messagebox when loading completes.
         If ShowMessage Then
-            If My.Settings.Language = "German" Then
+            if frmmain.Language = "German" Then
                 MsgBox("Profil " + Profile + " geladen.", MsgBoxStyle.Information, "Profil geladen")
             ElseIf My.Settings.Language = "Englisch" Then
                 MsgBox("Loaded profile " + Profile + ".", MsgBoxStyle.Information, "Loaded profile")
@@ -198,7 +198,7 @@ Public Class frmProfileEditor
 
     Private Sub LoadDesign()
         'Set design to darkmode if setting is set to dark
-        If My.Settings.Design = "Dark" Then
+        if frmmain.Design = "Dark" Then
             BackColor = Color.FromArgb(41, 41, 41)
             lblHeader.ForeColor = Color.White
             lblChooseProfile.ForeColor = Color.White
@@ -217,7 +217,7 @@ Public Class frmProfileEditor
 
     Private Sub LoadLanguage()
         'Translate elements if language is set to German
-        If My.Settings.Language = "German" Then
+        if frmmain.Language = "German" Then
             cbxInTime.Items.Remove("Second(s)")
             cbxInTime.Items.Remove("Minute(s)")
             cbxInTime.Items.Remove("Hour(s)")
@@ -235,7 +235,7 @@ Public Class frmProfileEditor
             btnClose.Text = "Schließen"
             MsgBoxTextCorruptedProfile = "Du versucht ein beschädigtes Profil oder ein Profil von einer älteren Version zu laden. Du musst es aktualisieren, um es zu laden. Normalerweise verlierst du keine Einstellungen. Möchtest du fortfahren?"
             MsgBoxHeaderCorruptedProfile = "Altes oder beschädigtes Profil laden"
-        ElseIf My.Settings.Language = "English" Then
+        Elseif frmmain.Language = "English" Then
             MsgBoxTextCorruptedProfile = "You are trying to load a profile from an older version or a corrupted profile. You need to update it in order to load it. You usually won't lose any settings. Do you want to continue?"
             MsgBoxHeaderCorruptedProfile = "Load old or corrupted profile"
         End If
@@ -262,9 +262,9 @@ Public Class frmProfileEditor
                 End If
             Next
         Catch ex As Exception
-            If My.Settings.Language = "English" Then
+            if frmmain.Language = "English" Then
                 MsgBox("Error: Could not load profiles. Please try again." + vbNewLine + "Exception: " + ex.Message, MsgBoxStyle.Critical, "Error")
-            ElseIf My.Settings.Language = "German" Then
+            Elseif frmmain.Language = "German" Then
                 MsgBox("Error: Konnte Profile nicht laden. Bitte versuche es erneut." + vbNewLine + "Ausnahme: " + ex.Message, MsgBoxStyle.Critical, "Fehler")
             End If
             frmMain.WriteToLog("Error: Could not load profiles for frmProfileEditor. " + ex.Message, "Error")

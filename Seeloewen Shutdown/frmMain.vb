@@ -15,6 +15,8 @@ Public Class frmMain
     'Variables used for settings and profiles
     Dim SettingsArray As String()
     Dim ProfileList As String()
+    Public Language As String
+    Public Design As String
 
     'Variables used for directory and file paths
     Public AppData As String = GetFolderPath(SpecialFolder.ApplicationData)
@@ -101,9 +103,9 @@ Public Class frmMain
         If My.Settings.EnableActionHistory = True Then
             frmActionHistory.Show()
         Else
-            If My.Settings.Language = "English" Then
+            If Language = "English" Then
                 MsgBox("Action History is currently disabled. Head to the settings to enable it.", MsgBoxStyle.Critical, "Error")
-            ElseIf My.Settings.Language = "German" Then
+            ElseIf Language = "German" Then
                 MsgBox("Der Aktionsverlauf ist aktuell deaktiviert. Gehe in die Einstellungen um ihn zu aktivieren.", MsgBoxStyle.Critical, "Fehler")
             End If
         End If
@@ -118,9 +120,9 @@ Public Class frmMain
         If rbtnIn.Checked Then
             frmSaveProfileAs.ShowDialog()
         Else
-            If My.Settings.Language = "English" Then
+            If Language = "English" Then
                 MsgBox("Please choose option 'In...' to save a profile.", MsgBoxStyle.Critical, "Error")
-            ElseIf My.Settings.Language = "German" Then
+            ElseIf Language = "German" Then
                 MsgBox("Bitte wähle die Option 'In...' um ein Profil zu speichern.", MsgBoxStyle.Critical, "Fehler")
             End If
         End If
@@ -164,9 +166,9 @@ Public Class frmMain
             If String.IsNullOrEmpty(tbTime.Text) = False Then
                 _SelectedTime.Text = "In " + tbTime.Text + " " + cbxIn.Text
             Else
-                If My.Settings.Language = "English" Then
+                If Language = "English" Then
                     _SelectedTime.Text = "No time selected"
-                ElseIf My.Settings.Language = "German" Then
+                ElseIf Language = "German" Then
                     _SelectedTime.Text = "Keine Zeit gewählt"
                 End If
             End If
@@ -187,9 +189,9 @@ Public Class frmMain
             If String.IsNullOrEmpty(tbTime.Text) = False Then
                 _SelectedTime.Text = "In " + tbTime.Text + " " + cbxIn.Text
             Else
-                If My.Settings.Language = "English" Then
+                If Language = "English" Then
                     _SelectedTime.Text = "No time selected"
-                ElseIf My.Settings.Language = "German" Then
+                ElseIf Language = "German" Then
                     _SelectedTime.Text = "Keine Zeit gewählt"
                 End If
             End If
@@ -201,15 +203,15 @@ Public Class frmMain
     Private Sub rbtnShutdown_CheckedChanged(sender As Object, e As EventArgs) Handles rbtnShutdown.CheckedChanged
         'Change displayed action depending on the selected option and language
         If rbtnShutdown.Checked = True Then
-            If My.Settings.Language = "English" Then
+            If Language = "English" Then
                 _SelectedAction.Text = "Shutdown"
-            ElseIf My.Settings.Language = "German" Then
+            ElseIf Language = "German" Then
                 _SelectedAction.Text = "Herunterfahren"
             End If
         ElseIf rbtnRestart.Checked = True Then
-            If My.Settings.Language = "English" Then
+            If Language = "English" Then
                 _SelectedAction.Text = "Restart"
-            ElseIf My.Settings.Language = "German" Then
+            ElseIf Language = "German" Then
                 _SelectedAction.Text = "Neustarten"
             End If
         End If
@@ -218,15 +220,15 @@ Public Class frmMain
     Private Sub rbtnRestart_CheckedChanged(sender As Object, e As EventArgs) Handles rbtnRestart.CheckedChanged
         'Change displayed action depending on the selected option and language
         If rbtnShutdown.Checked = True Then
-            If My.Settings.Language = "English" Then
+            If Language = "English" Then
                 _SelectedAction.Text = "Shutdown"
-            ElseIf My.Settings.Language = "German" Then
+            ElseIf Language = "German" Then
                 _SelectedAction.Text = "Herunterfahren"
             End If
         ElseIf rbtnRestart.Checked = True Then
-            If My.Settings.Language = "English" Then
+            If Language = "English" Then
                 _SelectedAction.Text = "Restart"
-            ElseIf My.Settings.Language = "German" Then
+            ElseIf Language = "German" Then
                 _SelectedAction.Text = "Neustarten"
             End If
         End If
@@ -241,9 +243,9 @@ Public Class frmMain
             If String.IsNullOrEmpty(tbTime.Text) = False Then
                 _SelectedTime.Text = "In " + tbTime.Text + " " + cbxIn.Text
             Else
-                If My.Settings.Language = "English" Then
+                If Language = "English" Then
                     _SelectedTime.Text = "No time selected"
-                ElseIf My.Settings.Language = "German" Then
+                ElseIf Language = "German" Then
                     _SelectedTime.Text = "Keine Zeit gewählt"
                 End If
             End If
@@ -258,9 +260,9 @@ Public Class frmMain
             If String.IsNullOrEmpty(tbTime.Text) = False Then
                 _SelectedTime.Text = "In " + tbTime.Text + " " + cbxIn.Text
             Else
-                If My.Settings.Language = "English" Then
+                If Language = "English" Then
                     _SelectedTime.Text = "No time selected"
-                ElseIf My.Settings.Language = "German" Then
+                ElseIf Language = "German" Then
                     _SelectedTime.Text = "Keine Zeit gewählt"
                 End If
             End If
@@ -275,9 +277,9 @@ Public Class frmMain
             If String.IsNullOrEmpty(tbTime.Text) = False Then
                 _SelectedTime.Text = "In " + tbTime.Text + " " + cbxIn.Text
             Else
-                If My.Settings.Language = "English" Then
+                If Language = "English" Then
                     _SelectedTime.Text = "No time selected"
-                ElseIf My.Settings.Language = "German" Then
+                ElseIf Language = "German" Then
                     _SelectedTime.Text = "Keine Zeit gewählt"
                 End If
             End If
@@ -315,9 +317,9 @@ Public Class frmMain
                 ReDim Preserve SettingsArray(19)
                 CheckAndConvertSettings(SettingsFile)
             Catch ex As Exception
-                If My.Settings.Language = "German" Then
+                If Language = "German" Then
                     MsgBox("Beim Laden der Einstellungen ist ein Fehler aufgetreten: " + ex.Message, MsgBoxStyle.Critical, "Fehler")
-                ElseIf My.Settings.Language = "English" Then
+                ElseIf Language = "English" Then
                     MsgBox("Error when loading settings: " + ex.Message, MsgBoxStyle.Critical, "Error")
                 End If
                 WriteToLog("Error when loading settings: " + ex.Message, "Error")
@@ -329,8 +331,57 @@ Public Class frmMain
             My.Computer.FileSystem.WriteAllText(SettingsFile, "", False)
             frmSettings.ResetSettings(SettingsFile)
         End If
+
+        'Determine what design the app should use.
+        DetermineDesign()
+
+        'Determine what language the app should use
+        DetermineLanguage()
     End Sub
 
+
+    Public Sub DetermineDesign()
+        'Check which setting is selected
+        If My.Settings.Design = "Dark" Then
+            Design = "Dark"
+        ElseIf My.Settings.Design = "Light" Then
+            Design = "Light"
+        ElseIf My.Settings.Design = "System Default" Then
+            'Check the registry key for Windows App Design to get current design
+            Dim registryKey As Microsoft.Win32.RegistryKey = Microsoft.Win32.Registry.CurrentUser.OpenSubKey("Software\Microsoft\Windows\CurrentVersion\Themes\Personalize", True)
+            If registryKey IsNot Nothing Then
+                Dim value As Object = registryKey.GetValue("AppsUseLightTheme")
+                If value IsNot Nothing AndAlso TypeOf value Is Integer Then
+                    If CInt(value) = 0 Then 'Dark design
+                        WriteToLog("Determined dark design based on registry key value", "Info")
+                        Design = "Dark"
+                    Else 'Light design
+                        WriteToLog("Determined light design based on registry key value", "Info")
+                        Design = "Light"
+                    End If
+                End If
+            End If
+        End If
+    End Sub
+
+    Public Sub DetermineLanguage()
+        If My.Settings.Language = "English" Then
+            Language = "English"
+        ElseIf My.Settings.Language = "German" Then
+            Language = "German"
+        ElseIf My.Settings.Language = "System Default" Then
+            'Check registry key for Windows System Language to get current language
+            Dim culture As System.Globalization.CultureInfo = System.Globalization.CultureInfo.InstalledUICulture
+            Dim lang As String = culture.TwoLetterISOLanguageName
+            If lang = "en" Then
+                Language = "English"
+            ElseIf lang = "de" Then
+                Language = "German"
+            Else
+                Language = "English"
+            End If
+        End If
+    End Sub
     Public Sub CheckAndConvertSettings(File As String)
         'This checks if the settings file that was loaded has enough lines, too few lines would mean that settings are missing, meaning the file is either too old or corrupted.
         'It will check for each required line if it is empty (required lines = the length of a healthy, normal profile file). Make sure that the line amount it checks matches the amount of settings that are being saved.
@@ -451,9 +502,9 @@ Public Class frmMain
                 Case Windows.Forms.DialogResult.Yes
                     My.Computer.FileSystem.WriteAllText(SettingsFile, "", False)
                     frmSettings.ResetSettings(SettingsFile)
-                    If My.Settings.Language = "English" Then
+                    If Language = "English" Then
                         MsgBox("Successfully reset your settings!" + vbNewLine + "The application needs to be restarted to apply changes.", MsgBoxStyle.Information, "Reset settings")
-                    ElseIf My.Settings.Language = "German" Then
+                    ElseIf Language = "German" Then
                         MsgBox("Einstellungen wurden erfolgreich zurückgesetzt. Die App muss neugestartet werden, um die Änderungen zu übernehmen.", MsgBoxStyle.Information, "Einstellungen zurückgesetzt")
                     End If
                     WriteToLog("Successfully reset settings!", "Info")
@@ -483,13 +534,8 @@ Public Class frmMain
     End Sub
 
     Private Sub LoadLanguage()
-        'Show language selection dialog if no language is specified
-        If (My.Settings.Language = "English" OrElse My.Settings.Language = "German") = False Then
-            frmFirstStart.ShowDialog()
-        End If
-
         'Translate all elements to german
-        If My.Settings.Language = "German" Then
+        If Language = "German" Then
             If My.Settings.LastActionDisplay = "Restart" Then
                 My.Settings.LastActionDisplay = "Neustarten"
             ElseIf My.Settings.LastActionDisplay = "Shutdown" Then
@@ -530,7 +576,7 @@ Public Class frmMain
 
             LoadErrorMsgHeader = "Fehler"
             LoadErrorMsgText = "Beim Laden deiner Einstellungen ist ein Fehler aufgetreten. " + vbNewLine + "Möchtest du deine Einstellungen zurücksetzen? Das behebt vermutlich das Problem."
-        ElseIf My.Settings.Language = "English" Then
+        ElseIf Language = "English" Then
             If My.Settings.LastActionDisplay = "Neustarten" Then
                 My.Settings.LastActionDisplay = "Restart"
             ElseIf My.Settings.LastActionDisplay = "Herunterfahren" Then
@@ -548,7 +594,7 @@ Public Class frmMain
 
     Private Sub LoadDesign()
         'Change design to darkmode if setting is set to dark
-        If My.Settings.Design = "Dark" Then
+        If Design = "Dark" Then
             BackColor = Color.FromArgb(41, 41, 41)
             lblHeader.ForeColor = Color.White
             lblVersion.ForeColor = Color.White
@@ -618,9 +664,9 @@ Public Class frmMain
             SetupGrayBox()
             CallLastAction()
 
-            If My.Settings.Language = "English" Then
+            If Language = "English" Then
                 btnStartAction.Text = "Stop action"
-            ElseIf My.Settings.Language = "German" Then
+            ElseIf Language = "German" Then
                 btnStartAction.Text = "Aktion stoppen"
             End If
 
@@ -639,9 +685,9 @@ Public Class frmMain
             End If
 
             ActionRunning = True
-            If My.Settings.Design = "Dark" Then
+            If Design = "Dark" Then
                 btnStartAction.BackColor = Color.FromArgb(25, 25, 25)
-            ElseIf My.Settings.Design = "Light" Then
+            ElseIf Design = "Light" Then
                 btnStartAction.BackColor = Color.FromArgb(232, 232, 232)
             End If
             WriteToLog("Detected that an action is already running. Adjusting elements for action.", "Info")
@@ -767,13 +813,13 @@ Public Class frmMain
 
     Private Sub SetupGrayBox()
         'Display running action
-        If My.Settings.Language = "English" Then
+        If Language = "English" Then
             If rbtnShutdown.Checked Then
                 _RunningAction.Text = "Shutdown"
             ElseIf rbtnRestart.Checked Then
                 _RunningAction.Text = "Restart"
             End If
-        ElseIf My.Settings.Language = "German" Then
+        ElseIf Language = "German" Then
             If rbtnShutdown.Checked Then
                 _RunningAction.Text = "Herunterfahren"
             ElseIf rbtnRestart.Checked Then
@@ -829,18 +875,18 @@ Public Class frmMain
 
     Private Sub StartAction()
         'Set Backcolor of "Start Action" Button
-        If My.Settings.Design = "Dark" Then
+        If Design = "Dark" Then
             btnStartAction.BackColor = Color.FromArgb(25, 25, 25)
-        ElseIf My.Settings.Design = "Light" Then
+        ElseIf Design = "Light" Then
             btnStartAction.BackColor = Color.FromArgb(232, 232, 232)
         End If
 
         'Set action using "in..."
         If rbtnIn.Checked = True Then
             If String.IsNullOrEmpty(tbTime.Text) Then
-                If My.Settings.Language = "German" Then
+                If Language = "German" Then
                     MsgBox("Bitte gib eine Zeitangabe an!", MsgBoxStyle.Critical, "Fehler")
-                ElseIf My.Settings.Language = "English" Then
+                ElseIf Language = "English" Then
                     MsgBox("Please enter a time!", MsgBoxStyle.Critical, "Error")
                 End If
             Else 'Set Shutdown type
@@ -879,15 +925,15 @@ Public Class frmMain
 
                 'Run action
                 If Shutdowntime.Text > 31535999 Then 'Show error if shutdown time is greater than the max number allowed
-                    If My.Settings.Language = "German" Then
+                    If Language = "German" Then
                         MsgBox("Die maximale Zeitangabe für " + Quotationmark.Text + ShutdownTimeType + Quotationmark.Text + " beträgt " + maxtime, MsgBoxStyle.Critical, "Fehler")
-                    ElseIf My.Settings.Language = "English" Then
+                    ElseIf Language = "English" Then
                         MsgBox("The maximum time for " + Quotationmark.Text + ShutdownTimeType + Quotationmark.Text + " is " + maxtime, MsgBoxStyle.Critical, "Error")
                     End If
                 ElseIf Shutdowntime.Text = 0 Then 'Show error if shutdown time is zero
-                    If My.Settings.Language = "German" Then
+                    If Language = "German" Then
                         MsgBox("Die Zeitangabe darf nicht Null sein!", MsgBoxStyle.Critical, "Fehler")
-                    ElseIf My.Settings.Language = "English" Then
+                    ElseIf Language = "English" Then
                         MsgBox("The time cannot be zero!", MsgBoxStyle.Critical, "Error")
                     End If
                 Else
@@ -896,15 +942,15 @@ Public Class frmMain
 
                     Process.Start("shutdown", Action.Text + " -t " + Shutdowntime.Text) 'Start the action
 
-                    If My.Settings.Language = "German" Then
+                    If Language = "German" Then
                         ShowNotification("Eine Aktion wurde gestartet!")
-                    ElseIf My.Settings.Language = "English" Then
+                    ElseIf Language = "English" Then
                         ShowNotification("An Action was started!")
                     End If
 
-                    If My.Settings.Language = "English" Then
+                    If Language = "English" Then
                         btnStartAction.Text = "Stop action"
-                    ElseIf My.Settings.Language = "German" Then
+                    ElseIf Language = "German" Then
                         btnStartAction.Text = "Aktion stoppen"
                     End If
 
@@ -952,15 +998,15 @@ Public Class frmMain
 
             'Run action
             If Shutdowntime.Text > 31535999 Then
-                If My.Settings.Language = "German" Then
+                If Language = "German" Then
                     MsgBox("Der ausgewählte Zeitpunkt darf nicht mehr als 1 Jahr in der Zukunft liegen!", MsgBoxStyle.Critical, "Fehler")
-                ElseIf My.Settings.Language = "English" Then
+                ElseIf Language = "English" Then
                     MsgBox("The selected point in time cannot be more than 1 year in the future!", MsgBoxStyle.Critical, "Error")
                 End If
             ElseIf Shutdowntime.Text < 0 Then
-                If My.Settings.Language = "German" Then
+                If Language = "German" Then
                     MsgBox("Der ausgewählte Zeitpunkt darf nicht in der Vergangenheit liegen!", MsgBoxStyle.Critical, "Fehler")
-                ElseIf My.Settings.Language = "English" Then
+                ElseIf Language = "English" Then
                     MsgBox("The selected point in time cannot be in the past!", MsgBoxStyle.Critical, "Error")
                 End If
             Else
@@ -969,9 +1015,9 @@ Public Class frmMain
 
                 Process.Start("shutdown", Action.Text + " -t " + Shutdowntime.Text) 'Start the action
 
-                If My.Settings.Language = "English" Then
+                If Language = "English" Then
                     btnStartAction.Text = "Stop action"
-                ElseIf My.Settings.Language = "German" Then
+                ElseIf Language = "German" Then
                     btnStartAction.Text = "Aktion stoppen"
                 End If
 
@@ -999,21 +1045,21 @@ Public Class frmMain
 
         Process.Start("shutdown", "-a") 'Stop running action
 
-        If My.Settings.Language = "German" Then
+        If Language = "German" Then
             ShowNotification("Die laufende Aktion wurde abgebrochen!")
-        ElseIf My.Settings.Language = "English" Then
+        ElseIf Language = "English" Then
             ShowNotification("The running action was cancelled!")
         End If
 
-        If My.Settings.Design = "Dark" Then
+        If Design = "Dark" Then
             btnStartAction.BackColor = Color.FromArgb(41, 41, 41)
-        ElseIf My.Settings.Design = "Light" Then
+        ElseIf Design = "Light" Then
             btnStartAction.BackColor = Color.White
         End If
 
-        If My.Settings.Language = "German" Then
+        If Language = "German" Then
             btnStartAction.Text = "Aktion starten"
-        ElseIf My.Settings.Language = "English" Then
+        ElseIf Language = "English" Then
             btnStartAction.Text = "Start action"
         End If
 
@@ -1060,9 +1106,9 @@ Public Class frmMain
             frmMinimalisticView.Show()
             Hide()
         Else
-            If My.Settings.Language = "German" Then
+            If Language = "German" Then
                 MsgBox("Es läuft aktuell keine Aktion.", MsgBoxStyle.Critical, "Fehler")
-            ElseIf My.Settings.Language = "English" Then
+            ElseIf Language = "English" Then
                 MsgBox("There is currently no running action.", MsgBoxStyle.Critical, "Error")
             End If
         End If
@@ -1084,9 +1130,9 @@ Public Class frmMain
                     cbxDefaultProfile.SelectedItem = My.Settings.DefaultProfile
                     frmLoadProfileFrom.LoadProfile(cbxDefaultProfile.SelectedItem, False)
                 Else
-                    If My.Settings.Language = "English" Then
+                    If Language = "English" Then
                         MsgBox("Error: Default profile no longer exists. Option will be disabled automatically.", MsgBoxStyle.Critical, "Error")
-                    ElseIf My.Settings.Language = "German" Then
+                    ElseIf Language = "German" Then
                         MsgBox("Fehler: Standart-Profil existiert nicht mehr. Die Option wird automatisch deaktiviert.", MsgBoxStyle.Critical, "Fehler")
                     End If
                     WriteToLog("Default profile no longer exists. Option will be disabled automatically.", "Error")
@@ -1094,9 +1140,9 @@ Public Class frmMain
                     My.Settings.LoadProfileByDefault = False
                 End If
             Else
-                If My.Settings.Language = "English" Then
+                If Language = "English" Then
                     MsgBox("Error: Could not load default profile as it is empty. Option will be disabled automatically.", MsgBoxStyle.Critical, "Error")
-                ElseIf My.Settings.Language = "German" Then
+                ElseIf Language = "German" Then
                     MsgBox("Fehler: Standart-Profil konnte nicht geladen werden da es leer ist. Die Option wird automatisch deaktiviert.", MsgBoxStyle.Critical, "Fehler")
                 End If
                 WriteToLog("Error: Could not load default profile as it is empty. Option will be disabled automatically.", "Error")
@@ -1108,7 +1154,7 @@ Public Class frmMain
 
     Sub GetFiles(Path As String)
         'Get all profile files in the profile directory and put them into the combobox. Please note that this combobox is not visible
-        WriteToLog("Getting profiles for frmMain...", "Info")
+        WriteToLog("Getting profiles for ..", "Info")
         If Path.Trim().Length = 0 Then
             Return
         End If
@@ -1127,12 +1173,12 @@ Public Class frmMain
             Next
             WriteToLog("Found " + cbxDefaultProfile.Items.Count.ToString + " profiles!", "Info")
         Catch ex As Exception
-            If My.Settings.Language = "English" Then
+            If Language = "English" Then
                 MsgBox("Error: Could not load profiles. Please restart the application and try again." + vbNewLine + "Exception: " + ex.Message, MsgBoxStyle.Critical, "Error")
-            ElseIf My.Settings.Language = "German" Then
+            ElseIf Language = "German" Then
                 MsgBox("Fehler: Konnte Profile nicht laden. Bitte starte die App neu und versuche es erneut." + vbNewLine + "Ausnahme: " + ex.Message, MsgBoxStyle.Critical, "Fehler")
             End If
-            WriteToLog("Error: Could not load profiles for frmMain. " + ex.Message, "Error")
+            WriteToLog("Error: Could not load profiles for  " + ex.Message, "Error")
         End Try
     End Sub
 
@@ -1230,17 +1276,17 @@ Public Class frmMain
     End Sub
 
     Private Sub btnHamburger_MouseDown(sender As Object, e As MouseEventArgs) Handles btnHamburger.MouseDown
-        If My.Settings.Design = "Dark" Then
+        If Design = "Dark" Then
             btnHamburger.BackgroundImage = My.Resources.btnHamburger_Click_Dark
-        ElseIf My.Settings.Design = "Light" Then
+        ElseIf Design = "Light" Then
             btnHamburger.BackgroundImage = My.Resources.btnHamburger_Click
         End If
     End Sub
 
     Private Sub btnHamburger_MouseEnter(sender As Object, e As EventArgs) Handles btnHamburger.MouseEnter
-        If My.Settings.Design = "Dark" Then
+        If Design = "Dark" Then
             btnHamburger.BackgroundImage = My.Resources.btnHamburger_Hover_Dark
-        ElseIf My.Settings.Design = "Light" Then
+        ElseIf Design = "Light" Then
             btnHamburger.BackgroundImage = My.Resources.btnHamburger_Hover
         End If
     End Sub

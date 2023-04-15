@@ -138,7 +138,7 @@ Partial Class frmSettings
 		Me.cbxDesign.FlatStyle = System.Windows.Forms.FlatStyle.Flat
 		Me.cbxDesign.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.cbxDesign.FormattingEnabled = True
-		Me.cbxDesign.Items.AddRange(New Object() {"Light", "Dark"})
+		Me.cbxDesign.Items.AddRange(New Object() {"Light", "Dark", "System Default"})
 		Me.cbxDesign.Location = New System.Drawing.Point(96, 50)
 		Me.cbxDesign.Name = "cbxDesign"
 		Me.cbxDesign.Size = New System.Drawing.Size(298, 21)
@@ -151,7 +151,7 @@ Partial Class frmSettings
 		Me.cbxLanguage.FlatStyle = System.Windows.Forms.FlatStyle.Flat
 		Me.cbxLanguage.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.cbxLanguage.FormattingEnabled = True
-		Me.cbxLanguage.Items.AddRange(New Object() {"Deutsch (German)", "English (English)"})
+		Me.cbxLanguage.Items.AddRange(New Object() {"Deutsch (German)", "English (English)", "System Default"})
 		Me.cbxLanguage.Location = New System.Drawing.Point(96, 25)
 		Me.cbxLanguage.Name = "cbxLanguage"
 		Me.cbxLanguage.Size = New System.Drawing.Size(298, 21)
