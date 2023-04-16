@@ -11,6 +11,7 @@ Public Class frmMain
     Public LogLoadedOnce As Boolean
     Dim ActionRunning As Boolean = False
     Public ClosingResult As String = "Close"
+    Dim osVersion As Version = Environment.OSVersion.Version
 
     'Variables used for settings and profiles
     Dim SettingsArray As String()
@@ -49,6 +50,7 @@ Public Class frmMain
         WriteToLog("Loading Seeloewen Shutdown " + Version + " (" + VerDate + ")", "Info")
         LoadLanguage()
         LoadDesign()
+        CheckForOS()
         CheckForRunningAction()
         ResetUIElements()
         InitializeProfiles()
@@ -702,6 +704,16 @@ Public Class frmMain
         WriteToLog("Loaded LastTimeDisplay from settings: " + My.Settings.LastTimeDisplay, "Info")
         _StartedOn.Text = My.Settings.LastDateDisplay
         WriteToLog("Loaded LastDateDisplay from settings: " + My.Settings.LastDateDisplay, "Info")
+    End Sub
+
+    Private Sub CheckForOS()
+        If (osVersion.Major = 6 And osVersion.Minor = 1) OrElse (osVersion.Major = 6 And osVersion.Minor = 2) OrElse (osVersion.Major = 6 And osVersion.Minor = 3) Then
+            If Language = "German" Then
+                MsgBox("Du benutzt ein Betriebssystem, das von der Software nicht mehr offiziell unterstützt wird. Es kann zu Fehlern oder anderen Problemen kommen und du wirst keinen Support erhalten.", MsgBoxStyle.Exclamation, "Warnung")
+            ElseIf Language = "English" Then
+                MsgBox("You are using an Operating System that is no longer officially supported by the software. Errors and other problems may occur and you will not receive support.", MsgBoxStyle.Exclamation, "Warning")
+            End If
+        End If
     End Sub
 
     Private Sub CreateFilesAndFolders()
