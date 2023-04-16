@@ -217,7 +217,8 @@ Public Class frmProfileEditor
 
     Private Sub LoadLanguage()
         'Translate elements if language is set to German
-        if frmmain.Language = "German" Then
+        If frmMain.Language = "German" Then
+            cbxInTime.Items.Clear()
             cbxInTime.Items.Remove("Second(s)")
             cbxInTime.Items.Remove("Minute(s)")
             cbxInTime.Items.Remove("Hour(s)")
@@ -235,7 +236,7 @@ Public Class frmProfileEditor
             btnClose.Text = "Schließen"
             MsgBoxTextCorruptedProfile = "Du versucht ein beschädigtes Profil oder ein Profil von einer älteren Version zu laden. Du musst es aktualisieren, um es zu laden. Normalerweise verlierst du keine Einstellungen. Möchtest du fortfahren?"
             MsgBoxHeaderCorruptedProfile = "Altes oder beschädigtes Profil laden"
-        Elseif frmmain.Language = "English" Then
+        ElseIf frmMain.Language = "English" Then
             MsgBoxTextCorruptedProfile = "You are trying to load a profile from an older version or a corrupted profile. You need to update it in order to load it. You usually won't lose any settings. Do you want to continue?"
             MsgBoxHeaderCorruptedProfile = "Load old or corrupted profile"
         End If
