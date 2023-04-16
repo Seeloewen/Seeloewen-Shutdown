@@ -516,9 +516,11 @@ Public Class frmMain
 
     Private Sub ResetUIElements()
         'Reset controls to their default state
+        rbtnShutdown.Checked = True
         rbtnIn.Checked = True
         dtpDate.Enabled = False
         currentDateTime.Enabled = False
+        cbxIn.SelectedIndex = 1
         dtpDate.CustomFormat = "dd.MM.yyyy HH:mm:ss"
         dtpSelectedTime.CustomFormat = "dd.MM.yyyy HH:mm:ss"
     End Sub
