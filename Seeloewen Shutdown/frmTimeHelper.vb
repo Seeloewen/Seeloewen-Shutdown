@@ -359,6 +359,7 @@
 		End If
 	End Sub
 
+	'-- Only allow certain Keys in textboxes --
 
 	Private Sub tbSizeOfDownload_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tbSizeOfDownload.KeyPress
 		e.Handled = Not (Char.IsDigit(e.KeyChar) Or e.KeyChar = "." Or e.KeyChar = "," Or Asc(e.KeyChar) = 8)
@@ -458,8 +459,11 @@
 		End If
 
 		'Add 2 Minutes to determined time in case there are any file copy speed drops for example
-		determinedTime = determinedTime + 120
+		If rbtnAFK.Checked OrElse rbtnCopyFiles.Checked OrElse rbtnDownloadGame.Checked Then
+			determinedTime = determinedTime + 120
+		End If
 
+		'Find out the right time unit for the determined time
 		Select Case determinedTime
 			Case 0
 				determinedTime = Math.Round(determinedTime)
@@ -503,9 +507,21 @@
 				cbUseTime.Checked = True
 				timeUnit = "Hours"
 		End Select
+
+		'Log the selected time
+		If rbtnAFK.Checked = True Then
+			frmMain.WriteToLog("Determined the time " + determinedTime.ToString + " " + timeUnit + " using the inputs: Items per minute: " + tbItemsPerMinute.Text + " - Needed items: " + tbItemsNeeded.Text + " - Extra time: 2 minutes", "Info")
+		ElseIf rbtnCopyFiles.Checked = True Then
+			frmMain.WriteToLog("Determined the time " + determinedTime.ToString + " " + timeUnit + " using the inputs: Total size: " + tbTotalSize.Text + " " + cbxTotalSize.Text + " - Drive speed: " + tbDriveSpeed.Text + " " + cbxDriveSpeed.Text + " - Extra time: 2 minutes", "Info")
+		ElseIf rbtnDownloadGame.Checked = True Then
+			frmMain.WriteToLog("Determined the time " + determinedTime.ToString + " " + timeUnit + " using the inputs: Size of download: " + tbSizeOfDownload.Text + " " + cbxSizeOfDownload.Text + " - Internet speed: " + tbYourInternetSpeed.Text + " " + cbxYourInternetSpeed.Text + " - Extra time: 2 minutes", "Info")
+		ElseIf rbtnNothing.Checked = True Then
+			frmMain.WriteToLog("Could not determine a time using the Time Helper Wizard", "Info")
+		End If
 	End Sub
 
 	Private Sub LoadTranslations()
+		'Load strings for the German translation
 		If frmMain.Language = "German" Then
 			Text = "Zeit-Helfer"
 			lblHeader.Text = "Welche Zeit sollte ich nutzen?"
@@ -540,6 +556,7 @@
 	End Sub
 
 	Private Sub LoadDesign()
+		'Load design for darkmode
 		If frmMain.Design = "Dark" Then
 			BackColor = Color.FromArgb(41, 41, 41)
 			lblHeader.ForeColor = Color.White
