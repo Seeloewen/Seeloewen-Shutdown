@@ -13,9 +13,9 @@ If you need help or have any questions you can contact Seeloewen#5699 on Discord
 
 The software is licensed under the GNU General Public License v3 which you can find here: https://www.gnu.org/licenses/gpl-3.0.en.html
 
-Seeloewen Shutdown - 2022 by Seeloewen (Louis)
+Seeloewen Shutdown - 2023 by Seeloewen (Louis)
 
-![Seeloewen_Shutdown_1 8 2_English_Dark](https://user-images.githubusercontent.com/74246933/209739149-44f7c13f-2f05-42e4-957b-c43a3f75a7d0.png)
+![Seeloewen_Shutdown_1 9 0_Dark_English](https://user-images.githubusercontent.com/74246933/232264238-7b610140-57e9-4bae-9829-0c50cd20d588.png)
 
 All releases since version 1.4.1 are shipped with a setup, which was made using Inno Setup: https://github.com/jrsoftware/issrc
 
