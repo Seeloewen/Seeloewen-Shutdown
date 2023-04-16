@@ -1130,7 +1130,7 @@ Public Class frmMain
             If String.IsNullOrEmpty(My.Settings.DefaultProfile) = False Then
                 If My.Computer.FileSystem.FileExists(AppData + "\Seeloewen Shutdown\Profiles\" + My.Settings.DefaultProfile + ".txt") Then
                     cbxDefaultProfile.SelectedItem = My.Settings.DefaultProfile
-                    frmLoadProfileFrom.LoadProfile(cbxDefaultProfile.SelectedItem, False)
+                    frmLoadProfileFrom.InitializeLoadingProfile(cbxDefaultProfile.SelectedItem, False)
                 Else
                     If Language = "English" Then
                         MsgBox("Error: Default profile no longer exists. Option will be disabled automatically.", MsgBoxStyle.Critical, "Error")
