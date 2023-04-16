@@ -781,7 +781,7 @@ Partial Class frmMain
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
 		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
 		Me.BackColor = System.Drawing.Color.White
-		Me.ClientSize = New System.Drawing.Size(635, 495)
+		Me.ClientSize = New System.Drawing.Size(638, 495)
 		Me.Controls.Add(Me.llblTimeHelper)
 		Me.Controls.Add(Me.SettingsFilePreset)
 		Me.Controls.Add(Me.cbxDefaultProfile)

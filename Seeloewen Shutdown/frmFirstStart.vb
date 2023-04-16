@@ -5,6 +5,13 @@
     Private Sub frmFirstStart_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Selects English by default
         cbxLanguage.SelectedItem = "English (English)"
+
+        If frmMain.Language = "German" Then
+            MsgBox("Du hast irgendwie ein Legacy-Fenster gefunden, welches nicht mehr von der Software genutzt wird. Sei vorsichtig, da Probleme auftreten können.", MsgBoxStyle.Exclamation, "Warnung")
+
+        ElseIf frmMain.Language = "English" Then
+            MsgBox("You have somehow opened a legacy window that is no longer used by the software. Be careful as issues can occur.", MsgBoxStyle.Exclamation, "Warning")
+        End If
     End Sub
 
     Private Sub btnOK_Click(sender As Object, e As EventArgs) Handles btnOK.Click

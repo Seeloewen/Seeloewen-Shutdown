@@ -4781,8 +4781,8 @@
 Version=1
 /
 #App Settings
-Language=English
-Design=Light
+Language=System Default
+Design=System Default
 ShowNotifications=true
 ShowCloseWarning=true
 EnableAnimations=true
