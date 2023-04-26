@@ -4,8 +4,8 @@ Imports System.IO
 Public Class frmMain
 
     'General variables
-    Dim Version As String = "1.8.2"
-    Dim VerDate As String = "28.12.2022"
+    Dim Version As String = "1.9.0"
+    Dim VerDate As String = "16.04.2023"
     Public SettingsVersion As Integer = 1
     Dim LoadedSettingsVersion As Integer
     Public LogLoadedOnce As Boolean
