@@ -1,5 +1,6 @@
 ﻿Imports System.Environment
 Imports System.IO
+Imports System.Xml
 
 Public Class frmMain
 
@@ -24,6 +25,7 @@ Public Class frmMain
     Public ProfileDirectory As String = AppData + "\Seeloewen Shutdown\Profiles\"
     Public SettingsFile As String = AppData + "\Seeloewen Shutdown\Settings.txt"
     Public ActionHistoryFile As String = AppData + "\Seeloewen Shutdown\ActionHistory.txt"
+    Public processCheckFile As String = String.Format("{0}\Seeloewen Shutdown\ProcessCheck.txt", AppData)
 
     'Variables used for animations and designs
     Dim GrayBoxNewY As Integer
@@ -143,6 +145,35 @@ Public Class frmMain
             If ts.TotalHours > 24 Then
                 _TimeRemaining.Text = ts.ToString("dd\:hh\:mm\:ss")
             Else _TimeRemaining.Text = ts.ToString("hh\:mm\:ss")
+            End If
+        End If
+    End Sub
+
+    Private Sub tmrCheckRunningProcess_Tick(sender As Object, e As EventArgs) Handles tmrCheckRunningProcess.Tick
+
+        If ActionRunning = True And cbDelayWhenProcessRunning.Checked = True Then
+            TimeDifference = Convert.ToDateTime(My.Settings.LastTime) - DateTime.Now
+            If TimeDifference.TotalMinutes < 5 Then
+                Dim processList As List(Of String) = New List(Of String)(File.ReadAllLines(processCheckFile))
+                For Each process As String In processList
+                    If IsProcessRunning(process) = True Then
+                        'Add 5 minutes to the timer
+
+                    End If
+                Next
+            End If
+        End If
+    End Sub
+
+    Private Sub btnSelectProcesses_Click(sender As Object, e As EventArgs) Handles btnSelectProcesses.Click
+        'Check if the process check file exists and open file editor
+        If My.Computer.FileSystem.FileExists(processCheckFile) Then
+            frmSelectProcesses.Show()
+        Else
+            If Language = "English" Then
+                MsgBox("The Process Check File does not exist. Please restart your application.", MsgBoxStyle.Critical, "Error")
+            ElseIf Language = "German" Then
+                MsgBox("Die Prozess-Prüf-Datei existiert nicht. Bitte starte deine App neu.", MsgBoxStyle.Critical, "Fehler")
             End If
         End If
     End Sub
@@ -341,6 +372,18 @@ Public Class frmMain
         DetermineLanguage()
     End Sub
 
+    Function IsProcessRunning(processName As String) As Boolean
+        'Get a list of all processes and check if the provided process name is on the list
+        Dim processes() As Process = Process.GetProcesses()
+
+        For Each process As Process In processes
+            If process.ProcessName.Equals(processName, StringComparison.OrdinalIgnoreCase) Then
+                Return True
+            End If
+        Next
+
+        Return False
+    End Function
 
     Public Sub DetermineDesign()
         'Check which setting is selected
@@ -568,6 +611,8 @@ Public Class frmMain
             lblLastTime.Text = "Zeit:"
             lblStartedOn.Text = "Gestartet am:"
             llblTimeHelper.Text = "Welche Zeit sollte ich nutzen?"
+            cbDelayWhenProcessRunning.Text = "Aktion verzögern, wenn" + vbNewLine + "bestimmte Prozesse laufen"
+            btnSelectProcesses.Text = "Auswählen"
             cbxIn.Items.Remove("Second(s)")
             cbxIn.Items.Remove("Minute(s)")
             cbxIn.Items.Remove("Hour(s)")
@@ -648,6 +693,7 @@ Public Class frmMain
             pbLine2.BackgroundImage = My.Resources.Line_Dark
             pnlActionRunning.BackColor = Color.FromArgb(25, 25, 25)
             llblTimeHelper.LinkColor = Color.Cyan
+            cbDelayWhenProcessRunning.ForeColor = Color.White
         End If
 
         WriteToLog("Loaded Design from settings: " + My.Settings.Design, "Info")
@@ -667,6 +713,7 @@ Public Class frmMain
             dtpSelectedTime.Value = Convert.ToDateTime(My.Settings.LastTime)
             SetupGrayBox()
             CallLastAction()
+            ScheduleProcessCheck()
 
             If Language = "English" Then
                 btnStartAction.Text = "Stop action"
@@ -727,8 +774,14 @@ Public Class frmMain
         If My.Settings.EnableActionHistory = True Then
             If My.Computer.FileSystem.FileExists(ActionHistoryFile) = False Then
                 My.Computer.FileSystem.WriteAllText(ActionHistoryFile, "", False)
-                WriteToLog("Created directory " + "'" + ActionHistoryFile + "'", "Info")
+                WriteToLog("Created file " + "'" + ActionHistoryFile + "'", "Info")
             End If
+        End If
+
+        'Create ProcessCheck file
+        If My.Computer.FileSystem.FileExists(processCheckFile) = False Then
+            My.Computer.FileSystem.WriteAllText(processCheckFile, "", False)
+            WriteToLog(String.Format("Created file '{0}'", processCheckFile), "Info")
         End If
 
         'Create Profile directory
@@ -887,6 +940,10 @@ Public Class frmMain
         Stopwatch.Reset()
     End Sub
 
+    Private Sub ScheduleProcessCheck()
+        tmrCheckRunningProcess.Start()
+    End Sub
+
     Private Sub StartAction()
         'Set Backcolor of "Start Action" Button
         If Design = "Dark" Then
@@ -953,6 +1010,7 @@ Public Class frmMain
                 Else
                     SetupGrayBox()
                     SetLastAction()
+                    ScheduleProcessCheck()
 
                     Process.Start("shutdown", Action.Text + " -t " + Shutdowntime.Text) 'Start the action
 
@@ -1343,5 +1401,21 @@ Public Class frmMain
 
     Private Sub btnLoadProfile_MouseUp(sender As Object, e As MouseEventArgs) Handles btnLoadProfile.MouseUp
         btnLoadProfile.BackgroundImage = My.Resources.button
+    End Sub
+
+    Private Sub btnSelectProcesses_MouseDown(sender As Object, e As MouseEventArgs) Handles btnSelectProcesses.MouseDown
+        btnSelectProcesses.BackgroundImage = My.Resources.button_click
+    End Sub
+
+    Private Sub btnSelectProcesses_MouseEnter(sender As Object, e As EventArgs) Handles btnSelectProcesses.MouseEnter
+        btnSelectProcesses.BackgroundImage = My.Resources.button_hover
+    End Sub
+
+    Private Sub btnSelectProcesses_MouseLeave(sender As Object, e As EventArgs) Handles btnSelectProcesses.MouseLeave
+        btnSelectProcesses.BackgroundImage = My.Resources.button
+    End Sub
+
+    Private Sub btnSelectProcesses_MouseUp(sender As Object, e As MouseEventArgs) Handles btnSelectProcesses.MouseUp
+        btnSelectProcesses.BackgroundImage = My.Resources.button
     End Sub
 End Class
