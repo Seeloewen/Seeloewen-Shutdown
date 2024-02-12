@@ -573,10 +573,15 @@ Public Class frmMain
         'Reset controls to their default state
         rbtnShutdown.Checked = True
         rbtnIn.Checked = True
-        If ActionRunning = False Then
-            dtpDate.Enabled = False
-            currentDateTime.Enabled = False
+        If ActionRunning = True Then
+            tbTime.Enabled = False
+            cbxIn.Enabled = False
+        Else
+            tbTime.Enabled = True
+            cbxIn.Enabled = True
         End If
+        dtpDate.Enabled = False
+        currentDateTime.Enabled = False
         cbxIn.SelectedIndex = 1
         dtpDate.CustomFormat = "dd.MM.yyyy HH:mm:ss"
         dtpSelectedTime.CustomFormat = "dd.MM.yyyy HH:mm:ss"
@@ -1007,6 +1012,7 @@ Public Class frmMain
             dtpSelectedTime.Value = dtpSelectedTime.Value.AddSeconds(Shutdowntime.Text)
             _RunningTime.Text = dtpSelectedTime.Text
         ElseIf rbtnPointInTime.Checked Then
+            dtpSelectedTime.Value = dtpDate.Value
             CountDownFrom = TimeSpan.FromSeconds(Convert.ToInt32(Shutdowntime.Text))
             _RunningTime.Text = dtpDate.Text
         End If
