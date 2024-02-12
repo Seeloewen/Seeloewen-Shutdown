@@ -573,8 +573,10 @@ Public Class frmMain
         'Reset controls to their default state
         rbtnShutdown.Checked = True
         rbtnIn.Checked = True
-        dtpDate.Enabled = False
-        currentDateTime.Enabled = False
+        If ActionRunning = False Then
+            dtpDate.Enabled = False
+            currentDateTime.Enabled = False
+        End If
         cbxIn.SelectedIndex = 1
         dtpDate.CustomFormat = "dd.MM.yyyy HH:mm:ss"
         dtpSelectedTime.CustomFormat = "dd.MM.yyyy HH:mm:ss"
@@ -748,6 +750,19 @@ Public Class frmMain
                 pnlActionRunning.Top = 366
             End If
             llblEditRunningAction.Show()
+
+            'Disable input
+            rbtnShutdown.Enabled = False
+            rbtnRestart.Enabled = False
+            rbtnIn.Enabled = False
+            rbtnPointInTime.Enabled = False
+            tbTime.Enabled = False
+            cbxIn.Enabled = False
+            dtpDate.Enabled = False
+            cbDelayWhenProcessRunning.Enabled = False
+            btnSelectProcesses.Enabled = False
+            btnLoadProfile.Enabled = False
+            llblTimeHelper.Enabled = False
 
             ActionRunning = True
             If Design = "Dark" Then
@@ -1121,6 +1136,19 @@ Public Class frmMain
                     ActionRunning = True
                     llblEditRunningAction.Show()
 
+                    'Disable input
+                    rbtnShutdown.Enabled = False
+                    rbtnRestart.Enabled = False
+                    rbtnIn.Enabled = False
+                    rbtnPointInTime.Enabled = False
+                    tbTime.Enabled = False
+                    cbxIn.Enabled = False
+                    dtpDate.Enabled = False
+                    cbDelayWhenProcessRunning.Enabled = False
+                    btnSelectProcesses.Enabled = False
+                    btnLoadProfile.Enabled = False
+                    llblTimeHelper.Enabled = False
+
                     If My.Settings.EnableMinimalisticView = True Then
                         EnableMinimalisticView()
                     End If
@@ -1183,6 +1211,19 @@ Public Class frmMain
                 tmrPnlActionRunningAnimationUp.Enabled = True
                 ActionRunning = True
 
+                'Disable input
+                rbtnShutdown.Enabled = False
+                rbtnRestart.Enabled = False
+                rbtnIn.Enabled = False
+                rbtnPointInTime.Enabled = False
+                tbTime.Enabled = False
+                cbxIn.Enabled = False
+                dtpDate.Enabled = False
+                cbDelayWhenProcessRunning.Enabled = False
+                btnSelectProcesses.Enabled = False
+                btnLoadProfile.Enabled = False
+                llblTimeHelper.Enabled = False
+
                 If My.Settings.EnableMinimalisticView = True Then
                     EnableMinimalisticView()
                 End If
@@ -1229,6 +1270,22 @@ Public Class frmMain
         End If
         ActionRunning = False
         llblEditRunningAction.Hide()
+
+        'Enable input
+        rbtnShutdown.Enabled = True
+        rbtnRestart.Enabled = True
+        rbtnPointInTime.Enabled = True
+        rbtnIn.Enabled = True
+        If rbtnIn.Checked = True Then
+            tbTime.Enabled = True
+            cbxIn.Enabled = True
+        ElseIf rbtnPointInTime.Checked = True Then
+            dtpDate.Enabled = True
+        End If
+        cbDelayWhenProcessRunning.Enabled = True
+        btnSelectProcesses.Enabled = True
+        btnLoadProfile.Enabled = True
+        llblTimeHelper.Enabled = True
 
         WriteToLog("Stopped action.", "Info")
     End Sub

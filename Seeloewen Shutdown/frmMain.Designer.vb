@@ -126,6 +126,7 @@ Partial Class frmMain
         'rbtnShutdown
         '
         Me.rbtnShutdown.AutoSize = True
+        Me.rbtnShutdown.BackColor = System.Drawing.Color.Transparent
         Me.rbtnShutdown.Checked = True
         Me.rbtnShutdown.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rbtnShutdown.ForeColor = System.Drawing.SystemColors.ControlText
@@ -135,7 +136,7 @@ Partial Class frmMain
         Me.rbtnShutdown.TabIndex = 0
         Me.rbtnShutdown.TabStop = True
         Me.rbtnShutdown.Text = "Shutdown"
-        Me.rbtnShutdown.UseVisualStyleBackColor = True
+        Me.rbtnShutdown.UseVisualStyleBackColor = False
         '
         'dtpDate
         '
@@ -149,6 +150,7 @@ Partial Class frmMain
         'rbtnPointInTime
         '
         Me.rbtnPointInTime.AutoSize = True
+        Me.rbtnPointInTime.BackColor = System.Drawing.Color.Transparent
         Me.rbtnPointInTime.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rbtnPointInTime.ForeColor = System.Drawing.Color.Black
         Me.rbtnPointInTime.Location = New System.Drawing.Point(3, 29)
@@ -157,11 +159,12 @@ Partial Class frmMain
         Me.rbtnPointInTime.TabIndex = 10
         Me.rbtnPointInTime.TabStop = True
         Me.rbtnPointInTime.Text = "Exact time"
-        Me.rbtnPointInTime.UseVisualStyleBackColor = True
+        Me.rbtnPointInTime.UseVisualStyleBackColor = False
         '
         'rbtnIn
         '
         Me.rbtnIn.AutoSize = True
+        Me.rbtnIn.BackColor = System.Drawing.Color.Transparent
         Me.rbtnIn.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rbtnIn.ForeColor = System.Drawing.Color.Black
         Me.rbtnIn.Location = New System.Drawing.Point(3, 3)
@@ -170,7 +173,7 @@ Partial Class frmMain
         Me.rbtnIn.TabIndex = 9
         Me.rbtnIn.TabStop = True
         Me.rbtnIn.Text = "In..."
-        Me.rbtnIn.UseVisualStyleBackColor = True
+        Me.rbtnIn.UseVisualStyleBackColor = False
         '
         'cbxIn
         '
@@ -386,13 +389,14 @@ Partial Class frmMain
         'cbDelayWhenProcessRunning
         '
         Me.cbDelayWhenProcessRunning.AutoSize = True
+        Me.cbDelayWhenProcessRunning.BackColor = System.Drawing.Color.Transparent
         Me.cbDelayWhenProcessRunning.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbDelayWhenProcessRunning.Location = New System.Drawing.Point(3, 63)
         Me.cbDelayWhenProcessRunning.Name = "cbDelayWhenProcessRunning"
         Me.cbDelayWhenProcessRunning.Size = New System.Drawing.Size(221, 44)
         Me.cbDelayWhenProcessRunning.TabIndex = 11
         Me.cbDelayWhenProcessRunning.Text = "Delay action when selected" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "processes are running"
-        Me.cbDelayWhenProcessRunning.UseVisualStyleBackColor = True
+        Me.cbDelayWhenProcessRunning.UseVisualStyleBackColor = False
         '
         'lblTime
         '
