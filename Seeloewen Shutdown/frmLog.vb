@@ -13,6 +13,7 @@
 
     Private Sub btnSaveAsFile_Click(sender As Object, e As EventArgs) Handles btnSaveAsFile.Click
         'Show dialog for saving the log
+        sfdLog.Filter = "Text (*.txt)|*.txt|All (*.*)|*.*"
         sfdLog.ShowDialog()
     End Sub
 
@@ -36,7 +37,7 @@
 
     Private Sub LoadDesign()
         'Set design to darkmode if setting is set to dark
-        if frmmain.Design = "Dark" Then
+        If frmMain.Design = "Dark" Then
             BackColor = Color.FromArgb(41, 41, 41)
             lblHeader.ForeColor = Color.White
             rtbLog.BackColor = Color.FromArgb(41, 41, 41)
@@ -45,7 +46,7 @@
 
     Private Sub LoadLanguage()
         'Translate elements if language is set to German
-        if frmmain.Language = "German" Then
+        If frmMain.Language = "German" Then
             sfdLog.Title = "Speichere Log als Datei..."
             btnSaveAsFile.Text = "Als Datei speichern"
             btnClear.Text = "Leeren"
