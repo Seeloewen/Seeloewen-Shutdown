@@ -150,15 +150,18 @@ Public Class frmMain
     End Sub
 
     Private Sub tmrCheckRunningProcess_Tick(sender As Object, e As EventArgs) Handles tmrCheckRunningProcess.Tick
-
+        'Check if an action is running and the delay check is active.
         If ActionRunning = True And cbDelayWhenProcessRunning.Checked = True Then
             TimeDifference = Convert.ToDateTime(My.Settings.LastTime) - DateTime.Now
-            If TimeDifference.TotalMinutes < 5 Then
+            'Check if there's only 11 minutes remaining on the timer
+            If TimeDifference.TotalMinutes < 11 Then
+                'Check for each list on the process check list if it's running and delay if thats the case
                 Dim processList As List(Of String) = New List(Of String)(File.ReadAllLines(processCheckFile))
                 For Each process As String In processList
                     If IsProcessRunning(process) = True Then
                         'Add 5 minutes to the timer
-
+                        EditRunningAction(My.Settings.LastAction, "Add", "300")
+                        Exit For
                     End If
                 Next
             End If
@@ -175,6 +178,13 @@ Public Class frmMain
             ElseIf Language = "German" Then
                 MsgBox("Die Prozess-Prüf-Datei existiert nicht. Bitte starte deine App neu.", MsgBoxStyle.Critical, "Fehler")
             End If
+        End If
+    End Sub
+
+    Private Sub llblEditRunningAction_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles llblEditRunningAction.LinkClicked
+        'Show the dialog to edit an action if one is running
+        If ActionRunning = True Then
+            frmEditRunningAction.ShowDialog()
         End If
     End Sub
 
@@ -613,6 +623,7 @@ Public Class frmMain
             llblTimeHelper.Text = "Welche Zeit sollte ich nutzen?"
             cbDelayWhenProcessRunning.Text = "Aktion verzögern, wenn" + vbNewLine + "bestimmte Prozesse laufen"
             btnSelectProcesses.Text = "Auswählen"
+            llblEditRunningAction.Text = "Laufende Aktion bearbeiten"
             cbxIn.Items.Remove("Second(s)")
             cbxIn.Items.Remove("Minute(s)")
             cbxIn.Items.Remove("Hour(s)")
@@ -694,6 +705,7 @@ Public Class frmMain
             pnlActionRunning.BackColor = Color.FromArgb(25, 25, 25)
             llblTimeHelper.LinkColor = Color.Cyan
             cbDelayWhenProcessRunning.ForeColor = Color.White
+            llblEditRunningAction.LinkColor = Color.Cyan
         End If
 
         WriteToLog("Loaded Design from settings: " + My.Settings.Design, "Info")
@@ -703,6 +715,7 @@ Public Class frmMain
         'Calculate time difference
         Try
             TimeDifference = DateTime.Now - Convert.ToDateTime(My.Settings.LastTime)
+
             WriteToLog("Calculated Time Difference: " + TimeDifference.ToString, "Info")
         Catch ex As Exception
             WriteToLog("Couldn't calculate Time Difference: " + ex.Message + " Please note that this might be expected and isn't necessarily a bad thing.", "Warning")
@@ -734,6 +747,7 @@ Public Class frmMain
                 pbGrayBox.Top = 353
                 pnlActionRunning.Top = 366
             End If
+            llblEditRunningAction.Show()
 
             ActionRunning = True
             If Design = "Dark" Then
@@ -753,6 +767,70 @@ Public Class frmMain
         WriteToLog("Loaded LastDateDisplay from settings: " + My.Settings.LastDateDisplay, "Info")
     End Sub
 
+    Public Sub EditRunningAction(actionNew As String, changeType As String, change As String)
+        'Get new time
+        Dim newTime As DateTime
+        If changeType = "Add" Then
+            newTime = Convert.ToDateTime(My.Settings.LastTime).AddSeconds(Convert.ToInt32(change))
+        ElseIf changeType = "Remove" Then
+            newTime = Convert.ToDateTime(My.Settings.LastTime).AddSeconds(-Convert.ToInt32(change))
+        ElseIf changeType = "PointInTime" Then
+            newTime = Convert.ToDateTime(change)
+        End If
+
+        'Calculate and set shutdown time
+        Dim timeSpan As TimeSpan = newTime - DateTime.Now
+        Shutdowntime.Text = Math.Ceiling(timeSpan.TotalSeconds)
+
+        'Check if new time is valid
+        If Shutdowntime.Text > 31535999 Then
+            If Language = "German" Then
+                MsgBox("Der ausgewählte Zeitpunkt darf nicht mehr als 1 Jahr in der Zukunft liegen!", MsgBoxStyle.Critical, "Fehler")
+            ElseIf Language = "English" Then
+                MsgBox("The selected point in time cannot be more than 1 year in the future!", MsgBoxStyle.Critical, "Error")
+            End If
+        ElseIf Shutdowntime.Text < 0 Then
+            If Language = "German" Then
+                MsgBox("Der ausgewählte Zeitpunkt darf nicht in der Vergangenheit liegen!", MsgBoxStyle.Critical, "Fehler")
+            ElseIf Language = "English" Then
+                MsgBox("The selected point in time cannot be in the past!", MsgBoxStyle.Critical, "Error")
+            End If
+        Else
+            'Set action so software can recognize that an action is running when being restarted
+            My.Settings.LastAction = actionNew
+            My.Settings.LastTime = newTime
+
+            'Display last action
+            My.Settings.LastActionDisplay = actionNew
+            My.Settings.LastTimeDisplay = newTime
+
+            'Stop running action
+            Process.Start("shutdown", "-a")
+
+            'Set the new action
+            If actionNew = "Shutdown" Or actionNew = "Herunterfahren" Then
+                Action.Text = "-s"
+
+            ElseIf actionNew = "Restart" Or actionNew = "Neustart" Then
+                Action.Text = "-r"
+            End If
+            _RunningAction.Text = actionNew
+
+            'Display running action time and setup Shutdown timer
+            CountDownFrom = newTime - DateTime.Now
+            _RunningTime.Text = newTime
+
+            'Start Shutdown Timer
+            tmrShutdown.Interval = 100
+            TargetDT = DateTime.Now.Add(CountDownFrom)
+            tmrShutdown.Start()
+
+            'Start action
+            Process.Start("shutdown", Action.Text + " -t " + Shutdowntime.Text) 'Start the action
+
+            WriteToLog("Edited the current action (ShutdownTimeType: " + ShutdownTimeType + ", Shutdowntime: " + Shutdowntime.Text + ", Action: " + Action.Text + ")", "Info")
+        End If
+    End Sub
     Private Sub CheckForOS()
         If (osVersion.Major = 6 And osVersion.Minor = 1) OrElse (osVersion.Major = 6 And osVersion.Minor = 2) OrElse (osVersion.Major = 6 And osVersion.Minor = 3) Then
             If Language = "German" Then
@@ -941,6 +1019,7 @@ Public Class frmMain
     End Sub
 
     Private Sub ScheduleProcessCheck()
+        'Start checking if the processes are running and if a delay needs to be put
         tmrCheckRunningProcess.Start()
     End Sub
 
@@ -1040,6 +1119,7 @@ Public Class frmMain
                         pnlActionRunning.Top = 366
                     End If
                     ActionRunning = True
+                    llblEditRunningAction.Show()
 
                     If My.Settings.EnableMinimalisticView = True Then
                         EnableMinimalisticView()
@@ -1148,6 +1228,7 @@ Public Class frmMain
             pnlActionRunning.Top = 500
         End If
         ActionRunning = False
+        llblEditRunningAction.Hide()
 
         WriteToLog("Stopped action.", "Info")
     End Sub

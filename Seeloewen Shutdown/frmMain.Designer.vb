@@ -93,6 +93,7 @@ Partial Class frmMain
         Me.SettingsFilePreset = New System.Windows.Forms.RichTextBox()
         Me.llblTimeHelper = New System.Windows.Forms.LinkLabel()
         Me.tmrCheckRunningProcess = New System.Windows.Forms.Timer(Me.components)
+        Me.llblEditRunningAction = New System.Windows.Forms.LinkLabel()
         Me.gbLastAction.SuspendLayout()
         CType(Me.pbLine, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlTime.SuspendLayout()
@@ -810,7 +811,19 @@ Partial Class frmMain
         '
         'tmrCheckRunningProcess
         '
-        Me.tmrCheckRunningProcess.Interval = 300
+        Me.tmrCheckRunningProcess.Interval = 1000
+        '
+        'llblEditRunningAction
+        '
+        Me.llblEditRunningAction.AutoSize = True
+        Me.llblEditRunningAction.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.llblEditRunningAction.Location = New System.Drawing.Point(161, 76)
+        Me.llblEditRunningAction.Name = "llblEditRunningAction"
+        Me.llblEditRunningAction.Size = New System.Drawing.Size(122, 16)
+        Me.llblEditRunningAction.TabIndex = 54
+        Me.llblEditRunningAction.TabStop = True
+        Me.llblEditRunningAction.Text = "Edit Running Action"
+        Me.llblEditRunningAction.Visible = False
         '
         'frmMain
         '
@@ -825,7 +838,6 @@ Partial Class frmMain
         Me.Controls.Add(Me.btnSaveProfile)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.pnlNotification)
-        Me.Controls.Add(Me.lblAction)
         Me.Controls.Add(Me.btnStartAction)
         Me.Controls.Add(Me.rtbLog)
         Me.Controls.Add(Me.dtpSelectedTime)
@@ -845,6 +857,8 @@ Partial Class frmMain
         Me.Controls.Add(Me.lblSelectedAction)
         Me.Controls.Add(Me.pbGrayBox)
         Me.Controls.Add(Me.pbLine2)
+        Me.Controls.Add(Me.llblEditRunningAction)
+        Me.Controls.Add(Me.lblAction)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
@@ -943,4 +957,5 @@ Partial Class frmMain
 	Friend WithEvents cbDelayWhenProcessRunning As CheckBox
     Friend WithEvents btnSelectProcesses As Button
     Friend WithEvents tmrCheckRunningProcess As Timer
+    Friend WithEvents llblEditRunningAction As LinkLabel
 End Class
