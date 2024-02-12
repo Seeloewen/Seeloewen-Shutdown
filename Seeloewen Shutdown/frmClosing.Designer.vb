@@ -36,12 +36,11 @@ Partial Class frmClosing
         '
         Me.lblDescription.AutoSize = True
         Me.lblDescription.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblDescription.Location = New System.Drawing.Point(12, 54)
+        Me.lblDescription.Location = New System.Drawing.Point(12, 52)
         Me.lblDescription.Name = "lblDescription"
-        Me.lblDescription.Size = New System.Drawing.Size(340, 48)
+        Me.lblDescription.Size = New System.Drawing.Size(340, 80)
         Me.lblDescription.TabIndex = 0
-        Me.lblDescription.Text = "The currently executed action will continue to run when" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "closing the application." &
-    " To cancel the action, return to the" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "main window and click 'Stop action'."
+        Me.lblDescription.Text = resources.GetString("lblDescription.Text")
         '
         'lblHeader
         '
@@ -63,9 +62,9 @@ Partial Class frmClosing
         Me.btnReturn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnReturn.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnReturn.ForeColor = System.Drawing.Color.White
-        Me.btnReturn.Location = New System.Drawing.Point(15, 162)
+        Me.btnReturn.Location = New System.Drawing.Point(12, 183)
         Me.btnReturn.Name = "btnReturn"
-        Me.btnReturn.Size = New System.Drawing.Size(153, 23)
+        Me.btnReturn.Size = New System.Drawing.Size(162, 23)
         Me.btnReturn.TabIndex = 2
         Me.btnReturn.Text = "Return"
         Me.btnReturn.UseVisualStyleBackColor = True
@@ -73,9 +72,9 @@ Partial Class frmClosing
         'pbButtonBackground
         '
         Me.pbButtonBackground.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.pbButtonBackground.Location = New System.Drawing.Point(-3, 149)
+        Me.pbButtonBackground.Location = New System.Drawing.Point(-1, 173)
         Me.pbButtonBackground.Name = "pbButtonBackground"
-        Me.pbButtonBackground.Size = New System.Drawing.Size(378, 50)
+        Me.pbButtonBackground.Size = New System.Drawing.Size(389, 50)
         Me.pbButtonBackground.TabIndex = 3
         Me.pbButtonBackground.TabStop = False
         '
@@ -89,9 +88,9 @@ Partial Class frmClosing
         Me.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnClose.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnClose.ForeColor = System.Drawing.Color.White
-        Me.btnClose.Location = New System.Drawing.Point(195, 162)
+        Me.btnClose.Location = New System.Drawing.Point(204, 183)
         Me.btnClose.Name = "btnClose"
-        Me.btnClose.Size = New System.Drawing.Size(157, 23)
+        Me.btnClose.Size = New System.Drawing.Size(166, 23)
         Me.btnClose.TabIndex = 4
         Me.btnClose.Text = "Close app"
         Me.btnClose.UseVisualStyleBackColor = True
@@ -100,7 +99,7 @@ Partial Class frmClosing
         '
         Me.cbDontShowAgain.AutoSize = True
         Me.cbDontShowAgain.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbDontShowAgain.Location = New System.Drawing.Point(15, 114)
+        Me.cbDontShowAgain.Location = New System.Drawing.Point(15, 143)
         Me.cbDontShowAgain.Name = "cbDontShowAgain"
         Me.cbDontShowAgain.Size = New System.Drawing.Size(128, 20)
         Me.cbDontShowAgain.TabIndex = 5
@@ -112,7 +111,7 @@ Partial Class frmClosing
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(369, 196)
+        Me.ClientSize = New System.Drawing.Size(382, 215)
         Me.Controls.Add(Me.cbDontShowAgain)
         Me.Controls.Add(Me.btnClose)
         Me.Controls.Add(Me.btnReturn)

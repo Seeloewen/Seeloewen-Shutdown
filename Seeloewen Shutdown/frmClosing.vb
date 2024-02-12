@@ -51,7 +51,7 @@
         'Translate elements if language is set to German
         If frmMain.Language = "German" Then
             lblHeader.Text = "Bitte beachte..."
-            lblDescription.Text = "Die aktuell ausgeführte Aktion läuft weiter, wenn du" + vbNewLine + "die App schließt. Um die Aktion abzubrechen," + vbNewLine + "kehre ins Hauptmenü zurück und klicke auf 'Aktion stoppen'"
+            lblDescription.Text = "Die aktuell ausgeführte Aktion läuft weiter, wenn du" + vbNewLine + "die App schließt. Um die Aktion abzubrechen," + vbNewLine + "kehre ins Hauptmenü zurück und klicke auf 'Aktion stoppen'" + vbNewLine + "Bitte beachte, dass das Verzögern einer Aktion, wenn ein" + vbNewLine + "Prozess läuft nicht funktioniert, wenn die App geschlossen ist."
             btnReturn.Text = "Zurück"
             btnClose.Text = "App schließen"
             cbDontShowAgain.Text = "Nicht erneut anzeigen"
