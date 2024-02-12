@@ -58,7 +58,7 @@ Public Class frmActionHistory
 
     Private Sub ShowClearHistoryMsgBox()
         'Show messagebox, clicking "yes" will result in the Action History file being cleared
-        Select Case MsgBox(ClearMsgBoxText, MsgBoxStyle.YesNo, ClearMsgBoxHeader)
+        Select Case MsgBox(ClearMsgBoxText, MsgBoxStyle.YesNo Or MsgBoxStyle.Question, ClearMsgBoxHeader)
             Case Windows.Forms.DialogResult.Yes
                 lvActionHistory.Clear()
                 My.Computer.FileSystem.WriteAllText(frmMain.ActionHistoryFile, "", False)
