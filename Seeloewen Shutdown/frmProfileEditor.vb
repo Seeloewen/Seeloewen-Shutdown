@@ -20,12 +20,12 @@ Public Class frmProfileEditor
         cbxProfile.Items.Clear()
         rbtnShutdown.Checked = True
         tbTimeIn.Text = ""
-        cbxInTime.SelectedIndex = 0
 
         'Get profiles and load user settings
         GetFiles(ProfileDirectory)
         LoadDesign()
         LoadLanguage()
+        cbxInTime.SelectedIndex = 1
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
