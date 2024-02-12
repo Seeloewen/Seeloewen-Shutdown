@@ -5,6 +5,7 @@
     Dim rbtnAction As String
     Dim tbTime As String
     Dim cbxIn As String
+    Dim cbDelayAction As String
 
     '-- Method handlers --
 
@@ -25,6 +26,13 @@
             rbtnAction = "Restart"
         End If
 
+        'Load checkbox state into variable
+        If frmMain.cbDelayWhenProcessRunning.Checked = True Then
+            cbDelayAction = "True"
+        Else
+            cbDelayAction = "False"
+        End If
+
         'Load textbox and combobox text into variable
         tbTime = frmMain.tbTime.Text
         cbxIn = frmMain.cbxIn.Text
@@ -35,8 +43,8 @@
                 If My.Computer.FileSystem.FileExists(frmMain.AppData + "\Seeloewen Shutdown\Profiles\" + tbSaveProfileAs.Text + ".txt") Then
                     Select Case MessageBox.Show(SaveMsgBoxText, SaveMsgBoxHeader, MessageBoxButtons.YesNo)
                         Case Windows.Forms.DialogResult.Yes
-                            My.Computer.FileSystem.WriteAllText(frmMain.AppData + "\Seeloewen Shutdown\Profiles\" + tbSaveProfileAs.Text + ".txt", rbtnAction + vbNewLine + tbTime + vbNewLine + cbxIn, False)
-                            if frmmain.Language = "English" Then
+                            My.Computer.FileSystem.WriteAllText(frmMain.AppData + "\Seeloewen Shutdown\Profiles\" + tbSaveProfileAs.Text + ".txt", rbtnAction + vbNewLine + tbTime + vbNewLine + cbxIn + vbNewLine + cbDelayAction, False)
+                            If frmmain.Language = "English" Then
                                 MsgBox("Profile was overwritten and saved.", MsgBoxStyle.Information, "Overwritten and saved")
                             Elseif frmmain.Language = "German" Then
                                 MsgBox("Profil wurde übershrieben und gespeichert.", MsgBoxStyle.Information, "Überschrieben und gespeichert")
@@ -51,8 +59,8 @@
                             End If
                     End Select
                 Else
-                    My.Computer.FileSystem.WriteAllText(frmMain.AppData + "\Seeloewen Shutdown\Profiles\" + tbSaveProfileAs.Text + ".txt", rbtnAction + vbNewLine + tbTime + vbNewLine + cbxIn, False)
-                    if frmmain.Language = "English" Then
+                    My.Computer.FileSystem.WriteAllText(frmMain.AppData + "\Seeloewen Shutdown\Profiles\" + tbSaveProfileAs.Text + ".txt", rbtnAction + vbNewLine + tbTime + vbNewLine + cbxIn + vbNewLine + cbDelayAction, False)
+                    If frmmain.Language = "English" Then
                         MsgBox("Profile was saved.", MsgBoxStyle.Information, "Saved")
                     Elseif frmmain.Language = "German" Then
                         MsgBox("Profil wurde gespeichert.", MsgBoxStyle.Information, "Gespeichert")
@@ -125,11 +133,16 @@
         Else
             cbxIn = "Minute(s)"
         End If
+        If frmMain.cbDelayWhenProcessRunning.Checked = True Then
+            cbDelayAction = "True"
+        Else
+            cbDelayAction = "False"
+        End If
 
         'Update the selected profile. This will save and overwrite the selected profile without showing any warning or message. Used if a profile is old or corrupted.
         If String.IsNullOrEmpty(ProfileName) = False Then
             If My.Computer.FileSystem.DirectoryExists(frmMain.ProfileDirectory) Then
-                My.Computer.FileSystem.WriteAllText(frmMain.ProfileDirectory + ProfileName + ".txt", rbtnAction + vbNewLine + tbTime + vbNewLine + cbxIn, False)
+                My.Computer.FileSystem.WriteAllText(frmMain.ProfileDirectory + ProfileName + ".txt", rbtnAction + vbNewLine + tbTime + vbNewLine + cbxIn + vbNewLine + cbDelayAction, False)
             Else
                 if frmmain.Language = "German" Then
                     MsgBox("Fehler: Profil konnte nicht aktualisiert werden. Profilverzeichnis existiert nicht. Bitte starte die App neu.", MsgBoxStyle.Critical, "Fehler")
