@@ -104,7 +104,7 @@ Public Class frmSettings
             End If
             SettingsArray(4) = "Language=" + My.Settings.Language
             frmMain.WriteToLog("Saved setting " + SettingsArray(4), "Info")
-            frmMain.determineLanguage()
+            frmMain.DetermineLanguage()
 
             If cbxDesign.SelectedItem = "Light" Then
                 My.Settings.Design = "Light"
@@ -121,7 +121,7 @@ Public Class frmSettings
             End If
             SettingsArray(5) = "Design=" + My.Settings.Design
             frmMain.WriteToLog("Saved setting " + SettingsArray(5), "Info")
-            frmMain.determinedesign()
+            frmMain.DetermineDesign()
 
             If cbShowNotifications.Checked Then
                 My.Settings.ShowNotifications = True

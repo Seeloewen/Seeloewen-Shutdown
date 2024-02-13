@@ -141,13 +141,8 @@
         End If
 
         'Edit the running action and show confirmation
-        frmMain.EditRunningAction(action, changeType, change)
-        If frmMain.Language = "English" Then
-            MsgBox("Updated the currently running action!", MsgBoxStyle.Information, "Updated action")
-        ElseIf frmMain.Language = "German" Then
-            MsgBox("Die aktuell laufende Aktion wurde aktualisiert!", MsgBoxStyle.Information, "Aktion aktualisiert")
-        End If
         Close()
+        frmMain.EditRunningAction(action, changeType, change, True)
     End Sub
 
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click

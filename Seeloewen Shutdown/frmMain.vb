@@ -160,7 +160,12 @@ Public Class frmMain
                 For Each process As String In processList
                     If IsProcessRunning(process) = True Then
                         'Add 5 minutes to the timer
-                        EditRunningAction(My.Settings.LastAction, "Add", "300")
+                        EditRunningAction(My.Settings.LastAction, "Add", "300", False)
+                        If Language = "English" Then
+                            ShowNotification("Because of running processes, the action was delayed!")
+                        ElseIf Language = "German" Then
+                            ShowNotification("Die Aktion wurde aufgrund laufender Prozesse verzögert!")
+                        End If
                         Exit For
                     End If
                 Next
@@ -787,7 +792,7 @@ Public Class frmMain
         WriteToLog("Loaded LastDateDisplay from settings: " + My.Settings.LastDateDisplay, "Info")
     End Sub
 
-    Public Sub EditRunningAction(actionNew As String, changeType As String, change As String)
+    Public Sub EditRunningAction(actionNew As String, changeType As String, change As String, showNotification As Boolean)
         'Get new time
         Dim newTime As DateTime
         If changeType = "Add" Then
@@ -848,6 +853,14 @@ Public Class frmMain
             'Start action
             Process.Start("shutdown", Action.Text + " -t " + Shutdowntime.Text) 'Start the action
 
+            'Show notification if enabled and add log entry
+            If showNotification = True Then
+                If Language = "German" Then
+                    Me.ShowNotification("Die laufende Aktion wurde bearbeitet!")
+                ElseIf Language = "English" Then
+                    Me.ShowNotification("The running action was edited!")
+                End If
+            End If
             WriteToLog("Edited the current action (ShutdownTimeType: " + ShutdownTimeType + ", Shutdowntime: " + Shutdowntime.Text + ", Action: " + Action.Text + ")", "Info")
         End If
     End Sub
