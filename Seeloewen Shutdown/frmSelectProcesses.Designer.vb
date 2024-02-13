@@ -29,6 +29,7 @@ Partial Class frmSelectProcesses
         Me.gbProcesses = New System.Windows.Forms.GroupBox()
         Me.btnSelectFromOpenProcesses = New System.Windows.Forms.Button()
         Me.btnSave = New System.Windows.Forms.Button()
+        Me.btnCancel = New System.Windows.Forms.Button()
         Me.gbProcesses.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -82,7 +83,7 @@ Partial Class frmSelectProcesses
         Me.btnSelectFromOpenProcesses.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSelectFromOpenProcesses.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSelectFromOpenProcesses.ForeColor = System.Drawing.Color.White
-        Me.btnSelectFromOpenProcesses.Location = New System.Drawing.Point(17, 432)
+        Me.btnSelectFromOpenProcesses.Location = New System.Drawing.Point(217, 432)
         Me.btnSelectFromOpenProcesses.Name = "btnSelectFromOpenProcesses"
         Me.btnSelectFromOpenProcesses.Size = New System.Drawing.Size(257, 31)
         Me.btnSelectFromOpenProcesses.TabIndex = 8
@@ -106,12 +107,30 @@ Partial Class frmSelectProcesses
         Me.btnSave.Text = "Save"
         Me.btnSave.UseVisualStyleBackColor = True
         '
+        'btnCancel
+        '
+        Me.btnCancel.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
+        Me.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnCancel.FlatAppearance.BorderSize = 0
+        Me.btnCancel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.btnCancel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnCancel.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnCancel.ForeColor = System.Drawing.Color.White
+        Me.btnCancel.Location = New System.Drawing.Point(17, 432)
+        Me.btnCancel.Name = "btnCancel"
+        Me.btnCancel.Size = New System.Drawing.Size(185, 31)
+        Me.btnCancel.TabIndex = 10
+        Me.btnCancel.Text = "Cancel"
+        Me.btnCancel.UseVisualStyleBackColor = True
+        '
         'frmSelectProcesses
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(692, 475)
+        Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.btnSave)
         Me.Controls.Add(Me.btnSelectFromOpenProcesses)
         Me.Controls.Add(Me.gbProcesses)
@@ -136,4 +155,5 @@ Partial Class frmSelectProcesses
     Friend WithEvents gbProcesses As GroupBox
     Friend WithEvents btnSelectFromOpenProcesses As Button
     Friend WithEvents btnSave As Button
+    Friend WithEvents btnCancel As Button
 End Class

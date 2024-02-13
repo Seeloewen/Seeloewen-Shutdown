@@ -120,6 +120,12 @@
     <Compile Include="frmClosing.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmEditRunningAction.Designer.vb">
+      <DependentUpon>frmEditRunningAction.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmEditRunningAction.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmFirstStart.Designer.vb">
       <DependentUpon>frmFirstStart.vb</DependentUpon>
     </Compile>
@@ -161,6 +167,18 @@
       <DependentUpon>frmSaveProfileAs.vb</DependentUpon>
     </Compile>
     <Compile Include="frmSaveProfileAs.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSearchProcesses.Designer.vb">
+      <DependentUpon>frmSearchProcesses.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmSearchProcesses.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSelectProcesses.Designer.vb">
+      <DependentUpon>frmSelectProcesses.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmSelectProcesses.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmTimeHelper.Designer.vb">
@@ -213,6 +231,9 @@
     <EmbeddedResource Include="frmClosing.resx">
       <DependentUpon>frmClosing.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmEditRunningAction.resx">
+      <DependentUpon>frmEditRunningAction.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmFirstStart.resx">
       <DependentUpon>frmFirstStart.vb</DependentUpon>
     </EmbeddedResource>
@@ -233,6 +254,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmSaveProfileAs.resx">
       <DependentUpon>frmSaveProfileAs.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSearchProcesses.resx">
+      <DependentUpon>frmSearchProcesses.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSelectProcesses.resx">
+      <DependentUpon>frmSelectProcesses.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTimeHelper.resx">
       <DependentUpon>frmTimeHelper.vb</DependentUpon>

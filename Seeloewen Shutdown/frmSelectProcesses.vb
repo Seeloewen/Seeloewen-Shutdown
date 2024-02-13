@@ -30,6 +30,11 @@
         rtbProcesses.Text = My.Computer.FileSystem.ReadAllText(frmMain.processCheckFile)
     End Sub
 
+    Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
+        'Close without saving
+        Close()
+    End Sub
+
     '-- Custom Methods --
 
     Private Sub LoadDesign()
@@ -51,6 +56,7 @@
             lblProcessSelectionDesc.Text = "Die folgende List enthält die Namen von Prozessen. Alle Aktionen werden, wenn aktiviert, verzögert wenn eine der" + vbNewLine + "folgenden Prozesse läuft. Du kannst außerdem den Prozess-Sucher nutzen, um einen der aktuell laufenden" + vbNewLine + "Prozesse zur Liste hinzuzufügen."
             btnSelectFromOpenProcesses.Text = "Von laufenden Prozessen auswählen..."
             btnSave.Text = "Speichern"
+            btnCancel.Text = "Abbrechen"
             Text = "Prozesse auswählen"
         End If
     End Sub
@@ -87,5 +93,21 @@
 
     Private Sub btnSelectFromOpenProcesses_MouseUp(sender As Object, e As MouseEventArgs) Handles btnSelectFromOpenProcesses.MouseUp
         btnSelectFromOpenProcesses.BackgroundImage = My.Resources.button
+    End Sub
+
+    Private Sub btnCancel_MouseDown(sender As Object, e As MouseEventArgs) Handles btnCancel.MouseDown
+        btnCancel.BackgroundImage = My.Resources.button_click
+    End Sub
+
+    Private Sub btnCancel_MouseEnter(sender As Object, e As EventArgs) Handles btnCancel.MouseEnter
+        btnCancel.BackgroundImage = My.Resources.button_hover
+    End Sub
+
+    Private Sub btnCancel_MouseLeave(sender As Object, e As EventArgs) Handles btnCancel.MouseLeave
+        btnCancel.BackgroundImage = My.Resources.button
+    End Sub
+
+    Private Sub btnCancel_MouseUp(sender As Object, e As MouseEventArgs) Handles btnCancel.MouseUp
+        btnCancel.BackgroundImage = My.Resources.button
     End Sub
 End Class
