@@ -17,7 +17,7 @@
 
     Private Sub LoadDesign()
         'Set design to darkmode, based on setting
-        if frmmain.Design = "Dark" Then
+        If frmMain.design = "Dark" Then
             BackColor = Color.FromArgb(41, 41, 41)
             rtbchangelogEnglish.BackColor = Color.FromArgb(41, 41, 41)
             rtbchangelogEnglish.ForeColor = Color.White
@@ -28,7 +28,7 @@
 
     Private Sub LoadLanguage()
         'Translate elements if language German is selected
-        if frmmain.Language = "German" Then
+        If frmMain.language = "German" Then
             lblChangelogDescription.Text = "Im Changelog können die Neuigkeiten von Versionen einfach abgerufen werden."
             rtbchangelogEnglish.Text = rtbChangelog.Text
         End If

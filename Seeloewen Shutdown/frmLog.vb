@@ -8,7 +8,7 @@
         LoadLanguage()
 
         'Loads log from file
-        rtbLog.LoadFile(frmMain.AppData + "/Seeloewen Shutdown/DebugLogTemp")
+        rtbLog.LoadFile(frmMain.debugLogTempFile)
     End Sub
 
     Private Sub btnSaveAsFile_Click(sender As Object, e As EventArgs) Handles btnSaveAsFile.Click
@@ -37,7 +37,7 @@
 
     Private Sub LoadDesign()
         'Set design to darkmode if setting is set to dark
-        If frmMain.Design = "Dark" Then
+        If frmMain.design = "Dark" Then
             BackColor = Color.FromArgb(41, 41, 41)
             lblHeader.ForeColor = Color.White
             rtbLog.BackColor = Color.FromArgb(41, 41, 41)
@@ -46,7 +46,7 @@
 
     Private Sub LoadLanguage()
         'Translate elements if language is set to German
-        If frmMain.Language = "German" Then
+        If frmMain.language = "German" Then
             sfdLog.Title = "Speichere Log als Datei..."
             btnSaveAsFile.Text = "Als Datei speichern"
             btnClear.Text = "Leeren"

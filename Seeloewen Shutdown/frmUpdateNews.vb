@@ -22,7 +22,7 @@
 
     Private Sub LoadLanguage()
         'Translate strings if language german is selected
-        if frmmain.Language = "German" Then
+        If frmMain.language = "German" Then
             lblHeader.Text = "Version 1.9.0 - Was ist neu?"
             Text = "Seeloewen Shutdown wurde installiert!"
             lblNewsHeader.Text = "Mehrere neue Funktionen"
@@ -36,7 +36,7 @@
 
     Private Sub LoadDesign()
         'Set to darkmode if design dark is selected
-        if frmmain.Design = "Dark" Then
+        If frmMain.design = "Dark" Then
             lblHeader.ForeColor = Color.White
             lblNewsHeader.ForeColor = Color.White
             lblNews.ForeColor = Color.White

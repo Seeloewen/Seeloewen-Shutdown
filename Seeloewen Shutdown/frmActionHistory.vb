@@ -2,8 +2,10 @@
 
 Public Class frmActionHistory
 
-    Dim ClearMsgBoxText As String
-    Dim ClearMsgBoxHeader As String
+    '-- Attributes --
+
+    Dim clearMsgBoxText As String
+    Dim clearMsgBoxHeader As String
 
     '-- Event handlers --
 
@@ -28,7 +30,7 @@ Public Class frmActionHistory
 
     Private Sub LoadDesign()
         'Change to darkmode if design is set to dark
-        If frmMain.Design = "Dark" Then
+        If frmMain.design = "Dark" Then
             BackColor = Color.FromArgb(41, 41, 41)
             lblPastActionsDesc.ForeColor = Color.White
             lblPastActionsHeader.ForeColor = Color.White
@@ -39,7 +41,7 @@ Public Class frmActionHistory
 
     Private Sub LoadLanguage()
         'Translate elements to selected language
-        If frmMain.Language = "German" Then
+        If frmMain.language = "German" Then
             lblPastActionsHeader.Text = "Aktionsverlauf"
             lblPastActionsDesc.Text = "Betrachte deine vergangenen Aktionen."
             lvActionHistory.Columns(0).Text = "Aktion"
@@ -48,31 +50,28 @@ Public Class frmActionHistory
             btnClear.Text = "Aktionsverlauf leeren"
             btnClose.Text = "Schließen"
             Text = "Aktionsverlauf"
-            ClearMsgBoxHeader = "Liste leeren"
-            ClearMsgBoxText = "Bist du dir sicher, dass du die Liste leeren möchtest?"
-        ElseIf frmMain.Language = "English" Then
-            ClearMsgBoxHeader = "Clear list"
-            ClearMsgBoxText = "Are you sure that you want to clear the list?"
+            clearMsgBoxHeader = "Liste leeren"
+            clearMsgBoxText = "Bist du dir sicher, dass du die Liste leeren möchtest?"
+        ElseIf frmMain.language = "English" Then
+            clearMsgBoxHeader = "Clear list"
+            clearMsgBoxText = "Are you sure that you want to clear the list?"
         End If
     End Sub
 
     Private Sub ShowClearHistoryMsgBox()
         'Show messagebox, clicking "yes" will result in the Action History file being cleared
-        Select Case MsgBox(ClearMsgBoxText, MsgBoxStyle.YesNo Or MsgBoxStyle.Question, ClearMsgBoxHeader)
+        Select Case MsgBox(clearMsgBoxText, MsgBoxStyle.YesNo Or MsgBoxStyle.Question, clearMsgBoxHeader)
             Case Windows.Forms.DialogResult.Yes
                 lvActionHistory.Clear()
-                My.Computer.FileSystem.WriteAllText(frmMain.ActionHistoryFile, "", False)
+                My.Computer.FileSystem.WriteAllText(frmMain.actionHistoryFile, "", False)
                 frmMain.WriteToLog("Cleared Action History", "Info")
         End Select
     End Sub
 
     Private Sub LoadActionHistory()
         'Adds all lines in the file into the listview
-        For Each line As String In File.ReadAllLines(frmMain.ActionHistoryFile)
-            Dim items As String() = line.Split(";"c)
-            Dim lvItem As ListViewItem
-            lvItem = New ListViewItem(items)
-            lvActionHistory.Items.Add(lvItem)
+        For Each line As String In File.ReadAllLines(frmMain.actionHistoryFile)
+            lvActionHistory.Items.Add(New ListViewItem(line.Split(";"c)))
         Next
     End Sub
 

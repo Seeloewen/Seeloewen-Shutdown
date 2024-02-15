@@ -27,7 +27,7 @@
 
     Private Sub LoadDesign()
         'Load darkmode if design dark is selected
-        If frmMain.Design = "Dark" Then
+        If frmMain.design = "Dark" Then
             BackColor = Color.FromArgb(41, 41, 41)
             rtbInfo.BackColor = Color.FromArgb(41, 41, 41)
             llblSeeloewenShutdownGithub.ForeColor = Color.Cyan
@@ -41,7 +41,7 @@
 
     Private Sub LoadLanguage()
         'Translate strings if language is set to German
-        If frmMain.Language = "German" Then
+        If frmMain.language = "German" Then
             Text = "Über"
             btnClose.Text = "Schließen"
         End If

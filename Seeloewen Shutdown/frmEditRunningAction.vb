@@ -95,15 +95,15 @@
         'Set action
         Dim action As String = "Shutdown"
         If rbtnShutdown.Checked = True Then
-            If frmMain.Language = "English" Then
+            If frmMain.language = "English" Then
                 action = "Shutdown"
-            ElseIf frmMain.Language = "German" Then
+            ElseIf frmMain.language = "German" Then
                 action = "Herunterfahren"
             End If
         ElseIf rbtnRestart.Checked = True Then
-            If frmMain.Language = "English" Then
+            If frmMain.language = "English" Then
                 action = "Restart"
-            ElseIf frmMain.Language = "German" Then
+            ElseIf frmMain.language = "German" Then
                 action = "Neustart"
             End If
         End If
@@ -170,7 +170,7 @@
     '-- Custom Methods --
     Private Sub LoadDesign()
         'Change to darkmode if design is set to dark
-        If frmMain.Design = "Dark" Then
+        If frmMain.design = "Dark" Then
             BackColor = Color.FromArgb(41, 41, 41)
             lblEditRunningActionHeader.ForeColor = Color.White
             lblEditRunningActionDesc.ForeColor = Color.White
@@ -194,7 +194,7 @@
 
     Private Sub LoadLanguage()
         'Translate elements to selected language
-        If frmMain.Language = "German" Then
+        If frmMain.language = "German" Then
             lblEditRunningActionHeader.Text = "Laufende Aktion bearbeiten"
             lblEditRunningActionDesc.Text = "Nicht zufrieden mit der aktuellen Aktion? Hier kannst du die Aktion ändern, Zeit" + vbNewLine + "hinzufügen oder entfernen oder einen neuen Zeitpunkt festlegen."
             btnCancel.Text = "Abbrechen"

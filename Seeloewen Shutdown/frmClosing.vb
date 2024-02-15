@@ -4,7 +4,7 @@
 
     Private Sub frmClosing_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'If no action gets chosen, it will default to "close"
-        frmMain.ClosingResult = "Close"
+        frmMain.closingResult = "Close"
 
         'Load settings
         LoadLanguage()
@@ -15,33 +15,31 @@
         'If checkbox to not show warning again is selected, apply and save settings
         If cbDontShowAgain.Checked = True Then
             My.Settings.ShowCloseWarning = False
-        Else
-            My.Settings.ShowCloseWarning = True
+            frmSettings.Visible = False
+            frmSettings.Show()
+            frmSettings.ShowMessage = False
+            frmSettings.SaveSettings(frmMain.settingsFile)
+            frmSettings.Close()
         End If
-        frmSettings.Visible = False
-        frmSettings.Show()
-        frmSettings.ShowMessage = False
-        frmSettings.SaveSettings(frmMain.SettingsFile)
-        frmSettings.Close()
 
         'Close the main window and exit the application
-        frmMain.ClosingResult = "Close"
+        frmMain.closingResult = "Close"
         Close()
     End Sub
 
     Private Sub btnReturn_Click(sender As Object, e As EventArgs) Handles btnReturn.Click
-        'Close this window and return to the main window
+        'Open settings window, save settings and close
         If cbDontShowAgain.Checked = True Then
             My.Settings.ShowCloseWarning = False
-        Else
-            My.Settings.ShowCloseWarning = True
+            frmSettings.Visible = False
+            frmSettings.Show()
+            frmSettings.ShowMessage = False
+            frmSettings.SaveSettings(frmMain.settingsFile)
+            frmSettings.Close()
         End If
-        frmSettings.Visible = False
-        frmSettings.Show()
-        frmSettings.ShowMessage = False
-        frmSettings.SaveSettings(frmMain.SettingsFile)
-        frmSettings.Close()
-        frmMain.ClosingResult = "Return"
+
+        'Close this window and return to the main window
+        frmMain.closingResult = "Return"
         Close()
     End Sub
 
@@ -49,7 +47,7 @@
 
     Private Sub LoadLanguage()
         'Translate elements if language is set to German
-        If frmMain.Language = "German" Then
+        If frmMain.language = "German" Then
             lblHeader.Text = "Bitte beachte..."
             lblDescription.Text = "Die aktuell ausgeführte Aktion läuft weiter, wenn du" + vbNewLine + "die App schließt. Um die Aktion abzubrechen," + vbNewLine + "kehre ins Hauptmenü zurück und klicke auf 'Aktion stoppen'" + vbNewLine + "Bitte beachte, dass das Verzögern einer Aktion, wenn ein" + vbNewLine + "Prozess läuft nicht funktioniert, wenn die App geschlossen ist."
             btnReturn.Text = "Zurück"
@@ -60,7 +58,7 @@
 
     Private Sub LoadDesign()
         'Switch to darkmode if setting is set to dark
-        If frmMain.Design = "Dark" Then
+        If frmMain.design = "Dark" Then
             lblHeader.ForeColor = Color.White
             lblDescription.ForeColor = Color.White
             cbDontShowAgain.ForeColor = Color.White

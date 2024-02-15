@@ -12,9 +12,9 @@
         If My.Computer.FileSystem.FileExists(frmMain.processCheckFile) Then
             My.Computer.FileSystem.WriteAllText(frmMain.processCheckFile, rtbProcesses.Text, False)
         Else
-            If frmMain.Language = "English" Then
+            If frmMain.language = "English" Then
                 MsgBox("The Process Check File does not exist. Please restart your application.", MsgBoxStyle.Critical, "Error")
-            ElseIf frmMain.Language = "German" Then
+            ElseIf frmMain.language = "German" Then
                 MsgBox("Die Prozess-Prüf-Datei existiert nicht. Bitte starte deine App neu.", MsgBoxStyle.Critical, "Fehler")
             End If
         End If
@@ -39,19 +39,19 @@
 
     Private Sub LoadDesign()
         'Change to darkmode if design is set to dark
-        If frmMain.Design = "Dark" Then
+        If frmMain.design = "Dark" Then
             BackColor = Color.FromArgb(41, 41, 41)
             lblProcessSelectionHeader.ForeColor = Color.White
             lblProcessSelectionDesc.ForeColor = Color.White
             gbProcesses.ForeColor = Color.White
             rtbProcesses.BackColor = Color.FromArgb(41, 41, 41)
-            rtbProcesses.ForeColor = Color.white
+            rtbProcesses.ForeColor = Color.White
         End If
     End Sub
 
     Private Sub LoadLanguage()
         'Translate elements to selected language
-        If frmMain.Language = "German" Then
+        If frmMain.language = "German" Then
             lblProcessSelectionHeader.Text = "Prozesse auswählen"
             lblProcessSelectionDesc.Text = "Die folgende List enthält die Namen von Prozessen. Alle Aktionen werden, wenn aktiviert, verzögert wenn eine der" + vbNewLine + "folgenden Prozesse läuft. Du kannst außerdem den Prozess-Sucher nutzen, um einen der aktuell laufenden" + vbNewLine + "Prozesse zur Liste hinzuzufügen."
             btnSelectFromOpenProcesses.Text = "Von laufenden Prozessen auswählen..."

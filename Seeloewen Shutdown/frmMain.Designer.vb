@@ -35,7 +35,6 @@ Partial Class frmMain
         Me.Action = New System.Windows.Forms.Label()
         Me.Shutdowntime = New System.Windows.Forms.Label()
         Me.Finaloutput = New System.Windows.Forms.Label()
-        Me.Quotationmark = New System.Windows.Forms.Label()
         Me.gbLastAction = New System.Windows.Forms.GroupBox()
         Me.btnShowActionHistory = New System.Windows.Forms.Button()
         Me._StartedOn = New System.Windows.Forms.Label()
@@ -230,15 +229,6 @@ Partial Class frmMain
         Me.Finaloutput.Size = New System.Drawing.Size(59, 13)
         Me.Finaloutput.TabIndex = 11
         Me.Finaloutput.Text = "Finaloutput"
-        '
-        'Quotationmark
-        '
-        Me.Quotationmark.AutoSize = True
-        Me.Quotationmark.Location = New System.Drawing.Point(704, 169)
-        Me.Quotationmark.Name = "Quotationmark"
-        Me.Quotationmark.Size = New System.Drawing.Size(12, 13)
-        Me.Quotationmark.TabIndex = 12
-        Me.Quotationmark.Text = """"
         '
         'gbLastAction
         '
@@ -850,7 +840,6 @@ Partial Class frmMain
         Me.Controls.Add(Me.pnlTime)
         Me.Controls.Add(Me.lblTime)
         Me.Controls.Add(Me.pnlAction)
-        Me.Controls.Add(Me.Quotationmark)
         Me.Controls.Add(Me.Finaloutput)
         Me.Controls.Add(Me.Shutdowntime)
         Me.Controls.Add(Me.Action)
@@ -900,7 +889,6 @@ Partial Class frmMain
     Friend WithEvents Action As Label
     Friend WithEvents Shutdowntime As Label
     Friend WithEvents Finaloutput As Label
-    Friend WithEvents Quotationmark As Label
     Friend WithEvents cbxIn As ComboBox
     Friend WithEvents rbtnPointInTime As RadioButton
     Friend WithEvents rbtnIn As RadioButton

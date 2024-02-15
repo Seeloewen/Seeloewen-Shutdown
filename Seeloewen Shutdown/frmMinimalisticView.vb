@@ -5,15 +5,15 @@
     Private Sub frmMinimalisticView_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Load action
         If frmMain._RunningAction.Text = "Shutdown" Or frmMain._RunningAction.Text = "Herunterfahren" Then
-            if frmmain.Language = "German" Then
+            If frmMain.language = "German" Then
                 lblAction.Text = "Ein Herunterfahren wurde geplant!"
-            Elseif frmmain.Language = "English" Then
+            ElseIf frmMain.language = "English" Then
                 lblAction.Text = "A shutdown has been scheduled!"
             End If
         ElseIf frmMain._RunningAction.Text = "Restart" Or frmMain._RunningAction.Text = "Neustarten" Then
-            if frmmain.Language = "German" Then
+            If frmMain.language = "German" Then
                 lblAction.Text = "Ein Neustart wurde geplant!"
-            Elseif frmmain.Language = "English" Then
+            ElseIf frmMain.language = "English" Then
                 lblAction.Text = "A restart has been scheduled!"
             End If
         End If
@@ -38,7 +38,7 @@
 
     Private Sub LoadDesign()
         'Set to darkmode if design dark is selected
-        if frmmain.Design = "Dark" Then
+        If frmMain.design = "Dark" Then
             lblAction.ForeColor = Color.White
             lblScheduledTime.ForeColor = Color.White
             lblTime.ForeColor = Color.White
@@ -50,7 +50,7 @@
 
     Private Sub LoadLanguage()
         'Translate string if language is set to German
-        if frmmain.Language = "German" Then
+        If frmMain.language = "German" Then
             lblScheduledTime.Text = "Geplante Zeit:"
             lblTimeRemaining.Text = "Verbleibende Zeit:"
             Text = "Seeloewen Shutdown - Minimalistische Ansicht"

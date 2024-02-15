@@ -32,16 +32,16 @@
 
     Private Sub btnUpdateList_Click(sender As Object, e As EventArgs) Handles btnUpdateList.Click
         'Get all the currently running processes
-        If frmMain.Language = "English" Then
+        If frmMain.language = "English" Then
             btnUpdateList.Text = "Updating..."
-        ElseIf frmMain.Language = "German" Then
+        ElseIf frmMain.language = "German" Then
             btnUpdateList.Text = "Aktualisiere..."
         End If
         btnUpdateList.Enabled = False
         GetProcesses()
-        If frmMain.Language = "English" Then
+        If frmMain.language = "English" Then
             btnUpdateList.Text = "Update List"
-        ElseIf frmMain.Language = "German" Then
+        ElseIf frmMain.language = "German" Then
             btnUpdateList.Text = "Liste aktualisieren"
         End If
         btnUpdateList.Enabled = True
@@ -50,7 +50,7 @@
     '-- Custom Methods --
     Private Sub LoadDesign()
         'Change to darkmode if design is set to dark
-        If frmMain.Design = "Dark" Then
+        If frmMain.design = "Dark" Then
             BackColor = Color.FromArgb(41, 41, 41)
             lblProcessSearcherHeader.ForeColor = Color.White
             lblProcessSearcherDesc.ForeColor = Color.White
@@ -60,7 +60,7 @@
 
     Private Sub LoadLanguage()
         'Translate elements to selected language
-        If frmMain.Language = "German" Then
+        If frmMain.language = "German" Then
             lblProcessSearcherHeader.Text = "Prozess-Sucher"
             lblProcessSearcherDesc.Text = "Die folgende Liste enthält alle aktuell laufenden Prozesse. Du kannst Prozesse auswählen" + vbNewLine + "und bestätigen, um sie deiner Liste hinzuzufügen. Prozesse, die bereits auf der Liste sind," + vbNewLine + "werden hier nicht angezeigt."
             btnCancel.Text = "Abbrechen"
@@ -98,6 +98,8 @@
             yPos = yPos + 20
         Next
     End Sub
+
+    '-- Button Animations --
 
     Private Sub btnConfirm_MouseDown(sender As Object, e As MouseEventArgs) Handles btnConfirm.MouseDown
         btnConfirm.BackgroundImage = My.Resources.button_click

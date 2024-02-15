@@ -1,4 +1,12 @@
-﻿Public Class frmFirstStart
+﻿''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+''                                                      ''
+'' Warning: This is a legacy window that is no longer   ''
+'' being used by the application. It may be outdated    ''
+'' and bugged or even broken. Use with caution.         ''
+''                                                      ''
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+Public Class frmFirstStart
 
     '-- Event handlers --
 
@@ -6,11 +14,12 @@
         'Selects English by default
         cbxLanguage.SelectedItem = "English (English)"
 
-        If frmMain.Language = "German" Then
+        'Show legacy warning
+        If frmMain.language = "German" Then
             MsgBox("Du hast irgendwie ein Legacy-Fenster gefunden, welches nicht mehr von der Software genutzt wird. Sei vorsichtig, da Probleme auftreten können.", MsgBoxStyle.Exclamation, "Warnung")
 
-        ElseIf frmMain.Language = "English" Then
-            MsgBox("You have somehow opened a legacy window that is no longer used by the software. Be careful as issues can occur.", MsgBoxStyle.Exclamation, "Warning")
+        ElseIf frmMain.language = "English" Then
+            MsgBox("You have somehow opened a legacy window that is no longer used by the software. Be careful as issues may occur.", MsgBoxStyle.Exclamation, "Warning")
         End If
     End Sub
 
@@ -22,7 +31,8 @@
         ElseIf cbxLanguage.SelectedItem = "Deutsch (German)" Then
             My.Settings.Language = "German"
             Close()
-        Else MsgBox("Please pick a Language!")
+        Else
+            MsgBox("Please pick a language!", MsgBoxStyle.Critical, "Error")
         End If
     End Sub
 

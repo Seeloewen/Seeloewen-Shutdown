@@ -3,30 +3,32 @@ Imports System.IO
 
 Public Class frmSettings
 
-    Dim ClearMsgBoxText As String
-    Dim ClearMsgBoxHeader As String
-    Dim DisableMsgBoxText As String
-    Dim DisableMsgBoxHeader As String
-    Dim ProfileDirectory As String = frmMain.ProfileDirectory
-    Dim ProfileList As String()
-    Dim SettingsArray As String()
-    Dim AppData As String = GetFolderPath(SpecialFolder.ApplicationData)
-    Public ShowMessage As Boolean = True
+    '-- Attributes --
+
+    Dim clearMsgBoxText As String
+    Dim clearMsgBoxHeader As String
+    Dim disableMsgBoxText As String
+    Dim disableMsgBoxHeader As String
+    Dim profileDirectory As String = frmMain.profileDirectory
+    Dim profileList As String()
+    Dim settingsArray As String()
+    Dim appData As String = GetFolderPath(SpecialFolder.ApplicationData)
+    Public showMessage As Boolean = True
 
     '-- Event handlers --
     Private Sub frmSettings_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Get profiles and load user preferences
-        GetProfiles(ProfileDirectory)
+        GetProfiles(profileDirectory)
         LoadSettings()
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         'Check if settings file exists. If not, create one.
-        If My.Computer.FileSystem.FileExists(frmMain.SettingsFile) Then
-            SaveSettings(frmMain.SettingsFile)
+        If My.Computer.FileSystem.FileExists(frmMain.settingsFile) Then
+            SaveSettings(frmMain.settingsFile)
         Else
-            My.Computer.FileSystem.WriteAllText(frmMain.SettingsFile, "", False)
-            SaveSettings(frmMain.SettingsFile)
+            My.Computer.FileSystem.WriteAllText(frmMain.settingsFile, "", False)
+            SaveSettings(frmMain.settingsFile)
         End If
     End Sub
 
@@ -51,17 +53,17 @@ Public Class frmSettings
     End Sub
     Private Sub cbEnableActionHistory_CheckedChanged(sender As Object, e As EventArgs) Handles cbEnableActionHistory.CheckedChanged
         'Set messagebox text depending on language
-        If frmMain.Language = "German" Then
-            DisableMsgBoxHeader = "Aktionsverlauf deaktivieren"
-            DisableMsgBoxText = "Bist du dir sicher, dass du den Aktionsverlauf deaktivieren möchtest? Dadurch wird der aktuelle Verlauf gelöscht."
-        ElseIf frmMain.Language = "English" Then
-            DisableMsgBoxHeader = "Disble Action History"
-            DisableMsgBoxText = "Are you sure that you want to disable the Action History? This will delete your current history."
+        If frmMain.language = "German" Then
+            disableMsgBoxHeader = "Aktionsverlauf deaktivieren"
+            disableMsgBoxText = "Bist du dir sicher, dass du den Aktionsverlauf deaktivieren möchtest? Dadurch wird der aktuelle Verlauf gelöscht."
+        ElseIf frmMain.language = "English" Then
+            disableMsgBoxHeader = "Disble Action History"
+            disableMsgBoxText = "Are you sure that you want to disable the Action History? This will delete your current history."
         End If
 
         'Show messagebox to warn user that disabling action history deletes the file
         If cbEnableActionHistory.Checked = False Then
-            Select Case MsgBox(DisableMsgBoxText, vbQuestion + vbYesNo, DisableMsgBoxHeader)
+            Select Case MsgBox(disableMsgBoxText, vbQuestion + vbYesNo, disableMsgBoxHeader)
                 Case Windows.Forms.DialogResult.No
                     cbEnableActionHistory.Checked = True
             End Select
@@ -79,18 +81,18 @@ Public Class frmSettings
 
     '-- Custom methods --
 
-    Public Sub SaveSettings(Path As String)
+    Public Sub SaveSettings(path As String)
         'Save the settings into the settings array
         Try
             frmMain.WriteToLog("Saving settings...", "Info")
-            ResetSettings(Path)
+            ResetSettings(path)
 
             'Load settings into array
-            SettingsArray = frmMain.SettingsFilePreset.Lines
+            settingsArray = frmMain.SettingsFilePreset.Lines
 
             'Set current version number in settings file
-            SettingsArray(1) = "Version=" + frmMain.SettingsVersion.ToString
-            frmMain.WriteToLog("Set new version number to " + frmMain.SettingsVersion.ToString, "Info")
+            settingsArray(1) = String.Format("Version={0}", frmMain.settingsVersion.ToString)
+            frmMain.WriteToLog(String.Format("Set new version number to {0}", frmMain.settingsVersion.ToString), "Info")
 
             'Save App Settings
             If cbxLanguage.SelectedItem = "English (English)" Then
@@ -102,8 +104,8 @@ Public Class frmSettings
             ElseIf cbxLanguage.SelectedItem = "Systemstandard" Then
                 My.Settings.Language = "System Default"
             End If
-            SettingsArray(4) = "Language=" + My.Settings.Language
-            frmMain.WriteToLog("Saved setting " + SettingsArray(4), "Info")
+            settingsArray(4) = String.Format("Language={0}", My.Settings.Language)
+            frmMain.WriteToLog(String.Format("Saved setting {0}", settingsArray(4)), "Info")
             frmMain.DetermineLanguage()
 
             If cbxDesign.SelectedItem = "Light" Then
@@ -119,8 +121,8 @@ Public Class frmSettings
             ElseIf cbxDesign.SelectedItem = "Systemstandard" Then
                 My.Settings.Design = "System Default"
             End If
-            SettingsArray(5) = "Design=" + My.Settings.Design
-            frmMain.WriteToLog("Saved setting " + SettingsArray(5), "Info")
+            settingsArray(5) = String.Format("Design={0}", My.Settings.Design)
+            frmMain.WriteToLog(String.Format("Saved setting {0}", settingsArray(5)), "Info")
             frmMain.DetermineDesign()
 
             If cbShowNotifications.Checked Then
@@ -128,38 +130,38 @@ Public Class frmSettings
             Else
                 My.Settings.ShowNotifications = False
             End If
-            SettingsArray(6) = "ShowNotifications=" + My.Settings.ShowNotifications.ToString
-            frmMain.WriteToLog("Saved setting " + SettingsArray(6), "Info")
+            settingsArray(6) = String.Format("ShowNotifications={0}", My.Settings.ShowNotifications.ToString)
+            frmMain.WriteToLog(String.Format("Saved setting {0}", settingsArray(6)), "Info")
 
             If cbShowCloseWarning.Checked Then
                 My.Settings.ShowCloseWarning = True
             Else
                 My.Settings.ShowCloseWarning = False
             End If
-            SettingsArray(7) = "ShowCloseWarning=" + My.Settings.ShowCloseWarning.ToString
-            frmMain.WriteToLog("Saved setting " + SettingsArray(7), "Info")
+            settingsArray(7) = String.Format("ShowCloseWarning={0}", My.Settings.ShowCloseWarning.ToString)
+            frmMain.WriteToLog(String.Format("Saved setting {0}", settingsArray(7)), "Info")
 
             If cbEnableAnimations.Checked Then
                 My.Settings.EnableAnimations = True
             Else
                 My.Settings.EnableAnimations = False
             End If
-            SettingsArray(8) = "EnableAnimations=" + My.Settings.EnableAnimations.ToString
-            frmMain.WriteToLog("Saved setting " + SettingsArray(8), "Info")
+            settingsArray(8) = String.Format("EnableAnimations={0}", My.Settings.EnableAnimations.ToString)
+            frmMain.WriteToLog(String.Format("Saved setting {0}", settingsArray(8)), "Info")
 
             'Save Action History settings
             If cbEnableActionHistory.Checked Then
                 My.Settings.EnableActionHistory = True
             Else
                 My.Settings.EnableActionHistory = False
-                If My.Computer.FileSystem.FileExists(frmMain.ActionHistoryFile) = False Then
-                    My.Computer.FileSystem.WriteAllText(frmMain.ActionHistoryFile, "", False)
+                If My.Computer.FileSystem.FileExists(frmMain.actionHistoryFile) = False Then
+                    My.Computer.FileSystem.WriteAllText(frmMain.actionHistoryFile, "", False)
                     frmActionHistory.lvActionHistory.Clear()
                     frmMain.WriteToLog("Cleared Action History", "Info")
                 End If
             End If
-            SettingsArray(11) = "EnableActionHistory=" + My.Settings.EnableActionHistory.ToString
-            frmMain.WriteToLog("Saved setting " + SettingsArray(11), "Info")
+            settingsArray(11) = String.Format("EnableActionHistory={0}", My.Settings.EnableActionHistory.ToString)
+            frmMain.WriteToLog(String.Format("Saved setting {0}", settingsArray(11)), "Info")
 
             'Save Default Profile settings
             If cbLoadProfileByDefault.Checked Then
@@ -167,12 +169,12 @@ Public Class frmSettings
             Else
                 My.Settings.LoadProfileByDefault = False
             End If
-            SettingsArray(14) = "LoadProfileByDefault=" + My.Settings.LoadProfileByDefault.ToString
-            frmMain.WriteToLog("Saved setting " + SettingsArray(14), "Info")
+            settingsArray(14) = String.Format("LoadProfileByDefault={0}", My.Settings.LoadProfileByDefault.ToString)
+            frmMain.WriteToLog(String.Format("Saved setting {0}", settingsArray(14)), "Info")
 
             My.Settings.DefaultProfile = cbxDefaultProfile.SelectedItem
-            SettingsArray(15) = "DefaultProfile=" + My.Settings.DefaultProfile
-            frmMain.WriteToLog("Saved setting " + SettingsArray(15), "Info")
+            settingsArray(15) = String.Format("DefaultProfile={0}", My.Settings.DefaultProfile)
+            frmMain.WriteToLog(String.Format("Saved setting {0}", settingsArray(15)), "Info")
 
             'Save Minimalistic View settings
             If cbEnableMinimalisticViewByDefault.Checked Then
@@ -180,42 +182,42 @@ Public Class frmSettings
             Else
                 My.Settings.EnableMinimalisticView = False
             End If
-            SettingsArray(18) = "EnableMinimalisticView=" + My.Settings.EnableMinimalisticView.ToString
-            frmMain.WriteToLog("Saved setting " + SettingsArray(18), "Info")
+            settingsArray(18) = String.Format("EnableMinimalisticView={0}", My.Settings.EnableMinimalisticView.ToString)
+            frmMain.WriteToLog(String.Format("Saved setting {0}", settingsArray(18)), "Info")
 
-            File.WriteAllLines(Path, SettingsArray)
+            File.WriteAllLines(path, settingsArray)
 
             'Show a message that confirms that all settings have been saved
-            If ShowMessage = True Then
-                If frmMain.Language = "German" Then
+            If showMessage = True Then
+                If frmMain.language = "German" Then
                     frmMain.ShowNotification("Gespeichert! Du musst die Software möglicherweise neustarten.")
-                ElseIf frmMain.Language = "English" Then
+                ElseIf frmMain.language = "English" Then
                     frmMain.ShowNotification("Saved! You may need to restart the software.")
                 End If
             End If
-            ShowMessage = True
+            showMessage = True
 
             Close()
         Catch ex As Exception
-            If frmMain.Language = "German" Then
-                MsgBox("Speichern der Einstellungen ist fehlgeschlagen. " + ex.Message, MsgBoxStyle.Critical, "Fehler")
-            ElseIf frmMain.Language = "English" Then
-                MsgBox("Saving settings failed. " + ex.Message, MsgBoxStyle.Critical, "Error")
+            If frmMain.language = "German" Then
+                MsgBox(String.Format("Speichern der Einstellungen ist fehlgeschlagen. {0}", ex.Message, MsgBoxStyle.Critical, "Fehler"))
+            ElseIf frmMain.language = "English" Then
+                MsgBox(String.Format("Saving settings failed. {0}", ex.Message, MsgBoxStyle.Critical, "Error"))
             End If
 
-            frmMain.WriteToLog("Saving settings failed: " + ex.Message, "Error")
+            frmMain.WriteToLog(String.Format("Saving settings failed: {0}", ex.Message), "Error")
         End Try
     End Sub
 
-    Public Sub ResetSettings(Path)
+    Public Sub ResetSettings(path)
         'Reset settings to default and write to file.
-        SettingsArray = frmMain.SettingsFilePreset.Lines
-        File.WriteAllLines(Path, SettingsArray)
+        settingsArray = frmMain.SettingsFilePreset.Lines
+        File.WriteAllLines(path, settingsArray)
     End Sub
 
     Private Sub LoadSettings()
         'Translations
-        If frmMain.Language = "German" Then
+        If frmMain.language = "German" Then
 
             'Initialize comboboxes if language german is selected
             cbxDesign.Items.Add("Hell")
@@ -246,34 +248,34 @@ Public Class frmSettings
             cbLoadProfileByDefault.Text = "Profil standartmäßig laden"
             cbShowCloseWarning.Text = "Warnung anzeigen, wenn App bei laufender Aktion " + vbNewLine + "geschlossen wird"
             cbEnableAnimations.Text = "Animationen aktivieren"
-        ElseIf frmMain.Language = "English" Then
+        ElseIf frmMain.language = "English" Then
             cbxLanguage.SelectedItem = "English (English)"
         End If
 
         If My.Settings.Language = "System Default" Then
-            If frmMain.Language = "German" Then
+            If frmMain.language = "German" Then
                 cbxLanguage.SelectedItem = "Systemstandard"
-            ElseIf frmMain.Language = "English" Then
+            ElseIf frmMain.language = "English" Then
                 cbxLanguage.SelectedItem = "System Default"
             End If
         End If
 
         'Design
-        If frmMain.Design = "Light" Then
+        If frmMain.design = "Light" Then
 
             'Initialize Design combobox if Darkmode is selected
-            If frmMain.Language = "German" Then
+            If frmMain.language = "German" Then
                 cbxDesign.SelectedItem = "Hell"
-            ElseIf frmMain.Language = "English" Then
+            ElseIf frmMain.language = "English" Then
                 cbxDesign.SelectedItem = "Light"
             End If
 
-        ElseIf frmMain.Design = "Dark" Then
+        ElseIf frmMain.design = "Dark" Then
 
             'Initialize Design combobox if Darkmode is selected
-            If frmMain.Language = "German" Then
+            If frmMain.language = "German" Then
                 cbxDesign.SelectedItem = "Dunkel"
-            ElseIf frmMain.Language = "English" Then
+            ElseIf frmMain.language = "English" Then
                 cbxDesign.SelectedItem = "Dark"
             End If
 
@@ -301,9 +303,9 @@ Public Class frmSettings
         End If
 
         If My.Settings.Design = "System Default" Then
-            If frmMain.Language = "German" Then
+            If frmMain.language = "German" Then
                 cbxDesign.SelectedItem = "Systemstandard"
-            ElseIf frmMain.Language = "English" Then
+            ElseIf frmMain.language = "English" Then
                 cbxDesign.SelectedItem = "System Default"
             End If
         End If
@@ -352,55 +354,54 @@ Public Class frmSettings
         End If
     End Sub
 
-    Sub Sleep(ByVal sleeptime As Integer)
+    Sub Sleep(sleeptime As Integer)
         'Pauses the thread for a specific amount of time (sleeptime). Note that this could freeze the thread
-        Dim Stopw As New Stopwatch
+        Dim sw As New Stopwatch
+        sw.Start()
 
-        Stopw.Start()
-
-        Do Until Stopw.ElapsedMilliseconds >= sleeptime
+        Do Until sw.ElapsedMilliseconds >= sleeptime
             Application.DoEvents()
         Loop
-        Stopw.Stop()
-        Stopw.Reset()
+
+        sw.Stop()
+        sw.Reset()
     End Sub
 
     Private Sub SetMessageboxLanguage()
         'Change text of the messagebox based on the language
-        If frmMain.Language = "German" Then
-            ClearMsgBoxHeader = "Liste leeren"
-            ClearMsgBoxText = "Bist du dir sicher, dass du die Liste leeren möchtest?"
-        ElseIf frmMain.Language = "English" Then
-            ClearMsgBoxHeader = "Clear list"
-            ClearMsgBoxText = "Are you sure that you want to clear the list?"
+        If frmMain.language = "German" Then
+            clearMsgBoxHeader = "Liste leeren"
+            clearMsgBoxText = "Bist du dir sicher, dass du die Liste leeren möchtest?"
+        ElseIf frmMain.language = "English" Then
+            clearMsgBoxHeader = "Clear list"
+            clearMsgBoxText = "Are you sure that you want to clear the list?"
         End If
     End Sub
 
     Private Sub ShowClearHistoryMsgBox()
         'Show messagebox, clicking "yes" will result in the Action History file being cleared
-        Select Case MsgBox(ClearMsgBoxText, vbQuestion + vbYesNo, ClearMsgBoxHeader)
+        Select Case MsgBox(clearMsgBoxText, vbQuestion + vbYesNo, clearMsgBoxHeader)
             Case Windows.Forms.DialogResult.Yes
                 frmActionHistory.lvActionHistory.Clear()
-                My.Computer.FileSystem.WriteAllText(frmMain.ActionHistoryFile, "", False)
+                My.Computer.FileSystem.WriteAllText(frmMain.actionHistoryFile, "", False)
                 frmMain.WriteToLog("Cleared Action History", "Info")
         End Select
     End Sub
 
-    Private Sub GetProfiles(Path As String)
+    Private Sub GetProfiles(path As String)
         'Get all profile files in the profile directory and load them into the combobox
-        If Path.Trim().Length = 0 Then
+        If path.Trim().Length = 0 Then
             Return
         End If
 
-        ProfileList = Directory.GetFileSystemEntries(Path)
+        profileList = Directory.GetFileSystemEntries(path)
 
         Try
-            For Each Profile As String In ProfileList
+            For Each Profile As String In profileList
                 If Directory.Exists(Profile) Then
                     GetProfiles(Profile)
                 Else
-                    Profile = Profile.Replace(frmMain.AppData + "\Seeloewen Shutdown\Profiles\", "")
-                    Profile = Profile.Replace(".txt", "")
+                    Profile = Profile.Replace(frmMain.profileDirectory, "").Replace(".txt", "")
                     cbxDefaultProfile.Items.Add(Profile)
                 End If
             Next
