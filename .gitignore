@@ -371,3 +371,6 @@ MigrationBackup/
 /Seeloewen Shutdown/bin/Release/Seeloewen Shutdown.exe
 /Seeloewen Shutdown/obj/Release/Seeloewen Shutdown.vbproj.FileListAbsolute.txt
 /Seeloewen Shutdown/obj/Release/Seeloewen Shutdown.vbproj.CoreCompileInputs.cache
+/Seeloewen Shutdown/obj/Debug/Seeloewen Shutdown.vbproj.CoreCompileInputs.cache
+/Seeloewen Shutdown/obj/Debug/Seeloewen Shutdown.exe
+/Seeloewen Shutdown/bin/Debug/Seeloewen Shutdown.exe
