@@ -81,7 +81,7 @@ Public Class frmProfileEditor
     End Sub
 
     Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
-        'Delete the currently selected profile (Deletes the profile file and combobox entry
+        'Delete the currently selected profile (Deletes the profile file and combobox entry)
         If String.IsNullOrEmpty(cbxProfile.SelectedItem) = False Then
             My.Computer.FileSystem.DeleteFile(String.Format("{0}{1}.txt", frmMain.profileDirectory, cbxProfile.SelectedItem))
             If frmMain.language = "English" Then
@@ -103,6 +103,19 @@ Public Class frmProfileEditor
     Private Sub cbxProfile_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbxProfile.SelectedIndexChanged
         'Begin loading the profile
         InitializeLoadingProfile(cbxProfile.SelectedItem, False)
+    End Sub
+
+    Private Sub btnRename_Click(sender As Object, e As EventArgs) Handles btnRename.Click
+        'Check if a profile is loaded and open the rename dialog
+        If String.IsNullOrEmpty(cbxProfile.Text) = False Then
+            frmRenameProfile.ShowDialog(cbxProfile.Text)
+        Else
+            If frmMain.language = "German" Then
+                MsgBox("Bitte lade ein Profil, um es umzubenennen!", MsgBoxStyle.Critical, "Fehler")
+            ElseIf frmMain.language = "English" Then
+                MsgBox("Please load a profile in order to rename it!", MsgBoxStyle.Critical, "Error")
+            End If
+        End If
     End Sub
 
     '-- Custom methods --
@@ -254,22 +267,24 @@ Public Class frmProfileEditor
             btnClose.Text = "Schließen"
             msgBoxTextCorruptedProfile = "Du versucht ein beschädigtes Profil oder ein Profil von einer älteren Version zu laden. Du musst es aktualisieren, um es zu laden. Normalerweise verlierst du keine Einstellungen. Möchtest du fortfahren?"
             msgBoxHeaderCorruptedProfile = "Altes oder beschädigtes Profil laden"
-            cbDelayWhenProcessRunning.Text = "Aktion verzögern wenn ausgewählte Prozesse laufen"
+            cbDelayWhenProcessRunning.Text = "Aktion verzögern, wenn ausgewählte Prozesse laufen"
+            btnRename.Text = "Umbenennen"
         ElseIf frmMain.language = "English" Then
             msgBoxTextCorruptedProfile = "You are trying to load a profile from an older version or a corrupted profile. You need to update it in order to load it. You usually won't lose any settings. Do you want to continue?"
             msgBoxHeaderCorruptedProfile = "Load old or corrupted profile"
         End If
     End Sub
 
-    Sub GetFiles(Path As String)
+    Sub GetFiles(path As String)
         'Get profile files in profile directory and load them into combobox
         frmMain.WriteToLog("Getting profiles for frmProfileEditor...", "Info")
 
-        If Path.Trim().Length = 0 Then
+        If path.Trim().Length = 0 Then
             Return
         End If
 
-        profileList = Directory.GetFileSystemEntries(Path)
+        cbxProfile.Items.Clear()
+        profileList = Directory.GetFileSystemEntries(path)
 
         Try
             For Each Profile As String In profileList
@@ -338,5 +353,21 @@ Public Class frmProfileEditor
 
     Private Sub btnClose_MouseUp(sender As Object, e As MouseEventArgs) Handles btnClose.MouseUp
         btnClose.BackgroundImage = My.Resources.button
+    End Sub
+
+    Private Sub btnRename_MouseDown(sender As Object, e As MouseEventArgs) Handles btnRename.MouseDown
+        btnRename.BackgroundImage = My.Resources.button_click
+    End Sub
+
+    Private Sub btnRename_MouseEnter(sender As Object, e As EventArgs) Handles btnRename.MouseEnter
+        btnRename.BackgroundImage = My.Resources.button_hover
+    End Sub
+
+    Private Sub btnRename_MouseLeave(sender As Object, e As EventArgs) Handles btnRename.MouseLeave
+        btnRename.BackgroundImage = My.Resources.button
+    End Sub
+
+    Private Sub btnRename_MouseUp(sender As Object, e As MouseEventArgs) Handles btnRename.MouseUp
+        btnRename.BackgroundImage = My.Resources.button
     End Sub
 End Class

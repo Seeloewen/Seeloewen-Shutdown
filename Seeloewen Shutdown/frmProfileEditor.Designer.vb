@@ -29,6 +29,7 @@ Partial Class frmProfileEditor
         Me.btnSave = New System.Windows.Forms.Button()
         Me.cbxProfile = New System.Windows.Forms.ComboBox()
         Me.gbEditProfile = New System.Windows.Forms.GroupBox()
+        Me.cbDelayWhenProcessRunning = New System.Windows.Forms.CheckBox()
         Me.lblIn = New System.Windows.Forms.Label()
         Me.rbtnRestart = New System.Windows.Forms.RadioButton()
         Me.rbtnShutdown = New System.Windows.Forms.RadioButton()
@@ -36,7 +37,7 @@ Partial Class frmProfileEditor
         Me.tbTimeIn = New System.Windows.Forms.TextBox()
         Me.settings = New System.Windows.Forms.RichTextBox()
         Me.lblHeader = New System.Windows.Forms.Label()
-        Me.cbDelayWhenProcessRunning = New System.Windows.Forms.CheckBox()
+        Me.btnRename = New System.Windows.Forms.Button()
         Me.gbEditProfile.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -109,7 +110,7 @@ Partial Class frmProfileEditor
         Me.cbxProfile.FormattingEnabled = True
         Me.cbxProfile.Location = New System.Drawing.Point(12, 60)
         Me.cbxProfile.Name = "cbxProfile"
-        Me.cbxProfile.Size = New System.Drawing.Size(266, 21)
+        Me.cbxProfile.Size = New System.Drawing.Size(257, 21)
         Me.cbxProfile.TabIndex = 13
         '
         'gbEditProfile
@@ -127,6 +128,18 @@ Partial Class frmProfileEditor
         Me.gbEditProfile.TabIndex = 12
         Me.gbEditProfile.TabStop = False
         Me.gbEditProfile.Text = "Edit profile"
+        '
+        'cbDelayWhenProcessRunning
+        '
+        Me.cbDelayWhenProcessRunning.AutoSize = True
+        Me.cbDelayWhenProcessRunning.BackColor = System.Drawing.Color.Transparent
+        Me.cbDelayWhenProcessRunning.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbDelayWhenProcessRunning.Location = New System.Drawing.Point(18, 124)
+        Me.cbDelayWhenProcessRunning.Name = "cbDelayWhenProcessRunning"
+        Me.cbDelayWhenProcessRunning.Size = New System.Drawing.Size(326, 20)
+        Me.cbDelayWhenProcessRunning.TabIndex = 13
+        Me.cbDelayWhenProcessRunning.Text = "Delay action when selected processes are running"
+        Me.cbDelayWhenProcessRunning.UseVisualStyleBackColor = False
         '
         'lblIn
         '
@@ -206,17 +219,22 @@ Partial Class frmProfileEditor
         Me.lblHeader.TabIndex = 20
         Me.lblHeader.Text = "Profile Editor"
         '
-        'cbDelayWhenProcessRunning
+        'btnRename
         '
-        Me.cbDelayWhenProcessRunning.AutoSize = True
-        Me.cbDelayWhenProcessRunning.BackColor = System.Drawing.Color.Transparent
-        Me.cbDelayWhenProcessRunning.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbDelayWhenProcessRunning.Location = New System.Drawing.Point(18, 124)
-        Me.cbDelayWhenProcessRunning.Name = "cbDelayWhenProcessRunning"
-        Me.cbDelayWhenProcessRunning.Size = New System.Drawing.Size(326, 20)
-        Me.cbDelayWhenProcessRunning.TabIndex = 13
-        Me.cbDelayWhenProcessRunning.Text = "Delay action when selected processes are running"
-        Me.cbDelayWhenProcessRunning.UseVisualStyleBackColor = False
+        Me.btnRename.BackgroundImage = Global.Seeloewen_Shutdown.My.Resources.Resources.button
+        Me.btnRename.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnRename.FlatAppearance.BorderSize = 0
+        Me.btnRename.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.btnRename.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.btnRename.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnRename.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnRename.ForeColor = System.Drawing.Color.White
+        Me.btnRename.Location = New System.Drawing.Point(284, 58)
+        Me.btnRename.Name = "btnRename"
+        Me.btnRename.Size = New System.Drawing.Size(141, 23)
+        Me.btnRename.TabIndex = 21
+        Me.btnRename.Text = "Rename"
+        Me.btnRename.UseVisualStyleBackColor = True
         '
         'frmProfileEditor
         '
@@ -224,6 +242,7 @@ Partial Class frmProfileEditor
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(437, 294)
+        Me.Controls.Add(Me.btnRename)
         Me.Controls.Add(Me.lblHeader)
         Me.Controls.Add(Me.settings)
         Me.Controls.Add(Me.btnClose)
@@ -260,4 +279,5 @@ Partial Class frmProfileEditor
     Friend WithEvents rbtnShutdown As RadioButton
     Friend WithEvents lblHeader As Label
     Friend WithEvents cbDelayWhenProcessRunning As CheckBox
+    Friend WithEvents btnRename As Button
 End Class
