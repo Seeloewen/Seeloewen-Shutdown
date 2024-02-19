@@ -7,8 +7,8 @@ Public Class frmMain
     '-- Attributes --
 
     'General variables
-    Dim version As String = "1.9.0"
-    Dim verDate As String = "16.04.2023"
+    Dim version As String = "1.10.0"
+    Dim verDate As String = "19.02.2024"
     Public settingsVersion As Integer = 1
     Dim loadedSettingsVersion As Integer
     Public logLoadedOnce As Boolean

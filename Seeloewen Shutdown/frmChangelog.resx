@@ -118,7 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="rtbChangelog.Text" xml:space="preserve">
-    <value>Version 1.9.0 (16.04.2023)
+    <value>Version 1.10.0 (19.02.2024)
++ Option zum Ändern der Zeit/Aktion, während der Timer bereits läuft, hinzugefügt
++ Option zum Verzögern von Aktionen, wenn ein bestimmter Prozess läuft, hinzugefügt
++ Option zum Umbenennen von Profilen hinzugefügt
+* Discord Name im "Über" Fenster hinzugefügt
+* Code aufgeräumt und optimiert
+* Fehler behoben, dass Nachrichten-Box beim Leeren des Aktionsverlaufs kein Symbol hatte
+* Fehler behoben, dass Datei-Speicher-Dialog in Aktionsverlauf keinen Standard-Datei-Typen ausgewählt hatte
+* Fehler behoben, dass Optionen im Hauptfenster immer noch änderbar waren, wenn eine Aktion lief
+* Fehler behoben, dass das Erkennen laufender Aktionen nicht korrekt funktionierte, wenn "Zeitpunkt" benutzt wurde
+* Fehler behoben, dass Zeit-Combobox im Profil-Editor keinen Standardwert hatte
+
+Version 1.9.0 (16.04.2023)
 + Zeit-Helfer-Wizard hinzugefügt
 + Warnung bei nicht unterstütztem Betriebssystem hinzugefügt
 + Option "Systemstandard" für Design und Sprache hinzugefügt
@@ -274,7 +286,19 @@ Version 0.1 (27.10.2020)
 * Inoffizieller Release</value>
   </data>
   <data name="rtbchangelogEnglish.Text" xml:space="preserve">
-    <value>Version 1.9.0 (16.04.2023)
+    <value>Version 1.10.0 (19.02.2024)
++ Added option to edit the time/action while a timer is already running
++ Added option to delay action when a selected process is running
++ Added option to rename profiles
+* Updated Discord name in 'About' window
+* Cleaned up and improve code
+* Fixed message box when clearing action history not having an icon
+* Fixed save file dialog in action history not having a default file type selected
+* Fixed options in main window still being changeable when the action was started
+* Fixed running action detection not working correctly when point in time was used
+* Fixed profile editor time combobox not having a default value
+
+Version 1.9.0 (16.04.2023)
 + Added Timer Helper Wizard
 + Added warning when using unsupported OS
 + Added design and language option "System default"

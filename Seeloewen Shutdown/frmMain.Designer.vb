@@ -434,9 +434,9 @@ Partial Class frmMain
         Me.lblVersion.ForeColor = System.Drawing.SystemColors.ButtonShadow
         Me.lblVersion.Location = New System.Drawing.Point(445, 23)
         Me.lblVersion.Name = "lblVersion"
-        Me.lblVersion.Size = New System.Drawing.Size(75, 31)
+        Me.lblVersion.Size = New System.Drawing.Size(90, 31)
         Me.lblVersion.TabIndex = 22
-        Me.lblVersion.Text = "1.9.0"
+        Me.lblVersion.Text = "1.10.0"
         '
         'lblHeader
         '

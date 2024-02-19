@@ -23,12 +23,12 @@
     Private Sub LoadLanguage()
         'Translate strings if language german is selected
         If frmMain.language = "German" Then
-            lblHeader.Text = "Version 1.9.0 - Was ist neu?"
+            lblHeader.Text = "Version 1.10.0 - Was ist neu?"
             Text = "Seeloewen Shutdown wurde installiert!"
             lblNewsHeader.Text = "Mehrere neue Funktionen"
-            lblNews.Text = "Das Highlight dieser Version ist der neue Zeit-Helfer-Wizard, der dir" + vbNewLine + "hilft, die richtige Zeit zum Herunterfahren deines PCs herauszufinden." + vbNewLine + "Zusätzlich wurden manche Einstellungen verbessert."
-            lblImprovementsHeader.Text = "Ein paar Fehlerbehebungen"
-            lblImprovements.Text = "Mehrere Fehler wurden behoben, um sicherzustellen, dass die Software" + vbNewLine + "einwandfrei funktioniert. Der alte Sprachauswahl-Dialog wurde außerdem" + vbNewLine + "entfernt."
+            lblNews.Text = "Diese Version fügt die Möglichkeit, seine Aktion nach dem Starten des " + vbNewLine + "Timers nochmal zu ändern, hinzu. Außerdem kann man die Aktion ver-" + vbNewLine + "zögern, wenn Prozesse laufen, oder Profile umbenennen."
+            lblImprovementsHeader.Text = "Einige Fehlerbehebungen"
+            lblImprovements.Text = "Viele nervige Bugs wurden behoben, besonders bezüglich des" + vbNewLine + "Aktionsverlauf-Fensters"
             lblChangelog.Text = "Eine genaue Änderungsliste kann im                           gefunden werden"
             btnOK.Text = "Alles klar!"
         End If
