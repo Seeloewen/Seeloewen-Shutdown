@@ -486,7 +486,7 @@
                 cbUseTime.Show()
                 cbUseTime.Checked = True
                 timeUnit = "Seconds"
-            Case 60 To 3599
+            Case 60 To 86400
                 determinedTime = Math.Round(determinedTime / 60)
                 If frmMain.language = "German" Then
                     lblDeterminedTime.Text = String.Format("Die folgende Zeit wurde bestimmt: {0} Minute(n)", determinedTime)
