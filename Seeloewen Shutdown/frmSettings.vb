@@ -354,19 +354,6 @@ Public Class frmSettings
         End If
     End Sub
 
-    Sub Sleep(sleeptime As Integer)
-        'Pauses the thread for a specific amount of time (sleeptime). Note that this could freeze the thread
-        Dim sw As New Stopwatch
-        sw.Start()
-
-        Do Until sw.ElapsedMilliseconds >= sleeptime
-            Application.DoEvents()
-        Loop
-
-        sw.Stop()
-        sw.Reset()
-    End Sub
-
     Private Sub SetMessageboxLanguage()
         'Change text of the messagebox based on the language
         If frmMain.language = "German" Then

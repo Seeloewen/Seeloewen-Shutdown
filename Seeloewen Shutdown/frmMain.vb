@@ -1033,19 +1033,6 @@ Public Class frmMain
         WriteToLog(String.Format("Set gray box up (CountDownFrom: {0}, Shutdowntime.Text: {1}, _RunningTime.Text: {2})", countDownFrom.ToString, Shutdowntime.Text, _RunningTime.Text), "Info")
     End Sub
 
-    Private Sub Sleep(sleeptime As Integer)
-        'Pauses the thread for x milliseconds, sleeptime is the amount of milliseconds - Warning: Can cause App to freeze!
-        Dim stopWatch As Stopwatch = New Stopwatch
-        stopWatch.Start()
-
-        Do Until stopWatch.ElapsedMilliseconds >= sleeptime
-            Application.DoEvents()
-        Loop
-
-        stopWatch.Stop()
-        stopWatch.Reset()
-    End Sub
-
     Private Sub ScheduleProcessCheck()
         'Start checking if the processes are running and if a delay needs to be put
         tmrCheckRunningProcess.Start()
@@ -1299,7 +1286,7 @@ Public Class frmMain
         WriteToLog("Stopped action.", "Info")
     End Sub
 
-    Public Sub ShowNotification(text As String)
+    Public Async Sub ShowNotification(text As String)
         'Shows notification box at the top, String will be the displayed message
         If My.Settings.ShowNotifications = True Then
             tmrPnlNotificationAnimationDown.Enabled = False
@@ -1312,7 +1299,7 @@ Public Class frmMain
             Else
                 pnlNotification.Top = 66
                 pnlNotificationNewY = 66
-                Sleep(2500)
+                Await Task.Delay(2500)
                 pnlNotification.Top = 20
                 pnlNotificationNewY = 20
             End If
@@ -1402,13 +1389,13 @@ Public Class frmMain
 
     '-- Animations --
 
-    Private Sub PnlNotificationAnimationDown(sender As Object, e As EventArgs) Handles tmrPnlNotificationAnimationDown.Tick
+    Private Async Sub PnlNotificationAnimationDown(sender As Object, e As EventArgs) Handles tmrPnlNotificationAnimationDown.Tick
         If pnlNotification.Top <= 66 Then
             pnlNotificationNewY = pnlNotificationNewY + 3
             pnlNotification.Top = pnlNotificationNewY
         Else
             tmrPnlNotificationAnimationDown.Enabled = False
-            Sleep(2500)
+            Await Task.Delay(2500)
             tmrPnlNotificationAnimationUp.Enabled = True
         End If
     End Sub
