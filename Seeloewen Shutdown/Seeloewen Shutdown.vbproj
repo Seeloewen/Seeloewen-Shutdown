@@ -95,108 +95,113 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationEvents.vb" />
-    <Compile Include="frmAbout.Designer.vb">
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\ClosingResult.vb" />
+    <Compile Include="Source\Forms\frmAbout.Designer.vb">
       <DependentUpon>frmAbout.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmAbout.vb">
+    <Compile Include="Source\Forms\frmAbout.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmActionHistory.Designer.vb">
+    <Compile Include="Source\Forms\frmActionHistory.Designer.vb">
       <DependentUpon>frmActionHistory.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmActionHistory.vb">
+    <Compile Include="Source\Forms\frmActionHistory.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmChangelog.Designer.vb">
+    <Compile Include="Source\Forms\frmChangelog.Designer.vb">
       <DependentUpon>frmChangelog.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmChangelog.vb">
+    <Compile Include="Source\Forms\frmChangelog.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmClosing.Designer.vb">
+    <Compile Include="Source\Forms\frmClosing.Designer.vb">
       <DependentUpon>frmClosing.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmClosing.vb">
+    <Compile Include="Source\Forms\frmClosing.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmEditRunningAction.Designer.vb">
+    <Compile Include="Source\Forms\frmEditRunningAction.Designer.vb">
       <DependentUpon>frmEditRunningAction.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmEditRunningAction.vb">
+    <Compile Include="Source\Forms\frmEditRunningAction.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmFirstStart.Designer.vb">
+    <Compile Include="Source\Forms\frmFirstStart.Designer.vb">
       <DependentUpon>frmFirstStart.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmFirstStart.vb">
+    <Compile Include="Source\Forms\frmFirstStart.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmLoadProfileFrom.Designer.vb">
+    <Compile Include="Source\Forms\frmLoadProfileFrom.Designer.vb">
       <DependentUpon>frmLoadProfileFrom.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmLoadProfileFrom.vb">
+    <Compile Include="Source\Forms\frmLoadProfileFrom.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmLog.Designer.vb">
+    <Compile Include="Source\Forms\frmLog.Designer.vb">
       <DependentUpon>frmLog.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmLog.vb">
+    <Compile Include="Source\Forms\frmLog.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMain.vb">
+    <Compile Include="Source\Forms\frmMain.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMain.Designer.vb">
+    <Compile Include="Source\Forms\frmMain.Designer.vb">
       <DependentUpon>frmMain.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMinimalisticView.Designer.vb">
+    <Compile Include="Source\Forms\frmMinimalisticView.Designer.vb">
       <DependentUpon>frmMinimalisticView.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmMinimalisticView.vb">
+    <Compile Include="Source\Forms\frmMinimalisticView.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmProfileEditor.Designer.vb">
+    <Compile Include="Source\Forms\frmProfileEditor.Designer.vb">
       <DependentUpon>frmProfileEditor.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmProfileEditor.vb">
+    <Compile Include="Source\Forms\frmProfileEditor.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmRenameProfile.Designer.vb">
+    <Compile Include="Source\Forms\frmRenameProfile.Designer.vb">
       <DependentUpon>frmRenameProfile.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmRenameProfile.vb">
+    <Compile Include="Source\Forms\frmRenameProfile.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmSaveProfileAs.Designer.vb">
+    <Compile Include="Source\Forms\frmSaveProfileAs.Designer.vb">
       <DependentUpon>frmSaveProfileAs.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmSaveProfileAs.vb">
+    <Compile Include="Source\Forms\frmSaveProfileAs.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmSearchProcesses.Designer.vb">
+    <Compile Include="Source\Forms\frmSearchProcesses.Designer.vb">
       <DependentUpon>frmSearchProcesses.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmSearchProcesses.vb">
+    <Compile Include="Source\Forms\frmSearchProcesses.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmSelectProcesses.Designer.vb">
+    <Compile Include="Source\Forms\frmSelectProcesses.Designer.vb">
       <DependentUpon>frmSelectProcesses.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmSelectProcesses.vb">
+    <Compile Include="Source\Forms\frmSelectProcesses.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmTimeHelper.Designer.vb">
+    <Compile Include="Source\Forms\frmTimeHelper.Designer.vb">
       <DependentUpon>frmTimeHelper.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmTimeHelper.vb">
+    <Compile Include="Source\Forms\frmTimeHelper.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmUpdateNews.Designer.vb">
+    <Compile Include="Source\Forms\frmUpdateNews.Designer.vb">
       <DependentUpon>frmUpdateNews.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmUpdateNews.vb">
+    <Compile Include="Source\Forms\frmUpdateNews.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -205,75 +210,69 @@
       <DependentUpon>Application.myapp</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="My Project\Resources.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="My Project\Settings.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="frmSettings.Designer.vb">
+    <Compile Include="Source\Forms\frmSettings.Designer.vb">
       <DependentUpon>frmSettings.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmSettings.vb">
+    <Compile Include="Source\Forms\frmSettings.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Settings.vb" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="frmAbout.resx">
+    <EmbeddedResource Include="Source\Forms\frmAbout.resx">
       <DependentUpon>frmAbout.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmActionHistory.resx">
+    <EmbeddedResource Include="Source\Forms\frmActionHistory.resx">
       <DependentUpon>frmActionHistory.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmChangelog.resx">
+    <EmbeddedResource Include="Source\Forms\frmChangelog.resx">
       <DependentUpon>frmChangelog.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmClosing.resx">
+    <EmbeddedResource Include="Source\Forms\frmClosing.resx">
       <DependentUpon>frmClosing.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmEditRunningAction.resx">
+    <EmbeddedResource Include="Source\Forms\frmEditRunningAction.resx">
       <DependentUpon>frmEditRunningAction.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmFirstStart.resx">
+    <EmbeddedResource Include="Source\Forms\frmFirstStart.resx">
       <DependentUpon>frmFirstStart.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmLoadProfileFrom.resx">
+    <EmbeddedResource Include="Source\Forms\frmLoadProfileFrom.resx">
       <DependentUpon>frmLoadProfileFrom.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmLog.resx">
+    <EmbeddedResource Include="Source\Forms\frmLog.resx">
       <DependentUpon>frmLog.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmMain.resx">
+    <EmbeddedResource Include="Source\Forms\frmMain.resx">
       <DependentUpon>frmMain.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmMinimalisticView.resx">
+    <EmbeddedResource Include="Source\Forms\frmMinimalisticView.resx">
       <DependentUpon>frmMinimalisticView.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmProfileEditor.resx">
+    <EmbeddedResource Include="Source\Forms\frmProfileEditor.resx">
       <DependentUpon>frmProfileEditor.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmRenameProfile.resx">
+    <EmbeddedResource Include="Source\Forms\frmRenameProfile.resx">
       <DependentUpon>frmRenameProfile.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmSaveProfileAs.resx">
+    <EmbeddedResource Include="Source\Forms\frmSaveProfileAs.resx">
       <DependentUpon>frmSaveProfileAs.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmSearchProcesses.resx">
+    <EmbeddedResource Include="Source\Forms\frmSearchProcesses.resx">
       <DependentUpon>frmSearchProcesses.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmSelectProcesses.resx">
+    <EmbeddedResource Include="Source\Forms\frmSelectProcesses.resx">
       <DependentUpon>frmSelectProcesses.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmTimeHelper.resx">
+    <EmbeddedResource Include="Source\Forms\frmTimeHelper.resx">
       <DependentUpon>frmTimeHelper.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmUpdateNews.resx">
+    <EmbeddedResource Include="Source\Forms\frmUpdateNews.resx">
       <DependentUpon>frmUpdateNews.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -282,7 +281,7 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmSettings.resx">
+    <EmbeddedResource Include="Source\Forms\frmSettings.resx">
       <DependentUpon>frmSettings.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
@@ -335,6 +334,60 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\btnHamburger_Hover_Dark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Settings_Template.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_dark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\line.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\line_dark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minimalistic_view.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notification.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\settings_dark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\update.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\about.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\graybox.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\graybox_dark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hamburger.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hamburger_click.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hamburger_click_dark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hamburger_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hamburger_hover_dark.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

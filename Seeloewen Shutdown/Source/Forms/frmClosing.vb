@@ -4,7 +4,7 @@
 
     Private Sub frmClosing_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'If no action gets chosen, it will default to "close"
-        frmMain.closingResult = "Close"
+        frmMain.closeResult = ClosingResult.Close
 
         'Load settings
         LoadLanguage()
@@ -23,7 +23,7 @@
         End If
 
         'Close the main window and exit the application
-        frmMain.closingResult = "Close"
+        frmMain.closeResult = ClosingResult.Close
         Close()
     End Sub
 
@@ -39,7 +39,7 @@
         End If
 
         'Close this window and return to the main window
-        frmMain.closingResult = "Return"
+        frmMain.closeResult = ClosingResult.Cancel
         Close()
     End Sub
 

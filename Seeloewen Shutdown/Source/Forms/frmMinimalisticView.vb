@@ -4,13 +4,13 @@
 
     Private Sub frmMinimalisticView_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Load action
-        If frmMain._RunningAction.Text = "Shutdown" Or frmMain._RunningAction.Text = "Herunterfahren" Then
+        If frmMain.lblRunningActionContent.Text = "Shutdown" Or frmMain.lblRunningActionContent.Text = "Herunterfahren" Then
             If frmMain.language = "German" Then
                 lblAction.Text = "Ein Herunterfahren wurde geplant!"
             ElseIf frmMain.language = "English" Then
                 lblAction.Text = "A shutdown has been scheduled!"
             End If
-        ElseIf frmMain._RunningAction.Text = "Restart" Or frmMain._RunningAction.Text = "Neustarten" Then
+        ElseIf frmMain.lblRunningActionContent.Text = "Restart" Or frmMain.lblRunningActionContent.Text = "Neustarten" Then
             If frmMain.language = "German" Then
                 lblAction.Text = "Ein Neustart wurde geplant!"
             ElseIf frmMain.language = "English" Then
@@ -19,7 +19,7 @@
         End If
 
         'Load time
-        lblTime.Text = frmMain._RunningTime.Text
+        lblTime.Text = frmMain.lblRunningTimeContent.Text
 
         'Load UI settings
         LoadDesign()

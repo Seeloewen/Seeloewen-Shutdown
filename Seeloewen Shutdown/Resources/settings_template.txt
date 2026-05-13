@@ -1,0 +1,19 @@
+#Seeloewen Shutdown Settings File
+Version=1
+/
+#App Settings
+Language=System Default
+Design=System Default
+ShowNotifications=true
+ShowCloseWarning=true
+EnableAnimations=true
+/
+#Action History
+EnableActionHistory=true
+/
+#Profiles
+LoadProfileByDefault=false
+DefaultProfile=
+/
+#Minimalistic View
+EnableMinimalisticView=false

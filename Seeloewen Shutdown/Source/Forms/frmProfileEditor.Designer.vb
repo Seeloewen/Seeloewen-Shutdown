@@ -35,7 +35,6 @@ Partial Class frmProfileEditor
         Me.rbtnShutdown = New System.Windows.Forms.RadioButton()
         Me.cbxInTime = New System.Windows.Forms.ComboBox()
         Me.tbTimeIn = New System.Windows.Forms.TextBox()
-        Me.settings = New System.Windows.Forms.RichTextBox()
         Me.lblHeader = New System.Windows.Forms.Label()
         Me.btnRename = New System.Windows.Forms.Button()
         Me.gbEditProfile.SuspendLayout()
@@ -201,14 +200,6 @@ Partial Class frmProfileEditor
         Me.tbTimeIn.Size = New System.Drawing.Size(117, 22)
         Me.tbTimeIn.TabIndex = 10
         '
-        'settings
-        '
-        Me.settings.Location = New System.Drawing.Point(60, 432)
-        Me.settings.Name = "settings"
-        Me.settings.Size = New System.Drawing.Size(100, 96)
-        Me.settings.TabIndex = 18
-        Me.settings.Text = ""
-        '
         'lblHeader
         '
         Me.lblHeader.AutoSize = True
@@ -244,7 +235,6 @@ Partial Class frmProfileEditor
         Me.ClientSize = New System.Drawing.Size(437, 294)
         Me.Controls.Add(Me.btnRename)
         Me.Controls.Add(Me.lblHeader)
-        Me.Controls.Add(Me.settings)
         Me.Controls.Add(Me.btnClose)
         Me.Controls.Add(Me.lblChooseProfile)
         Me.Controls.Add(Me.btnDelete)
@@ -271,7 +261,6 @@ Partial Class frmProfileEditor
     Friend WithEvents btnSave As Button
     Friend WithEvents cbxProfile As ComboBox
     Friend WithEvents gbEditProfile As GroupBox
-    Friend WithEvents settings As RichTextBox
     Friend WithEvents cbxInTime As ComboBox
     Friend WithEvents tbTimeIn As TextBox
     Friend WithEvents lblIn As Label

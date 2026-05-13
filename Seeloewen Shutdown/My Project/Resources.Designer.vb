@@ -22,7 +22,7 @@ Namespace My.Resources
     '''<summary>
     '''  Eine stark typisierte Ressourcenklasse zum Suchen von lokalisierten Zeichenfolgen usw.
     '''</summary>
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0"),  _
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0"),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute(),  _
      Global.Microsoft.VisualBasic.HideModuleNameAttribute()>  _
@@ -63,69 +63,9 @@ Namespace My.Resources
         '''<summary>
         '''  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         '''</summary>
-        Friend ReadOnly Property About() As System.Drawing.Bitmap
+        Friend ReadOnly Property about() As System.Drawing.Bitmap
             Get
-                Dim obj As Object = ResourceManager.GetObject("About", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-        '''</summary>
-        Friend ReadOnly Property btnHamburger() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("btnHamburger", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-        '''</summary>
-        Friend ReadOnly Property btnHamburger_Click() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("btnHamburger_Click", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-        '''</summary>
-        Friend ReadOnly Property btnHamburger_Click_Dark() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("btnHamburger_Click_Dark", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-        '''</summary>
-        Friend ReadOnly Property btnHamburger_Hover() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("btnHamburger_Hover", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-        '''</summary>
-        Friend ReadOnly Property btnHamburger_Hover_Dark() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("btnHamburger_Hover_Dark", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-        '''</summary>
-        Friend ReadOnly Property btnSettings() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("btnSettings", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("about", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
@@ -163,9 +103,9 @@ Namespace My.Resources
         '''<summary>
         '''  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         '''</summary>
-        Friend ReadOnly Property grayBox() As System.Drawing.Bitmap
+        Friend ReadOnly Property graybox() As System.Drawing.Bitmap
             Get
-                Dim obj As Object = ResourceManager.GetObject("grayBox", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("graybox", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
@@ -173,9 +113,59 @@ Namespace My.Resources
         '''<summary>
         '''  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         '''</summary>
-        Friend ReadOnly Property grayBox_dark() As System.Drawing.Bitmap
+        Friend ReadOnly Property graybox_dark() As System.Drawing.Bitmap
             Get
-                Dim obj As Object = ResourceManager.GetObject("grayBox_dark", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("graybox_dark", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property hamburger() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("hamburger", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property hamburger_click() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("hamburger_click", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property hamburger_click_dark() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("hamburger_click_dark", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property hamburger_hover() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("hamburger_hover", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property hamburger_hover_dark() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("hamburger_hover_dark", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
@@ -193,9 +183,9 @@ Namespace My.Resources
         '''<summary>
         '''  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         '''</summary>
-        Friend ReadOnly Property Icon_Dark() As System.Drawing.Bitmap
+        Friend ReadOnly Property icon_dark() As System.Drawing.Bitmap
             Get
-                Dim obj As Object = ResourceManager.GetObject("Icon_Dark", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("icon_dark", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
@@ -203,9 +193,9 @@ Namespace My.Resources
         '''<summary>
         '''  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         '''</summary>
-        Friend ReadOnly Property Icon1() As System.Drawing.Bitmap
+        Friend ReadOnly Property icon1() As System.Drawing.Bitmap
             Get
-                Dim obj As Object = ResourceManager.GetObject("Icon1", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("icon1", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
@@ -213,9 +203,9 @@ Namespace My.Resources
         '''<summary>
         '''  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         '''</summary>
-        Friend ReadOnly Property Line() As System.Drawing.Bitmap
+        Friend ReadOnly Property line() As System.Drawing.Bitmap
             Get
-                Dim obj As Object = ResourceManager.GetObject("Line", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("line", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
@@ -223,9 +213,9 @@ Namespace My.Resources
         '''<summary>
         '''  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         '''</summary>
-        Friend ReadOnly Property Line_Dark() As System.Drawing.Bitmap
+        Friend ReadOnly Property line_dark() As System.Drawing.Bitmap
             Get
-                Dim obj As Object = ResourceManager.GetObject("Line_Dark", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("line_dark", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
@@ -233,9 +223,9 @@ Namespace My.Resources
         '''<summary>
         '''  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         '''</summary>
-        Friend ReadOnly Property MinimalisticView() As System.Drawing.Bitmap
+        Friend ReadOnly Property minimalistic_view() As System.Drawing.Bitmap
             Get
-                Dim obj As Object = ResourceManager.GetObject("MinimalisticView", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("minimalistic_view", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
@@ -243,9 +233,9 @@ Namespace My.Resources
         '''<summary>
         '''  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         '''</summary>
-        Friend ReadOnly Property Notification() As System.Drawing.Bitmap
+        Friend ReadOnly Property notification() As System.Drawing.Bitmap
             Get
-                Dim obj As Object = ResourceManager.GetObject("Notification", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("notification", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
@@ -253,9 +243,56 @@ Namespace My.Resources
         '''<summary>
         '''  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         '''</summary>
-        Friend ReadOnly Property Update() As System.Drawing.Bitmap
+        Friend ReadOnly Property settings() As System.Drawing.Bitmap
             Get
-                Dim obj As Object = ResourceManager.GetObject("Update", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("settings", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property settings_dark() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("settings_dark", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die #Seeloewen Shutdown Settings File
+        '''Version=1
+        '''/
+        '''#App Settings
+        '''Language=System Default
+        '''Design=System Default
+        '''ShowNotifications=true
+        '''ShowCloseWarning=true
+        '''EnableAnimations=true
+        '''/
+        '''#Action History
+        '''EnableActionHistory=true
+        '''/
+        '''#Profiles
+        '''LoadProfileByDefault=false
+        '''DefaultProfile=
+        '''/
+        '''#Minimalistic View
+        '''EnableMinimalisticView=false ähnelt.
+        '''</summary>
+        Friend ReadOnly Property settings_template() As String
+            Get
+                Return ResourceManager.GetString("settings_template", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property update() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("update", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
