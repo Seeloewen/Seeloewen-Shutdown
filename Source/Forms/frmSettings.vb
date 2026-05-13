@@ -88,7 +88,7 @@ Public Class frmSettings
             ResetSettings(path)
 
             'Load settings into array
-            settingsArray = My.Resources.Settings_Template.Split(NewLine)
+            settingsArray = My.Resources.settings_template.Split({NewLine}, StringSplitOptions.RemoveEmptyEntries)
 
             'Set current version number in settings file
             settingsArray(1) = String.Format("Version={0}", frmMain.settingsVersion.ToString)
