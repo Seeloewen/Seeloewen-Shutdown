@@ -110,7 +110,6 @@ Partial Class frmMain
         Me.rbtnRestart.Name = "rbtnRestart"
         Me.rbtnRestart.Size = New System.Drawing.Size(80, 24)
         Me.rbtnRestart.TabIndex = 3
-        Me.rbtnRestart.TabStop = True
         Me.rbtnRestart.Text = "Restart"
         Me.rbtnRestart.UseVisualStyleBackColor = False
         '
@@ -118,14 +117,12 @@ Partial Class frmMain
         '
         Me.rbtnShutdown.AutoSize = True
         Me.rbtnShutdown.BackColor = System.Drawing.Color.Transparent
-        Me.rbtnShutdown.Checked = True
         Me.rbtnShutdown.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rbtnShutdown.ForeColor = System.Drawing.SystemColors.ControlText
         Me.rbtnShutdown.Location = New System.Drawing.Point(3, 3)
         Me.rbtnShutdown.Name = "rbtnShutdown"
         Me.rbtnShutdown.Size = New System.Drawing.Size(99, 24)
         Me.rbtnShutdown.TabIndex = 0
-        Me.rbtnShutdown.TabStop = True
         Me.rbtnShutdown.Text = "Shutdown"
         Me.rbtnShutdown.UseVisualStyleBackColor = False
         '
